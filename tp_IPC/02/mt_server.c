@@ -8,81 +8,79 @@ int main()
 		exit(1);
 	}
 	
-	/* Crear la direccion donde abriremos el socket */
+	/* Crear la direccion donde abriremos el socket. */
 	struct sockaddr_in server_address;
 	server_address.sin_family = AF_INET;
 	server_address.sin_addr.s_addr = INADDR_ANY;
 	server_address.sin_port = htons(PORT);
 	
-	/* Conectamos el socket a la direccion que creamos */
+	/* Conectamos el socket a la direccion que creamos. */
 	if (bind(server_socket, (void*) &server_address, sizeof(server_address))) {
-		perror("binding datagram socket");
+		perror("Error binding tcp socket");
 		exit(1);
 	}
-
-	/* Preparamos el socket para recibir conexiones */
+	
+	/* Preparamos el socket para recibir conexiones. */
 	if (listen(server_socket, 5)) {
         	perror("Error escuchando");
         	exit(1);
     }
-
-	/* Preparamos los punteros para recibir la direccion del cliente y aceptamos el primer cliente */
+	
+	/* Preparamos los punteros para recibir la direccion del cliente y aceptamos el primer cliente. */
 	int client_socket;
 	int client_address;
 	int client_address_len = sizeof(client_address);
-	if ( (client_socket = accept(server_socket, (struct sockaddr *) &client_address, &client_address_len)) < 0)
-	{
-		perror("ERROR aceptando conexion");
+	if ((client_socket = accept(server_socket, (struct sockaddr *) &client_address, &client_address_len)) < 0) {
+		perror("Error aceptando conexion");
 		exit(1);
 	}
-	 
-	/* Vamos a aceptar mensajes hasta que el cliente finalice la conexion */
-	char recived_buffer[MAX_MSG_LENGTH]; 
-	memset(recived_buffer,0,MAX_MSG_LENGTH);
+	
+	/* Vamos a aceptar mensajes hasta que el cliente finalice la conexion. */
+	char received_buffer[MAX_MSG_LENGTH];
+	memset(received_buffer,0,MAX_MSG_LENGTH);
 	for (;;) {
-
-		/*Recibimos del cliente*/
-		int recv_out = recv(client_socket, recived_buffer, MAX_MSG_LENGTH, 0);
+		
+		/* Recibimos del cliente. */
+		int recv_out = recv(client_socket, received_buffer, MAX_MSG_LENGTH, 0);
 		if ( recv_out < 0 ) {
-			perror("ERROR leyendo el socket.");
+			perror("Error leyendo el socket.");
 			break;
 		} else if( recv_out == 0) {
 			perror("El cliente ha cerrado el socket.");
 			break;
 		}
 		
-		if (strncmp(recived_buffer, END_STRING, MAX_MSG_LENGTH) == 0) {
+		if (strncmp(received_buffer, END_STRING, MAX_MSG_LENGTH) == 0) {
 			printf("El cliente nos envio un chau\n");
 			break;
 		} else {
-			printf("Recibimos el comando %s", recived_buffer);
+			printf("Recibimos el comando %s", received_buffer);
 		}
-
-		/* Salvamos los File Descriptors de la salida standard y salida de error */
+		
+		/* Salvamos los File Descriptors de la salida standard y salida de error. */
 		int std_out = dup(STD_OUT);
 		int std_err = dup(STD_ERR);
-
-		/* Redirigimos la salida estandar y la salida de error al socket cliente */
+		
+		/* Redirigimos la salida estandar y la salida de error al socket cliente. */
 		dup2(client_socket, STD_OUT);
 		dup2(client_socket, STD_ERR);
 		
-		/* Ejecutamos el comando recibido */		
-		system(recived_buffer);
+		/* Ejecutamos el comando recibido. */
+		system(received_buffer);
 		fflush(stdout);
 		
-		/* Restauramos las salidas estandar */
+		/* Restauramos las salidas estandar. */
 		dup2(std_out, STD_OUT);
 		dup2(std_err, STD_ERR);
-
-		/* Cerramos los File Descriptors */
+		
+		/* Cerramos los File Descriptors. */
 		close(std_out);
-		close(std_err);		
+		close(std_err);
 	}
 	
-	/* Cerramos los sockets */
+	/* Cerramos los sockets. */
 	close(client_socket);
 	close(server_socket);
 	
 	return 0;
 }
-

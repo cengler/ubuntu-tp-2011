@@ -3,12 +3,12 @@ int main(int argc, char* argv[])
 {
 	/* Validando argumentos*/
 	if(argc != 2) {
-		perror("missing operands\nPlease call mt_client <ip_server>\n");
+		perror("Error missing operands\nPlease call mt_client <ip_server>\n");
 		exit(1);
 	}
-
+	
 	/* Crear socket sobre el que se escribe: dominio INET, protocolo UDP (DGRAM). */
-	int sock;	
+	int sock;
 	sock = socket(AF_INET, SOCK_DGRAM, 0);
 	if (sock < 0) {
 		perror("abriendo socket");
