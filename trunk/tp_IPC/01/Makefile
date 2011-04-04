@@ -13,7 +13,12 @@ mt_client.o : mt_client.c mt.h
 	gcc -c mt_client.c mt.h
 
 clean:
-	rm *.o
-	rm mt_server
-	rm mt_client
-	rm mt.h.gch
+	rm -f *.o
+	rm -f mt_server
+	rm -f mt_client
+	rm -f mt.h.gch
+	rm -f *.zip
+
+zip: clean all
+	zip 01.zip mt_client.c mt.h mt_server.c Makefile
+	
