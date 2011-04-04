@@ -43,7 +43,7 @@ int main()
 
 		/*Recibimos del cliente*/
 		if ( recv(client_socket, recived_buffer, MAX_MSG_LENGTH, 0) < 0 ) {
-			perror("ERROR leyendo el socket");
+			perror("ERROR leyendo el socket.");
 			break;
 		}
 		
