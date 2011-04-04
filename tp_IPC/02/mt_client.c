@@ -47,11 +47,12 @@ int main(int argc, char* argv[])
 			break;
 		}	
 		
-		if ( read(sock, text, MAX_MSG_LENGTH) < 0 ) {
+		int readed = read(sock, text, MAX_MSG_LENGTH);
+		if( readed < 0 ) {
 			perror("ERROR leyendo el socket");
 		}
 		
-		write(STD_OUT, text, strlen(text));
+		write(STD_OUT, text, readed);
 	}
 
 	close(sock);
