@@ -39,7 +39,7 @@ int SchedRR::tick(const enum Motivo m) {
 		}
 	} 
 	
-	// SI SE COMPLIO UN CICLO NORMAL
+	// SI SE CUMPLIO UN CICLO NORMAL
 	if (current_pid() == IDLE_TASK) {
 		
 		if (q.empty()) {

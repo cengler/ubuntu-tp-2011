@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <queue>
+#include <map>
 #include "basesched.h"
 
 class SchedMFQ : public SchedBase {
@@ -13,7 +14,13 @@ class SchedMFQ : public SchedBase {
 		virtual int tick(const enum Motivo m);
 	
 	private:
-		/* Completar */
+		virtual int firstNotEmptyQueue();
+		int qlength;
+		std::vector<int> quantums;
+		std::vector<std::queue<int> > qs;
+		std::map<int,int> p;
+		int quota;
+
 };
 
 #endif
