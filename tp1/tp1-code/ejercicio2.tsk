@@ -1,3 +1,7 @@
 TaskCPU 10
+@1
 TaskCPU 10
-TaskCom 7 3 3
+@3
+TaskCon 7 1 3
+
+

@@ -17,7 +17,9 @@ void TaskCon(vector<int> params) { // params: n
 	int bmin = params[1];
 	int bmax = params[2];
 	for( int i = 0; i < n ; i++ ) {
-		int time = (rand()%(bmax-bmin))+bmin;
+		int time = bmin;
+		if(bmin != bmax)
+			time = (rand()%(bmax-bmin))+bmin;
 		uso_IO(time);
 	}
 }
