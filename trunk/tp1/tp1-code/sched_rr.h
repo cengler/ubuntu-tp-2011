@@ -13,7 +13,9 @@ class SchedRR : public SchedBase {
 		virtual int tick(const enum Motivo m);
 	
 	private:
-		/* Completar */
+		std::queue<int> q;
+		int quantum;
+		int quota;
 };
 
 #endif

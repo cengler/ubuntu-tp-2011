@@ -6,19 +6,55 @@
 using namespace std;
 
 SchedRR::SchedRR(vector<int> argn) {
-	// Round robin recibe el quantum por parámetro
-	/* Completar */
+	quantum = argn[0]; // ME GUARDO AL QUANTUM
 }
 
 void SchedRR::load(int pid) {
-	/* Completar */
+	q.push(pid); // CARGO EL SIGUIENTE A EJECUTAR
 }
 
 void SchedRR::unblock(int pid) {
-	/* Completar */
+	q.push(pid);  // LA AGREGO A LA COLA DE LISTOS
 }
 
 int SchedRR::tick(const enum Motivo m) {
-	/* Completar */
-	return IDLE_TASK;
+	
+	// SI TERMINO EJECUTO LA SIGUIENTE POR TODO UN QUANTUM
+	if (m == EXIT) {
+		if (q.empty()) return IDLE_TASK;
+		else {
+			quota = 0;
+			int sig = q.front(); q.pop();
+			return sig;
+		}
+	} 
+	
+	// SI SE BLOQUEO
+	if (m == BLOCK) {
+		if (q.empty()) return IDLE_TASK;
+		else {
+			quota = 0;
+			q.push(current_pid());
+			int sig = q.front(); q.pop();
+			return sig;
+		}
+	} 
+	
+	// SI SE COMPLIO UN CICLO NORMAL
+	if (current_pid() == IDLE_TASK) {
+		if (q.empty()) return IDLE_TASK;
+		else {
+			if(quota >= quantum-1)
+			{
+				quota = 0;
+				int c_pid = current_pid();
+				q.push(c_pid);
+				int sig = q.front(); q.pop();
+				return sig;
+			}
+			else
+				quota++;
+				return current_pid();	
+		}
+	}
 }
