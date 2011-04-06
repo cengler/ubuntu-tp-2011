@@ -89,12 +89,17 @@
 
 %\newpage
 
+
+
+
+
+
 \part{Parte 1: Entendiendo el Simulador simusched}
-\section{Introducción}
+\section{Introduccion}
 
 \subsection{Ejercicio 1}
 
-\paragraph{Implementamos el Metodo TaskCon segun lo pedido.}
+Implementamos el Metodo TaskCon segun lo pedido.
 
 \begin{framed}
 \begin{verbatim}
@@ -112,7 +117,7 @@ void TaskCon(vector<int> params) { // params: n
 
 \subsection{Ejercicio 2}
 
-\paragraph{Creamos el archivo \verb|ejercicio2.tsk|}
+Creamos el archivo \verb|ejercicio2.tsk|
 
 \begin{framed}
 \begin{verbatim}
@@ -125,29 +130,15 @@ TaskCon 7 1 3
 \end{verbatim}
 \end{framed}
 
-\paragraph{
+
 Luego ejecutamos Simusched con los siguientes parametros:
 
 \verb+./simusched ejercicio2.tsk 1 SchedFCFS | python graphsched.py > ejercicio2.png+
-}
+
 
 \imagen{0.5}{img/ejercicio2.png}{Scheduling FCFS}
 
 
-%\subsection{Modulos Server}
-%\newpage
-%\paragraph{Descripcion de cada uno de los modulos}
-%\label{sec:DescripcionDeCadaUnoDeLosModulos}
-%\subsubsection{Clausura del casino}
-%\newpage
-%\imagen{0.5}{img/abrirCasino.png}{Abrir Casino}
-%\input{introduccion.tex}
-%\begin{framed}
-%\begin{verbatim}
-%<?xml version="1.0" encoding="UTF-8" ?> 
-%</cerrarCasino>	
-%\end{verbatim}
-%\end{framed}
 
 \end{document}
 
