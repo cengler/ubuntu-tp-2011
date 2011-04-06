@@ -47,7 +47,7 @@
 
 %%% Encabezado y pie de p'agina
 \pagestyle{fancy}
-\fancyhead[LO]{Ingenieria del Software I}
+\fancyhead[LO]{Sistemas Operativos}
 \fancyhead[C]{}
 \fancyhead[RO]{P\'agina \thepage\ de \pageref{LastPage}}
 \renewcommand{\headrulewidth}{0.4pt}
@@ -69,7 +69,7 @@
 \begin{document}
 
 \universidad{Universidad de Buenos Aires}
-\facultad{Facultad de ciencias exactas y naturales}
+\facultad{Facultad de Ciencias Exactas y Naturales}
 \departamento{Departamento de Computacion}
 \materia{Sistemas Operativos}
 \resumen{Simusched}
@@ -79,7 +79,7 @@
 \grupo{Numero de grupo: 12}
 \fecha{1er Cuatrimeste 2011}
 \footspace{1cm}
-\integrante{Dominguez, Pablo Sebastian}{000/05}{pablo.sebastian.dominguez@gmail.com}
+\integrante{Dominguez, Pablo Sebastian}{108/05}{pablo.sebastian.dominguez@gmail.com}
 \integrante{Engler, Christian Alejandro}{314/05}{caeycae@gmail.com}
 
 %caratula
@@ -118,8 +118,10 @@ void TaskCon(vector<int> params) { // params: n
 \begin{verbatim}
 # FILE ejercicio2.tsk
 TaskCPU 10
-TaskCPU 10
-TaskCom 7 3 3
+@1
+TaskCon 10 1 4
+@3
+TaskCon 7 1 3
 \end{verbatim}
 \end{framed}
 
