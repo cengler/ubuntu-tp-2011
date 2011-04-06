@@ -1,6 +1,6 @@
 TaskCPU 10
 @1
-TaskCPU 10
+TaskCon 10 1 4
 @3
 TaskCon 7 1 3
 
