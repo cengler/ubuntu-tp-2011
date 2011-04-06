@@ -34,7 +34,6 @@ int SchedRR::tick(const enum Motivo m) {
 		if (q.empty()) return IDLE_TASK;
 		else {
 			quota = 0;
-			q.push(current_pid());
 			int sig = q.front(); q.pop();
 			return sig;
 		}
@@ -42,19 +41,19 @@ int SchedRR::tick(const enum Motivo m) {
 	
 	// SI SE COMPLIO UN CICLO NORMAL
 	if (current_pid() == IDLE_TASK) {
-		if (q.empty()) return IDLE_TASK;
-		else {
-			if(quota >= quantum-1)
-			{
-				quota = 0;
-				int c_pid = current_pid();
-				q.push(c_pid);
-				int sig = q.front(); q.pop();
-				return sig;
-			}
-			else
-				quota++;
-				return current_pid();	
+		
+		if (q.empty()) {
+			quota = 0;
+			return current_pid();
+		} else if(quota >= quantum-1) {
+			quota = 0;
+			int c_pid = current_pid();
+			q.push(c_pid);
+			int sig = q.front(); q.pop();
+			return sig;
+		} else {
+			quota++;
+			return current_pid();	
 		}
 	}
 }
