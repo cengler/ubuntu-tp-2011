@@ -1,5 +1,6 @@
 #ifndef __SCHED_MFQ__
 #define __SCHED_MFQ__
+#define MAX_PRIORITY 0
 
 #include <vector>
 #include <queue>
