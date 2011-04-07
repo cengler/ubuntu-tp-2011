@@ -1,3 +1,4 @@
+# FILE ejercicio2.tsk
 TaskCPU 10
 @1
 TaskCon 10 1 4
