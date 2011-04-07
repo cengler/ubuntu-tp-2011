@@ -64,7 +64,7 @@ def drawGantt(data, fout, rg=3, width=1024, height=600):
 	xmax = max(max(tm for tm,_ in data[pid]) for pid in data)+1
 
 	# Inicializa Grafico
-	xstp = iround(xmax/xmarks)
+	xstp = iround((xmax+xmarks-1)/xmarks)
 	xgap = xstp*xmarks
 	ystp = 30
 	if ystp*n > height: ystp = height/n
