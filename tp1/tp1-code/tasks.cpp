@@ -1,6 +1,9 @@
 #include "tasks.h"
 #include <cstdlib>
 
+#include <iostream>
+#include <fstream>
+
 using namespace std;
 
 void TaskCPU(vector<int> params) { // params: n
@@ -61,11 +64,16 @@ void TaskBatch(vector<int> params) {
 		else
 			i--;
 	}
-	for(int i=0;i<tot-blocksC;i++) {
-		if( blocks[i] )
+	for(int i=0;i<tot-2*blocksC;i++) {
+		if( blocks[i] ) {
+			printf("--%d IO\n", i);
 			uso_IO(1);
+		}
 		else
+		{
+			printf("--%d CPU\n", i);
 			uso_CPU(1);
+		}
 	}
 }
 
