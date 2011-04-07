@@ -50,6 +50,25 @@ void TaskMultipleIOLongCPU(vector<int> params) { // params: n
 	uso_CPU(params[0]); // Uso el CPU ms_cpu milisegundos.
 }
 
+void TaskBatch(vector<int> params) {
+	int blocksC = params[1];
+	int tot = params[0];
+	vector<bool> blocks = vector<bool>(tot-blocksC);
+	for(int i=0;i<blocksC;i++) {
+		int blockT = rand()%(tot-blocksC-1);
+		if( !blocks[blockT] )
+			blocks[blockT] = true;
+		else
+			i--;
+	}
+	for(int i=0;i<tot-blocksC;i++) {
+		if( blocks[i] )
+			uso_IO(1);
+		else
+			uso_CPU(1);
+	}
+}
+
 void tasks_init(void) {
 	/* Todos los tipos de tareas se deben registrar acá para poder ser usadas.
 	 * El segundo parámetro indica la cantidad de parámetros que recibe la tarea
@@ -59,5 +78,6 @@ void tasks_init(void) {
 	register_task(TaskCon, 3);
 	register_task(TaskLongCPUMultipleIO, 4);
 	register_task(TaskMultipleIOLongCPU, 4);
+	register_task(TaskBatch, 2);
 
 }
