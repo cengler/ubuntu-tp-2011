@@ -9,12 +9,18 @@ Implementamos el Metodo TaskCon segun lo pedido.
 
 \begin{framed}
 \begin{verbatimtab}
-void TaskCon(vector<int> params) { // params: n
+void TaskCon(vector<int> params) { // params: 3
 	int n = params[0];
 	int bmin = params[1];
 	int bmax = params[2];
+	
+	// INICIALIZAMOS SEMILLA DE RAND()
+	srand ( time(NULL) );
+	
 	for( int i = 0; i < n ; i++ ) {
-		int time = (rand()%(bmax-bmin))+bmin;
+		int time = bmin;
+		if(bmin != bmax)
+			time = (rand()%(bmax-bmin+1))+bmin;
 		uso_IO(time);
 	}
 }
