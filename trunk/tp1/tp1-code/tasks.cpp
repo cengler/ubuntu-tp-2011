@@ -19,12 +19,22 @@ void TaskCon(vector<int> params) { // params: 3
 	int n = params[0];
 	int bmin = params[1];
 	int bmax = params[2];
+	
+	// INICIALIZAMOS SEMILLA DE RAND()
+	srand ( time(NULL) );
+	
 	for( int i = 0; i < n ; i++ ) {
 		int time = bmin;
 		if(bmin != bmax)
-			time = (rand()%(bmax-bmin))+bmin;
+			time = (rand()%(bmax-bmin+1))+bmin;
 		uso_IO(time);
 	}
+}
+
+void TaskCPUIOCPU(vector<int> params) { // params: ms_cpu1, ms_io, ms_cpu2
+	uso_CPU(params[0]); // Uso el CPU ms_cpu1 milisegundos.
+	uso_IO(params[1]); // Uso IO ms_io milisegundos.
+	uso_CPU(params[2]); // Uso el CPU ms_cpu2 milisegundos.
 }
 
 void TaskLongCPUMultipleIO(vector<int> params) { // params: n
@@ -32,6 +42,10 @@ void TaskLongCPUMultipleIO(vector<int> params) { // params: n
 	int n = params[1];
 	int bmin = params[2];
 	int bmax = params[3];
+	
+	// INICIALIZAMOS SEMILLA DE RAND()
+	srand ( time(NULL) );
+	
 	for( int i = 0; i < n ; i++ ) {
 		int time = bmin;
 		if(bmin != bmax)
@@ -44,6 +58,10 @@ void TaskMultipleIOLongCPU(vector<int> params) { // params: n
 	int n = params[1];
 	int bmin = params[2];
 	int bmax = params[3];
+	
+	// INICIALIZAMOS SEMILLA DE RAND()
+	srand ( time(NULL) );
+	
 	for( int i = 0; i < n ; i++ ) {
 		int time = bmin;
 		if(bmin != bmax)
@@ -54,24 +72,26 @@ void TaskMultipleIOLongCPU(vector<int> params) { // params: n
 }
 
 void TaskBatch(vector<int> params) {
-	int blocksC = params[1];
 	int tot = params[0];
-	vector<bool> blocks = vector<bool>(tot-blocksC);
+	int blocksC = params[1];
+	
+	// INICIALIZAMOS SEMILLA DE RAND()
+	srand ( time(NULL) );
+	
+	vector<bool> blocks = vector<bool>(tot-blocksC-1);
 	for(int i=0;i<blocksC;i++) {
-		int blockT = rand()%(tot-blocksC-1);
+		int blockT = rand()%(blocks.size()-1);
 		if( !blocks[blockT] )
 			blocks[blockT] = true;
 		else
 			i--;
 	}
-	for(int i=0;i<tot-2*blocksC;i++) {
+	for(int i=0;i<(int)blocks.size();i++) {
 		if( blocks[i] ) {
-			printf("--%d IO\n", i);
 			uso_IO(1);
 		}
 		else
 		{
-			printf("--%d CPU\n", i);
 			uso_CPU(1);
 		}
 	}
@@ -87,5 +107,5 @@ void tasks_init(void) {
 	register_task(TaskLongCPUMultipleIO, 4);
 	register_task(TaskMultipleIOLongCPU, 4);
 	register_task(TaskBatch, 2);
-
+	register_task(TaskCPUIOCPU, 3);
 }
