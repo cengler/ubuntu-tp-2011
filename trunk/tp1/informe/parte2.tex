@@ -12,13 +12,17 @@ Implementamos la clase requerida.
 \subsection{Lote 1}
 
 Primero creamos un nuevo tipo de Tarea llamada TaskCPUIOCPU que recibe 3 parametros:
+
 \begin{enumerate}
- \item Tiempo de ejecución de CPU en ciclos de reloj
- \item Tiempo de ejecución de IO en ciclos de reloj
- \item Tiempo de ejecución de CPU en ciclos de reloj
+ \item n Tiempo de ejecuci\'on de CPU en ciclos de reloj
+ \item i Tiempo de ejecuci\'on de IO en ciclos de reloj
+ \item m Tiempo de ejecuci\'on de CPU en ciclos de reloj
 \end{enumerate}
 
-Creamos el archivo \verb|ejercicio4_1.tsk|
+Esta tarea ejecuta en el CPU (n) se bloquea por (i) y luego sigue ejecutando (m).
+
+\paragraph{}
+Creamos el siguiente grupo de tareas \verb|ejercicio4_1.tsk|
 
 \begin{framed}
 \begin{verbatim}
@@ -42,11 +46,11 @@ Luego ejecutamos Simusched con los siguientes parametros:
     \includegraphics[width=1\textwidth]{img/ejercicio4_1.png}
 \end{figure}
 
-Se puede ver en el grafico que se van alternando los 3 procesos con un quantum de 3 unidades hasta que el proceso $(2)$ se bloquea.
+Se puede ver en el grafico que se van alternando los 3 procesos con un quantum de 3 unidades hasta que el proceso (2) se bloquea.
 
-Mientras el $(2)$ está bloqueado se puede ver que los otros dos procesos van altenando su ejecución. 
+Mientras el (2) est\'a bloqueado se puede ver que los otros dos procesos van altenando su ejecuci\'on. 
 
-Hasta que el proceso $(2)$ se desblquea y nuevamente se vuelven a alternar los 3 procesos.
+Hasta que el proceso (2) se desblquea y nuevamente se vuelven a alternar los 3 procesos.
 
 \subsection{Lote 2}
 

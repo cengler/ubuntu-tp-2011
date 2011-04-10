@@ -1,0 +1,4 @@
+# FILE ejercicio7.tsk
+TaskBatch 30 5
+TaskBatch 30 10
+TaskBatch 30 20
