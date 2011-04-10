@@ -1,0 +1,4 @@
+# FILE ejercicio8_a.tsk
+TaskCPU 20
+@1
+*2 TaskIOMultiple 20

@@ -1,0 +1,4 @@
+# FILE ejercicio8_b.tsk
+TaskCPU 60
+TaskBatch 50 3
+TaskIOMultiple 15

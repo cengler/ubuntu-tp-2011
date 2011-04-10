@@ -61,7 +61,7 @@ int SchedMFQ::tick(const enum Motivo m) {
 			
 	if(m == BLOCK) {
 		if (q_index == -1) 
-			return current_pid();
+			return IDLE_TASK;
 		else {
 			// TOMO EL SIG A EJECUTAR CON QUOTA EN 0
 			quota = 0;
@@ -88,10 +88,12 @@ int SchedMFQ::tick(const enum Motivo m) {
 	// SE CUMPLIO LA CUOTA
 	if(quota >= currentQuantum-1) {
 		
+		if (q_index == -1)
+			return current_pid();
+		
 		// SI NO TIENE MINIMA PIORIDAD SE LA BAJO
 		if( currentPiority != qlength-1 ) { 
 			currentPiority++;
-			printf("AUMENTO\n");
 		}
 		// AGREGO EL PROCESO EXPULSADO A LA COLA CON
 		// LA PIORIDAD ACTUALIZADA

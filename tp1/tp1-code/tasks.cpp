@@ -15,6 +15,12 @@ void TaskIO(vector<int> params) { // params: ms_cpu, ms_io,
 	uso_IO(params[1]); // Uso IO ms_io milisegundos.
 }
 
+void TaskIOMultiple(vector<int> params) { // params: n
+	for( int i = 0; i < params[0] ; i++ ) {
+		uso_IO(1); // Uso IO ms_io milisegundos.
+	}
+}
+
 void TaskCon(vector<int> params) { // params: 3
 	int n = params[0];
 	int bmin = params[1];
@@ -78,13 +84,13 @@ void TaskBatch(vector<int> params) {
 	// INICIALIZAMOS SEMILLA DE RAND()
 	srand ( time(NULL) );
 	
-	vector<bool> blocks = vector<bool>(tot-blocksC-1);
+	vector<bool> blocks = vector<bool>(tot-1);
 	for(int i=0;i<blocksC;i++) {
 		int blockT = rand()%(blocks.size()-1);
 		if( !blocks[blockT] )
 			blocks[blockT] = true;
-		else
-			i--;
+		//else
+		//	i--;
 	}
 	for(int i=0;i<(int)blocks.size();i++) {
 		if( blocks[i] ) {
@@ -108,4 +114,5 @@ void tasks_init(void) {
 	register_task(TaskMultipleIOLongCPU, 4);
 	register_task(TaskBatch, 2);
 	register_task(TaskCPUIOCPU, 3);
+	register_task(TaskIOMultiple, 1);
 }
