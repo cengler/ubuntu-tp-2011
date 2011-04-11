@@ -23,6 +23,9 @@ public class SchedRRTest {
 	private Map<Integer, Integer> exit = new HashMap<Integer, Integer>();
 	private Map<Integer, Integer> load = new HashMap<Integer, Integer>();
 	
+	private Map<Integer, Integer> block = new HashMap<Integer, Integer>();
+	private Map<Integer, Integer> blockTime = new HashMap<Integer, Integer>();
+	
 	public static void main(String[] args) throws FileNotFoundException {
 		new SchedRRTest(System.in);
 	}
@@ -47,6 +50,7 @@ public class SchedRRTest {
 		for (Integer key : load.keySet()) {
 			System.out.print("Programa" + key + " T " + (exit.get(key)-load.get(key)) + " ");
 			System.out.print("Programa" + key + " L " + (latencia.get(key)-load.get(key)) + " ");
+			System.out.print("Programa" + key + " B " + (blockTime.get(key)) + " ");
 		}
 		
 		System.out.print("\n");
@@ -95,6 +99,17 @@ public class SchedRRTest {
 		{
 			exit.put(pid, time);
 		}
-		
+		else if(BLOCK)
+		{
+			block.put(pid, time);
+		}
+		else if(UNBLOCK)
+		{
+			int thisBlockTime = time - block.get(id);
+			if( blockTime.get(pid) == null)
+				blockTime.put(pid, thisBlockTime);
+			else
+				blockTime.put(pid, blockTime.get(pid)+thisBlockTime);
+		}
 	}
 }
