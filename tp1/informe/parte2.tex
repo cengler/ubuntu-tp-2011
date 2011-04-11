@@ -5,13 +5,17 @@
 
 \section{Ejercicio 3}
 
-Implementamos la clase requerida.
+Completamos la implementaci\'on del scheduler Round-Robin implementando los todos de la clase SchedRR.
+
+Este scheduler recibe en quantum y permite a cada tarea ejecutar como maximo ese tiempo, una vez finalizado ese tiempo continua con la siguiente tarea lista para ejecutar.
+
+Ver resoluci\'on en los archivos \verb|sched rr.cpp| y \verb|sched rr.h|.
 
 \section{Ejercicio 4}
 
-\subsection{Lote 1}
+Realizamos dos lotes de prueba para observar el comportamiento de del scheduler Round-Robin.
 
-Primero creamos un nuevo tipo de Tarea llamada TaskCPUIOCPU que recibe 3 parametros:
+Para tal fin creamos el tipo de Tarea TaskCPUIOCPU que recibe 3 parametros:
 
 \begin{enumerate}
  \item n Tiempo de ejecuci\'on de CPU en ciclos de reloj
@@ -21,7 +25,8 @@ Primero creamos un nuevo tipo de Tarea llamada TaskCPUIOCPU que recibe 3 paramet
 
 Esta tarea ejecuta en el CPU (n) se bloquea por (i) y luego sigue ejecutando (m).
 
-\paragraph{}
+\subsection{Lote 1}
+
 Creamos el siguiente grupo de tareas \verb|ejercicio4_1.tsk|
 
 \begin{framed}
@@ -83,8 +88,27 @@ Luego ejecutamos Simusched con los siguientes parametros:
     \includegraphics[width=1\textwidth]{img/ejercicio4_2.png}
 \end{figure}
 
-Hay tres procesos que se estan ejecutando.
+Se ve en el grafico que se carga la tarea 0 y se comienza a ejecutar por el quantum de 4.
+
+Luego, cuando esta finaliza la tarea 1 ya est\'a en la cola de listos, por lo que comienza a ejecutar hasta finalizar su quantum.
+
+Para ese momento las tareas 0 y 2 estan en la cola de listos, por lo que comienza a ejecutar la 0 que estaba en primer lugar.
+
+Despues de eso las tres tareas ya se encuentran cargadas y se van ejecutando hasta finalizar su quantum hasta que el ciclo 29 la tarea 0 se bloquea.
+
+Por lo que siguen ejecutando las tareas 1 y 2 hasta que el el ciclo 43 la tarea 2 finaliza, y en el ciclo 48 la tarea 1 se bloquea, por lo que el procesador queda ocioso.
+
+En el ciclo 49 la tarea 0 finaliza su entrada/salida, por lo que continua su ejecucion. 
+
+En el ciclo 62 la tarea 0 finaliza y el procesador queda nuevamente ocioso.
+
+En el ciclo 68 la tarea 1 finaliza su entrada/salida y ejecuta hasta finalizar.
+
 
 \section{Ejercicio 5}
 
-Implementamos la clase requerida.
+Completamos la implementaci\'on del scheduler Multilevel Feedback Queue implementando los todos de la clase SchedMFQ.
+
+Este scheduler utiliza n colas con Round-Robin, y recibe como parametro el quantum de cada una de las colas.
+
+Ver resoluci\'on en los archivos \verb|sched mfq.cpp| y \verb|sched mfq.h|.
