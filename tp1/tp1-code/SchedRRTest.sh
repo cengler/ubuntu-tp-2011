@@ -28,3 +28,14 @@
 ./simusched ejercicio7.tsk 1 SchedRR 28 | java SchedRRTest >> result.out
 ./simusched ejercicio7.tsk 1 SchedRR 29 | java SchedRRTest >> result.out
 ./simusched ejercicio7.tsk 1 SchedRR 30 | java SchedRRTest >> result.out
+./simusched ejercicio7.tsk 1 SchedRR 31 | java SchedRRTest >> result.out
+./simusched ejercicio7.tsk 1 SchedRR 32 | java SchedRRTest >> result.out
+./simusched ejercicio7.tsk 1 SchedRR 33 | java SchedRRTest >> result.out
+./simusched ejercicio7.tsk 1 SchedRR 34 | java SchedRRTest >> result.out
+./simusched ejercicio7.tsk 1 SchedRR 35 | java SchedRRTest >> result.out
+./simusched ejercicio7.tsk 1 SchedRR 36 | java SchedRRTest >> result.out
+./simusched ejercicio7.tsk 1 SchedRR 37 | java SchedRRTest >> result.out
+./simusched ejercicio7.tsk 1 SchedRR 38 | java SchedRRTest >> result.out
+./simusched ejercicio7.tsk 1 SchedRR 39 | java SchedRRTest >> result.out
+./simusched ejercicio7.tsk 1 SchedRR 40 | java SchedRRTest >> result.out
+

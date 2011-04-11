@@ -2,7 +2,34 @@
 
 \section{Ejercicio 6}
 
-Implementamos la funcion requerida.
+Implementamos el tipo de tarea TaskBatch que recibe como parametro \verb|tot| (tiempo total de ejecucion) y \verb|blocks| (cantidad de bloqueos).
+
+\begin{framed}
+\begin{verbatimtab}
+void TaskBatch(vector<int> params) {
+	int tot = params[0];
+	int blocksC = params[1];
+	
+	// INICIALIZAMOS SEMILLA DE RAND()
+	srand ( time(NULL) );
+	
+	vector<bool> blocks = vector<bool>(tot-1);
+	for(int i=0;i<blocksC;i++) {
+		int blockT = rand()%(blocks.size()-1);
+		if( !blocks[blockT] )
+			blocks[blockT] = true;
+		else
+			i--;
+	}
+	for(int i=0;i<(int)blocks.size();i++) {
+		if( blocks[i] )
+			uso_IO(1);
+		else
+			uso_CPU(1);
+	}
+}
+\end{verbatimtab}
+\end{framed}
 
 \section{Ejercicio 7}
 

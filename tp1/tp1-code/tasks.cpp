@@ -89,17 +89,14 @@ void TaskBatch(vector<int> params) {
 		int blockT = rand()%(blocks.size()-1);
 		if( !blocks[blockT] )
 			blocks[blockT] = true;
-		//else
-		//	i--;
+		else
+			i--;
 	}
 	for(int i=0;i<(int)blocks.size();i++) {
-		if( blocks[i] ) {
+		if( blocks[i] )
 			uso_IO(1);
-		}
 		else
-		{
 			uso_CPU(1);
-		}
 	}
 }
 
