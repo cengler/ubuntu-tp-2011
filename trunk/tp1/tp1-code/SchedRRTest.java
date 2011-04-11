@@ -24,7 +24,11 @@ public class SchedRRTest {
 	private Map<Integer, Integer> load = new HashMap<Integer, Integer>();
 	
 	private Map<Integer, Integer> block = new HashMap<Integer, Integer>();
+
+	// TIEMPO BLOQUEADO
 	private Map<Integer, Integer> blockTime = new HashMap<Integer, Integer>();
+	// EXEC BLOQUEADO
+	private Map<Integer, Integer> execTime = new HashMap<Integer, Integer>();
 	
 	public static void main(String[] args) throws FileNotFoundException {
 		new SchedRRTest(System.in);
@@ -47,10 +51,11 @@ public class SchedRRTest {
 		
 		
 		System.out.print("IDLE " + tiempoInactivo + " ");
+
 		for (Integer key : load.keySet()) {
-			System.out.print("Programa" + key + " T " + (exit.get(key)-load.get(key)) + " ");
-			System.out.print("Programa" + key + " L " + (latencia.get(key)-load.get(key)) + " ");
-			System.out.print("Programa" + key + " B " + (blockTime.get(key)) + " ");
+			System.out.print((exit.get(key)-load.get(key)) + " "); // TIEMPO EN EJECUCION
+			System.out.print((latencia.get(key)-load.get(key)) + " "); // LATENCIA
+			System.out.print((exit.get(key)-load.get(key)-blockTime.get(key)-execTime.get(key)) + " "); // WAITING TIME
 		}
 		
 		System.out.print("\n");
@@ -92,6 +97,12 @@ public class SchedRRTest {
 					if(latencia.get(pid) > time)
 						latencia.put(pid, time);
 				}
+
+				if(execTime.get(pid) == null)
+					execTime.put(pid, 1);
+				else 
+					execTime.put(pid, execTime.get(pid)+1);
+				
 				
 			}
 		}
@@ -99,13 +110,13 @@ public class SchedRRTest {
 		{
 			exit.put(pid, time);
 		}
-		else if(BLOCK)
+		else if(state.equals(BLOCK))
 		{
 			block.put(pid, time);
 		}
-		else if(UNBLOCK)
+		else if(state.equals(UNBLOCK))
 		{
-			int thisBlockTime = time - block.get(id);
+			int thisBlockTime = time - block.get(pid);
 			if( blockTime.get(pid) == null)
 				blockTime.put(pid, thisBlockTime);
 			else
