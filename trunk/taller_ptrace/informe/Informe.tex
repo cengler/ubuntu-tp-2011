@@ -1,0 +1,98 @@
+\documentclass[a4paper, 10pt, notitlepage]{article}
+
+\usepackage{moreverb} %para importar codigo
+
+\usepackage[spanish,activeacute]{babel}
+\usepackage{babel} %paquete de idioma
+
+\usepackage[latin1]{inputenc}
+
+\usepackage{pepotina} %caratula
+%\usepackage{color}
+
+%\usepackage{hyperref}
+%\usepackage[all]{hypcap}
+
+\usepackage{fancyhdr} %linea sup con comentarios
+
+\usepackage{lscape} %para hoja apaisada
+
+\usepackage{framed} %para crear cajas de texto
+
+\usepackage{lastpage} %ultima pagina
+
+%\usepackage{wrapfig} %Inclusión de gráficos al lado de texto
+%\usepackage[rflt]{floatflt} %Para meter figuras flotantes entre el texto
+
+
+%\usepackage{pstricks}
+%\usepackage{uml} %UML
+
+\usepackage{listings}
+%\lstset{
+%  breaklines=true,                                     % line wrapping on
+%  language=ocl,
+%  frame=ltrb,
+%  framesep=5pt,
+%  basicstyle=\normalsize,
+%  keywordstyle=\ttfamily\color{OliveGreen},
+%  identifierstyle=\ttfamily\color{CadetBlue}\bfseries,
+%  commentstyle=\color{Brown},
+%  stringstyle=\ttfamily,
+%  showstringspaces=ture
+%}
+
+\addtolength{\topmargin}{-50pt} 
+\addtolength{\textwidth}{105pt}
+\addtolength{\textheight}{120pt}
+\addtolength{\oddsidemargin}{-50pt}
+
+%\newcommand{\minix}{\textsl{minix }}
+
+%%% Encabezado y pie de p'agina
+\pagestyle{fancy}
+\fancyhead[LO]{Sistemas Operativos}
+\fancyhead[C]{}
+\fancyhead[RO]{P\'agina \thepage\ de \pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyfoot{}
+
+\newcommand{\depto}{{\bf DPTO: }}
+
+
+\def\falta#1{ \begin{framed}	\begin{center} \hspace{1cm} \Large FALTA \normalsize #1 \hspace{1cm} \end{center} \end{framed}}
+
+
+\def\imagen#1#2{\vskip0.5cm
+\begin{center}
+\includegraphics[scale=#1]{#2}
+\end{center}}
+
+
+\begin{document}
+
+\universidad{Universidad de Buenos Aires}
+\facultad{Facultad de Ciencias Exactas y Naturales}
+\departamento{Departamento de Computación}
+\materia{Sistemas Operativos}
+\resumen{Simusched}
+\keys{Scheduling, c++, FCFS}
+\titulo{Tp1: Simusched}
+\subtitulo{Scheduling de tareas}
+\grupo{Numero de grupo: 12}
+\fecha{1er Cuatrimeste 2011}
+\footspace{1cm}
+\integrante{Dominguez, Pablo Sebastian}{108/05}{pablo.sebastian.dominguez@gmail.com}
+\integrante{Engler, Christian Alejandro}{314/05}{caeycae@gmail.com}
+
+%caratula	
+\maketitle{}
+
+\tableofcontents
+
+\newpage
+\input{ptrace.tex}
+
+\end{document}
+
+

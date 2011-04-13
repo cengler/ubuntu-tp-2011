@@ -1,0 +1,109 @@
+
+\section{Ejercicio 1}
+
+Ejecutamos \verb|whoop| dentro del programa \verb|strace| para obterner informacion de las SYSCALLS del programa \verb|whoop|.
+
+\begin{framed}
+\begin{verbatim}
+strace -f ./whoop ./tinyhello
+\end{verbatim}
+\end{framed}
+
+Esto nos dio la siguiente salida.
+
+\begin{framed}
+\begin{verbatimtab}
+execve("./whoop", ["./whoop", "./tinyhello"], [/* 39 vars */]) = 0
+uname({sys="Linux", node="sullivan", ...}) = 0
+brk(0)                                  = 0x9742000
+brk(0x9742cd0)                          = 0x9742cd0
+set_thread_area({entry_number:-1 -> 6, base_addr:0x9742830, limit:1048575, 
+  seg_32bit:1, contents:0, read_exec_only:0, limit_in_pages:1, 
+  seg_not_present:0, useable:1}) = 0
+brk(0x9763cd0)                          = 0x9763cd0
+brk(0x9764000)                          = 0x9764000
+clone(Process 4252 attached child_stack=0, flags=CLONE_CHILD_CLEARTID|
+  CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0x9742898) = 4252
+[pid  4251] wait4(-1, Process 4251 suspended
+ <unfinished ...>
+[pid  4252] open("whoop.out", O_WRONLY|O_CREAT, 0644) = 3
+[pid  4252] dup2(3, 1)                  = 1
+[pid  4252] dup2(3, 2)                  = 2
+[pid  4252] close(3)                    = 0
+[pid  4252] rt_sigaction(SIGHUP, {SIG_IGN, [HUP], SA_RESTART}, 
+  {SIG_DFL, [], 0}, 8) = 0
+[pid  4252] execve("./tinyhello", ["./tinyhello"], [/* 39 vars */]) = 0
+[pid  4252] write(1, "Hola SO!\n", 9)   = 9
+[pid  4252] _exit(0)                    = ?
+Process 4251 resumed
+Process 4252 detached
+<... wait4 resumed> [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0, NULL) = 4252
+--- SIGCHLD (Child exited) @ 0 (0) ---
+exit_group(0)                           = ?
+\end{verbatimtab}
+\end{framed}
+
+\subsection{Que hace whoop?}
+
+\begin{enumerate}
+ \item Abre el archivo \verb|whoop.out|
+ \item Reemplaza el FD de STD-OUT el archivo \verb|whoop.out|
+ \item Reemplaza el FD de STD-ERR el archivo \verb|whoop.out|
+ \item Se reemplaza por proceso de \verb|whoop| con el contenido del programa pasado como parametro
+\end{enumerate}
+
+
+\subsection{Como lo hace whoop?}
+
+Abre el archivo \verb|whoop.out|\\
+\begin{framed}
+\begin{verbatimtab}
+open("whoop.out", O_WRONLY|O_CREAT, 0644) = 3
+\end{verbatimtab}
+\end{framed}
+
+Este comando crea el archivo whoop.out en el direcctorio de ejecucion y retorna el FD 3
+
+Luego se remplaza el FD de la salida de standart por el del archivo whoop.out
+
+\begin{framed}
+\begin{verbatimtab}
+dup2(3, 1)                  = 1
+\end{verbatimtab}
+\end{framed}
+
+y tambien se remplaza el FD de la salida de error por el del archivo whoop.out\\
+\begin{framed}
+\begin{verbatimtab}
+dup2(3, 2)                  = 2
+\end{verbatimtab}
+\end{framed}
+
+Se cierra el FD del archivo whoop (ya quedo direccionado por los FD de la STD-OUT y STD-ERR)\\
+\begin{framed}
+\begin{verbatimtab}
+close(3)                    = 0
+\end{verbatimtab}
+\end{framed}
+
+El proceso cambia la acci\'on de asociada a una se\~nal.
+\begin{framed}
+\begin{verbatimtab}
+rt_sigaction(SIGHUP, {SIG_IGN, [HUP], SA_RESTART}, {SIG_DFL, [], 0}, 8) = 0
+\end{verbatimtab}
+\end{framed}
+
+Reemplaza el la imagen del proceso corriente por la imagen del nuevo proceso pasado por parametro utilizando execve
+\begin{framed}
+\begin{verbatimtab}
+execve("./tinyhello", ["./tinyhello"], [/* 39 vars */]) = 0
+\end{verbatimtab}
+\end{framed}
+
+Codigo del nuevo porceso proceso (tinyhello)
+\begin{framed}
+\begin{verbatimtab}
+write(1, "Hola SO!\n", 9)   = 9
+_exit(0)                    = ?
+\end{verbatimtab}
+\end{framed}
