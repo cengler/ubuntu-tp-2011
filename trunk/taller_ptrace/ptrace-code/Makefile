@@ -1,11 +1,17 @@
 # Makefile grupo 12 dominguez engler
-all: hello launch mypid tinyhello universe
+all: hello launch mypid tinyhello universe upcase
 
 hello : hello.o
 	gcc -o hello hello.o
 
 hello.o : hello.c
 	gcc -c hello.c
+
+upcase : upcase.o
+	gcc -o upcase upcase.o
+
+upcase.o : upcase.c
+	gcc -c upcase.c
 
 launch : launch.o
 	gcc -o launch launch.o

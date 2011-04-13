@@ -1,0 +1,64 @@
+execve("./whoop", ["./whoop", "uname", "-a"], [/* 39 vars */]) = 0
+uname({sys="Linux", node="sullivan", ...}) = 0
+brk(0)                                  = 0x8e18000
+brk(0x8e18cd0)                          = 0x8e18cd0
+set_thread_area({entry_number:-1 -> 6, base_addr:0x8e18830, limit:1048575, seg_32bit:1, contents:0, read_exec_only:0, limit_in_pages:1, seg_not_present:0, useable:1}) = 0
+brk(0x8e39cd0)                          = 0x8e39cd0
+brk(0x8e3a000)                          = 0x8e3a000
+clone(Process 4168 attached
+child_stack=0, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0x8e18898) = 4168
+[pid  4167] wait4(-1, Process 4167 suspended
+ <unfinished ...>
+[pid  4168] open("whoop.out", O_WRONLY|O_CREAT, 0644) = 3
+[pid  4168] dup2(3, 1)                  = 1
+[pid  4168] dup2(3, 2)                  = 2
+[pid  4168] close(3)                    = 0
+[pid  4168] rt_sigaction(SIGHUP, {SIG_IGN, [HUP], SA_RESTART}, {SIG_DFL, [], 0}, 8) = 0
+[pid  4168] execve("/usr/local/sbin/uname", ["uname", "-a"], [/* 39 vars */]) = -1 ENOENT (No such file or directory)
+[pid  4168] execve("/usr/local/bin/uname", ["uname", "-a"], [/* 39 vars */]) = -1 ENOENT (No such file or directory)
+[pid  4168] execve("/usr/sbin/uname", ["uname", "-a"], [/* 39 vars */]) = -1 ENOENT (No such file or directory)
+[pid  4168] execve("/usr/bin/uname", ["uname", "-a"], [/* 39 vars */]) = -1 ENOENT (No such file or directory)
+[pid  4168] execve("/sbin/uname", ["uname", "-a"], [/* 39 vars */]) = -1 ENOENT (No such file or directory)
+[pid  4168] execve("/bin/uname", ["uname", "-a"], [/* 39 vars */]) = 0
+[pid  4168] brk(0)                      = 0x9ddf000
+[pid  4168] access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+[pid  4168] mmap2(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb78f5000
+[pid  4168] access("/etc/ld.so.preload", R_OK) = -1 ENOENT (No such file or directory)
+[pid  4168] open("/etc/ld.so.cache", O_RDONLY) = 3
+[pid  4168] fstat64(3, {st_mode=S_IFREG|0644, st_size=73853, ...}) = 0
+[pid  4168] mmap2(NULL, 73853, PROT_READ, MAP_PRIVATE, 3, 0) = 0xb78e2000
+[pid  4168] close(3)                    = 0
+[pid  4168] access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+[pid  4168] open("/lib/libc.so.6", O_RDONLY) = 3
+[pid  4168] read(3, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0@n\1\0004\0\0\0"..., 512) = 512
+[pid  4168] fstat64(3, {st_mode=S_IFREG|0755, st_size=1421892, ...}) = 0
+[pid  4168] mmap2(NULL, 1427880, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x703000
+[pid  4168] mmap2(0x85a000, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x157) = 0x85a000
+[pid  4168] mmap2(0x85d000, 10664, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x85d000
+[pid  4168] close(3)                    = 0
+[pid  4168] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb78e1000
+[pid  4168] set_thread_area({entry_number:-1 -> 6, base_addr:0xb78e18d0, limit:1048575, seg_32bit:1, contents:0, read_exec_only:0, limit_in_pages:1, seg_not_present:0, useable:1}) = 0
+[pid  4168] mprotect(0x85a000, 8192, PROT_READ) = 0
+[pid  4168] mprotect(0x804d000, 4096, PROT_READ) = 0
+[pid  4168] mprotect(0xc50000, 4096, PROT_READ) = 0
+[pid  4168] munmap(0xb78e2000, 73853)   = 0
+[pid  4168] brk(0)                      = 0x9ddf000
+[pid  4168] brk(0x9e00000)              = 0x9e00000
+[pid  4168] open("/usr/lib/locale/locale-archive", O_RDONLY|O_LARGEFILE) = 3
+[pid  4168] fstat64(3, {st_mode=S_IFREG|0644, st_size=5193216, ...}) = 0
+[pid  4168] mmap2(NULL, 2097152, PROT_READ, MAP_PRIVATE, 3, 0) = 0xb76e1000
+[pid  4168] mmap2(NULL, 1179648, PROT_READ, MAP_PRIVATE, 3, 0x2a3) = 0xb75c1000
+[pid  4168] close(3)                    = 0
+[pid  4168] uname({sys="Linux", node="sullivan", ...}) = 0
+[pid  4168] fstat64(1, {st_mode=S_IFREG|0644, st_size=25806, ...}) = 0
+[pid  4168] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb75c0000
+[pid  4168] write(1, "Linux sullivan 2.6.35-28-generic"..., 91) = 91
+[pid  4168] close(1)                    = 0
+[pid  4168] munmap(0xb75c0000, 4096)    = 0
+[pid  4168] close(2)                    = 0
+[pid  4168] exit_group(0)               = ?
+Process 4167 resumed
+Process 4168 detached
+<... wait4 resumed> [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0, NULL) = 4168
+--- SIGCHLD (Child exited) @ 0 (0) ---
+exit_group(0)                           = ?

@@ -1,0 +1,3000 @@
+execve("./whoop", ["./whoop", "man", "man"], [/* 39 vars */]) = 0
+uname({sys="Linux", node="sullivan", ...}) = 0
+brk(0)                                  = 0x88a4000
+brk(0x88a4cd0)                          = 0x88a4cd0
+set_thread_area({entry_number:-1 -> 6, base_addr:0x88a4830, limit:1048575, seg_32bit:1, contents:0, read_exec_only:0, limit_in_pages:1, seg_not_present:0, useable:1}) = 0
+brk(0x88c5cd0)                          = 0x88c5cd0
+brk(0x88c6000)                          = 0x88c6000
+clone(Process 4142 attached
+child_stack=0, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0x88a4898) = 4142
+[pid  4141] wait4(-1, Process 4141 suspended
+ <unfinished ...>
+[pid  4142] open("whoop.out", O_WRONLY|O_CREAT, 0644) = 3
+[pid  4142] dup2(3, 1)                  = 1
+[pid  4142] dup2(3, 2)                  = 2
+[pid  4142] close(3)                    = 0
+[pid  4142] rt_sigaction(SIGHUP, {SIG_IGN, [HUP], SA_RESTART}, {SIG_DFL, [], 0}, 8) = 0
+[pid  4142] execve("/usr/local/sbin/man", ["man", "man"], [/* 39 vars */]) = -1 ENOENT (No such file or directory)
+[pid  4142] execve("/usr/local/bin/man", ["man", "man"], [/* 39 vars */]) = -1 ENOENT (No such file or directory)
+[pid  4142] execve("/usr/sbin/man", ["man", "man"], [/* 39 vars */]) = -1 ENOENT (No such file or directory)
+[pid  4142] execve("/usr/bin/man", ["man", "man"], [/* 39 vars */]) = 0
+[pid  4142] brk(0)                      = 0x98d4000
+[pid  4142] access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+[pid  4142] mmap2(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7841000
+[pid  4142] access("/etc/ld.so.preload", R_OK) = -1 ENOENT (No such file or directory)
+[pid  4142] open("/etc/ld.so.cache", O_RDONLY) = 3
+[pid  4142] fstat64(3, {st_mode=S_IFREG|0644, st_size=73853, ...}) = 0
+[pid  4142] mmap2(NULL, 73853, PROT_READ, MAP_PRIVATE, 3, 0) = 0xb782e000
+[pid  4142] close(3)                    = 0
+[pid  4142] access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+[pid  4142] open("/usr/lib/libgdbm.so.3", O_RDONLY) = 3
+[pid  4142] read(3, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0\20\20\0\0004\0\0\0"..., 512) = 512
+[pid  4142] fstat64(3, {st_mode=S_IFREG|0644, st_size=21896, ...}) = 0
+[pid  4142] mmap2(NULL, 24776, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x833000
+[pid  4142] mmap2(0x838000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x4) = 0x838000
+[pid  4142] close(3)                    = 0
+[pid  4142] access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+[pid  4142] open("/lib/libz.so.1", O_RDONLY) = 3
+[pid  4142] read(3, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0`\27\0\0004\0\0\0"..., 512) = 512
+[pid  4142] fstat64(3, {st_mode=S_IFREG|0644, st_size=79476, ...}) = 0
+[pid  4142] mmap2(NULL, 82192, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x882000
+[pid  4142] mmap2(0x895000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x12) = 0x895000
+[pid  4142] close(3)                    = 0
+[pid  4142] access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+[pid  4142] open("/lib/libc.so.6", O_RDONLY) = 3
+[pid  4142] read(3, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0@n\1\0004\0\0\0"..., 512) = 512
+[pid  4142] fstat64(3, {st_mode=S_IFREG|0755, st_size=1421892, ...}) = 0
+[pid  4142] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb782d000
+[pid  4142] mmap2(NULL, 1427880, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x482000
+[pid  4142] mmap2(0x5d9000, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x157) = 0x5d9000
+[pid  4142] mmap2(0x5dc000, 10664, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x5dc000
+[pid  4142] close(3)                    = 0
+[pid  4142] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb782c000
+[pid  4142] set_thread_area({entry_number:-1 -> 6, base_addr:0xb782c6c0, limit:1048575, seg_32bit:1, contents:0, read_exec_only:0, limit_in_pages:1, seg_not_present:0, useable:1}) = 0
+[pid  4142] mprotect(0x5d9000, 8192, PROT_READ) = 0
+[pid  4142] mprotect(0x895000, 4096, PROT_READ) = 0
+[pid  4142] mprotect(0x838000, 4096, PROT_READ) = 0
+[pid  4142] mprotect(0x806e000, 4096, PROT_READ) = 0
+[pid  4142] mprotect(0xd60000, 4096, PROT_READ) = 0
+[pid  4142] munmap(0xb782e000, 73853)   = 0
+[pid  4142] brk(0)                      = 0x98d4000
+[pid  4142] brk(0x98f5000)              = 0x98f5000
+[pid  4142] umask(022)                  = 022
+[pid  4142] open("/usr/lib/locale/locale-archive", O_RDONLY|O_LARGEFILE) = 3
+[pid  4142] fstat64(3, {st_mode=S_IFREG|0644, st_size=5193216, ...}) = 0
+[pid  4142] mmap2(NULL, 2097152, PROT_READ, MAP_PRIVATE, 3, 0) = 0xb762c000
+[pid  4142] mmap2(NULL, 1179648, PROT_READ, MAP_PRIVATE, 3, 0x2a3) = 0xb750c000
+[pid  4142] close(3)                    = 0
+[pid  4142] fstat64(0, {st_mode=S_IFCHR|0620, st_rdev=makedev(136, 1), ...}) = 0
+[pid  4142] fstat64(1, {st_mode=S_IFREG|0644, st_size=25806, ...}) = 0
+[pid  4142] fstat64(2, {st_mode=S_IFREG|0644, st_size=25806, ...}) = 0
+[pid  4142] getcwd("/home/cengler/SO/tp/taller_ptrace/ptrace-code", 4096) = 46
+[pid  4142] getuid32()                  = 1000
+[pid  4142] geteuid32()                 = 1000
+[pid  4142] rt_sigaction(SIGCHLD, {0x805cd40, [HUP INT TERM CHLD], SA_RESTART|SA_NOCLDSTOP}, NULL, 8) = 0
+[pid  4142] rt_sigaction(SIGHUP, NULL, {SIG_IGN, [], 0}, 8) = 0
+[pid  4142] rt_sigaction(SIGINT, NULL, {SIG_DFL, [], 0}, 8) = 0
+[pid  4142] rt_sigaction(SIGINT, {0x805b950, [], 0}, {SIG_DFL, [], 0}, 8) = 0
+[pid  4142] rt_sigaction(SIGTERM, NULL, {SIG_DFL, [], 0}, 8) = 0
+[pid  4142] rt_sigaction(SIGTERM, {0x805b950, [], 0}, {SIG_DFL, [], 0}, 8) = 0
+[pid  4142] open("/home/cengler/.manpath", O_RDONLY|O_LARGEFILE) = -1 ENOENT (No such file or directory)
+[pid  4142] open("/etc/manpath.config", O_RDONLY|O_LARGEFILE) = 3
+[pid  4142] fstat64(3, {st_mode=S_IFREG|0644, st_size=5173, ...}) = 0
+[pid  4142] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb750b000
+[pid  4142] read(3, "# manpath.config\n#\n# This file i"..., 4096) = 4096
+[pid  4142] read(3, "er in\n# the expected way.\n# If a"..., 4096) = 1077
+[pid  4142] read(3, "", 4096)           = 0
+[pid  4142] close(3)                    = 0
+[pid  4142] munmap(0xb750b000, 4096)    = 0
+[pid  4142] ioctl(1, SNDCTL_TMR_TIMEBASE or TCGETS, 0xbffac1f8) = -1 ENOTTY (Inappropriate ioctl for device)
+[pid  4142] open("/usr/share/locale/locale.alias", O_RDONLY) = 3
+[pid  4142] fstat64(3, {st_mode=S_IFREG|0644, st_size=2570, ...}) = 0
+[pid  4142] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb750b000
+[pid  4142] read(3, "# Locale name alias data base.\n#"..., 4096) = 2570
+[pid  4142] read(3, "", 4096)           = 0
+[pid  4142] close(3)                    = 0
+[pid  4142] munmap(0xb750b000, 4096)    = 0
+[pid  4142] open("/usr/share/locale/es_AR.utf8/LC_MESSAGES/man-db.mo", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4142] open("/usr/share/locale/es_AR/LC_MESSAGES/man-db.mo", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4142] open("/usr/share/locale/es.utf8/LC_MESSAGES/man-db.mo", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4142] open("/usr/share/locale/es/LC_MESSAGES/man-db.mo", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4142] open("/usr/share/locale-langpack/es_AR.utf8/LC_MESSAGES/man-db.mo", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4142] open("/usr/share/locale-langpack/es_AR/LC_MESSAGES/man-db.mo", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4142] open("/usr/share/locale-langpack/es.utf8/LC_MESSAGES/man-db.mo", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4142] open("/usr/share/locale-langpack/es/LC_MESSAGES/man-db.mo", O_RDONLY) = 3
+[pid  4142] fstat64(3, {st_mode=S_IFREG|0644, st_size=21094, ...}) = 0
+[pid  4142] mmap2(NULL, 21094, PROT_READ, MAP_PRIVATE, 3, 0) = 0xb7506000
+[pid  4142] close(3)                    = 0
+[pid  4142] stat64("/usr/local/man", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+[pid  4142] stat64("/usr/local/share/man", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+[pid  4142] stat64("/usr/share/man", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+[pid  4142] stat64("/usr/man", 0xbffac180) = -1 ENOENT (No such file or directory)
+[pid  4142] open("/usr/lib/gconv/gconv-modules.cache", O_RDONLY) = 3
+[pid  4142] fstat64(3, {st_mode=S_IFREG|0644, st_size=26048, ...}) = 0
+[pid  4142] mmap2(NULL, 26048, PROT_READ, MAP_SHARED, 3, 0) = 0xb74ff000
+[pid  4142] close(3)                    = 0
+[pid  4142] open("/usr/local/man", O_RDONLY|O_NONBLOCK|O_LARGEFILE|O_DIRECTORY|O_CLOEXEC) = 3
+[pid  4142] fcntl64(3, F_GETFD)         = 0x1 (flags FD_CLOEXEC)
+[pid  4142] getdents64(3, /* 2 entries */, 32768) = 48
+[pid  4142] getdents64(3, /* 0 entries */, 32768) = 0
+[pid  4142] close(3)                    = 0
+[pid  4142] open("/usr/local/share/man", O_RDONLY|O_NONBLOCK|O_LARGEFILE|O_DIRECTORY|O_CLOEXEC) = 3
+[pid  4142] getdents64(3, /* 2 entries */, 32768) = 48
+[pid  4142] getdents64(3, /* 0 entries */, 32768) = 0
+[pid  4142] close(3)                    = 0
+[pid  4142] open("/usr/share/man", O_RDONLY|O_NONBLOCK|O_LARGEFILE|O_DIRECTORY|O_CLOEXEC) = 3
+[pid  4142] getdents64(3, /* 32 entries */, 32768) = 808
+[pid  4142] stat64("/usr/share/man/sv", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+[pid  4142] stat64("/usr/share/man/pt_BR", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+[pid  4142] stat64("/usr/share/man/hu", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+[pid  4142] stat64("/usr/share/man/es", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+[pid  4142] stat64("/usr/share/man/pl", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+[pid  4142] stat64("/usr/share/man/zh_CN", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+[pid  4142] stat64("/usr/share/man/ja", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+[pid  4142] stat64("/usr/share/man/de", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+[pid  4142] stat64("/usr/share/man/fi", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+[pid  4142] stat64("/usr/share/man/fr", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+[pid  4142] stat64("/usr/share/man/id", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+[pid  4142] stat64("/usr/share/man/fr.ISO8859-1", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+[pid  4142] stat64("/usr/share/man/zh_TW", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+[pid  4142] stat64("/usr/share/man/ko", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+[pid  4142] stat64("/usr/share/man/nl", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+[pid  4142] stat64("/usr/share/man/ru", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+[pid  4142] stat64("/usr/share/man/cs", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+[pid  4142] stat64("/usr/share/man/it", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+[pid  4142] stat64("/usr/share/man/fr.UTF-8", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+[pid  4142] stat64("/usr/share/man/tr", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+[pid  4142] stat64("/usr/share/man/pt", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+[pid  4142] stat64("/usr/share/man/vi", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+[pid  4142] getdents64(3, /* 0 entries */, 32768) = 0
+[pid  4142] close(3)                    = 0
+[pid  4142] stat64("/usr/share/man/es", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+[pid  4142] stat64("/usr/local/man", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+[pid  4142] stat64("/usr/local/share/man", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+[pid  4142] stat64("/usr/share/man", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+[pid  4142] lstat64("/usr", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+[pid  4142] lstat64("/usr/share", {st_mode=S_IFDIR|0755, st_size=12288, ...}) = 0
+[pid  4142] lstat64("/usr/share/man", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+[pid  4142] lstat64("/usr/share/man/es", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+[pid  4142] lstat64("/usr", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+[pid  4142] lstat64("/usr/local", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+[pid  4142] lstat64("/usr/local/man", {st_mode=S_IFLNK|0777, st_size=9, ...}) = 0
+[pid  4142] readlink("/usr/local/man", "share/man", 4095) = 9
+[pid  4142] lstat64("/usr/local/share", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+[pid  4142] lstat64("/usr/local/share/man", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+[pid  4142] lstat64("/usr", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+[pid  4142] lstat64("/usr/local", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+[pid  4142] lstat64("/usr/local/share", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+[pid  4142] lstat64("/usr/local/share/man", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+[pid  4142] lstat64("/usr", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+[pid  4142] lstat64("/usr/share", {st_mode=S_IFDIR|0755, st_size=12288, ...}) = 0
+[pid  4142] lstat64("/usr/share/man", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+[pid  4142] rt_sigaction(SIGHUP, NULL, {SIG_IGN, [], 0}, 8) = 0
+[pid  4142] rt_sigaction(SIGINT, NULL, {0x805b950, [], 0}, 8) = 0
+[pid  4142] rt_sigaction(SIGTERM, NULL, {0x805b950, [], 0}, 8) = 0
+[pid  4142] rt_sigaction(SIGHUP, NULL, {SIG_IGN, [], 0}, 8) = 0
+[pid  4142] rt_sigaction(SIGINT, NULL, {0x805b950, [], 0}, 8) = 0
+[pid  4142] rt_sigaction(SIGTERM, NULL, {0x805b950, [], 0}, 8) = 0
+[pid  4142] open("/usr/share/man/es", O_RDONLY|O_NONBLOCK|O_LARGEFILE|O_DIRECTORY|O_CLOEXEC) = 3
+[pid  4142] getdents64(3, /* 5 entries */, 32768) = 120
+[pid  4142] getdents64(3, /* 0 entries */, 32768) = 0
+[pid  4142] close(3)                    = 0
+[pid  4142] open("/usr/share/man/es/man1", O_RDONLY|O_NONBLOCK|O_LARGEFILE|O_DIRECTORY|O_CLOEXEC) = 3
+[pid  4142] getdents64(3, /* 58 entries */, 32768) = 2336
+[pid  4142] getdents64(3, /* 0 entries */, 32768) = 0
+[pid  4142] close(3)                    = 0
+[pid  4142] lstat64("/usr/share/man/es/man1/man.1.gz", {st_mode=S_IFREG|0644, st_size=9990, ...}) = 0
+[pid  4142] stat64("/usr/share/man/es/man1/man.1.gz", {st_mode=S_IFREG|0644, st_size=9990, ...}) = 0
+[pid  4142] stat64("/usr/share/man/es/man1/man.1.gz", {st_mode=S_IFREG|0644, st_size=9990, ...}) = 0
+[pid  4142] rt_sigprocmask(SIG_BLOCK, [CHLD], [], 8) = 0
+[pid  4142] rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+[pid  4142] open("/usr/share/man/es/man1/man.1.gz", O_RDONLY|O_LARGEFILE) = 3
+[pid  4142] pipe([4, 5])                = 0
+[pid  4142] rt_sigprocmask(SIG_BLOCK, [CHLD], [], 8) = 0
+[pid  4142] clone(Process 4143 attached
+child_stack=0, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0xb782c728) = 4143
+[pid  4142] close(3)                    = 0
+[pid  4142] close(5)                    = 0
+[pid  4142] rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+[pid  4142] read(4,  <unfinished ...>
+[pid  4143] rt_sigaction(SIGHUP, NULL, {SIG_IGN, [], 0}, 8) = 0
+[pid  4143] rt_sigaction(SIGINT, NULL, {0x805b950, [], 0}, 8) = 0
+[pid  4143] rt_sigaction(SIGINT, {0x805b950, [], 0}, NULL, 8) = 0
+[pid  4143] rt_sigaction(SIGTERM, NULL, {0x805b950, [], 0}, 8) = 0
+[pid  4143] rt_sigaction(SIGTERM, {0x805b950, [], 0}, NULL, 8) = 0
+[pid  4143] dup2(3, 0)                  = 0
+[pid  4143] close(3)                    = 0
+[pid  4143] dup2(5, 1)                  = 1
+[pid  4143] close(5)                    = 0
+[pid  4143] close(4)                    = 0
+[pid  4143] dup(0)                      = 3
+[pid  4143] fcntl64(3, F_GETFL)         = 0x8000 (flags O_RDONLY|O_LARGEFILE)
+[pid  4143] fstat64(3, {st_mode=S_IFREG|0644, st_size=9990, ...}) = 0
+[pid  4143] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7840000
+[pid  4143] _llseek(3, 0, [0], SEEK_CUR) = 0
+[pid  4143] read(3, "\37\213\10\0\0\0\0\0\2\3\244[Ks\33G\222\276\327\257\250PL,\311\t\20\262\354\261\275\366"..., 16384) = 9990
+[pid  4143] read(3, "", 4096)           = 0
+[pid  4143] fstat64(1, {st_mode=S_IFIFO|0600, st_size=0, ...}) = 0
+[pid  4143] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb783f000
+[pid  4143] write(1, "'\\\" t\n.\\\" ** The above line shou"..., 4096) = 4096
+[pid  4142] <... read resumed> "'\\\" t\n.\\\" ** The above line shou"..., 4096) = 4096
+[pid  4142] close(4)                    = 0
+[pid  4142] waitpid(-1, Process 4142 suspended
+ <unfinished ...>
+[pid  4143] write(1, "\241gina de manual referenciada por"..., 4096) = -1 EPIPE (Broken pipe)
+[pid  4143] --- SIGPIPE (Broken pipe) @ 0 (0) ---
+Process 4142 resumed
+Process 4143 detached
+[pid  4142] <... waitpid resumed> [{WIFSIGNALED(s) && WTERMSIG(s) == SIGPIPE}], 0) = 4143
+[pid  4142] --- SIGCHLD (Child exited) @ 0 (0) ---
+[pid  4142] sigreturn()                 = ? (mask now [])
+[pid  4142] waitpid(-1, 0xbffac06c, WNOHANG) = -1 ECHILD (No child processes)
+[pid  4142] open("/usr/local/share/man", O_RDONLY|O_NONBLOCK|O_LARGEFILE|O_DIRECTORY|O_CLOEXEC) = 3
+[pid  4142] getdents64(3, /* 2 entries */, 32768) = 48
+[pid  4142] getdents64(3, /* 0 entries */, 32768) = 0
+[pid  4142] close(3)                    = 0
+[pid  4142] open("/var/cache/man/local/index.db", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4142] open("/usr/share/man", O_RDONLY|O_NONBLOCK|O_LARGEFILE|O_DIRECTORY|O_CLOEXEC) = 3
+[pid  4142] getdents64(3, /* 32 entries */, 32768) = 808
+[pid  4142] getdents64(3, /* 0 entries */, 32768) = 0
+[pid  4142] close(3)                    = 0
+[pid  4142] open("/usr/share/man/man1", O_RDONLY|O_NONBLOCK|O_LARGEFILE|O_DIRECTORY|O_CLOEXEC) = 3
+[pid  4142] getdents64(3, /* 886 entries */, 32768) = 32744
+[pid  4142] getdents64(3, /* 887 entries */, 32768) = 32768
+[pid  4142] brk(0x9916000)              = 0x9916000
+[pid  4142] getdents64(3, /* 476 entries */, 32768) = 17792
+[pid  4142] getdents64(3, /* 0 entries */, 32768) = 0
+[pid  4142] open("/proc/meminfo", O_RDONLY) = 4
+[pid  4142] fstat64(4, {st_mode=S_IFREG|0444, st_size=0, ...}) = 0
+[pid  4142] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb74fe000
+[pid  4142] read(4, "MemTotal:        2834452 kB\nMemF"..., 1024) = 1024
+[pid  4142] close(4)                    = 0
+[pid  4142] munmap(0xb74fe000, 4096)    = 0
+[pid  4142] close(3)                    = 0
+[pid  4142] lstat64("/usr/share/man/man1/man.1.gz", {st_mode=S_IFREG|0644, st_size=12323, ...}) = 0
+[pid  4142] stat64("/usr/share/man/man1/man.1.gz", {st_mode=S_IFREG|0644, st_size=12323, ...}) = 0
+[pid  4142] stat64("/usr/share/man/man1/man.1.gz", {st_mode=S_IFREG|0644, st_size=12323, ...}) = 0
+[pid  4142] rt_sigprocmask(SIG_BLOCK, [CHLD], [], 8) = 0
+[pid  4142] rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+[pid  4142] open("/usr/share/man/man1/man.1.gz", O_RDONLY|O_LARGEFILE) = 3
+[pid  4142] pipe([4, 5])                = 0
+[pid  4142] rt_sigprocmask(SIG_BLOCK, [CHLD], [], 8) = 0
+[pid  4142] clone(Process 4144 attached
+child_stack=0, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0xb782c728) = 4144
+[pid  4142] close(3)                    = 0
+[pid  4142] close(5)                    = 0
+[pid  4144] rt_sigaction(SIGHUP, NULL,  <unfinished ...>
+[pid  4142] rt_sigprocmask(SIG_SETMASK, [],  <unfinished ...>
+[pid  4144] <... rt_sigaction resumed> {SIG_IGN, [], 0}, 8) = 0
+[pid  4142] <... rt_sigprocmask resumed> NULL, 8) = 0
+[pid  4144] rt_sigaction(SIGINT, NULL,  <unfinished ...>
+[pid  4142] read(4,  <unfinished ...>
+[pid  4144] <... rt_sigaction resumed> {0x805b950, [], 0}, 8) = 0
+[pid  4144] rt_sigaction(SIGINT, {0x805b950, [], 0}, NULL, 8) = 0
+[pid  4144] rt_sigaction(SIGTERM, NULL, {0x805b950, [], 0}, 8) = 0
+[pid  4144] rt_sigaction(SIGTERM, {0x805b950, [], 0}, NULL, 8) = 0
+[pid  4144] dup2(3, 0)                  = 0
+[pid  4144] close(3)                    = 0
+[pid  4144] dup2(5, 1)                  = 1
+[pid  4144] close(5)                    = 0
+[pid  4144] close(4)                    = 0
+[pid  4144] dup(0)                      = 3
+[pid  4144] fcntl64(3, F_GETFL)         = 0x8000 (flags O_RDONLY|O_LARGEFILE)
+[pid  4144] fstat64(3, {st_mode=S_IFREG|0644, st_size=12323, ...}) = 0
+[pid  4144] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7840000
+[pid  4144] _llseek(3, 0, [0], SEEK_CUR) = 0
+[pid  4144] read(3, "\37\213\10\0\0\0\0\0\2\3\324[ks\333F\226\375\216_\321\245\332ZIS\24m9\223d\222"..., 16384) = 12323
+[pid  4144] read(3, "", 4096)           = 0
+[pid  4144] fstat64(1, {st_mode=S_IFIFO|0600, st_size=0, ...}) = 0
+[pid  4144] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb783f000
+[pid  4144] write(1, "'\\\" t\n.\\\" ** The above line shou"..., 4096) = 4096
+[pid  4142] <... read resumed> "'\\\" t\n.\\\" ** The above line shou"..., 4096) = 4096
+[pid  4142] close(4)                    = 0
+[pid  4144] write(1, " SEE\\ ALSO .\n\nThe following conv"..., 4096) = -1 EPIPE (Broken pipe)
+[pid  4142] waitpid(-1, Process 4142 suspended
+ <unfinished ...>
+[pid  4144] --- SIGPIPE (Broken pipe) @ 0 (0) ---
+Process 4142 resumed
+Process 4144 detached
+[pid  4142] <... waitpid resumed> [{WIFSIGNALED(s) && WTERMSIG(s) == SIGPIPE}], 0) = 4144
+[pid  4142] --- SIGCHLD (Child exited) @ 0 (0) ---
+[pid  4142] sigreturn()                 = ? (mask now [])
+[pid  4142] waitpid(-1, 0xbffac06c, WNOHANG) = -1 ECHILD (No child processes)
+[pid  4142] open("/var/cache/man/es/index.db", O_RDONLY) = 3
+[pid  4142] fstat64(3, {st_mode=S_IFREG|0644, st_size=21126, ...}) = 0
+[pid  4142] fcntl64(3, F_SETLK, {type=F_RDLCK, whence=SEEK_SET, start=0, len=0}) = 0
+[pid  4142] read(3, "\316\232W\23\0\20\0\0\0\20\0\0\0\20\0\0\n\0\0\0\0\20\0\0\311\0\0\0\0`\0\0"..., 52) = 52
+[pid  4142] read(3, "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"..., 4044) = 4044
+[pid  4142] lseek(3, 4096, SEEK_SET)    = 4096
+[pid  4142] read(3, "\0 \0\0\0 \0\0\0 \0\0\0 \0\0\0 \0\0\0 \0\0\0 \0\0\0 \0\0"..., 4096) = 4096
+[pid  4142] brk(0x9937000)              = 0x9937000
+[pid  4142] brk(0x9958000)              = 0x9958000
+[pid  4142] brk(0x9979000)              = 0x9979000
+[pid  4142] lseek(3, 8192, SEEK_SET)    = 8192
+[pid  4142] read(3, "\3\0\0\0007\0\0\0\311?\0\0F\0\0\0\272O\0\0z\r\0\0\206R\0\0\0\0\0\0"..., 4096) = 4096
+[pid  4142] lseek(3, 13398, SEEK_SET)   = 13398
+[pid  4142] read(3, "$version$\0002.4.1\0", 16) = 16
+[pid  4142] lseek(3, 15031, SEEK_SET)   = 15031
+[pid  4142] read(3, "man\0-\t1\t1\t1282057812\tA\t-\tt\tgz\tun"..., 87) = 87
+[pid  4142] fcntl64(3, F_SETLK, {type=F_UNLCK, whence=SEEK_SET, start=0, len=0}) = 0
+[pid  4142] close(3)                    = 0
+[pid  4142] brk(0x991c000)              = 0x991c000
+[pid  4142] open("/var/cache/man/index.db", O_RDONLY) = 3
+[pid  4142] fstat64(3, {st_mode=S_IFREG|0644, st_size=1085440, ...}) = 0
+[pid  4142] fcntl64(3, F_SETLK, {type=F_RDLCK, whence=SEEK_SET, start=0, len=0}) = 0
+[pid  4142] read(3, "\316\232W\23\0\20\0\0\0\20\0\0\0\20\0\0\n\0\0\0\0\20\0\0\311\0\0\0\0\240\20\0"..., 52) = 52
+[pid  4142] read(3, "\5\0\0\0\373\377\1\0\5\0\0\0\333\207\1\0\5\0\0\0\325\342\t\0\5\0\0\0WU\3\0"..., 4044) = 4044
+[pid  4142] lseek(3, 4096, SEEK_SET)    = 4096
+[pid  4142] read(3, "\0`\1\0\0`\1\0\0`\1\0\0`\1\0\0`\1\0\0`\1\0\0`\1\0\0`\1\0"..., 4096) = 4096
+[pid  4142] brk(0x993d000)              = 0x993d000
+[pid  4142] brk(0x995e000)              = 0x995e000
+[pid  4142] lseek(3, 94208, SEEK_SET)   = 94208
+[pid  4142] read(3, "\5\0\0\0\5\0\0\0\231\207\1\0\r\0\0\0\243\206\1\0\22\0\0\0\210\215\1\0D\0\0\0"..., 4096) = 4096
+[pid  4142] lseek(3, 16360, SEEK_SET)   = 16360
+[pid  4142] read(3, "$version$\0002.4.1\0", 16) = 16
+[pid  4142] lseek(3, 643072, SEEK_SET)  = 643072
+[pid  4142] read(3, "\3\0\0\0\27\0\0\0\230\5\16\0T\0\0\0H\0\16\0<\6\0\0\304\t\16\0<\6\0\0"..., 4096) = 4096
+[pid  4142] lseek(3, 521802, SEEK_SET)  = 521802
+[pid  4142] read(3, "man\0\tman\t7\tman\t1\0", 17) = 17
+[pid  4142] lseek(3, 937984, SEEK_SET)  = 937984
+[pid  4142] read(3, "\4\0\0\0K\0\0\0\30\326\r\0K\0\0\0<\331\r\0N\0\0\0+\324\r\0^\3\0\0"..., 4096) = 4096
+[pid  4142] lseek(3, 904336, SEEK_SET)  = 904336
+[pid  4142] read(3, "man\t7\0-\t7\t7\t1284394058\tA\t-\t-\tgz\t"..., 59) = 59
+[pid  4142] lseek(3, 970752, SEEK_SET)  = 970752
+[pid  4142] read(3, "\4\0\0\0\n\0\0\0\232z\3\0003\0\0\0+y\3\0\353\0\0\0\25\177\3\0\0\20\0\0"..., 4096) = 4096
+[pid  4142] lseek(3, 222428, SEEK_SET)  = 222428
+[pid  4142] read(3, "man\t1\0-\t1\t1\t1282057813\tA\t-\tt\tgz\t"..., 78) = 78
+[pid  4142] fcntl64(3, F_SETLK, {type=F_UNLCK, whence=SEEK_SET, start=0, len=0}) = 0
+[pid  4142] close(3)                    = 0
+[pid  4142] brk(0x991c000)              = 0x991c000
+[pid  4142] open("/usr/share/man/es/man8", O_RDONLY|O_NONBLOCK|O_LARGEFILE|O_DIRECTORY|O_CLOEXEC) = 3
+[pid  4142] getdents64(3, /* 20 entries */, 32768) = 744
+[pid  4142] getdents64(3, /* 0 entries */, 32768) = 0
+[pid  4142] close(3)                    = 0
+[pid  4142] open("/usr/share/man/man8", O_RDONLY|O_NONBLOCK|O_LARGEFILE|O_DIRECTORY|O_CLOEXEC) = 3
+[pid  4142] getdents64(3, /* 559 entries */, 32768) = 21224
+[pid  4142] getdents64(3, /* 0 entries */, 32768) = 0
+[pid  4142] close(3)                    = 0
+[pid  4142] open("/usr/share/man/man3", O_RDONLY|O_NONBLOCK|O_LARGEFILE|O_DIRECTORY|O_CLOEXEC) = 3
+[pid  4142] getdents64(3, /* 781 entries */, 32768) = 32744
+[pid  4142] getdents64(3, /* 782 entries */, 32768) = 32752
+[pid  4142] getdents64(3, /* 786 entries */, 32768) = 32752
+[pid  4142] getdents64(3, /* 781 entries */, 32768) = 32744
+[pid  4142] getdents64(3, /* 318 entries */, 32768) = 13392
+[pid  4142] getdents64(3, /* 0 entries */, 32768) = 0
+[pid  4142] brk(0x993f000)              = 0x993f000
+[pid  4142] brk(0x993b000)              = 0x993b000
+[pid  4142] close(3)                    = 0
+[pid  4142] open("/usr/share/man/man2", O_RDONLY|O_NONBLOCK|O_LARGEFILE|O_DIRECTORY|O_CLOEXEC) = 3
+[pid  4142] getdents64(3, /* 413 entries */, 32768) = 14872
+[pid  4142] getdents64(3, /* 0 entries */, 32768) = 0
+[pid  4142] close(3)                    = 0
+[pid  4142] open("/usr/share/man/es/man5", O_RDONLY|O_NONBLOCK|O_LARGEFILE|O_DIRECTORY|O_CLOEXEC) = 3
+[pid  4142] getdents64(3, /* 18 entries */, 32768) = 672
+[pid  4142] getdents64(3, /* 0 entries */, 32768) = 0
+[pid  4142] close(3)                    = 0
+[pid  4142] open("/usr/share/man/man5", O_RDONLY|O_NONBLOCK|O_LARGEFILE|O_DIRECTORY|O_CLOEXEC) = 3
+[pid  4142] getdents64(3, /* 272 entries */, 32768) = 10472
+[pid  4142] getdents64(3, /* 0 entries */, 32768) = 0
+[pid  4142] close(3)                    = 0
+[pid  4142] open("/usr/share/man/man4", O_RDONLY|O_NONBLOCK|O_LARGEFILE|O_DIRECTORY|O_CLOEXEC) = 3
+[pid  4142] getdents64(3, /* 72 entries */, 32768) = 2360
+[pid  4142] getdents64(3, /* 0 entries */, 32768) = 0
+[pid  4142] close(3)                    = 0
+[pid  4142] open("/usr/share/man/man6", O_RDONLY|O_NONBLOCK|O_LARGEFILE|O_DIRECTORY|O_CLOEXEC) = 3
+[pid  4142] getdents64(3, /* 24 entries */, 32768) = 864
+[pid  4142] getdents64(3, /* 0 entries */, 32768) = 0
+[pid  4142] close(3)                    = 0
+[pid  4142] open("/usr/share/man/man7", O_RDONLY|O_NONBLOCK|O_LARGEFILE|O_DIRECTORY|O_CLOEXEC) = 3
+[pid  4142] getdents64(3, /* 202 entries */, 32768) = 7416
+[pid  4142] getdents64(3, /* 0 entries */, 32768) = 0
+[pid  4142] close(3)                    = 0
+[pid  4142] lstat64("/usr/share/man/man7/man.7.gz", {st_mode=S_IFREG|0644, st_size=6191, ...}) = 0
+[pid  4142] stat64("/usr/share/man/man7/man.7.gz", {st_mode=S_IFREG|0644, st_size=6191, ...}) = 0
+[pid  4142] stat64("/usr/share/man/man7/man.7.gz", {st_mode=S_IFREG|0644, st_size=6191, ...}) = 0
+[pid  4142] rt_sigprocmask(SIG_BLOCK, [CHLD], [], 8) = 0
+[pid  4142] rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+[pid  4142] open("/usr/share/man/man7/man.7.gz", O_RDONLY|O_LARGEFILE) = 3
+[pid  4142] pipe([4, 5])                = 0
+[pid  4142] rt_sigprocmask(SIG_BLOCK, [CHLD], [], 8) = 0
+[pid  4142] clone(Process 4145 attached
+child_stack=0, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0xb782c728) = 4145
+[pid  4142] close(3 <unfinished ...>
+[pid  4145] rt_sigaction(SIGHUP, NULL,  <unfinished ...>
+[pid  4142] <... close resumed> )       = 0
+[pid  4145] <... rt_sigaction resumed> {SIG_IGN, [], 0}, 8) = 0
+[pid  4142] close(5 <unfinished ...>
+[pid  4145] rt_sigaction(SIGINT, NULL,  <unfinished ...>
+[pid  4142] <... close resumed> )       = 0
+[pid  4145] <... rt_sigaction resumed> {0x805b950, [], 0}, 8) = 0
+[pid  4142] rt_sigprocmask(SIG_SETMASK, [],  <unfinished ...>
+[pid  4145] rt_sigaction(SIGINT, {0x805b950, [], 0},  <unfinished ...>
+[pid  4142] <... rt_sigprocmask resumed> NULL, 8) = 0
+[pid  4145] <... rt_sigaction resumed> NULL, 8) = 0
+[pid  4145] rt_sigaction(SIGTERM, NULL,  <unfinished ...>
+[pid  4142] read(4,  <unfinished ...>
+[pid  4145] <... rt_sigaction resumed> {0x805b950, [], 0}, 8) = 0
+[pid  4145] rt_sigaction(SIGTERM, {0x805b950, [], 0}, NULL, 8) = 0
+[pid  4145] dup2(3, 0)                  = 0
+[pid  4145] close(3)                    = 0
+[pid  4145] dup2(5, 1)                  = 1
+[pid  4145] close(5)                    = 0
+[pid  4145] close(4)                    = 0
+[pid  4145] dup(0)                      = 3
+[pid  4145] fcntl64(3, F_GETFL)         = 0x8000 (flags O_RDONLY|O_LARGEFILE)
+[pid  4145] fstat64(3, {st_mode=S_IFREG|0644, st_size=6191, ...}) = 0
+[pid  4145] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7840000
+[pid  4145] _llseek(3, 0, [0], SEEK_CUR) = 0
+[pid  4145] read(3, "\37\213\10\10JL\216L\2\3man.7\0\255[\375o\333\310\321\376\235\177\305B\350\333H\205"..., 16384) = 6191
+[pid  4145] read(3, "", 8192)           = 0
+[pid  4145] fstat64(1, {st_mode=S_IFIFO|0600, st_size=0, ...}) = 0
+[pid  4145] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb783f000
+[pid  4145] write(1, ".\\\" (C) Copyright 1992-1999 Rick"..., 4096) = 4096
+[pid  4142] <... read resumed> ".\\\" (C) Copyright 1992-1999 Rick"..., 4096) = 4096
+[pid  4142] read(4,  <unfinished ...>
+[pid  4145] write(1, "\nBold alternating with Roman\n(es"..., 4096) = 4096
+[pid  4145] write(1, "ls (including troff) will simply"..., 4096 <unfinished ...>
+[pid  4142] <... read resumed> "\nBold alternating with Roman\n(es"..., 66) = 66
+[pid  4145] <... write resumed> )       = 4096
+[pid  4142] read(4,  <unfinished ...>
+[pid  4145] read(3,  <unfinished ...>
+[pid  4142] <... read resumed> "ther\nmanual pages)\n.TP\n.B \\&.I\nI"..., 44) = 44
+[pid  4145] <... read resumed> "", 16384) = 0
+[pid  4142] read(4,  <unfinished ...>
+[pid  4145] close(3 <unfinished ...>
+[pid  4142] <... read resumed> "B \\&", 4) = 4
+[pid  4145] <... close resumed> )       = 0
+[pid  4142] read(4,  <unfinished ...>
+[pid  4145] munmap(0xb7840000, 4096 <unfinished ...>
+[pid  4142] <... read resumed> ".IB\nItalics alternating with bol"..., 73) = 73
+[pid  4145] <... munmap resumed> )      = 0
+[pid  4142] read(4,  <unfinished ...>
+[pid  4145] write(1, "nce\nthat should be added to this"..., 2942 <unfinished ...>
+[pid  4142] <... read resumed> "oman\n.TP\n.B \\&.RB\nRoman alternat"..., 72) = 72
+[pid  4142] read(4,  <unfinished ...>
+[pid  4145] <... write resumed> )       = 2942
+[pid  4142] <... read resumed> "ting with italics\n.TP\n.B \\&.S", 29) = 29
+[pid  4145] exit_group(0)               = ?
+Process 4145 detached
+[pid  4142] read(4, "B\nSm", 4)         = 4
+[pid  4142] --- SIGCHLD (Child exited) @ 0 (0) ---
+[pid  4142] waitpid(-1, [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], WNOHANG) = 4145
+[pid  4142] waitpid(-1, 0xbffaba9c, WNOHANG) = -1 ECHILD (No child processes)
+[pid  4142] sigreturn()                 = ? (mask now [])
+[pid  4142] read(4, "all alternating with bold\n.TP\n.B"..., 75) = 75
+[pid  4142] read(4, "itionally, each command can have"..., 72) = 72
+[pid  4142] read(4, "entation removes this limitation"..., 70) = 70
+[pid  4142] read(4, "lf to 6 arguments for portabilit"..., 45) = 45
+[pid  4142] read(4, "gume", 4)          = 4
+[pid  4142] read(4, "nts are delimited by spaces.\nDou"..., 71) = 71
+[pid  4142] read(4, "gument which contains spaces.\nAl"..., 74) = 74
+[pid  4142] read(4, " each other without\nintervening "..., 74) = 74
+[pid  4142] read(4, "e used to specify a word in bold"..., 72) = 72
+[pid  4142] read(4, "man.\nIf no arguments are given, "..., 72) = 72
+[pid  4142] read(4, "line\nof text.\n.SS \"Other Macros "..., 65) = 65
+[pid  4142] read(4, "relevant macros and ", 20) = 20
+[pid  4142] read(4, "pred", 4)          = 4
+[pid  4142] read(4, "efined strings.\nUnless noted oth"..., 72) = 72
+[pid  4142] read(4, "e current line of text).\nMany of"..., 73) = 73
+[pid  4142] read(4, "inde", 4)          = 4
+[pid  4142] read(4, "nt.\"\nThe \"prevailing indent\" val"..., 70) = 70
+[pid  4142] read(4, "ter\n.I i\nbelow;\nmacros may omit\n"..., 45) = 45
+[pid  4142] read(4, " case the current prevailing ind"..., 77) = 77
+[pid  4142] read(4, "ented paragraphs can use the sam"..., 45) = 45
+[pid  4142] read(4, "out\nrespecifying the indent valu"..., 76) = 76
+[pid  4142] read(4, "he prevailing indent value\nto it"..., 76) = 76
+[pid  4142] read(4, "iven indent is measured in ens;\n"..., 78) = 78
+[pid  4142] read(4, "nce ", 4)          = 4
+[pid  4142] close(4)                    = 0
+[pid  4142] lstat64("/usr/share/man/es/man1/man.1.gz", {st_mode=S_IFREG|0644, st_size=9990, ...}) = 0
+[pid  4142] stat64("/usr/share/man/es/man1/man.1.gz", {st_mode=S_IFREG|0644, st_size=9990, ...}) = 0
+[pid  4142] stat64("/usr/share/man/es/man1/man.1.gz", {st_mode=S_IFREG|0644, st_size=9990, ...}) = 0
+[pid  4142] rt_sigprocmask(SIG_BLOCK, [CHLD], [], 8) = 0
+[pid  4142] rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+[pid  4142] open("/usr/share/man/es/man1/man.1.gz", O_RDONLY|O_LARGEFILE) = 3
+[pid  4142] pipe([4, 5])                = 0
+[pid  4142] rt_sigprocmask(SIG_BLOCK, [CHLD], [], 8) = 0
+[pid  4142] clone(Process 4146 attached
+child_stack=0, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0xb782c728) = 4146
+[pid  4142] close(3 <unfinished ...>
+[pid  4146] rt_sigaction(SIGHUP, NULL,  <unfinished ...>
+[pid  4142] <... close resumed> )       = 0
+[pid  4146] <... rt_sigaction resumed> {SIG_IGN, [], 0}, 8) = 0
+[pid  4142] close(5 <unfinished ...>
+[pid  4146] rt_sigaction(SIGINT, NULL,  <unfinished ...>
+[pid  4142] <... close resumed> )       = 0
+[pid  4146] <... rt_sigaction resumed> {0x805b950, [], 0}, 8) = 0
+[pid  4142] rt_sigprocmask(SIG_SETMASK, [],  <unfinished ...>
+[pid  4146] rt_sigaction(SIGINT, {0x805b950, [], 0},  <unfinished ...>
+[pid  4142] <... rt_sigprocmask resumed> NULL, 8) = 0
+[pid  4146] <... rt_sigaction resumed> NULL, 8) = 0
+[pid  4146] rt_sigaction(SIGTERM, NULL,  <unfinished ...>
+[pid  4142] read(4,  <unfinished ...>
+[pid  4146] <... rt_sigaction resumed> {0x805b950, [], 0}, 8) = 0
+[pid  4146] rt_sigaction(SIGTERM, {0x805b950, [], 0}, NULL, 8) = 0
+[pid  4146] dup2(3, 0)                  = 0
+[pid  4146] close(3)                    = 0
+[pid  4146] dup2(5, 1)                  = 1
+[pid  4146] close(5)                    = 0
+[pid  4146] close(4)                    = 0
+[pid  4146] dup(0)                      = 3
+[pid  4146] fcntl64(3, F_GETFL)         = 0x8000 (flags O_RDONLY|O_LARGEFILE)
+[pid  4146] fstat64(3, {st_mode=S_IFREG|0644, st_size=9990, ...}) = 0
+[pid  4146] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7840000
+[pid  4146] _llseek(3, 0, [0], SEEK_CUR) = 0
+[pid  4146] read(3, "\37\213\10\0\0\0\0\0\2\3\244[Ks\33G\222\276\327\257\250PL,\311\t\20\262\354\261\275\366"..., 16384) = 9990
+[pid  4146] read(3, "", 4096)           = 0
+[pid  4146] fstat64(1, {st_mode=S_IFIFO|0600, st_size=0, ...}) = 0
+[pid  4146] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb783f000
+[pid  4146] write(1, "'\\\" t\n.\\\" ** The above line shou"..., 4096) = 4096
+[pid  4142] <... read resumed> "'\\\" t\n.\\\" ** The above line shou"..., 4096) = 4096
+[pid  4142] close(4)                    = 0
+[pid  4142] waitpid(-1, Process 4142 suspended
+ <unfinished ...>
+[pid  4146] write(1, "\241gina de manual referenciada por"..., 4096) = -1 EPIPE (Broken pipe)
+[pid  4146] --- SIGPIPE (Broken pipe) @ 0 (0) ---
+Process 4142 resumed
+Process 4146 detached
+[pid  4142] <... waitpid resumed> [{WIFSIGNALED(s) && WTERMSIG(s) == SIGPIPE}], 0) = 4146
+[pid  4142] --- SIGCHLD (Child exited) @ 0 (0) ---
+[pid  4142] sigreturn()                 = ? (mask now [])
+[pid  4142] waitpid(-1, 0xbffac0cc, WNOHANG) = -1 ECHILD (No child processes)
+[pid  4142] stat64("/usr/share/man/es/man1/man.1.gz", {st_mode=S_IFREG|0644, st_size=9990, ...}) = 0
+[pid  4142] stat64("/usr/share/man/es/cat1/man.1.gz", 0xbffac100) = -1 ENOENT (No such file or directory)
+[pid  4142] chdir("/usr/share/man/es")  = 0
+[pid  4142] stat64("/usr/share/man/es/man1/man.1.gz", {st_mode=S_IFREG|0644, st_size=9990, ...}) = 0
+[pid  4142] stat64("/usr/local/sbin/gpreconv", 0xbffabf80) = -1 ENOENT (No such file or directory)
+[pid  4142] stat64("/usr/local/bin/gpreconv", 0xbffabf80) = -1 ENOENT (No such file or directory)
+[pid  4142] stat64("/usr/sbin/gpreconv", 0xbffabf80) = -1 ENOENT (No such file or directory)
+[pid  4142] stat64("/usr/bin/gpreconv", 0xbffabf80) = -1 ENOENT (No such file or directory)
+[pid  4142] stat64("/sbin/gpreconv", 0xbffabf80) = -1 ENOENT (No such file or directory)
+[pid  4142] stat64("/bin/gpreconv", 0xbffabf80) = -1 ENOENT (No such file or directory)
+[pid  4142] stat64("/usr/games/gpreconv", 0xbffabf80) = -1 ENOENT (No such file or directory)
+[pid  4142] stat64("/usr/local/sbin/preconv", 0xbffabf80) = -1 ENOENT (No such file or directory)
+[pid  4142] stat64("/usr/local/bin/preconv", 0xbffabf80) = -1 ENOENT (No such file or directory)
+[pid  4142] stat64("/usr/sbin/preconv", 0xbffabf80) = -1 ENOENT (No such file or directory)
+[pid  4142] stat64("/usr/bin/preconv", {st_mode=S_IFREG|0755, st_size=38584, ...}) = 0
+[pid  4142] rt_sigprocmask(SIG_BLOCK, [CHLD], [], 8) = 0
+[pid  4142] rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+[pid  4142] open("/usr/share/man/es/man1/man.1.gz", O_RDONLY|O_LARGEFILE) = 3
+[pid  4142] pipe([4, 5])                = 0
+[pid  4142] rt_sigprocmask(SIG_BLOCK, [CHLD], [], 8) = 0
+[pid  4142] clone(Process 4147 attached
+child_stack=0, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0xb782c728) = 4147
+[pid  4142] close(3)                    = 0
+[pid  4147] rt_sigaction(SIGHUP, NULL, {SIG_IGN, [], 0}, 8) = 0
+[pid  4147] rt_sigaction(SIGINT, NULL,  <unfinished ...>
+[pid  4142] close(5 <unfinished ...>
+[pid  4147] <... rt_sigaction resumed> {0x805b950, [], 0}, 8) = 0
+[pid  4142] <... close resumed> )       = 0
+[pid  4147] rt_sigaction(SIGINT, {0x805b950, [], 0},  <unfinished ...>
+[pid  4142] rt_sigprocmask(SIG_SETMASK, [],  <unfinished ...>
+[pid  4147] <... rt_sigaction resumed> NULL, 8) = 0
+[pid  4142] <... rt_sigprocmask resumed> NULL, 8) = 0
+[pid  4147] rt_sigaction(SIGTERM, NULL, {0x805b950, [], 0}, 8) = 0
+[pid  4142] read(4,  <unfinished ...>
+[pid  4147] rt_sigaction(SIGTERM, {0x805b950, [], 0}, NULL, 8) = 0
+[pid  4147] dup2(3, 0)                  = 0
+[pid  4147] close(3)                    = 0
+[pid  4147] dup2(5, 1)                  = 1
+[pid  4147] close(5)                    = 0
+[pid  4147] close(4)                    = 0
+[pid  4147] rt_sigaction(SIGCHLD, {SIG_DFL, [], 0}, NULL, 8) = 0
+[pid  4147] clone(Process 4148 attached
+child_stack=0, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0xb782c728) = 4148
+[pid  4147] waitpid(4148, Process 4147 suspended
+ <unfinished ...>
+[pid  4148] fstat64(1, {st_mode=S_IFIFO|0600, st_size=0, ...}) = 0
+[pid  4148] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7840000
+[pid  4148] write(1, ".if (\\n[.g] & ((\\n[.x] > 1) : (("..., 195) = 195
+[pid  4148] exit_group(0)               = ?
+Process 4147 resumed
+Process 4148 detached
+[pid  4142] <... read resumed> ".if (\\n[.g] & ((\\n[.x] > 1) : (("..., 4096) = 195
+[pid  4142] access("./mandb_nfmt", X_OK) = -1 ENOENT (No such file or directory)
+[pid  4142] read(4,  <unfinished ...>
+[pid  4147] <... waitpid resumed> [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0) = 4148
+[pid  4147] clone(Process 4149 attached
+child_stack=0, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0xb782c728) = 4149
+[pid  4147] waitpid(4149, Process 4147 suspended
+ <unfinished ...>
+[pid  4149] dup(0)                      = 3
+[pid  4149] fcntl64(3, F_GETFL)         = 0x8000 (flags O_RDONLY|O_LARGEFILE)
+[pid  4149] fstat64(3, {st_mode=S_IFREG|0644, st_size=9990, ...}) = 0
+[pid  4149] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7840000
+[pid  4149] _llseek(3, 0, [0], SEEK_CUR) = 0
+[pid  4149] read(3, "\37\213\10\0\0\0\0\0\2\3\244[Ks\33G\222\276\327\257\250PL,\311\t\20\262\354\261\275\366"..., 16384) = 9990
+[pid  4149] read(3, "", 4096)           = 0
+[pid  4149] fstat64(1, {st_mode=S_IFIFO|0600, st_size=0, ...}) = 0
+[pid  4149] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb783f000
+[pid  4149] write(1, "'\\\" t\n.\\\" ** The above line shou"..., 4096) = 4096
+[pid  4142] <... read resumed> "'\\\" t\n.\\\" ** The above line shou"..., 3901) = 3901
+[pid  4149] write(1, "\241gina de manual referenciada por"..., 4096 <unfinished ...>
+[pid  4142] ioctl(0, SNDCTL_TMR_TIMEBASE or TCGETS <unfinished ...>
+[pid  4149] <... write resumed> )       = 4096
+[pid  4142] <... ioctl resumed> , {B38400 opost isig icanon echo ...}) = 0
+[pid  4149] write(1, ".BR \"Est\303\241ndar del Sistema de Fi"..., 4096 <unfinished ...>
+[pid  4142] ioctl(1, SNDCTL_TMR_TIMEBASE or TCGETS <unfinished ...>
+[pid  4149] <... write resumed> )       = 4096
+[pid  4142] <... ioctl resumed> , 0xbffabeb8) = -1 ENOTTY (Inappropriate ioctl for device)
+[pid  4142] ioctl(0, TIOCGWINSZ, {ws_row=37, ws_col=168, ws_xpixel=0, ws_ypixel=0}) = 0
+[pid  4142] ioctl(1, SNDCTL_TMR_TIMEBASE or TCGETS, 0xbffabee8) = -1 ENOTTY (Inappropriate ioctl for device)
+[pid  4142] stat64("/usr/share/man/es/man1/man.1.gz", {st_mode=S_IFREG|0644, st_size=9990, ...}) = 0
+[pid  4142] access("/usr/share/man/es/man1/man.1.gz", R_OK <unfinished ...>
+[pid  4149] write(1, " tanto en la l\303\255nea de \303\263rdenes,"..., 4096 <unfinished ...>
+[pid  4142] <... access resumed> )      = 0
+[pid  4149] <... write resumed> )       = 4096
+[pid  4149] write(1, "sitivo\n.IR latin1 (7)\ncon \n.B GN"..., 4096 <unfinished ...>
+[pid  4142] ioctl(1, SNDCTL_TMR_TIMEBASE or TCGETS, 0xbffabf48) = -1 ENOTTY (Inappropriate ioctl for device)
+[pid  4142] ioctl(1, SNDCTL_TMR_TIMEBASE or TCGETS, 0xbffabf18) = -1 ENOTTY (Inappropriate ioctl for device)
+[pid  4142] rt_sigaction(SIGINT, {SIG_IGN, [], 0}, {0x805b950, [], 0}, 8) = 0
+[pid  4142] rt_sigaction(SIGQUIT, {SIG_IGN, [], 0},  <unfinished ...>
+[pid  4149] <... write resumed> )       = 4096
+[pid  4142] <... rt_sigaction resumed> {SIG_DFL, [], 0}, 8) = 0
+[pid  4142] rt_sigprocmask(SIG_BLOCK, [CHLD], [], 8) = 0
+[pid  4142] rt_sigprocmask(SIG_SETMASK, [],  <unfinished ...>
+[pid  4149] read(3,  <unfinished ...>
+[pid  4142] <... rt_sigprocmask resumed> NULL, 8) = 0
+[pid  4149] <... read resumed> "", 16384) = 0
+[pid  4142] pipe( <unfinished ...>
+[pid  4149] write(1, "eparada por comas.\nPara incluir "..., 4096 <unfinished ...>
+[pid  4142] <... pipe resumed> [3, 5])  = 0
+[pid  4149] <... write resumed> )       = 4096
+[pid  4142] pipe([6, 7])                = 0
+[pid  4149] close(3 <unfinished ...>
+[pid  4142] rt_sigprocmask(SIG_BLOCK, [CHLD],  <unfinished ...>
+[pid  4149] <... close resumed> )       = 0
+[pid  4142] <... rt_sigprocmask resumed> [], 8) = 0
+[pid  4149] munmap(0xb7840000, 4096 <unfinished ...>
+[pid  4142] clone( <unfinished ...>
+[pid  4149] <... munmap resumed> )      = 0
+Process 4150 attached
+[pid  4142] <... clone resumed> child_stack=0, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0xb782c728) = 4150
+[pid  4142] close(3 <unfinished ...>
+[pid  4149] write(1, "s y pueden por tanto\nser incluid"..., 1849 <unfinished ...>
+[pid  4142] <... close resumed> )       = 0
+[pid  4149] <... write resumed> )       = 1849
+[pid  4142] close(7 <unfinished ...>
+[pid  4149] exit_group(0)               = ?
+Process 4147 resumed
+Process 4149 detached
+[pid  4142] <... close resumed> )       = 0
+[pid  4150] rt_sigaction(SIGHUP, NULL, {SIG_IGN, [], 0}, 8) = 0
+[pid  4142] rt_sigprocmask(SIG_SETMASK, [],  <unfinished ...>
+[pid  4147] <... waitpid resumed> [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0) = 4149
+[pid  4150] rt_sigaction(SIGINT, NULL,  <unfinished ...>
+[pid  4142] <... rt_sigprocmask resumed> NULL, 8) = 0
+[pid  4150] <... rt_sigaction resumed> {SIG_IGN, [], 0}, 8) = 0
+[pid  4142] pipe( <unfinished ...>
+[pid  4150] rt_sigaction(SIGTERM, NULL,  <unfinished ...>
+[pid  4142] <... pipe resumed> [3, 7])  = 0
+[pid  4150] <... rt_sigaction resumed> {0x805b950, [], 0}, 8) = 0
+[pid  4142] rt_sigprocmask(SIG_BLOCK, [CHLD],  <unfinished ...>
+[pid  4150] rt_sigaction(SIGTERM, {0x805b950, [], 0},  <unfinished ...>
+[pid  4142] <... rt_sigprocmask resumed> [], 8) = 0
+[pid  4150] <... rt_sigaction resumed> NULL, 8) = 0
+[pid  4142] clone( <unfinished ...>
+[pid  4147] exit_group(0)               = ?
+Process 4147 detached
+[pid  4150] dup2(3, 0Process 4151 attached
+ <unfinished ...>
+[pid  4142] <... clone resumed> child_stack=0, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0xb782c728) = 4151
+[pid  4150] <... dup2 resumed> )        = 0
+[pid  4142] close(6 <unfinished ...>
+[pid  4150] close(3 <unfinished ...>
+[pid  4142] <... close resumed> )       = 0
+[pid  4150] <... close resumed> )       = 0
+[pid  4142] close(7 <unfinished ...>
+[pid  4150] dup2(7, 1 <unfinished ...>
+[pid  4142] <... close resumed> )       = 0
+[pid  4150] <... dup2 resumed> )        = 1
+[pid  4142] rt_sigprocmask(SIG_SETMASK, [],  <unfinished ...>
+[pid  4150] close(7 <unfinished ...>
+[pid  4142] <... rt_sigprocmask resumed> NULL, 8) = 0
+[pid  4150] <... close resumed> )       = 0
+[pid  4142] --- SIGCHLD (Child exited) @ 0 (0) ---
+[pid  4150] close(6 <unfinished ...>
+[pid  4142] waitpid(-1,  <unfinished ...>
+[pid  4150] <... close resumed> )       = 0
+[pid  4142] <... waitpid resumed> [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], WNOHANG) = 4147
+[pid  4150] close(5 <unfinished ...>
+[pid  4142] waitpid(-1,  <unfinished ...>
+[pid  4150] <... close resumed> )       = 0
+[pid  4142] <... waitpid resumed> 0xbffab50c, WNOHANG) = 0
+[pid  4150] close(4 <unfinished ...>
+[pid  4142] sigreturn( <unfinished ...>
+[pid  4150] <... close resumed> )       = 0
+[pid  4142] <... sigreturn resumed> )   = ? (mask now [])
+[pid  4150] rt_sigaction(SIGINT, {0x805b950, [], 0},  <unfinished ...>
+[pid  4142] pipe( <unfinished ...>
+[pid  4150] <... rt_sigaction resumed> NULL, 8) = 0
+[pid  4142] <... pipe resumed> [6, 7])  = 0
+[pid  4150] rt_sigaction(SIGQUIT, {SIG_DFL, [], 0},  <unfinished ...>
+[pid  4142] rt_sigprocmask(SIG_BLOCK, [CHLD],  <unfinished ...>
+[pid  4150] <... rt_sigaction resumed> NULL, 8) = 0
+[pid  4142] <... rt_sigprocmask resumed> [], 8) = 0
+[pid  4142] clone( <unfinished ...>
+[pid  4150] dup(0Process 4152 attached
+ <unfinished ...>
+[pid  4142] <... clone resumed> child_stack=0, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0xb782c728) = 4152
+[pid  4151] rt_sigaction(SIGHUP, NULL, {SIG_IGN, [], 0}, 8) = 0
+[pid  4150] <... dup resumed> )         = 3
+[pid  4142] close(3 <unfinished ...>
+[pid  4151] rt_sigaction(SIGINT, NULL,  <unfinished ...>
+[pid  4150] rt_sigprocmask(SIG_BLOCK, [CHLD],  <unfinished ...>
+[pid  4151] <... rt_sigaction resumed> {SIG_IGN, [], 0}, 8) = 0
+[pid  4150] <... rt_sigprocmask resumed> [CHLD], 8) = 0
+[pid  4151] rt_sigaction(SIGTERM, NULL,  <unfinished ...>
+[pid  4150] rt_sigprocmask(SIG_SETMASK, [CHLD],  <unfinished ...>
+[pid  4151] <... rt_sigaction resumed> {0x805b950, [], 0}, 8) = 0
+[pid  4150] <... rt_sigprocmask resumed> NULL, 8) = 0
+[pid  4142] <... close resumed> )       = 0
+[pid  4151] rt_sigaction(SIGTERM, {0x805b950, [], 0},  <unfinished ...>
+[pid  4150] pipe( <unfinished ...>
+[pid  4151] <... rt_sigaction resumed> NULL, 8) = 0
+[pid  4150] <... pipe resumed> [4, 5])  = 0
+[pid  4142] close(7 <unfinished ...>
+[pid  4151] dup2(6, 0 <unfinished ...>
+[pid  4150] rt_sigprocmask(SIG_BLOCK, [CHLD],  <unfinished ...>
+[pid  4151] <... dup2 resumed> )        = 0
+[pid  4150] <... rt_sigprocmask resumed> [CHLD], 8) = 0
+[pid  4151] close(6 <unfinished ...>
+[pid  4150] clone( <unfinished ...>
+[pid  4151] <... close resumed> )       = 0
+[pid  4142] <... close resumed> )       = 0
+[pid  4151] dup2(7, 1Process 4153 attached (waiting for parent)
+)                  = 1
+Process 4153 resumed (parent 4150 ready)
+[pid  4150] <... clone resumed> child_stack=0, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0xb782c728) = 4153
+[pid  4151] close(7 <unfinished ...>
+[pid  4150] close(3 <unfinished ...>
+[pid  4153] rt_sigaction(SIGHUP, NULL,  <unfinished ...>
+[pid  4151] <... close resumed> )       = 0
+[pid  4153] <... rt_sigaction resumed> {SIG_IGN, [], 0}, 8) = 0
+[pid  4151] close(3 <unfinished ...>
+[pid  4150] <... close resumed> )       = 0
+[pid  4153] rt_sigaction(SIGINT, NULL,  <unfinished ...>
+[pid  4151] <... close resumed> )       = 0
+[pid  4153] <... rt_sigaction resumed> {0x805b950, [], 0}, 8) = 0
+[pid  4151] close(5 <unfinished ...>
+[pid  4150] close(5 <unfinished ...>
+[pid  4153] rt_sigaction(SIGINT, {0x805b950, [], 0},  <unfinished ...>
+[pid  4151] <... close resumed> )       = 0
+[pid  4153] <... rt_sigaction resumed> NULL, 8) = 0
+[pid  4151] close(4 <unfinished ...>
+[pid  4153] rt_sigaction(SIGTERM, NULL,  <unfinished ...>
+[pid  4151] <... close resumed> )       = 0
+[pid  4153] <... rt_sigaction resumed> {0x805b950, [], 0}, 8) = 0
+[pid  4151] rt_sigaction(SIGINT, {0x805b950, [], 0},  <unfinished ...>
+[pid  4153] rt_sigaction(SIGTERM, {0x805b950, [], 0},  <unfinished ...>
+[pid  4151] <... rt_sigaction resumed> NULL, 8) = 0
+[pid  4153] <... rt_sigaction resumed> NULL, 8) = 0
+[pid  4151] rt_sigaction(SIGQUIT, {SIG_DFL, [], 0},  <unfinished ...>
+[pid  4153] dup2(3, 0 <unfinished ...>
+[pid  4151] <... rt_sigaction resumed> NULL, 8) = 0
+[pid  4153] <... dup2 resumed> )        = 0
+[pid  4150] <... close resumed> )       = 0
+[pid  4153] close(3 <unfinished ...>
+[pid  4151] dup(0 <unfinished ...>
+[pid  4153] <... close resumed> )       = 0
+[pid  4151] <... dup resumed> )         = 3
+[pid  4153] dup2(5, 1 <unfinished ...>
+[pid  4151] rt_sigprocmask(SIG_BLOCK, [CHLD],  <unfinished ...>
+[pid  4153] <... dup2 resumed> )        = 1
+[pid  4151] <... rt_sigprocmask resumed> [CHLD], 8) = 0
+[pid  4153] close(5 <unfinished ...>
+[pid  4151] rt_sigprocmask(SIG_SETMASK, [CHLD],  <unfinished ...>
+[pid  4153] <... close resumed> )       = 0
+[pid  4151] <... rt_sigprocmask resumed> NULL, 8) = 0
+[pid  4153] close(4 <unfinished ...>
+[pid  4151] pipe( <unfinished ...>
+[pid  4153] <... close resumed> )       = 0
+[pid  4151] <... pipe resumed> [4, 5])  = 0
+[pid  4150] rt_sigprocmask(SIG_SETMASK, [CHLD], NULL, 8) = 0
+[pid  4150] read(4,  <unfinished ...>
+[pid  4153] close(4 <unfinished ...>
+[pid  4151] rt_sigprocmask(SIG_BLOCK, [CHLD],  <unfinished ...>
+[pid  4153] <... close resumed> )       = -1 EBADF (Bad file descriptor)
+[pid  4151] <... rt_sigprocmask resumed> [CHLD], 8) = 0
+[pid  4153] close(5 <unfinished ...>
+[pid  4151] clone( <unfinished ...>
+[pid  4153] <... close resumed> )       = -1 EBADF (Bad file descriptor)
+[pid  4142] rt_sigprocmask(SIG_SETMASK, [], Process 4154 attached
+ <unfinished ...>
+[pid  4151] <... clone resumed> child_stack=0, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0xb782c728) = 4154
+[pid  4153] dup(0 <unfinished ...>
+[pid  4151] close(3 <unfinished ...>
+[pid  4154] rt_sigaction(SIGHUP, NULL,  <unfinished ...>
+[pid  4153] <... dup resumed> )         = 3
+[pid  4154] <... rt_sigaction resumed> {SIG_IGN, [], 0}, 8) = 0
+[pid  4151] <... close resumed> )       = 0
+[pid  4142] <... rt_sigprocmask resumed> NULL, 8) = 0
+[pid  4154] rt_sigaction(SIGINT, NULL,  <unfinished ...>
+[pid  4153] fcntl64(3, F_GETFL <unfinished ...>
+[pid  4154] <... rt_sigaction resumed> {0x805b950, [], 0}, 8) = 0
+[pid  4153] <... fcntl64 resumed> )     = 0 (flags O_RDONLY)
+[pid  4151] close(5 <unfinished ...>
+[pid  4154] rt_sigaction(SIGINT, {0x805b950, [], 0},  <unfinished ...>
+[pid  4153] fstat64(3,  <unfinished ...>
+[pid  4154] <... rt_sigaction resumed> NULL, 8) = 0
+[pid  4153] <... fstat64 resumed> {st_mode=S_IFIFO|0600, st_size=0, ...}) = 0
+[pid  4154] rt_sigaction(SIGTERM, NULL,  <unfinished ...>
+[pid  4151] <... close resumed> )       = 0
+[pid  4154] <... rt_sigaction resumed> {0x805b950, [], 0}, 8) = 0
+[pid  4153] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid  4154] rt_sigaction(SIGTERM, {0x805b950, [], 0},  <unfinished ...>
+[pid  4153] <... mmap2 resumed> )       = 0xb7840000
+[pid  4154] <... rt_sigaction resumed> NULL, 8) = 0
+[pid  4153] _llseek(3, 0,  <unfinished ...>
+[pid  4154] dup2(3, 0 <unfinished ...>
+[pid  4153] <... _llseek resumed> 0xbffaa408, SEEK_CUR) = -1 ESPIPE (Illegal seek)
+[pid  4154] <... dup2 resumed> )        = 0
+[pid  4153] read(3,  <unfinished ...>
+[pid  4154] close(3 <unfinished ...>
+[pid  4151] rt_sigprocmask(SIG_SETMASK, [CHLD],  <unfinished ...>
+[pid  4154] <... close resumed> )       = 0
+[pid  4151] <... rt_sigprocmask resumed> NULL, 8) = 0
+[pid  4142] pipe( <unfinished ...>
+[pid  4151] read(4,  <unfinished ...>
+[pid  4154] dup2(5, 1 <unfinished ...>
+[pid  4142] <... pipe resumed> [3, 7])  = 0
+[pid  4154] <... dup2 resumed> )        = 1
+[pid  4142] rt_sigprocmask(SIG_BLOCK, [CHLD],  <unfinished ...>
+[pid  4154] close(5 <unfinished ...>
+[pid  4142] <... rt_sigprocmask resumed> [], 8) = 0
+[pid  4154] <... close resumed> )       = 0
+[pid  4142] clone( <unfinished ...>
+[pid  4154] close(4)                    = 0
+Process 4155 attached (waiting for parent)
+[pid  4154] close(4 <unfinished ...>
+[pid  4152] rt_sigaction(SIGHUP, NULL,  <unfinished ...>
+[pid  4154] <... close resumed> )       = -1 EBADF (Bad file descriptor)
+[pid  4152] <... rt_sigaction resumed> {SIG_IGN, [], 0}, 8) = 0
+[pid  4154] close(5Process 4155 resumed (parent 4142 ready)
+ <unfinished ...>
+[pid  4142] <... clone resumed> child_stack=0, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0xb782c728) = 4155
+[pid  4152] rt_sigaction(SIGINT, NULL, {SIG_IGN, [], 0}, 8) = 0
+[pid  4155] rt_sigaction(SIGHUP, NULL,  <unfinished ...>
+[pid  4154] <... close resumed> )       = -1 EBADF (Bad file descriptor)
+[pid  4155] <... rt_sigaction resumed> {SIG_IGN, [], 0}, 8) = 0
+[pid  4154] dup(0 <unfinished ...>
+[pid  4155] rt_sigaction(SIGINT, NULL,  <unfinished ...>
+[pid  4154] <... dup resumed> )         = 3
+[pid  4155] <... rt_sigaction resumed> {SIG_IGN, [], 0}, 8) = 0
+[pid  4152] rt_sigaction(SIGTERM, NULL, {0x805b950, [], 0}, 8) = 0
+[pid  4155] rt_sigaction(SIGTERM, NULL,  <unfinished ...>
+[pid  4154] fcntl64(3, F_GETFL <unfinished ...>
+[pid  4155] <... rt_sigaction resumed> {0x805b950, [], 0}, 8) = 0
+[pid  4154] <... fcntl64 resumed> )     = 0 (flags O_RDONLY)
+[pid  4152] rt_sigaction(SIGTERM, {0x805b950, [], 0},  <unfinished ...>
+[pid  4155] rt_sigaction(SIGTERM, {0x805b950, [], 0},  <unfinished ...>
+[pid  4154] fstat64(3,  <unfinished ...>
+[pid  4155] <... rt_sigaction resumed> NULL, 8) = 0
+[pid  4154] <... fstat64 resumed> {st_mode=S_IFIFO|0600, st_size=0, ...}) = 0
+[pid  4152] <... rt_sigaction resumed> NULL, 8) = 0
+[pid  4155] dup2(6, 0 <unfinished ...>
+[pid  4154] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid  4155] <... dup2 resumed> )        = 0
+[pid  4154] <... mmap2 resumed> )       = 0xb7840000
+[pid  4155] close(6 <unfinished ...>
+[pid  4154] _llseek(3, 0,  <unfinished ...>
+[pid  4155] <... close resumed> )       = 0
+[pid  4154] <... _llseek resumed> 0xbffaa458, SEEK_CUR) = -1 ESPIPE (Illegal seek)
+[pid  4155] dup2(7, 1 <unfinished ...>
+[pid  4154] read(3,  <unfinished ...>
+[pid  4155] <... dup2 resumed> )        = 1
+[pid  4152] dup2(3, 0 <unfinished ...>
+[pid  4155] close(7 <unfinished ...>
+[pid  4152] <... dup2 resumed> )        = 0
+[pid  4155] <... close resumed> )       = 0
+[pid  4142] close(6 <unfinished ...>
+[pid  4155] close(3 <unfinished ...>
+[pid  4152] close(3 <unfinished ...>
+[pid  4155] <... close resumed> )       = 0
+[pid  4152] <... close resumed> )       = 0
+[pid  4155] close(5 <unfinished ...>
+[pid  4152] dup2(7, 1 <unfinished ...>
+[pid  4155] <... close resumed> )       = 0
+[pid  4152] <... dup2 resumed> )        = 1
+[pid  4155] close(4 <unfinished ...>
+[pid  4152] close(7 <unfinished ...>
+[pid  4155] <... close resumed> )       = 0
+[pid  4152] <... close resumed> )       = 0
+[pid  4155] rt_sigaction(SIGINT, {0x805b950, [], 0},  <unfinished ...>
+[pid  4152] close(6 <unfinished ...>
+[pid  4155] <... rt_sigaction resumed> NULL, 8) = 0
+[pid  4152] <... close resumed> )       = 0
+[pid  4142] <... close resumed> )       = 0
+[pid  4155] rt_sigaction(SIGQUIT, {SIG_DFL, [], 0},  <unfinished ...>
+[pid  4152] close(5 <unfinished ...>
+[pid  4155] <... rt_sigaction resumed> NULL, 8) = 0
+[pid  4152] <... close resumed> )       = 0
+[pid  4142] close(7 <unfinished ...>
+[pid  4152] close(4 <unfinished ...>
+[pid  4155] execve("/usr/local/sbin/tbl", ["tbl"], [/* 45 vars */] <unfinished ...>
+[pid  4152] <... close resumed> )       = 0
+[pid  4142] <... close resumed> )       = 0
+[pid  4155] <... execve resumed> )      = -1 ENOENT (No such file or directory)
+[pid  4152] rt_sigaction(SIGINT, {0x805b950, [], 0},  <unfinished ...>
+[pid  4155] execve("/usr/local/bin/tbl", ["tbl"], [/* 45 vars */] <unfinished ...>
+[pid  4152] <... rt_sigaction resumed> NULL, 8) = 0
+[pid  4155] <... execve resumed> )      = -1 ENOENT (No such file or directory)
+[pid  4152] rt_sigaction(SIGQUIT, {SIG_DFL, [], 0},  <unfinished ...>
+[pid  4155] execve("/usr/sbin/tbl", ["tbl"], [/* 45 vars */] <unfinished ...>
+[pid  4152] <... rt_sigaction resumed> NULL, 8) = 0
+[pid  4155] <... execve resumed> )      = -1 ENOENT (No such file or directory)
+[pid  4152] execve("/usr/local/sbin/preconv", ["preconv", "-e", "UTF-8"], [/* 45 vars */] <unfinished ...>
+[pid  4155] execve("/usr/bin/tbl", ["tbl"], [/* 45 vars */] <unfinished ...>
+[pid  4152] <... execve resumed> )      = -1 ENOENT (No such file or directory)
+[pid  4142] rt_sigprocmask(SIG_SETMASK, [],  <unfinished ...>
+[pid  4152] execve("/usr/local/bin/preconv", ["preconv", "-e", "UTF-8"], [/* 45 vars */] <unfinished ...>
+[pid  4142] <... rt_sigprocmask resumed> NULL, 8) = 0
+[pid  4152] <... execve resumed> )      = -1 ENOENT (No such file or directory)
+[pid  4142] pipe( <unfinished ...>
+[pid  4152] execve("/usr/sbin/preconv", ["preconv", "-e", "UTF-8"], [/* 45 vars */] <unfinished ...>
+[pid  4155] <... execve resumed> )      = 0
+[pid  4152] <... execve resumed> )      = -1 ENOENT (No such file or directory)
+[pid  4142] <... pipe resumed> [6, 7])  = 0
+[pid  4155] brk(0)                      = 0x92ab000
+[pid  4155] access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+[pid  4155] mmap2(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid  4152] execve("/usr/bin/preconv", ["preconv", "-e", "UTF-8"], [/* 45 vars */] <unfinished ...>
+[pid  4155] <... mmap2 resumed> )       = 0xb78bd000
+[pid  4142] rt_sigprocmask(SIG_BLOCK, [CHLD],  <unfinished ...>
+[pid  4155] access("/etc/ld.so.preload", R_OK <unfinished ...>
+[pid  4152] <... execve resumed> )      = 0
+[pid  4155] <... access resumed> )      = -1 ENOENT (No such file or directory)
+[pid  4142] <... rt_sigprocmask resumed> [], 8) = 0
+[pid  4152] brk(0 <unfinished ...>
+[pid  4155] open("/etc/ld.so.cache", O_RDONLY <unfinished ...>
+[pid  4152] <... brk resumed> )         = 0x995d000
+[pid  4155] <... open resumed> )        = 3
+[pid  4142] clone( <unfinished ...>
+[pid  4155] fstat64(3,  <unfinished ...>
+[pid  4152] access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+[pid  4152] mmap2(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid  4155] <... fstat64 resumed> {st_mode=S_IFREG|0644, st_size=73853, ...}) = 0
+[pid  4152] <... mmap2 resumed> )       = 0xb7895000
+Process 4156 attached
+[pid  4142] <... clone resumed> child_stack=0, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0xb782c728) = 4156
+[pid  4155] mmap2(NULL, 73853, PROT_READ, MAP_PRIVATE, 3, 0 <unfinished ...>
+[pid  4152] access("/etc/ld.so.preload", R_OK <unfinished ...>
+[pid  4155] <... mmap2 resumed> )       = 0xb78aa000
+[pid  4152] <... access resumed> )      = -1 ENOENT (No such file or directory)
+[pid  4155] close(3 <unfinished ...>
+[pid  4142] close(3 <unfinished ...>
+[pid  4155] <... close resumed> )       = 0
+[pid  4152] open("/etc/ld.so.cache", O_RDONLY <unfinished ...>
+[pid  4155] access("/etc/ld.so.nohwcap", F_OK <unfinished ...>
+[pid  4152] <... open resumed> )        = 3
+[pid  4155] <... access resumed> )      = -1 ENOENT (No such file or directory)
+[pid  4152] fstat64(3,  <unfinished ...>
+[pid  4155] open("/usr/lib/libstdc++.so.6", O_RDONLY <unfinished ...>
+[pid  4152] <... fstat64 resumed> {st_mode=S_IFREG|0644, st_size=73853, ...}) = 0
+[pid  4155] <... open resumed> )        = 3
+[pid  4142] <... close resumed> )       = 0
+[pid  4155] read(3,  <unfinished ...>
+[pid  4152] mmap2(NULL, 73853, PROT_READ, MAP_PRIVATE, 3, 0 <unfinished ...>
+[pid  4155] <... read resumed> "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0\340B\4\0004\0\0\0"..., 512) = 512
+[pid  4152] <... mmap2 resumed> )       = 0xb7882000
+[pid  4142] close(7 <unfinished ...>
+[pid  4155] fstat64(3,  <unfinished ...>
+[pid  4152] close(3 <unfinished ...>
+[pid  4155] <... fstat64 resumed> {st_mode=S_IFREG|0644, st_size=930044, ...}) = 0
+[pid  4152] <... close resumed> )       = 0
+[pid  4142] <... close resumed> )       = 0
+[pid  4155] mmap2(NULL, 959532, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0 <unfinished ...>
+[pid  4152] access("/etc/ld.so.nohwcap", F_OK <unfinished ...>
+[pid  4155] <... mmap2 resumed> )       = 0x525000
+[pid  4152] <... access resumed> )      = -1 ENOENT (No such file or directory)
+[pid  4155] mmap2(0x604000, 20480, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0xde <unfinished ...>
+[pid  4152] open("/usr/lib/libstdc++.so.6", O_RDONLY <unfinished ...>
+[pid  4155] <... mmap2 resumed> )       = 0x604000
+[pid  4152] <... open resumed> )        = 3
+[pid  4155] mmap2(0x609000, 25644, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid  4152] read(3,  <unfinished ...>
+[pid  4155] <... mmap2 resumed> )       = 0x609000
+[pid  4152] <... read resumed> "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0\340B\4\0004\0\0\0"..., 512) = 512
+[pid  4155] close(3 <unfinished ...>
+[pid  4142] rt_sigprocmask(SIG_SETMASK, [],  <unfinished ...>
+[pid  4155] <... close resumed> )       = 0
+[pid  4152] fstat64(3,  <unfinished ...>
+[pid  4142] <... rt_sigprocmask resumed> NULL, 8) = 0
+[pid  4155] access("/etc/ld.so.nohwcap", F_OK <unfinished ...>
+[pid  4152] <... fstat64 resumed> {st_mode=S_IFREG|0644, st_size=930044, ...}) = 0
+[pid  4155] <... access resumed> )      = -1 ENOENT (No such file or directory)
+[pid  4142] rt_sigprocmask(SIG_BLOCK, [CHLD],  <unfinished ...>
+[pid  4155] open("/lib/libm.so.6", O_RDONLY <unfinished ...>
+[pid  4152] mmap2(NULL, 959532, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0 <unfinished ...>
+[pid  4155] <... open resumed> )        = 3
+[pid  4142] <... rt_sigprocmask resumed> [], 8) = 0
+[pid  4142] rt_sigprocmask(SIG_SETMASK, [],  <unfinished ...>
+[pid  4155] read(3,  <unfinished ...>
+[pid  4152] <... mmap2 resumed> )       = 0xdad000
+[pid  4155] <... read resumed> "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0\2604\0\0004\0\0\0"..., 512) = 512
+[pid  4152] mmap2(0xe8c000, 20480, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0xde <unfinished ...>
+[pid  4155] fstat64(3,  <unfinished ...>
+[pid  4152] <... mmap2 resumed> )       = 0xe8c000
+[pid  4155] <... fstat64 resumed> {st_mode=S_IFREG|0644, st_size=149392, ...}) = 0
+[pid  4152] mmap2(0xe91000, 25644, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid  4155] mmap2(NULL, 151680, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0 <unfinished ...>
+[pid  4152] <... mmap2 resumed> )       = 0xe91000
+[pid  4155] <... mmap2 resumed> )       = 0x110000
+[pid  4152] close(3 <unfinished ...>
+[pid  4155] mmap2(0x134000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x23 <unfinished ...>
+[pid  4152] <... close resumed> )       = 0
+[pid  4155] <... mmap2 resumed> )       = 0x134000
+[pid  4152] access("/etc/ld.so.nohwcap", F_OK <unfinished ...>
+[pid  4155] close(3 <unfinished ...>
+[pid  4152] <... access resumed> )      = -1 ENOENT (No such file or directory)
+[pid  4155] <... close resumed> )       = 0
+[pid  4142] <... rt_sigprocmask resumed> NULL, 8) = 0
+[pid  4152] open("/lib/libm.so.6", O_RDONLY <unfinished ...>
+[pid  4155] access("/etc/ld.so.nohwcap", F_OK <unfinished ...>
+[pid  4152] <... open resumed> )        = 3
+[pid  4155] <... access resumed> )      = -1 ENOENT (No such file or directory)
+[pid  4152] read(3,  <unfinished ...>
+[pid  4155] open("/lib/libgcc_s.so.1", O_RDONLY <unfinished ...>
+[pid  4142] pipe( <unfinished ...>
+[pid  4155] <... open resumed> )        = 3
+[pid  4152] <... read resumed> "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0\2604\0\0004\0\0\0"..., 512) = 512
+[pid  4155] read(3,  <unfinished ...>
+[pid  4152] fstat64(3,  <unfinished ...>
+[pid  4155] <... read resumed> "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0P\37\0\0004\0\0\0"..., 512) = 512
+[pid  4152] <... fstat64 resumed> {st_mode=S_IFREG|0644, st_size=149392, ...}) = 0
+[pid  4155] fstat64(3,  <unfinished ...>
+[pid  4152] mmap2(NULL, 151680, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0 <unfinished ...>
+[pid  4155] <... fstat64 resumed> {st_mode=S_IFREG|0644, st_size=108040, ...}) = 0
+[pid  4152] <... mmap2 resumed> )       = 0xaf5000
+[pid  4155] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid  4152] mmap2(0xb19000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x23 <unfinished ...>
+[pid  4155] <... mmap2 resumed> )       = 0xb78a9000
+[pid  4152] <... mmap2 resumed> )       = 0xb19000
+[pid  4155] mmap2(NULL, 111148, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0 <unfinished ...>
+[pid  4142] <... pipe resumed> [3, 7])  = 0
+[pid  4155] <... mmap2 resumed> )       = 0xd4f000
+[pid  4152] close(3 <unfinished ...>
+[pid  4142] pipe( <unfinished ...>
+[pid  4155] mmap2(0xd69000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x19 <unfinished ...>
+[pid  4152] <... close resumed> )       = 0
+[pid  4155] <... mmap2 resumed> )       = 0xd69000
+[pid  4142] <... pipe resumed> [8, 9])  = 0
+[pid  4152] access("/etc/ld.so.nohwcap", F_OK <unfinished ...>
+[pid  4155] close(3 <unfinished ...>
+[pid  4142] rt_sigprocmask(SIG_BLOCK, [CHLD],  <unfinished ...>
+[pid  4155] <... close resumed> )       = 0
+[pid  4152] <... access resumed> )      = -1 ENOENT (No such file or directory)
+[pid  4155] access("/etc/ld.so.nohwcap", F_OK <unfinished ...>
+[pid  4152] open("/lib/libgcc_s.so.1", O_RDONLY <unfinished ...>
+[pid  4142] <... rt_sigprocmask resumed> [], 8) = 0
+[pid  4155] <... access resumed> )      = -1 ENOENT (No such file or directory)
+[pid  4152] <... open resumed> )        = 3
+[pid  4155] open("/lib/libc.so.6", O_RDONLY <unfinished ...>
+[pid  4152] read(3,  <unfinished ...>
+[pid  4155] <... open resumed> )        = 3
+[pid  4152] <... read resumed> "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0P\37\0\0004\0\0\0"..., 512) = 512
+[pid  4155] read(3,  <unfinished ...>
+[pid  4152] fstat64(3,  <unfinished ...>
+[pid  4155] <... read resumed> "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0@n\1\0004\0\0\0"..., 512) = 512
+[pid  4152] <... fstat64 resumed> {st_mode=S_IFREG|0644, st_size=108040, ...}) = 0
+[pid  4155] fstat64(3,  <unfinished ...>
+[pid  4152] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid  4155] <... fstat64 resumed> {st_mode=S_IFREG|0755, st_size=1421892, ...}) = 0
+[pid  4152] <... mmap2 resumed> )       = 0xb7881000
+[pid  4142] clone( <unfinished ...>
+[pid  4156] rt_sigaction(SIGHUP, NULL, {SIG_IGN, [], 0}, 8) = 0
+[pid  4156] rt_sigaction(SIGINT, NULL, {SIG_IGN, [], 0}, 8) = 0
+[pid  4155] mmap2(NULL, 1427880, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0 <unfinished ...>
+[pid  4152] mmap2(NULL, 111148, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0 <unfinished ...>
+[pid  4156] rt_sigaction(SIGTERM, NULL,  <unfinished ...>
+[pid  4155] <... mmap2 resumed> )       = 0xde4000
+[pid  4156] <... rt_sigaction resumed> {0x805b950, [], 0}, 8) = 0
+[pid  4155] mmap2(0xf3b000, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x157 <unfinished ...>
+[pid  4156] rt_sigaction(SIGTERM, {0x805b950, [], 0},  <unfinished ...>
+[pid  4155] <... mmap2 resumed> )       = 0xf3b000
+[pid  4156] <... rt_sigaction resumed> NULL, 8) = 0
+[pid  4152] <... mmap2 resumed> )       = 0x44f000
+Process 4157 attached
+[pid  4142] <... clone resumed> child_stack=0, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0xb782c728) = 4157
+[pid  4152] mmap2(0x469000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x19) = 0x469000
+[pid  4152] close(3 <unfinished ...>
+[pid  4156] dup2(3, 0 <unfinished ...>
+[pid  4155] mmap2(0xf3e000, 10664, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid  4156] <... dup2 resumed> )        = 0
+[pid  4155] <... mmap2 resumed> )       = 0xf3e000
+[pid  4156] close(3 <unfinished ...>
+[pid  4152] <... close resumed> )       = 0
+[pid  4156] <... close resumed> )       = 0
+[pid  4155] close(3 <unfinished ...>
+[pid  4156] dup2(7, 1 <unfinished ...>
+[pid  4155] <... close resumed> )       = 0
+[pid  4156] <... dup2 resumed> )        = 1
+[pid  4152] access("/etc/ld.so.nohwcap", F_OK <unfinished ...>
+[pid  4156] close(7 <unfinished ...>
+[pid  4152] <... access resumed> )      = -1 ENOENT (No such file or directory)
+[pid  4156] <... close resumed> )       = 0
+[pid  4155] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid  4142] close(3 <unfinished ...>
+[pid  4152] open("/lib/libc.so.6", O_RDONLY) = 3
+[pid  4152] read(3, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0@n\1\0004\0\0\0"..., 512) = 512
+[pid  4152] fstat64(3, {st_mode=S_IFREG|0755, st_size=1421892, ...}) = 0
+[pid  4152] mmap2(NULL, 1427880, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0xb6e000
+[pid  4152] mmap2(0xcc5000, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x157) = 0xcc5000
+[pid  4152] mmap2(0xcc8000, 10664, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0xcc8000
+[pid  4156] close(6 <unfinished ...>
+[pid  4155] <... mmap2 resumed> )       = 0xb78a8000
+[pid  4156] <... close resumed> )       = 0
+[pid  4155] set_thread_area({entry_number:-1 ->  <unfinished ...>
+[pid  4156] close(5 <unfinished ...>
+[pid  4155] <... set_thread_area resumed> 6, base_addr:0xb78a86d0, limit:1048575, seg_32bit:1, contents:0, read_exec_only:0, limit_in_pages:1, seg_not_present:0, useable:1}) = 0
+[pid  4156] <... close resumed> )       = 0
+[pid  4152] close(3 <unfinished ...>
+[pid  4156] close(4 <unfinished ...>
+[pid  4152] <... close resumed> )       = 0
+[pid  4156] <... close resumed> )       = 0
+[pid  4142] <... close resumed> )       = 0
+[pid  4142] close(9)                    = 0
+[pid  4156] rt_sigaction(SIGINT, {0x805b950, [], 0},  <unfinished ...>
+[pid  4152] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid  4156] <... rt_sigaction resumed> NULL, 8) = 0
+[pid  4152] <... mmap2 resumed> )       = 0xb7880000
+[pid  4156] rt_sigaction(SIGQUIT, {SIG_DFL, [], 0},  <unfinished ...>
+[pid  4155] mprotect(0xf3b000, 8192, PROT_READ <unfinished ...>
+[pid  4156] <... rt_sigaction resumed> NULL, 8) = 0
+[pid  4156] execve("/usr/local/sbin/nroff", ["nroff", "-mandoc", "-rLL=163n", "-rLT=163n", "-Tutf8"], [/* 45 vars */] <unfinished ...>
+[pid  4155] <... mprotect resumed> )    = 0
+[pid  4152] set_thread_area({entry_number:-1 ->  <unfinished ...>
+[pid  4142] rt_sigprocmask(SIG_SETMASK, [],  <unfinished ...>
+[pid  4156] <... execve resumed> )      = -1 ENOENT (No such file or directory)
+[pid  4155] mprotect(0xd69000, 4096, PROT_READ <unfinished ...>
+[pid  4156] execve("/usr/local/bin/nroff", ["nroff", "-mandoc", "-rLL=163n", "-rLT=163n", "-Tutf8"], [/* 45 vars */] <unfinished ...>
+[pid  4155] <... mprotect resumed> )    = 0
+[pid  4152] <... set_thread_area resumed> 6, base_addr:0xb78806d0, limit:1048575, seg_32bit:1, contents:0, read_exec_only:0, limit_in_pages:1, seg_not_present:0, useable:1}) = 0
+[pid  4156] <... execve resumed> )      = -1 ENOENT (No such file or directory)
+[pid  4142] <... rt_sigprocmask resumed> NULL, 8) = 0
+[pid  4142] rt_sigprocmask(SIG_BLOCK, [CHLD], [], 8) = 0
+[pid  4142] clone( <unfinished ...>
+[pid  4156] execve("/usr/sbin/nroff", ["nroff", "-mandoc", "-rLL=163n", "-rLT=163n", "-Tutf8"], [/* 45 vars */]Process 4158 attached (waiting for parent)
+ <unfinished ...>
+[pid  4155] mprotect(0x134000, 4096, PROT_READ <unfinished ...>
+[pid  4152] mprotect(0xcc5000, 8192, PROT_READ <unfinished ...>
+[pid  4156] <... execve resumed> )      = -1 ENOENT (No such file or directory)
+[pid  4155] <... mprotect resumed> )    = 0
+[pid  4156] execve("/usr/bin/nroff", ["nroff", "-mandoc", "-rLL=163n", "-rLT=163n", "-Tutf8"], [/* 45 vars */] <unfinished ...>
+[pid  4152] <... mprotect resumed> )    = 0
+Process 4158 resumed (parent 4142 ready)
+[pid  4142] <... clone resumed> child_stack=0, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0xb782c728) = 4158
+[pid  4152] mprotect(0x469000, 4096, PROT_READ <unfinished ...>
+[pid  4142] close(8)                    = 0
+[pid  4142] rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+[pid  4142] fcntl64(4, F_GETFL)         = 0 (flags O_RDONLY)
+[pid  4142] fcntl64(4, F_SETFL, O_RDONLY|O_NONBLOCK) = 0
+[pid  4142] fcntl64(5, F_GETFL)         = 0x1 (flags O_WRONLY)
+[pid  4142] fcntl64(5, F_SETFL, O_WRONLY|O_NONBLOCK) = 0
+[pid  4142] fcntl64(6, F_GETFL)         = 0 (flags O_RDONLY)
+[pid  4142] fcntl64(6, F_SETFL, O_RDONLY|O_NONBLOCK <unfinished ...>
+[pid  4156] <... execve resumed> )      = 0
+[pid  4152] <... mprotect resumed> )    = 0
+[pid  4142] <... fcntl64 resumed> )     = 0
+[pid  4152] mprotect(0xb19000, 4096, PROT_READ <unfinished ...>
+[pid  4142] fcntl64(7, F_GETFL <unfinished ...>
+[pid  4152] <... mprotect resumed> )    = 0
+[pid  4142] <... fcntl64 resumed> )     = 0x1 (flags O_WRONLY)
+[pid  4142] fcntl64(7, F_SETFL, O_WRONLY|O_NONBLOCK) = 0
+[pid  4142] rt_sigaction(SIGPIPE, {SIG_IGN, [], 0}, {SIG_DFL, [], 0}, 8) = 0
+[pid  4142] rt_sigaction(SIGCHLD, NULL, {0x805cd40, [HUP INT TERM CHLD], SA_RESTART|SA_NOCLDSTOP}, 8) = 0
+[pid  4142] rt_sigaction(SIGCHLD, {0x805cd40, [HUP INT TERM CHLD], SA_NOCLDSTOP}, NULL, 8) = 0
+[pid  4142] select(8, [4 6], [5 7], NULL, NULL) = 3 (in [4], out [5 7])
+[pid  4142] read(4, "e \n.I intro \ndisponibles en el m"..., 4096) = 4096
+[pid  4142] write(5, ".if (\\n[.g] & ((\\n[.x] > 1) : (("..., 8192 <unfinished ...>
+[pid  4153] <... read resumed> ".if (\\n[.g] & ((\\n[.x] > 1) : (("..., 16384) = 8192
+[pid  4153] read(3,  <unfinished ...>
+[pid  4142] <... write resumed> )       = 8192
+[pid  4142] select(7, [4 6], [5], NULL, NULL) = 2 (in [4], out [5])
+[pid  4142] read(4, "ectorio como ra\303\255z de su jerarqu"..., 4096) = 4096
+[pid  4142] write(5, "ectorio como ra\303\255z de su jerarqu"..., 4096 <unfinished ...>
+[pid  4153] <... read resumed> "ectorio como ra\303\255z de su jerarqu"..., 8192) = 4096
+[pid  4153] read(3,  <unfinished ...>
+[pid  4152] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid  4142] <... write resumed> )       = 4096
+[pid  4142] select(8, [4 6], [5 7], NULL, NULL) = 3 (in [4], out [5 7])
+[pid  4142] read(4, "al el dispositivo\nque se especif"..., 4096) = 4096
+[pid  4142] write(5, "al el dispositivo\nque se especif"..., 4096 <unfinished ...>
+[pid  4153] <... read resumed> "al el dispositivo\nque se especif"..., 4096) = 4096
+[pid  4158] rt_sigaction(SIGHUP, NULL,  <unfinished ...>
+[pid  4153] _llseek(3, 0,  <unfinished ...>
+[pid  4158] <... rt_sigaction resumed> {SIG_IGN, [], 0}, 8) = 0
+[pid  4158] rt_sigaction(SIGINT, NULL, {SIG_IGN, [], 0}, 8) = 0
+[pid  4158] rt_sigaction(SIGTERM, NULL,  <unfinished ...>
+[pid  4155] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid  4153] <... _llseek resumed> 0xbffaa400, SEEK_CUR) = -1 ESPIPE (Illegal seek)
+[pid  4156] brk(0 <unfinished ...>
+[pid  4158] <... rt_sigaction resumed> {0x805b950, [], 0}, 8) = 0
+[pid  4156] <... brk resumed> )         = 0x9932000
+[pid  4158] rt_sigaction(SIGTERM, {0x805b950, [], 0},  <unfinished ...>
+[pid  4156] access("/etc/ld.so.nohwcap", F_OK <unfinished ...>
+[pid  4155] <... mmap2 resumed> )       = 0xb78a7000
+[pid  4158] <... rt_sigaction resumed> NULL, 8) = 0
+[pid  4156] <... access resumed> )      = -1 ENOENT (No such file or directory)
+[pid  4153] fstat64(1,  <unfinished ...>
+[pid  4156] mmap2(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid  4153] <... fstat64 resumed> {st_mode=S_IFIFO|0600, st_size=0, ...}) = 0
+[pid  4156] <... mmap2 resumed> )       = 0xb78ca000
+[pid  4153] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid  4156] access("/etc/ld.so.preload", R_OK <unfinished ...>
+[pid  4155] mprotect(0x604000, 16384, PROT_READ <unfinished ...>
+[pid  4158] dup2(8, 0 <unfinished ...>
+[pid  4156] <... access resumed> )      = -1 ENOENT (No such file or directory)
+[pid  4158] <... dup2 resumed> )        = 0
+[pid  4155] <... mprotect resumed> )    = 0
+[pid  4158] close(8 <unfinished ...>
+[pid  4156] open("/etc/ld.so.cache", O_RDONLY <unfinished ...>
+[pid  4158] <... close resumed> )       = 0
+[pid  4156] <... open resumed> )        = 3
+[pid  4158] close(7 <unfinished ...>
+[pid  4156] fstat64(3,  <unfinished ...>
+[pid  4158] <... close resumed> )       = 0
+[pid  4156] <... fstat64 resumed> {st_mode=S_IFREG|0644, st_size=73853, ...}) = 0
+[pid  4158] close(4 <unfinished ...>
+[pid  4155] mprotect(0x8064000, 4096, PROT_READ <unfinished ...>
+[pid  4158] <... close resumed> )       = 0
+[pid  4156] mmap2(NULL, 73853, PROT_READ, MAP_PRIVATE, 3, 0 <unfinished ...>
+[pid  4158] close(5 <unfinished ...>
+[pid  4156] <... mmap2 resumed> )       = 0xb78b7000
+[pid  4158] <... close resumed> )       = 0
+[pid  4156] close(3 <unfinished ...>
+[pid  4158] close(6 <unfinished ...>
+[pid  4156] <... close resumed> )       = 0
+[pid  4158] <... close resumed> )       = 0
+[pid  4156] access("/etc/ld.so.nohwcap", F_OK <unfinished ...>
+[pid  4158] rt_sigaction(SIGINT, {0x805b950, [], 0},  <unfinished ...>
+[pid  4156] <... access resumed> )      = -1 ENOENT (No such file or directory)
+[pid  4158] <... rt_sigaction resumed> NULL, 8) = 0
+[pid  4155] <... mprotect resumed> )    = 0
+[pid  4158] rt_sigaction(SIGQUIT, {SIG_DFL, [], 0},  <unfinished ...>
+[pid  4156] open("/lib/libc.so.6", O_RDONLY <unfinished ...>
+[pid  4158] <... rt_sigaction resumed> NULL, 8) = 0
+[pid  4156] <... open resumed> )        = 3
+[pid  4156] read(3,  <unfinished ...>
+[pid  4157] rt_sigaction(SIGHUP, NULL,  <unfinished ...>
+[pid  4158] execve("/usr/local/sbin/pager", ["pager", "-s"], [/* 45 vars */] <unfinished ...>
+[pid  4157] <... rt_sigaction resumed> {SIG_IGN, [], 0}, 8) = 0
+[pid  4158] <... execve resumed> )      = -1 ENOENT (No such file or directory)
+[pid  4157] rt_sigaction(SIGINT, NULL,  <unfinished ...>
+[pid  4158] execve("/usr/local/bin/pager", ["pager", "-s"], [/* 45 vars */] <unfinished ...>
+[pid  4157] <... rt_sigaction resumed> {SIG_IGN, [], 0}, 8) = 0
+[pid  4158] <... execve resumed> )      = -1 ENOENT (No such file or directory)
+[pid  4157] rt_sigaction(SIGTERM, NULL,  <unfinished ...>
+[pid  4158] execve("/usr/sbin/pager", ["pager", "-s"], [/* 45 vars */] <unfinished ...>
+[pid  4157] <... rt_sigaction resumed> {0x805b950, [], 0}, 8) = 0
+[pid  4158] <... execve resumed> )      = -1 ENOENT (No such file or directory)
+[pid  4157] rt_sigaction(SIGTERM, {0x805b950, [], 0},  <unfinished ...>
+[pid  4158] execve("/usr/bin/pager", ["pager", "-s"], [/* 45 vars */] <unfinished ...>
+[pid  4157] <... rt_sigaction resumed> NULL, 8) = 0
+[pid  4156] <... read resumed> "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0@n\1\0004\0\0\0"..., 512) = 512
+[pid  4158] <... execve resumed> )      = 0
+[pid  4157] dup2(3, 0 <unfinished ...>
+[pid  4156] fstat64(3,  <unfinished ...>
+[pid  4157] <... dup2 resumed> )        = 0
+[pid  4156] <... fstat64 resumed> {st_mode=S_IFREG|0755, st_size=1421892, ...}) = 0
+[pid  4158] brk(0 <unfinished ...>
+[pid  4157] close(3 <unfinished ...>
+[pid  4158] <... brk resumed> )         = 0x8f72000
+[pid  4157] <... close resumed> )       = 0
+[pid  4156] mmap2(NULL, 1427880, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0 <unfinished ...>
+[pid  4158] access("/etc/ld.so.nohwcap", F_OK <unfinished ...>
+[pid  4157] dup2(9, 1 <unfinished ...>
+[pid  4158] <... access resumed> )      = -1 ENOENT (No such file or directory)
+[pid  4157] <... dup2 resumed> )        = 1
+[pid  4158] mmap2(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid  4157] close(9 <unfinished ...>
+[pid  4158] <... mmap2 resumed> )       = 0xb77e2000
+[pid  4157] <... close resumed> )       = 0
+[pid  4156] <... mmap2 resumed> )       = 0xac2000
+[pid  4156] mmap2(0xc19000, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x157 <unfinished ...>
+[pid  4158] access("/etc/ld.so.preload", R_OK <unfinished ...>
+[pid  4157] close(8 <unfinished ...>
+[pid  4158] <... access resumed> )      = -1 ENOENT (No such file or directory)
+[pid  4157] <... close resumed> )       = 0
+[pid  4156] <... mmap2 resumed> )       = 0xc19000
+[pid  4155] mprotect(0x893000, 4096, PROT_READ) = 0
+[pid  4155] munmap(0xb78aa000, 73853)   = 0
+[pid  4158] open("/etc/ld.so.cache", O_RDONLY <unfinished ...>
+[pid  4156] mmap2(0xc1c000, 10664, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid  4155] fstat64(1,  <unfinished ...>
+[pid  4158] <... open resumed> )        = 3
+[pid  4156] <... mmap2 resumed> )       = 0xc1c000
+[pid  4158] fstat64(3,  <unfinished ...>
+[pid  4155] <... fstat64 resumed> {st_mode=S_IFIFO|0600, st_size=0, ...}) = 0
+[pid  4158] <... fstat64 resumed> {st_mode=S_IFREG|0644, st_size=73853, ...}) = 0
+[pid  4156] close(3 <unfinished ...>
+[pid  4158] mmap2(NULL, 73853, PROT_READ, MAP_PRIVATE, 3, 0 <unfinished ...>
+[pid  4156] <... close resumed> )       = 0
+[pid  4158] <... mmap2 resumed> )       = 0xb77cf000
+[pid  4155] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid  4153] <... mmap2 resumed> )       = 0xb783f000
+[pid  4158] close(3 <unfinished ...>
+[pid  4156] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid  4158] <... close resumed> )       = 0
+[pid  4156] <... mmap2 resumed> )       = 0xb78b6000
+[pid  4158] access("/etc/ld.so.nohwcap", F_OK <unfinished ...>
+[pid  4156] set_thread_area({entry_number:-1 ->  <unfinished ...>
+[pid  4158] <... access resumed> )      = -1 ENOENT (No such file or directory)
+[pid  4156] <... set_thread_area resumed> 6, base_addr:0xb78b68d0, limit:1048575, seg_32bit:1, contents:0, read_exec_only:0, limit_in_pages:1, seg_not_present:0, useable:1}) = 0
+[pid  4158] open("/lib/libncurses.so.5", O_RDONLY <unfinished ...>
+[pid  4155] <... mmap2 resumed> )       = 0xb78bc000
+[pid  4153] write(1, ".if (\\n[.g] & ((\\n[.x] > 1) : (("..., 4096) = 4096
+[pid  4153] write(1, "e \n.I intro \ndisponibles en el m"..., 4096) = 4096
+[pid  4156] mprotect(0xc19000, 8192, PROT_READ) = 0
+[pid  4156] mprotect(0x805c000, 4096, PROT_READ) = 0
+[pid  4156] mprotect(0xea5000, 4096, PROT_READ) = 0
+[pid  4156] munmap(0xb78b7000, 73853)   = 0
+[pid  4156] getpid()                    = 4156
+[pid  4156] rt_sigaction(SIGCHLD, {SIG_DFL, [CHLD], SA_RESTART}, {SIG_DFL, [], 0}, 8) = 0
+[pid  4156] geteuid32()                 = 1000
+[pid  4158] <... open resumed> )        = 3
+[pid  4156] brk(0 <unfinished ...>
+[pid  4155] fstat64(0,  <unfinished ...>
+[pid  4156] <... brk resumed> )         = 0x9932000
+[pid  4158] read(3,  <unfinished ...>
+[pid  4156] brk(0x9953000 <unfinished ...>
+[pid  4158] <... read resumed> "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0\220\224\0\0004\0\0\0"..., 512) = 512
+[pid  4156] <... brk resumed> )         = 0x9953000
+[pid  4155] <... fstat64 resumed> {st_mode=S_IFIFO|0600, st_size=0, ...}) = 0
+[pid  4153] write(1, "ectorio como ra\303\255z de su jerarqu"..., 4096 <unfinished ...>
+[pid  4158] fstat64(3,  <unfinished ...>
+[pid  4156] getppid( <unfinished ...>
+[pid  4158] <... fstat64 resumed> {st_mode=S_IFREG|0644, st_size=227864, ...}) = 0
+[pid  4156] <... getppid resumed> )     = 4142
+[pid  4158] mmap2(NULL, 231632, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0 <unfinished ...>
+[pid  4155] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid  4156] stat64("/home/cengler/SO/tp/taller_ptrace/ptrace-code",  <unfinished ...>
+[pid  4158] <... mmap2 resumed> )       = 0x303000
+[pid  4156] <... stat64 resumed> {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+[pid  4158] mmap2(0x339000, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x35 <unfinished ...>
+[pid  4155] <... mmap2 resumed> )       = 0xb78bb000
+[pid  4156] stat64(".",  <unfinished ...>
+[pid  4155] read(0,  <unfinished ...>
+[pid  4158] <... mmap2 resumed> )       = 0x339000
+[pid  4156] <... stat64 resumed> {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+[pid  4158] close(3 <unfinished ...>
+[pid  4153] <... write resumed> )       = 4096
+[pid  4152] <... mmap2 resumed> )       = 0xb787f000
+[pid  4156] getcwd( <unfinished ...>
+[pid  4157] close(7)                    = 0
+[pid  4157] close(4)                    = 0
+[pid  4157] close(5)                    = 0
+[pid  4157] close(6)                    = 0
+[pid  4157] rt_sigaction(SIGINT, {0x805b950, [], 0},  <unfinished ...>
+[pid  4158] <... close resumed> )       = 0
+[pid  4156] <... getcwd resumed> "/usr/share/man/es", 4096) = 18
+[pid  4158] access("/etc/ld.so.nohwcap", F_OK <unfinished ...>
+[pid  4157] <... rt_sigaction resumed> NULL, 8) = 0
+[pid  4156] open("/usr/bin/nroff", O_RDONLY <unfinished ...>
+[pid  4158] <... access resumed> )      = -1 ENOENT (No such file or directory)
+[pid  4157] rt_sigaction(SIGQUIT, {SIG_DFL, [], 0},  <unfinished ...>
+[pid  4158] open("/lib/libc.so.6", O_RDONLY <unfinished ...>
+[pid  4157] <... rt_sigaction resumed> NULL, 8) = 0
+[pid  4158] <... open resumed> )        = 3
+[pid  4156] <... open resumed> )        = 3
+[pid  4156] fcntl64(3, F_DUPFD, 10 <unfinished ...>
+[pid  4158] read(3,  <unfinished ...>
+[pid  4157] execve("/usr/local/sbin/col", ["col", "-b", "-p", "-x"], [/* 45 vars */] <unfinished ...>
+[pid  4158] <... read resumed> "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0@n\1\0004\0\0\0"..., 512) = 512
+[pid  4156] <... fcntl64 resumed> )     = 10
+[pid  4158] fstat64(3,  <unfinished ...>
+[pid  4157] <... execve resumed> )      = -1 ENOENT (No such file or directory)
+[pid  4156] close(3 <unfinished ...>
+[pid  4158] <... fstat64 resumed> {st_mode=S_IFREG|0755, st_size=1421892, ...}) = 0
+[pid  4157] execve("/usr/local/bin/col", ["col", "-b", "-p", "-x"], [/* 45 vars */] <unfinished ...>
+[pid  4158] mmap2(NULL, 1427880, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0 <unfinished ...>
+[pid  4156] <... close resumed> )       = 0
+[pid  4157] <... execve resumed> )      = -1 ENOENT (No such file or directory)
+[pid  4158] <... mmap2 resumed> )       = 0xbc4000
+[pid  4157] execve("/usr/sbin/col", ["col", "-b", "-p", "-x"], [/* 45 vars */] <unfinished ...>
+[pid  4158] mmap2(0xd1b000, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x157 <unfinished ...>
+[pid  4156] fcntl64(10, F_SETFD, FD_CLOEXEC <unfinished ...>
+[pid  4157] <... execve resumed> )      = -1 ENOENT (No such file or directory)
+[pid  4158] <... mmap2 resumed> )       = 0xd1b000
+[pid  4157] execve("/usr/bin/col", ["col", "-b", "-p", "-x"], [/* 45 vars */] <unfinished ...>
+[pid  4158] mmap2(0xd1e000, 10664, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid  4156] <... fcntl64 resumed> )     = 0
+[pid  4158] <... mmap2 resumed> )       = 0xd1e000
+[pid  4157] <... execve resumed> )      = 0
+[pid  4156] rt_sigaction(SIGINT, NULL,  <unfinished ...>
+[pid  4153] read(3,  <unfinished ...>
+[pid  4158] close(3 <unfinished ...>
+[pid  4157] brk(0 <unfinished ...>
+[pid  4158] <... close resumed> )       = 0
+[pid  4157] <... brk resumed> )         = 0x9f94000
+[pid  4156] <... rt_sigaction resumed> {SIG_DFL, [], 0}, 8) = 0
+[pid  4158] access("/etc/ld.so.nohwcap", F_OK <unfinished ...>
+[pid  4157] access("/etc/ld.so.nohwcap", F_OK <unfinished ...>
+[pid  4158] <... access resumed> )      = -1 ENOENT (No such file or directory)
+[pid  4157] <... access resumed> )      = -1 ENOENT (No such file or directory)
+[pid  4158] open("/lib/libdl.so.2", O_RDONLY <unfinished ...>
+[pid  4157] mmap2(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid  4158] <... open resumed> )        = 3
+[pid  4157] <... mmap2 resumed> )       = 0xb78f4000
+[pid  4158] read(3,  <unfinished ...>
+[pid  4156] rt_sigaction(SIGINT, {0x8056690, ~[RTMIN RT_1], 0},  <unfinished ...>
+[pid  4158] <... read resumed> "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0@\n\0\0004\0\0\0"..., 512) = 512
+[pid  4157] access("/etc/ld.so.preload", R_OK <unfinished ...>
+[pid  4158] fstat64(3,  <unfinished ...>
+[pid  4157] <... access resumed> )      = -1 ENOENT (No such file or directory)
+[pid  4158] <... fstat64 resumed> {st_mode=S_IFREG|0644, st_size=9736, ...}) = 0
+[pid  4157] open("/etc/ld.so.cache", O_RDONLY <unfinished ...>
+[pid  4158] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid  4157] <... open resumed> )        = 3
+[pid  4158] <... mmap2 resumed> )       = 0xb77ce000
+[pid  4157] fstat64(3,  <unfinished ...>
+[pid  4158] mmap2(NULL, 12408, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0 <unfinished ...>
+[pid  4157] <... fstat64 resumed> {st_mode=S_IFREG|0644, st_size=73853, ...}) = 0
+[pid  4158] <... mmap2 resumed> )       = 0xe54000
+[pid  4156] <... rt_sigaction resumed> NULL, 8) = 0
+[pid  4152] mprotect(0xe8c000, 16384, PROT_READ <unfinished ...>
+[pid  4158] mmap2(0xe56000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1 <unfinished ...>
+[pid  4157] mmap2(NULL, 73853, PROT_READ, MAP_PRIVATE, 3, 0 <unfinished ...>
+[pid  4158] <... mmap2 resumed> )       = 0xe56000
+[pid  4157] <... mmap2 resumed> )       = 0xb78e1000
+[pid  4156] rt_sigaction(SIGQUIT, NULL,  <unfinished ...>
+[pid  4158] close(3 <unfinished ...>
+[pid  4157] close(3 <unfinished ...>
+[pid  4158] <... close resumed> )       = 0
+[pid  4157] <... close resumed> )       = 0
+[pid  4156] <... rt_sigaction resumed> {SIG_DFL, [], 0}, 8) = 0
+[pid  4158] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid  4157] access("/etc/ld.so.nohwcap", F_OK <unfinished ...>
+[pid  4158] <... mmap2 resumed> )       = 0xb77cd000
+[pid  4157] <... access resumed> )      = -1 ENOENT (No such file or directory)
+[pid  4158] set_thread_area({entry_number:-1 ->  <unfinished ...>
+[pid  4157] open("/lib/libc.so.6", O_RDONLY <unfinished ...>
+[pid  4158] <... set_thread_area resumed> 6, base_addr:0xb77cd6c0, limit:1048575, seg_32bit:1, contents:0, read_exec_only:0, limit_in_pages:1, seg_not_present:0, useable:1}) = 0
+[pid  4157] <... open resumed> )        = 3
+[pid  4156] rt_sigaction(SIGQUIT, {SIG_DFL, ~[RTMIN RT_1], 0},  <unfinished ...>
+[pid  4158] mprotect(0xe56000, 4096, PROT_READ <unfinished ...>
+[pid  4157] read(3,  <unfinished ...>
+[pid  4158] <... mprotect resumed> )    = 0
+[pid  4157] <... read resumed> "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0@n\1\0004\0\0\0"..., 512) = 512
+[pid  4156] <... rt_sigaction resumed> NULL, 8) = 0
+[pid  4157] fstat64(3,  <unfinished ...>
+[pid  4156] rt_sigaction(SIGTERM, NULL,  <unfinished ...>
+[pid  4157] <... fstat64 resumed> {st_mode=S_IFREG|0755, st_size=1421892, ...}) = 0
+[pid  4158] mprotect(0xd1b000, 8192, PROT_READ <unfinished ...>
+[pid  4156] <... rt_sigaction resumed> {SIG_DFL, [], 0}, 8) = 0
+[pid  4158] <... mprotect resumed> )    = 0
+[pid  4157] mmap2(NULL, 1427880, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0 <unfinished ...>
+[pid  4156] rt_sigaction(SIGTERM, {SIG_DFL, ~[RTMIN RT_1], 0},  <unfinished ...>
+[pid  4157] <... mmap2 resumed> )       = 0x271000
+[pid  4158] mprotect(0x339000, 8192, PROT_READ <unfinished ...>
+[pid  4156] <... rt_sigaction resumed> NULL, 8) = 0
+[pid  4158] <... mprotect resumed> )    = 0
+[pid  4157] mmap2(0x3c8000, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x157 <unfinished ...>
+[pid  4156] read(10,  <unfinished ...>
+[pid  4158] mprotect(0x8064000, 4096, PROT_READ <unfinished ...>
+[pid  4157] <... mmap2 resumed> )       = 0x3c8000
+[pid  4156] <... read resumed> "#! /bin/sh\n# Emulate nroff with "..., 8192) = 3403
+[pid  4158] <... mprotect resumed> )    = 0
+[pid  4157] mmap2(0x3cb000, 10664, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x3cb000
+[pid  4157] close(3)                    = 0
+[pid  4157] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid  4158] mprotect(0xefa000, 4096, PROT_READ <unfinished ...>
+[pid  4157] <... mmap2 resumed> )       = 0xb78e0000
+[pid  4158] <... mprotect resumed> )    = 0
+[pid  4156] pipe( <unfinished ...>
+[pid  4158] munmap(0xb77cf000, 73853 <unfinished ...>
+[pid  4157] set_thread_area({entry_number:-1 ->  <unfinished ...>
+[pid  4158] <... munmap resumed> )      = 0
+[pid  4157] <... set_thread_area resumed> 6, base_addr:0xb78e06c0, limit:1048575, seg_32bit:1, contents:0, read_exec_only:0, limit_in_pages:1, seg_not_present:0, useable:1}) = 0
+[pid  4156] <... pipe resumed> [3, 4])  = 0
+[pid  4156] clone( <unfinished ...>
+[pid  4157] mprotect(0x3c8000, 8192, PROT_READ <unfinished ...>
+[pid  4158] ioctl(1, SNDCTL_TMR_TIMEBASE or TCGETSProcess 4159 attached (waiting for parent)
+ <unfinished ...>
+[pid  4157] <... mprotect resumed> )    = 0
+[pid  4158] <... ioctl resumed> , 0xbfa86d58) = -1 ENOTTY (Inappropriate ioctl for device)
+[pid  4157] mprotect(0x804a000, 4096, PROT_READProcess 4159 resumed (parent 4156 ready)
+ <unfinished ...>
+[pid  4156] <... clone resumed> child_stack=0, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0xb78b6938) = 4159
+[pid  4158] ioctl(1, SNDCTL_TMR_TIMEBASE or TCGETS <unfinished ...>
+[pid  4157] <... mprotect resumed> )    = 0
+[pid  4152] <... mprotect resumed> )    = 0
+[pid  4156] close(4 <unfinished ...>
+[pid  4158] <... ioctl resumed> , 0xbfa86478) = -1 ENOTTY (Inappropriate ioctl for device)
+[pid  4157] mprotect(0x26f000, 4096, PROT_READ <unfinished ...>
+[pid  4156] <... close resumed> )       = 0
+[pid  4157] <... mprotect resumed> )    = 0
+[pid  4156] read(3,  <unfinished ...>
+[pid  4157] munmap(0xb78e1000, 73853 <unfinished ...>
+[pid  4152] mprotect(0x8051000, 4096, PROT_READ <unfinished ...>
+[pid  4157] <... munmap resumed> )      = 0
+[pid  4152] <... mprotect resumed> )    = 0
+[pid  4152] mprotect(0xcf9000, 4096, PROT_READ) = 0
+[pid  4152] munmap(0xb7882000, 73853)   = 0
+[pid  4158] brk(0 <unfinished ...>
+[pid  4157] brk(0 <unfinished ...>
+[pid  4152] brk(0 <unfinished ...>
+[pid  4158] <... brk resumed> )         = 0x8f72000
+[pid  4157] <... brk resumed> )         = 0x9f94000
+[pid  4158] brk(0x8f93000 <unfinished ...>
+[pid  4157] brk(0x9fb5000 <unfinished ...>
+[pid  4158] <... brk resumed> )         = 0x8f93000
+[pid  4157] <... brk resumed> )         = 0x9fb5000
+[pid  4152] <... brk resumed> )         = 0x995d000
+[pid  4150] <... read resumed> ".if (\\n[.g] & ((\\n[.x] > 1) : (("..., 4096) = 4096
+[pid  4152] brk(0x997e000 <unfinished ...>
+[pid  4158] stat64("/home/cengler/.terminfo",  <unfinished ...>
+[pid  4157] open("/usr/lib/locale/locale-archive", O_RDONLY|O_LARGEFILE <unfinished ...>
+[pid  4158] <... stat64 resumed> 0xbfa85400) = -1 ENOENT (No such file or directory)
+[pid  4157] <... open resumed> )        = 3
+[pid  4152] <... brk resumed> )         = 0x997e000
+[pid  4158] stat64("/etc/terminfo",  <unfinished ...>
+[pid  4157] fstat64(3,  <unfinished ...>
+[pid  4152] open("/usr/lib/locale/locale-archive", O_RDONLY|O_LARGEFILE <unfinished ...>
+[pid  4158] <... stat64 resumed> {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+[pid  4157] <... fstat64 resumed> {st_mode=S_IFREG|0644, st_size=5193216, ...}) = 0
+[pid  4158] access("/etc/terminfo/x/xterm", R_OK <unfinished ...>
+[pid  4157] mmap2(NULL, 2097152, PROT_READ, MAP_PRIVATE, 3, 0 <unfinished ...>
+[pid  4158] <... access resumed> )      = -1 ENOENT (No such file or directory)
+[pid  4152] <... open resumed> )        = 3
+[pid  4152] fstat64(3,  <unfinished ...>
+[pid  4158] stat64("/lib/terminfo",  <unfinished ...>
+[pid  4157] <... mmap2 resumed> )       = 0xb76e0000
+[pid  4158] <... stat64 resumed> {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+[pid  4157] mmap2(NULL, 1179648, PROT_READ, MAP_PRIVATE, 3, 0x2a3 <unfinished ...>
+[pid  4158] access("/lib/terminfo/x/xterm", R_OK <unfinished ...>
+[pid  4157] <... mmap2 resumed> )       = 0xb75c0000
+[pid  4158] <... access resumed> )      = 0
+[pid  4157] close(3 <unfinished ...>
+[pid  4158] open("/lib/terminfo/x/xterm", O_RDONLY|O_LARGEFILE <unfinished ...>
+[pid  4157] <... close resumed> )       = 0
+[pid  4158] <... open resumed> )        = 3
+[pid  4152] <... fstat64 resumed> {st_mode=S_IFREG|0644, st_size=5193216, ...}) = 0
+[pid  4150] fstat64(1,  <unfinished ...>
+[pid  4157] open("/usr/lib/gconv/gconv-modules.cache", O_RDONLY <unfinished ...>
+[pid  4158] read(3,  <unfinished ...>
+[pid  4152] mmap2(NULL, 2097152, PROT_READ, MAP_PRIVATE, 3, 0 <unfinished ...>
+[pid  4158] <... read resumed> "\32\1\34\0&\0\17\0\235\1Z\5xterm|X11 terminal e"..., 4097) = 3213
+[pid  4157] <... open resumed> )        = 3
+[pid  4152] <... mmap2 resumed> )       = 0xb767f000
+[pid  4150] <... fstat64 resumed> {st_mode=S_IFIFO|0600, st_size=0, ...}) = 0
+[pid  4159] close(10 <unfinished ...>
+[pid  4158] close(3 <unfinished ...>
+[pid  4159] <... close resumed> )       = 0
+[pid  4158] <... close resumed> )       = 0
+[pid  4157] fstat64(3,  <unfinished ...>
+[pid  4158] ioctl(2, SNDCTL_TMR_TIMEBASE or TCGETS <unfinished ...>
+[pid  4159] close(3 <unfinished ...>
+[pid  4158] <... ioctl resumed> , 0xbfa86478) = -1 ENOTTY (Inappropriate ioctl for device)
+[pid  4159] <... close resumed> )       = 0
+[pid  4158] ioctl(2, SNDCTL_TMR_TIMEBASE or TCGETS <unfinished ...>
+[pid  4157] <... fstat64 resumed> {st_mode=S_IFREG|0644, st_size=26048, ...}) = 0
+[pid  4159] dup2(4, 1 <unfinished ...>
+[pid  4158] <... ioctl resumed> , 0xbfa86428) = -1 ENOTTY (Inappropriate ioctl for device)
+[pid  4159] <... dup2 resumed> )        = 1
+[pid  4157] mmap2(NULL, 26048, PROT_READ, MAP_SHARED, 3, 0) = 0xb75b9000
+[pid  4157] close(3)                    = 0
+[pid  4159] close(4 <unfinished ...>
+[pid  4158] ioctl(2, TIOCGWINSZ, 0xbfa86588) = -1 ENOTTY (Inappropriate ioctl for device)
+[pid  4158] open("/usr/bin/.sysless", O_RDONLY|O_LARGEFILE) = -1 ENOENT (No such file or directory)
+[pid  4158] open("/etc/sysless", O_RDONLY|O_LARGEFILE) = -1 ENOENT (No such file or directory)
+[pid  4158] open("/home/cengler/.less", O_RDONLY|O_LARGEFILE) = -1 ENOENT (No such file or directory)
+[pid  4158] open("/usr/lib/locale/locale-archive", O_RDONLY|O_LARGEFILE <unfinished ...>
+[pid  4159] <... close resumed> )       = 0
+[pid  4158] <... open resumed> )        = 3
+[pid  4158] fstat64(3, {st_mode=S_IFREG|0644, st_size=5193216, ...}) = 0
+[pid  4159] open("/dev/null", O_WRONLY|O_CREAT|O_TRUNC|O_LARGEFILE, 0666 <unfinished ...>
+[pid  4158] mmap2(NULL, 2097152, PROT_READ, MAP_PRIVATE, 3, 0 <unfinished ...>
+[pid  4159] <... open resumed> )        = 3
+[pid  4158] <... mmap2 resumed> )       = 0xb75cd000
+[pid  4159] fcntl64(2, F_DUPFD, 10 <unfinished ...>
+[pid  4157] _llseek(0, 0,  <unfinished ...>
+[pid  4159] <... fcntl64 resumed> )     = 10
+[pid  4158] mmap2(NULL, 1179648, PROT_READ, MAP_PRIVATE, 3, 0x2a3 <unfinished ...>
+[pid  4159] close(2 <unfinished ...>
+[pid  4158] <... mmap2 resumed> )       = 0xb74ad000
+[pid  4159] <... close resumed> )       = 0
+[pid  4158] close(3 <unfinished ...>
+[pid  4159] fcntl64(10, F_SETFD, FD_CLOEXEC <unfinished ...>
+[pid  4158] <... close resumed> )       = 0
+[pid  4159] <... fcntl64 resumed> )     = 0
+[pid  4157] <... _llseek resumed> 0xbf8e1960, SEEK_CUR) = -1 ESPIPE (Illegal seek)
+[pid  4157] fstat64(0, {st_mode=S_IFIFO|0600, st_size=0, ...}) = 0
+[pid  4158] open("/home/cengler/.lesshst", O_RDONLY|O_LARGEFILE <unfinished ...>
+[pid  4159] dup2(3, 2 <unfinished ...>
+[pid  4158] <... open resumed> )        = -1 ENOENT (No such file or directory)
+[pid  4159] <... dup2 resumed> )        = 2
+[pid  4157] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb75b8000
+[pid  4159] close(3 <unfinished ...>
+[pid  4158] ioctl(0, SNDCTL_TMR_TIMEBASE or TCGETS <unfinished ...>
+[pid  4159] <... close resumed> )       = 0
+[pid  4158] <... ioctl resumed> , 0xbfa86d38) = -1 EINVAL (Invalid argument)
+[pid  4157] mmap2(NULL, 16384, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb75b4000
+[pid  4159] close(10 <unfinished ...>
+[pid  4158] stat64("-",  <unfinished ...>
+[pid  4159] <... close resumed> )       = 0
+[pid  4158] <... stat64 resumed> 0xbfa86d30) = -1 ENOENT (No such file or directory)
+[pid  4157] read(0,  <unfinished ...>
+[pid  4152] mmap2(NULL, 1179648, PROT_READ, MAP_PRIVATE, 3, 0x2a3 <unfinished ...>
+[pid  4158] read(0,  <unfinished ...>
+[pid  4159] stat64("/usr/local/sbin/locale",  <unfinished ...>
+[pid  4152] <... mmap2 resumed> )       = 0xb755f000
+[pid  4159] <... stat64 resumed> 0xbfb88990) = -1 ENOENT (No such file or directory)
+[pid  4152] close(3 <unfinished ...>
+[pid  4159] stat64("/usr/local/bin/locale",  <unfinished ...>
+[pid  4152] <... close resumed> )       = 0
+[pid  4159] <... stat64 resumed> 0xbfb88990) = -1 ENOENT (No such file or directory)
+[pid  4150] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7840000
+[pid  4152] access("preconv", F_OK <unfinished ...>
+[pid  4159] stat64("/usr/sbin/locale",  <unfinished ...>
+[pid  4152] <... access resumed> )      = -1 ENOENT (No such file or directory)
+[pid  4159] <... stat64 resumed> 0xbfb88990) = -1 ENOENT (No such file or directory)
+[pid  4152] access("/usr/local/sbin/preconv", F_OK <unfinished ...>
+[pid  4159] stat64("/usr/bin/locale",  <unfinished ...>
+[pid  4152] <... access resumed> )      = -1 ENOENT (No such file or directory)
+[pid  4159] <... stat64 resumed> {st_mode=S_IFREG|0755, st_size=31796, ...}) = 0
+[pid  4152] access("/usr/local/bin/preconv", F_OK <unfinished ...>
+[pid  4159] execve("/usr/bin/locale", ["locale", "charmap"], [/* 45 vars */] <unfinished ...>
+[pid  4152] <... access resumed> )      = -1 ENOENT (No such file or directory)
+[pid  4150] read(4,  <unfinished ...>
+[pid  4152] access("/usr/sbin/preconv", F_OK <unfinished ...>
+[pid  4150] <... read resumed> "e \n.I intro \ndisponibles en el m"..., 4096) = 4096
+[pid  4152] <... access resumed> )      = -1 ENOENT (No such file or directory)
+[pid  4150] write(1, ".lf 1 -\n.if (\\n[.g] & ((\\n[.x] >"..., 4096 <unfinished ...>
+[pid  4154] <... read resumed> ".lf 1 -\n.if (\\n[.g] & ((\\n[.x] >"..., 16384) = 4096
+[pid  4154] read(3,  <unfinished ...>
+[pid  4152] access("/usr/bin/preconv", F_OK <unfinished ...>
+[pid  4150] <... write resumed> )       = 4096
+[pid  4152] <... access resumed> )      = 0
+[pid  4150] read(4, "ectorio como ra\303\255z de su jerarqu"..., 8192) = 4096
+[pid  4152] open("/usr/lib/charset.alias", O_RDONLY <unfinished ...>
+[pid  4159] <... execve resumed> )      = 0
+[pid  4150] write(1, "\241ginas de \n.I intro \ndisponibles"..., 4096 <unfinished ...>
+[pid  4152] <... open resumed> )        = -1 ENOENT (No such file or directory)
+[pid  4154] <... read resumed> "\241ginas de \n.I intro \ndisponibles"..., 12288) = 4096
+[pid  4154] read(3,  <unfinished ...>
+[pid  4152] fstat64(0,  <unfinished ...>
+[pid  4159] brk(0 <unfinished ...>
+[pid  4152] <... fstat64 resumed> {st_mode=S_IFIFO|0600, st_size=0, ...}) = 0
+[pid  4159] <... brk resumed> )         = 0x86d4000
+[pid  4150] <... write resumed> )       = 4096
+[pid  4142] <... write resumed> )       = 4096
+[pid  4142] select(7, [4 6], [5], NULL, NULL) = 2 (in [4], out [5])
+[pid  4142] read(4,  <unfinished ...>
+[pid  4152] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid  4150] read(4,  <unfinished ...>
+[pid  4159] access("/etc/ld.so.nohwcap", F_OK <unfinished ...>
+[pid  4152] <... mmap2 resumed> )       = 0xb755e000
+[pid  4159] <... access resumed> )      = -1 ENOENT (No such file or directory)
+[pid  4152] read(0,  <unfinished ...>
+[pid  4159] mmap2(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid  4142] <... read resumed> "o una p\303\241gina de manual en c\303\263di"..., 4096) = 4096
+[pid  4159] <... mmap2 resumed> )       = 0xb77ae000
+[pid  4142] write(5, "o una p\303\241gina de manual en c\303\263di"..., 4096 <unfinished ...>
+[pid  4159] access("/etc/ld.so.preload", R_OK <unfinished ...>
+[pid  4153] <... read resumed> "o una p\303\241gina de manual en c\303\263di"..., 4096) = 4096
+[pid  4142] <... write resumed> )       = 4096
+[pid  4153] write(1, "al el dispositivo\nque se especif"..., 4096 <unfinished ...>
+[pid  4159] <... access resumed> )      = -1 ENOENT (No such file or directory)
+[pid  4153] <... write resumed> )       = 4096
+[pid  4150] <... read resumed> "al el dispositivo\nque se especif"..., 8192) = 4096
+[pid  4159] open("/etc/ld.so.cache", O_RDONLY <unfinished ...>
+[pid  4153] write(1, "o una p\303\241gina de manual en c\303\263di"..., 4096 <unfinished ...>
+[pid  4159] <... open resumed> )        = 3
+[pid  4153] <... write resumed> )       = 4096
+[pid  4159] fstat64(3,  <unfinished ...>
+[pid  4153] read(3,  <unfinished ...>
+[pid  4159] <... fstat64 resumed> {st_mode=S_IFREG|0644, st_size=73853, ...}) = 0
+[pid  4150] write(1, "uier directorio como ra\303\255z de su"..., 4096 <unfinished ...>
+[pid  4142] select(8, [4 6], [5 7], NULL, NULL <unfinished ...>
+[pid  4159] mmap2(NULL, 73853, PROT_READ, MAP_PRIVATE, 3, 0 <unfinished ...>
+[pid  4154] <... read resumed> "uier directorio como ra\303\255z de su"..., 8192) = 4096
+[pid  4159] <... mmap2 resumed> )       = 0xb779b000
+[pid  4154] read(3,  <unfinished ...>
+[pid  4159] close(3 <unfinished ...>
+[pid  4150] <... write resumed> )       = 4096
+[pid  4159] <... close resumed> )       = 0
+[pid  4142] <... select resumed> )      = 3 (in [4], out [5 7])
+[pid  4142] read(4, "su b\303\272squeda mediante esta opci\303"..., 4096) = 4096
+[pid  4159] access("/etc/ld.so.nohwcap", F_OK <unfinished ...>
+[pid  4150] read(4,  <unfinished ...>
+[pid  4159] <... access resumed> )      = -1 ENOENT (No such file or directory)
+[pid  4150] <... read resumed> "o una p\303\241gina de manual en c\303\263di"..., 8192) = 4096
+[pid  4159] open("/lib/libc.so.6", O_RDONLY <unfinished ...>
+[pid  4150] write(1, "a opcional el dispositivo\nque se"..., 4096 <unfinished ...>
+[pid  4159] <... open resumed> )        = 3
+[pid  4154] <... read resumed> "a opcional el dispositivo\nque se"..., 4096) = 4096
+[pid  4159] read(3,  <unfinished ...>
+[pid  4150] <... write resumed> )       = 4096
+[pid  4159] <... read resumed> "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0@n\1\0004\0\0\0"..., 512) = 512
+[pid  4154] _llseek(3, 0, 0xbffaa450, SEEK_CUR) = -1 ESPIPE (Illegal seek)
+[pid  4154] fstat64(1, {st_mode=S_IFIFO|0600, st_size=0, ...}) = 0
+[pid  4159] fstat64(3,  <unfinished ...>
+[pid  4154] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid  4159] <... fstat64 resumed> {st_mode=S_IFREG|0755, st_size=1421892, ...}) = 0
+[pid  4154] <... mmap2 resumed> )       = 0xb783f000
+[pid  4150] read(4,  <unfinished ...>
+[pid  4142] write(5, "su b\303\272squeda mediante esta opci\303"..., 4096 <unfinished ...>
+[pid  4159] mmap2(NULL, 1427880, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0 <unfinished ...>
+[pid  4154] write(1, ".lf 1 -\n.if (\\n[.g] & ((\\n[.x] >"..., 4096 <unfinished ...>
+[pid  4159] <... mmap2 resumed> )       = 0xd52000
+[pid  4153] <... read resumed> "su b\303\272squeda mediante esta opci\303"..., 4096) = 4096
+[pid  4159] mmap2(0xea9000, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x157 <unfinished ...>
+[pid  4154] <... write resumed> )       = 4096
+[pid  4159] <... mmap2 resumed> )       = 0xea9000
+[pid  4153] read(3,  <unfinished ...>
+[pid  4154] write(1, "\241ginas de \n.I intro \ndisponibles"..., 4096 <unfinished ...>
+[pid  4159] mmap2(0xeac000, 10664, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid  4154] <... write resumed> )       = 4096
+[pid  4159] <... mmap2 resumed> )       = 0xeac000
+[pid  4154] write(1, "uier directorio como ra\303\255z de su"..., 4096 <unfinished ...>
+[pid  4159] close(3 <unfinished ...>
+[pid  4154] <... write resumed> )       = 4096
+[pid  4159] <... close resumed> )       = 0
+[pid  4151] <... read resumed> ".lf 1 -\n.if (\\n[.g] & ((\\n[.x] >"..., 4096) = 4096
+[pid  4159] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid  4154] read(3,  <unfinished ...>
+[pid  4151] brk(0x995f000 <unfinished ...>
+[pid  4159] <... mmap2 resumed> )       = 0xb779a000
+[pid  4151] <... brk resumed> )         = 0x995f000
+[pid  4159] set_thread_area({entry_number:-1 ->  <unfinished ...>
+[pid  4142] <... write resumed> )       = 4096
+[pid  4159] <... set_thread_area resumed> 6, base_addr:0xb779a8d0, limit:1048575, seg_32bit:1, contents:0, read_exec_only:0, limit_in_pages:1, seg_not_present:0, useable:1}) = 0
+[pid  4151] read(4,  <unfinished ...>
+[pid  4142] select(7, [4 6], [5], NULL, NULL <unfinished ...>
+[pid  4151] <... read resumed> "\241ginas de \n.I intro \ndisponibles"..., 61440) = 8192
+[pid  4142] <... select resumed> )      = 2 (in [4], out [5])
+[pid  4151] read(4,  <unfinished ...>
+[pid  4142] read(4, "rdenes de \n.B man ,\nsuponi\303\251ndos"..., 4096) = 2044
+[pid  4159] mprotect(0xea9000, 8192, PROT_READ <unfinished ...>
+[pid  4142] write(5, "rdenes de \n.B man ,\nsuponi\303\251ndos"..., 2044 <unfinished ...>
+[pid  4159] <... mprotect resumed> )    = 0
+[pid  4153] <... read resumed> "rdenes de \n.B man ,\nsuponi\303\251ndos"..., 4096) = 2044
+[pid  4142] <... write resumed> )       = 2044
+[pid  4142] select(8, [4 6], [5 7], NULL, NULL <unfinished ...>
+[pid  4159] mprotect(0x804e000, 4096, PROT_READ <unfinished ...>
+[pid  4153] read(3,  <unfinished ...>
+[pid  4159] <... mprotect resumed> )    = 0
+[pid  4142] <... select resumed> )      = 3 (in [4], out [5 7])
+[pid  4159] mprotect(0x7d5000, 4096, PROT_READ <unfinished ...>
+[pid  4142] read(4,  <unfinished ...>
+[pid  4159] <... mprotect resumed> )    = 0
+[pid  4142] <... read resumed> "", 4096) = 0
+[pid  4159] munmap(0xb779b000, 73853 <unfinished ...>
+[pid  4142] close(4 <unfinished ...>
+[pid  4159] <... munmap resumed> )      = 0
+[pid  4142] <... close resumed> )       = 0
+[pid  4142] close(5 <unfinished ...>
+[pid  4153] <... read resumed> "", 4096) = 0
+[pid  4153] write(1, "su b\303\272squeda mediante esta opci\303"..., 4096) = 4096
+[pid  4153] close(3)                    = 0
+[pid  4153] munmap(0xb7840000, 4096)    = 0
+[pid  4159] brk(0 <unfinished ...>
+[pid  4150] <... read resumed> "su b\303\272squeda mediante esta opci\303"..., 8192) = 4096
+[pid  4150] write(1, "\303\241 viendo una p\303\241gina de manual "..., 4096 <unfinished ...>
+[pid  4154] <... read resumed> "\303\241 viendo una p\303\241gina de manual "..., 4096) = 4096
+[pid  4159] <... brk resumed> )         = 0x86d4000
+[pid  4154] write(1, "a opcional el dispositivo\nque se"..., 4096 <unfinished ...>
+[pid  4159] brk(0x86f5000 <unfinished ...>
+[pid  4154] <... write resumed> )       = 4096
+[pid  4159] <... brk resumed> )         = 0x86f5000
+[pid  4153] write(1, "rdenes de \n.B man ,\nsuponi\303\251ndos"..., 2044 <unfinished ...>
+[pid  4154] write(1, "\303\241 viendo una p\303\241gina de manual "..., 4096 <unfinished ...>
+[pid  4159] open("/usr/lib/locale/locale-archive", O_RDONLY|O_LARGEFILE <unfinished ...>
+[pid  4154] <... write resumed> )       = 4096
+[pid  4159] <... open resumed> )        = 3
+[pid  4154] read(3,  <unfinished ...>
+[pid  4159] fstat64(3,  <unfinished ...>
+[pid  4153] <... write resumed> )       = 2044
+[pid  4159] <... fstat64 resumed> {st_mode=S_IFREG|0644, st_size=5193216, ...}) = 0
+[pid  4153] exit_group(0)               = ?
+Process 4153 detached
+[pid  4159] mmap2(NULL, 2097152, PROT_READ, MAP_PRIVATE, 3, 0 <unfinished ...>
+[pid  4151] <... read resumed> "a opcional el dispositivo\nque se"..., 53248) = 4096
+[pid  4151] read(4, "\303\241 viendo una p\303\241gina de manual "..., 49152) = 4096
+[pid  4151] read(4,  <unfinished ...>
+[pid  4150] <... write resumed> )       = 4096
+[pid  4159] <... mmap2 resumed> )       = 0xb759a000
+[pid  4150] read(4, "rdenes de \n.B man ,\nsuponi\303\251ndos"..., 8192) = 2044
+[pid  4159] mmap2(NULL, 1179648, PROT_READ, MAP_PRIVATE, 3, 0x2a3 <unfinished ...>
+[pid  4150] write(1, "activar su b\303\272squeda mediante es"..., 4096 <unfinished ...>
+[pid  4159] <... mmap2 resumed> )       = 0xb747a000
+[pid  4150] <... write resumed> )       = 4096
+[pid  4159] close(3 <unfinished ...>
+[pid  4154] <... read resumed> "activar su b\303\272squeda mediante es"..., 4096) = 4096
+[pid  4154] read(3,  <unfinished ...>
+[pid  4142] <... close resumed> )       = 0
+[pid  4159] <... close resumed> )       = 0
+[pid  4150] read(4, "", 8192)           = 0
+[pid  4150] close(4)                    = 0
+[pid  4150] waitpid(-1, [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0) = 4153
+[pid  4159] fstat64(1,  <unfinished ...>
+[pid  4142] select(7, [6], [], NULL, NULL <unfinished ...>
+[pid  4150] write(1, "ea de \303\263rdenes de \n.B man ,\nsupo"..., 2052 <unfinished ...>
+[pid  4159] <... fstat64 resumed> {st_mode=S_IFIFO|0600, st_size=0, ...}) = 0
+[pid  4154] <... read resumed> "ea de \303\263rdenes de \n.B man ,\nsupo"..., 4096) = 2052
+[pid  4159] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid  4154] read(3,  <unfinished ...>
+[pid  4159] <... mmap2 resumed> )       = 0xb7479000
+[pid  4150] <... write resumed> )       = 2052
+[pid  4150] exit_group(0)               = ?
+Process 4150 detached
+[pid  4159] write(1, "UTF-8\n", 6)      = 6
+[pid  4156] <... read resumed> "UTF-8\n", 128) = 6
+[pid  4159] exit_group(0)               = ?
+Process 4159 detached
+[pid  4156] read(3,  <unfinished ...>
+[pid  4154] <... read resumed> "", 4096) = 0
+[pid  4154] write(1, "activar su b\303\272squeda mediante es"..., 4096) = 4096
+[pid  4154] close(3)                    = 0
+[pid  4154] munmap(0xb7840000, 4096)    = 0
+[pid  4154] write(1, "ea de \303\263rdenes de \n.B man ,\nsupo"..., 2052) = 2052
+[pid  4154] exit_group(0)               = ?
+Process 4154 detached
+[pid  4151] <... read resumed> "activar su b\303\272squeda mediante es"..., 45056) = 4096
+[pid  4151] read(4, "ea de \303\263rdenes de \n.B man ,\nsupo"..., 40960) = 2052
+[pid  4151] read(4,  <unfinished ...>
+[pid  4156] <... read resumed> "", 128) = 0
+[pid  4151] <... read resumed> "", 38908) = 0
+[pid  4156] close(3 <unfinished ...>
+[pid  4142] <... select resumed> )      = ? ERESTARTNOHAND (To be restarted)
+[pid  4142] --- SIGCHLD (Child exited) @ 0 (0) ---
+[pid  4142] waitpid(-1, [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], WNOHANG) = 4150
+[pid  4142] waitpid(-1, 0xbffab77c, WNOHANG) = 0
+[pid  4142] sigreturn()                 = ? (mask now [])
+[pid  4142] select(7, [6], [], NULL, NULL <unfinished ...>
+[pid  4151] fstat64(1,  <unfinished ...>
+[pid  4156] <... close resumed> )       = 0
+[pid  4151] <... fstat64 resumed> {st_mode=S_IFIFO|0600, st_size=0, ...}) = 0
+[pid  4156] wait4(-1,  <unfinished ...>
+[pid  4151] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid  4156] <... wait4 resumed> [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0, NULL) = 4159
+[pid  4151] <... mmap2 resumed> )       = 0xb7840000
+[pid  4156] stat64("/usr/bin/groff",  <unfinished ...>
+[pid  4151] write(1, ".lf 1 -\n.if (\\n[.g] & ((\\n[.x] >"..., 24576 <unfinished ...>
+[pid  4156] <... stat64 resumed> {st_mode=S_IFREG|0755, st_size=79308, ...}) = 0
+[pid  4151] <... write resumed> )       = 24576
+[pid  4156] clone( <unfinished ...>
+[pid  4152] <... read resumed> ".lf 1 -\n.if (\\n[.g] & ((\\n[.x] >"..., 4096) = 4096
+[pid  4151] read(4, "", 65536)          = 0
+[pid  4151] read(4, "", 65536)          = 0
+[pid  4151] close(4Process 4160 attached
+ <unfinished ...>
+[pid  4156] <... clone resumed> child_stack=0, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0xb78b6938) = 4160
+[pid  4152] fstat64(1,  <unfinished ...>
+[pid  4151] <... close resumed> )       = 0
+[pid  4152] <... fstat64 resumed> {st_mode=S_IFIFO|0600, st_size=0, ...}) = 0
+[pid  4156] wait4(-1, Process 4156 suspended
+ <unfinished ...>
+[pid  4152] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid  4151] waitpid(-1,  <unfinished ...>
+[pid  4152] <... mmap2 resumed> )       = 0xb755d000
+[pid  4151] <... waitpid resumed> [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0) = 4154
+[pid  4160] close(10)                   = 0
+[pid  4160] execve("/usr/bin/groff", ["groff", "-mtty-char", "-Tutf8", "-mandoc", "-rLL=163n", "-rLT=163n"], [/* 46 vars */] <unfinished ...>
+[pid  4152] write(1, ".lf 1 -\n.lf 1 -\n.if (\\n[.g] & (("..., 4096 <unfinished ...>
+[pid  4151] write(1, "ea de \303\263rdenes de \n.B man ,\nsupo"..., 2052 <unfinished ...>
+[pid  4155] <... read resumed> ".lf 1 -\n.lf 1 -\n.if (\\n[.g] & (("..., 4096) = 4096
+[pid  4152] <... write resumed> )       = 4096
+[pid  4151] <... write resumed> )       = 2052
+[pid  4160] <... execve resumed> )      = 0
+[pid  4155] brk(0 <unfinished ...>
+[pid  4152] read(0,  <unfinished ...>
+[pid  4155] <... brk resumed> )         = 0x92ab000
+[pid  4151] exit_group(0)               = ?
+Process 4151 detached
+[pid  4155] brk(0x92cc000 <unfinished ...>
+[pid  4152] <... read resumed> "\241ginas de \n.I intro \ndisponibles"..., 4096) = 4096
+[pid  4160] brk(0)                      = 0x9eda000
+[pid  4160] access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+[pid  4160] mmap2(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid  4155] <... brk resumed> )         = 0x92cc000
+[pid  4142] <... select resumed> )      = ? ERESTARTNOHAND (To be restarted)
+[pid  4142] --- SIGCHLD (Child exited) @ 0 (0) ---
+[pid  4142] waitpid(-1, [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], WNOHANG) = 4151
+[pid  4142] waitpid(-1, 0xbffab77c, WNOHANG) = 0
+[pid  4142] sigreturn()                 = ? (mask now [])
+[pid  4142] select(7, [6], [], NULL, NULL <unfinished ...>
+[pid  4152] write(1, "os usos exclusivos como se puede"..., 4096 <unfinished ...>
+[pid  4160] <... mmap2 resumed> )       = 0xb7741000
+[pid  4160] access("/etc/ld.so.preload", R_OK) = -1 ENOENT (No such file or directory)
+[pid  4160] open("/etc/ld.so.cache", O_RDONLY) = 3
+[pid  4160] fstat64(3, {st_mode=S_IFREG|0644, st_size=73853, ...}) = 0
+[pid  4160] mmap2(NULL, 73853, PROT_READ, MAP_PRIVATE, 3, 0) = 0xb772e000
+[pid  4160] close(3 <unfinished ...>
+[pid  4155] write(1, ".if !\\n(.g .ab GNU tbl requires "..., 4096 <unfinished ...>
+[pid  4152] <... write resumed> )       = 4096
+[pid  4155] <... write resumed> )       = 4096
+[pid  4160] <... close resumed> )       = 0
+[pid  4160] access("/etc/ld.so.nohwcap", F_OK <unfinished ...>
+[pid  4152] read(0,  <unfinished ...>
+[pid  4160] <... access resumed> )      = -1 ENOENT (No such file or directory)
+[pid  4160] open("/usr/lib/libstdc++.so.6", O_RDONLY) = 3
+[pid  4160] read(3, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0\340B\4\0004\0\0\0"..., 512) = 512
+[pid  4160] fstat64(3, {st_mode=S_IFREG|0644, st_size=930044, ...}) = 0
+[pid  4160] mmap2(NULL, 959532, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0 <unfinished ...>
+[pid  4155] write(1, "nes servidas por el n\\[u00FA]cle"..., 4096 <unfinished ...>
+[pid  4152] <... read resumed> "uier directorio como ra\303\255z de su"..., 4096) = 4096
+[pid  4155] <... write resumed> )       = 4096
+[pid  4160] <... mmap2 resumed> )       = 0x473000
+[pid  4160] mmap2(0x552000, 20480, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0xde) = 0x552000
+[pid  4160] mmap2(0x557000, 25644, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x557000
+[pid  4160] close(3)                    = 0
+[pid  4160] access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+[pid  4152] write(1, "\n.I whatis \ntradicional.\n.\\\"`Use"..., 4096 <unfinished ...>
+[pid  4160] open("/lib/libm.so.6", O_RDONLY) = 3
+[pid  4160] read(3, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0\2604\0\0004\0\0\0"..., 512) = 512
+[pid  4160] fstat64(3, {st_mode=S_IFREG|0644, st_size=149392, ...}) = 0
+[pid  4160] mmap2(NULL, 151680, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0 <unfinished ...>
+[pid  4155] write(1, "\\n[3bot]u\n\\*[3trans].nr 3brule 1"..., 4096 <unfinished ...>
+[pid  4152] <... write resumed> )       = 4096
+[pid  4155] <... write resumed> )       = 4096
+[pid  4160] <... mmap2 resumed> )       = 0x381000
+[pid  4160] mmap2(0x3a5000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x23) = 0x3a5000
+[pid  4152] read(0,  <unfinished ...>
+[pid  4160] close(3)                    = 0
+[pid  4160] access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+[pid  4160] open("/lib/libgcc_s.so.1", O_RDONLY) = 3
+[pid  4160] read(3,  <unfinished ...>
+[pid  4155] write(1, "1n\n.nr 3w0 \\n(.H\n.nr 3aw0 0\n.nr "..., 4096 <unfinished ...>
+[pid  4152] <... read resumed> "a opcional el dispositivo\nque se"..., 4096) = 4096
+[pid  4155] <... write resumed> )       = 4096
+[pid  4160] <... read resumed> "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0P\37\0\0004\0\0\0"..., 512) = 512
+[pid  4160] fstat64(3, {st_mode=S_IFREG|0644, st_size=108040, ...}) = 0
+[pid  4160] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb772d000
+[pid  4160] mmap2(NULL, 111148, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0xecb000
+[pid  4152] write(1, "s\n.B \\-p\no el contenido de la va"..., 4096 <unfinished ...>
+[pid  4155] read(0,  <unfinished ...>
+[pid  4152] <... write resumed> )       = 4096
+[pid  4160] mmap2(0xee5000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x19 <unfinished ...>
+[pid  4155] <... read resumed> "os usos exclusivos como se puede"..., 4096) = 4096
+[pid  4160] <... mmap2 resumed> )       = 0xee5000
+[pid  4160] close(3 <unfinished ...>
+[pid  4152] read(0,  <unfinished ...>
+[pid  4160] <... close resumed> )       = 0
+[pid  4160] access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+[pid  4160] open("/lib/libc.so.6", O_RDONLY) = 3
+[pid  4160] read(3, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0@n\1\0004\0\0\0"..., 512) = 512
+[pid  4155] write(1, "eep\n.3rmk 3rt8\n\\*[3trans].nr 3cr"..., 4096 <unfinished ...>
+[pid  4152] <... read resumed> "\303\241 viendo una p\303\241gina de manual "..., 4096) = 4096
+[pid  4155] <... write resumed> )       = 4096
+[pid  4160] fstat64(3, {st_mode=S_IFREG|0755, st_size=1421892, ...}) = 0
+[pid  4160] mmap2(NULL, 1427880, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0xba5000
+[pid  4160] mmap2(0xcfc000, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x157) = 0xcfc000
+[pid  4160] mmap2(0xcff000, 10664, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid  4152] write(1, ".\\\"The default options are\n.\\\".B"..., 4096 <unfinished ...>
+[pid  4155] read(0,  <unfinished ...>
+[pid  4152] <... write resumed> )       = 4096
+[pid  4155] <... read resumed> "\n.I whatis \ntradicional.\n.\\\"`Use"..., 4096) = 4096
+[pid  4160] <... mmap2 resumed> )       = 0xcff000
+[pid  4160] close(3)                    = 0
+[pid  4160] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid  4152] read(0,  <unfinished ...>
+[pid  4160] <... mmap2 resumed> )       = 0xb772c000
+[pid  4160] set_thread_area({entry_number:-1 -> 6, base_addr:0xb772c6d0, limit:1048575, seg_32bit:1, contents:0, read_exec_only:0, limit_in_pages:1, seg_not_present:0, useable:1}) = 0
+[pid  4155] write(1, "tra un fichero\n.B \\[u00ED]ndice\n"..., 4096 <unfinished ...>
+[pid  4152] <... read resumed> "activar su b\303\272squeda mediante es"..., 4096) = 4096
+[pid  4155] <... write resumed> )       = 4096
+[pid  4160] mprotect(0xcfc000, 8192, PROT_READ) = 0
+[pid  4160] mprotect(0xee5000, 4096, PROT_READ) = 0
+[pid  4160] mprotect(0x3a5000, 4096, PROT_READ) = 0
+[pid  4152] write(1, "unada y actualmente es posible p"..., 4096 <unfinished ...>
+[pid  4155] read(0,  <unfinished ...>
+[pid  4152] <... write resumed> )       = 4096
+[pid  4155] <... read resumed> "s\n.B \\-p\no el contenido de la va"..., 4096) = 4096
+[pid  4152] read(0,  <unfinished ...>
+[pid  4155] write(1, "m\\[u00E1]s antigua que el ficher"..., 4096 <unfinished ...>
+[pid  4152] <... read resumed> "ea de \303\263rdenes de \n.B man ,\nsupo"..., 4096) = 2052
+[pid  4155] <... write resumed> )       = 4096
+[pid  4152] write(1, " \nejecuta \n.B troff \ny usa un po"..., 4096 <unfinished ...>
+[pid  4155] read(0,  <unfinished ...>
+[pid  4160] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid  4155] <... read resumed> ".\\\"The default options are\n.\\\".B"..., 4096) = 4096
+[pid  4160] <... mmap2 resumed> )       = 0xb772b000
+[pid  4152] <... write resumed> )       = 4096
+[pid  4160] mprotect(0x552000, 16384, PROT_READ <unfinished ...>
+[pid  4155] write(1, "nte del paginador\n.B less ,\n.B m"..., 4096 <unfinished ...>
+[pid  4152] read(0,  <unfinished ...>
+[pid  4155] <... write resumed> )       = 4096
+[pid  4152] <... read resumed> "", 4096) = 0
+[pid  4160] <... mprotect resumed> )    = 0
+[pid  4160] mprotect(0x805a000, 4096, PROT_READ) = 0
+[pid  4160] mprotect(0x793000, 4096, PROT_READ) = 0
+[pid  4160] munmap(0xb772e000, 73853)   = 0
+[pid  4155] write(1, " 3w2 \\n[3w2]>?\\w\\[tbl]\\*[soft-hy"..., 4096 <unfinished ...>
+[pid  4152] write(1, "ollando y manteniendo este paque"..., 178 <unfinished ...>
+[pid  4155] <... write resumed> )       = 4096
+[pid  4152] <... write resumed> )       = 178
+[pid  4155] read(0,  <unfinished ...>
+[pid  4152] exit_group(0)               = ?
+Process 4152 detached
+[pid  4155] <... read resumed> "unada y actualmente es posible p"..., 4096) = 4096
+[pid  4160] brk(0)                      = 0x9eda000
+[pid  4160] brk(0x9efb000)              = 0x9efb000
+[pid  4142] <... select resumed> )      = ? ERESTARTNOHAND (To be restarted)
+[pid  4142] --- SIGCHLD (Child exited) @ 0 (0) ---
+[pid  4142] waitpid(-1, [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], WNOHANG) = 4152
+[pid  4142] waitpid(-1, 0xbffab77c, WNOHANG) = 0
+[pid  4142] sigreturn( <unfinished ...>
+[pid  4155] write(1, "\\-T\no\n.B \\-Z\ny puede ser complet"..., 4096 <unfinished ...>
+[pid  4142] <... sigreturn resumed> )   = ? (mask now [])
+[pid  4155] <... write resumed> )       = 4096
+[pid  4142] select(7, [6], [], NULL, NULL <unfinished ...>
+[pid  4155] read(0, " \nejecuta \n.B troff \ny usa un po"..., 4096) = 4096
+[pid  4160] open("/usr/share/groff/site-font/devutf8/DESC", O_RDONLY <unfinished ...>
+[pid  4155] write(1, "e\ndel entorno\n.RB $ MANROFFSEQ ."..., 4096 <unfinished ...>
+[pid  4160] <... open resumed> )        = -1 ENOENT (No such file or directory)
+[pid  4155] <... write resumed> )       = 4096
+[pid  4160] open("/usr/share/groff/1.20.1/font/devutf8/DESC", O_RDONLY <unfinished ...>
+[pid  4155] read(0,  <unfinished ...>
+[pid  4160] <... open resumed> )        = 3
+[pid  4155] <... read resumed> "ollando y manteniendo este paque"..., 4096) = 178
+[pid  4160] fstat64(3,  <unfinished ...>
+[pid  4155] read(0,  <unfinished ...>
+[pid  4160] <... fstat64 resumed> {st_mode=S_IFREG|0644, st_size=96, ...}) = 0
+[pid  4155] <... read resumed> "", 4096) = 0
+[pid  4160] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid  4155] write(1, " (si est\\[u00E1]n disponibles). "..., 1547 <unfinished ...>
+[pid  4160] <... mmap2 resumed> )       = 0xb7740000
+[pid  4155] <... write resumed> )       = 1547
+[pid  4160] read(3,  <unfinished ...>
+[pid  4155] exit_group(0)               = ?
+Process 4155 detached
+[pid  4160] <... read resumed> "res 240\nhor 24\nvert 40\nunitwidth"..., 4096) = 96
+[pid  4142] <... select resumed> )      = ? ERESTARTNOHAND (To be restarted)
+[pid  4160] read(3, "", 4096)           = 0
+[pid  4142] --- SIGCHLD (Child exited) @ 0 (0) ---
+[pid  4160] close(3 <unfinished ...>
+[pid  4142] waitpid(-1,  <unfinished ...>
+[pid  4160] <... close resumed> )       = 0
+[pid  4142] <... waitpid resumed> [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], WNOHANG) = 4155
+[pid  4160] munmap(0xb7740000, 4096 <unfinished ...>
+[pid  4142] waitpid(-1,  <unfinished ...>
+[pid  4160] <... munmap resumed> )      = 0
+[pid  4142] <... waitpid resumed> 0xbffab77c, WNOHANG) = 0
+[pid  4160] pipe( <unfinished ...>
+[pid  4142] sigreturn( <unfinished ...>
+[pid  4160] <... pipe resumed> [3, 4])  = 0
+[pid  4142] <... sigreturn resumed> )   = ? (mask now [])
+[pid  4160] clone( <unfinished ...>
+[pid  4142] select(7, [6], [], NULL, NULLProcess 4161 attached
+ <unfinished ...>
+[pid  4160] <... clone resumed> child_stack=0, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0xb772c738) = 4161
+[pid  4160] close(4)                    = 0
+[pid  4160] clone( <unfinished ...>
+[pid  4161] close(1Process 4162 attached (waiting for parent)
+)                    = 0
+Process 4162 resumed (parent 4160 ready)
+[pid  4160] <... clone resumed> child_stack=0, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0xb772c738) = 4162
+[pid  4162] close(0 <unfinished ...>
+[pid  4161] dup(4 <unfinished ...>
+[pid  4162] <... close resumed> )       = 0
+[pid  4161] <... dup resumed> )         = 1
+[pid  4160] close(3 <unfinished ...>
+[pid  4162] dup(3 <unfinished ...>
+[pid  4161] close(4 <unfinished ...>
+[pid  4162] <... dup resumed> )         = 0
+[pid  4161] <... close resumed> )       = 0
+[pid  4162] close(3 <unfinished ...>
+[pid  4161] close(3 <unfinished ...>
+[pid  4162] <... close resumed> )       = 0
+[pid  4161] <... close resumed> )       = 0
+[pid  4162] execve("/usr/bin/grotty", ["grotty"], [/* 47 vars */] <unfinished ...>
+[pid  4161] execve("/usr/bin/troff", ["troff", "-mtty-char", "-mandoc", "-rLL=163n", "-rLT=163n", "-Tutf8"], [/* 47 vars */] <unfinished ...>
+[pid  4162] <... execve resumed> )      = 0
+[pid  4160] <... close resumed> )       = 0
+[pid  4160] wait4(-1, Process 4160 suspended
+ <unfinished ...>
+[pid  4161] <... execve resumed> )      = 0
+[pid  4162] brk(0)                      = 0x8eb4000
+[pid  4161] brk(0 <unfinished ...>
+[pid  4162] access("/etc/ld.so.nohwcap", F_OK <unfinished ...>
+[pid  4161] <... brk resumed> )         = 0x9af7000
+[pid  4162] <... access resumed> )      = -1 ENOENT (No such file or directory)
+[pid  4161] access("/etc/ld.so.nohwcap", F_OK <unfinished ...>
+[pid  4162] mmap2(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid  4161] <... access resumed> )      = -1 ENOENT (No such file or directory)
+[pid  4162] <... mmap2 resumed> )       = 0xb78bd000
+[pid  4161] mmap2(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid  4162] access("/etc/ld.so.preload", R_OK <unfinished ...>
+[pid  4161] <... mmap2 resumed> )       = 0xb77d4000
+[pid  4162] <... access resumed> )      = -1 ENOENT (No such file or directory)
+[pid  4161] access("/etc/ld.so.preload", R_OK <unfinished ...>
+[pid  4162] open("/etc/ld.so.cache", O_RDONLY <unfinished ...>
+[pid  4161] <... access resumed> )      = -1 ENOENT (No such file or directory)
+[pid  4162] <... open resumed> )        = 3
+[pid  4162] fstat64(3,  <unfinished ...>
+[pid  4161] open("/etc/ld.so.cache", O_RDONLY <unfinished ...>
+[pid  4162] <... fstat64 resumed> {st_mode=S_IFREG|0644, st_size=73853, ...}) = 0
+[pid  4161] <... open resumed> )        = 3
+[pid  4162] mmap2(NULL, 73853, PROT_READ, MAP_PRIVATE, 3, 0 <unfinished ...>
+[pid  4161] fstat64(3,  <unfinished ...>
+[pid  4162] <... mmap2 resumed> )       = 0xb78aa000
+[pid  4161] <... fstat64 resumed> {st_mode=S_IFREG|0644, st_size=73853, ...}) = 0
+[pid  4162] close(3)                    = 0
+[pid  4161] mmap2(NULL, 73853, PROT_READ, MAP_PRIVATE, 3, 0 <unfinished ...>
+[pid  4162] access("/etc/ld.so.nohwcap", F_OK <unfinished ...>
+[pid  4161] <... mmap2 resumed> )       = 0xb77c1000
+[pid  4162] <... access resumed> )      = -1 ENOENT (No such file or directory)
+[pid  4161] close(3 <unfinished ...>
+[pid  4162] open("/usr/lib/libstdc++.so.6", O_RDONLY <unfinished ...>
+[pid  4161] <... close resumed> )       = 0
+[pid  4162] <... open resumed> )        = 3
+[pid  4161] access("/etc/ld.so.nohwcap", F_OK <unfinished ...>
+[pid  4162] read(3,  <unfinished ...>
+[pid  4161] <... access resumed> )      = -1 ENOENT (No such file or directory)
+[pid  4162] <... read resumed> "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0\340B\4\0004\0\0\0"..., 512) = 512
+[pid  4161] open("/usr/lib/libstdc++.so.6", O_RDONLY <unfinished ...>
+[pid  4162] fstat64(3,  <unfinished ...>
+[pid  4161] <... open resumed> )        = 3
+[pid  4162] <... fstat64 resumed> {st_mode=S_IFREG|0644, st_size=930044, ...}) = 0
+[pid  4161] read(3,  <unfinished ...>
+[pid  4162] mmap2(NULL, 959532, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0 <unfinished ...>
+[pid  4161] <... read resumed> "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0\340B\4\0004\0\0\0"..., 512) = 512
+[pid  4162] <... mmap2 resumed> )       = 0x1d5000
+[pid  4162] mmap2(0x2b4000, 20480, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0xde <unfinished ...>
+[pid  4161] fstat64(3,  <unfinished ...>
+[pid  4162] <... mmap2 resumed> )       = 0x2b4000
+[pid  4161] <... fstat64 resumed> {st_mode=S_IFREG|0644, st_size=930044, ...}) = 0
+[pid  4162] mmap2(0x2b9000, 25644, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid  4161] mmap2(NULL, 959532, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0 <unfinished ...>
+[pid  4162] <... mmap2 resumed> )       = 0x2b9000
+[pid  4161] <... mmap2 resumed> )       = 0x1f7000
+[pid  4162] close(3 <unfinished ...>
+[pid  4161] mmap2(0x2d6000, 20480, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0xde <unfinished ...>
+[pid  4162] <... close resumed> )       = 0
+[pid  4161] <... mmap2 resumed> )       = 0x2d6000
+[pid  4162] access("/etc/ld.so.nohwcap", F_OK <unfinished ...>
+[pid  4161] mmap2(0x2db000, 25644, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid  4162] <... access resumed> )      = -1 ENOENT (No such file or directory)
+[pid  4161] <... mmap2 resumed> )       = 0x2db000
+[pid  4162] open("/lib/libm.so.6", O_RDONLY <unfinished ...>
+[pid  4161] close(3 <unfinished ...>
+[pid  4162] <... open resumed> )        = 3
+[pid  4161] <... close resumed> )       = 0
+[pid  4162] read(3,  <unfinished ...>
+[pid  4161] access("/etc/ld.so.nohwcap", F_OK <unfinished ...>
+[pid  4162] <... read resumed> "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0\2604\0\0004\0\0\0"..., 512) = 512
+[pid  4161] <... access resumed> )      = -1 ENOENT (No such file or directory)
+[pid  4162] fstat64(3,  <unfinished ...>
+[pid  4161] open("/lib/libm.so.6", O_RDONLY <unfinished ...>
+[pid  4162] <... fstat64 resumed> {st_mode=S_IFREG|0644, st_size=149392, ...}) = 0
+[pid  4161] <... open resumed> )        = 3
+[pid  4162] mmap2(NULL, 151680, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0 <unfinished ...>
+[pid  4161] read(3,  <unfinished ...>
+[pid  4162] <... mmap2 resumed> )       = 0x4cb000
+[pid  4161] <... read resumed> "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0\2604\0\0004\0\0\0"..., 512) = 512
+[pid  4161] fstat64(3, {st_mode=S_IFREG|0644, st_size=149392, ...}) = 0
+[pid  4161] mmap2(NULL, 151680, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0xd35000
+[pid  4161] mmap2(0xd59000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x23 <unfinished ...>
+[pid  4162] mmap2(0x4ef000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x23 <unfinished ...>
+[pid  4161] <... mmap2 resumed> )       = 0xd59000
+[pid  4162] <... mmap2 resumed> )       = 0x4ef000
+[pid  4161] close(3 <unfinished ...>
+[pid  4162] close(3 <unfinished ...>
+[pid  4161] <... close resumed> )       = 0
+[pid  4162] <... close resumed> )       = 0
+[pid  4161] access("/etc/ld.so.nohwcap", F_OK <unfinished ...>
+[pid  4162] access("/etc/ld.so.nohwcap", F_OK <unfinished ...>
+[pid  4161] <... access resumed> )      = -1 ENOENT (No such file or directory)
+[pid  4162] <... access resumed> )      = -1 ENOENT (No such file or directory)
+[pid  4161] open("/lib/libgcc_s.so.1", O_RDONLY <unfinished ...>
+[pid  4162] open("/lib/libgcc_s.so.1", O_RDONLY <unfinished ...>
+[pid  4161] <... open resumed> )        = 3
+[pid  4162] <... open resumed> )        = 3
+[pid  4161] read(3,  <unfinished ...>
+[pid  4162] read(3,  <unfinished ...>
+[pid  4161] <... read resumed> "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0P\37\0\0004\0\0\0"..., 512) = 512
+[pid  4162] <... read resumed> "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0P\37\0\0004\0\0\0"..., 512) = 512
+[pid  4161] fstat64(3,  <unfinished ...>
+[pid  4162] fstat64(3,  <unfinished ...>
+[pid  4161] <... fstat64 resumed> {st_mode=S_IFREG|0644, st_size=108040, ...}) = 0
+[pid  4162] <... fstat64 resumed> {st_mode=S_IFREG|0644, st_size=108040, ...}) = 0
+[pid  4161] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid  4162] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid  4161] <... mmap2 resumed> )       = 0xb77c0000
+[pid  4162] <... mmap2 resumed> )       = 0xb78a9000
+[pid  4161] mmap2(NULL, 111148, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0 <unfinished ...>
+[pid  4162] mmap2(NULL, 111148, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0 <unfinished ...>
+[pid  4161] <... mmap2 resumed> )       = 0x6de000
+[pid  4162] <... mmap2 resumed> )       = 0xa15000
+[pid  4161] mmap2(0x6f8000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x19 <unfinished ...>
+[pid  4162] mmap2(0xa2f000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x19 <unfinished ...>
+[pid  4161] <... mmap2 resumed> )       = 0x6f8000
+[pid  4162] <... mmap2 resumed> )       = 0xa2f000
+[pid  4161] close(3 <unfinished ...>
+[pid  4162] close(3 <unfinished ...>
+[pid  4161] <... close resumed> )       = 0
+[pid  4162] <... close resumed> )       = 0
+[pid  4161] access("/etc/ld.so.nohwcap", F_OK <unfinished ...>
+[pid  4162] access("/etc/ld.so.nohwcap", F_OK <unfinished ...>
+[pid  4161] <... access resumed> )      = -1 ENOENT (No such file or directory)
+[pid  4162] <... access resumed> )      = -1 ENOENT (No such file or directory)
+[pid  4161] open("/lib/libc.so.6", O_RDONLY <unfinished ...>
+[pid  4162] open("/lib/libc.so.6", O_RDONLY <unfinished ...>
+[pid  4161] <... open resumed> )        = 3
+[pid  4162] <... open resumed> )        = 3
+[pid  4161] read(3,  <unfinished ...>
+[pid  4162] read(3,  <unfinished ...>
+[pid  4161] <... read resumed> "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0@n\1\0004\0\0\0"..., 512) = 512
+[pid  4162] <... read resumed> "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0@n\1\0004\0\0\0"..., 512) = 512
+[pid  4161] fstat64(3,  <unfinished ...>
+[pid  4162] fstat64(3,  <unfinished ...>
+[pid  4161] <... fstat64 resumed> {st_mode=S_IFREG|0755, st_size=1421892, ...}) = 0
+[pid  4162] <... fstat64 resumed> {st_mode=S_IFREG|0755, st_size=1421892, ...}) = 0
+[pid  4161] mmap2(NULL, 1427880, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0 <unfinished ...>
+[pid  4162] mmap2(NULL, 1427880, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0 <unfinished ...>
+[pid  4161] <... mmap2 resumed> )       = 0x2e2000
+[pid  4162] <... mmap2 resumed> )       = 0x2c0000
+[pid  4161] mmap2(0x439000, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x157 <unfinished ...>
+[pid  4162] mmap2(0x417000, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x157 <unfinished ...>
+[pid  4161] <... mmap2 resumed> )       = 0x439000
+[pid  4162] <... mmap2 resumed> )       = 0x417000
+[pid  4161] mmap2(0x43c000, 10664, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid  4162] mmap2(0x41a000, 10664, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid  4161] <... mmap2 resumed> )       = 0x43c000
+[pid  4162] <... mmap2 resumed> )       = 0x41a000
+[pid  4161] close(3 <unfinished ...>
+[pid  4162] close(3 <unfinished ...>
+[pid  4161] <... close resumed> )       = 0
+[pid  4162] <... close resumed> )       = 0
+[pid  4161] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid  4162] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid  4161] <... mmap2 resumed> )       = 0xb77bf000
+[pid  4162] <... mmap2 resumed> )       = 0xb78a8000
+[pid  4161] set_thread_area({entry_number:-1 ->  <unfinished ...>
+[pid  4162] set_thread_area({entry_number:-1 ->  <unfinished ...>
+[pid  4161] <... set_thread_area resumed> 6, base_addr:0xb77bf6d0, limit:1048575, seg_32bit:1, contents:0, read_exec_only:0, limit_in_pages:1, seg_not_present:0, useable:1}) = 0
+[pid  4162] <... set_thread_area resumed> 6, base_addr:0xb78a86d0, limit:1048575, seg_32bit:1, contents:0, read_exec_only:0, limit_in_pages:1, seg_not_present:0, useable:1}) = 0
+[pid  4161] mprotect(0x439000, 8192, PROT_READ <unfinished ...>
+[pid  4162] mprotect(0x417000, 8192, PROT_READ <unfinished ...>
+[pid  4161] <... mprotect resumed> )    = 0
+[pid  4161] mprotect(0x6f8000, 4096, PROT_READ <unfinished ...>
+[pid  4162] <... mprotect resumed> )    = 0
+[pid  4161] <... mprotect resumed> )    = 0
+[pid  4162] mprotect(0xa2f000, 4096, PROT_READ <unfinished ...>
+[pid  4161] mprotect(0xd59000, 4096, PROT_READ <unfinished ...>
+[pid  4162] <... mprotect resumed> )    = 0
+[pid  4161] <... mprotect resumed> )    = 0
+[pid  4162] mprotect(0x4ef000, 4096, PROT_READ) = 0
+[pid  4161] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid  4162] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid  4161] <... mmap2 resumed> )       = 0xb77be000
+[pid  4162] <... mmap2 resumed> )       = 0xb78a7000
+[pid  4161] mprotect(0x2d6000, 16384, PROT_READ <unfinished ...>
+[pid  4162] mprotect(0x2b4000, 16384, PROT_READ <unfinished ...>
+[pid  4161] <... mprotect resumed> )    = 0
+[pid  4162] <... mprotect resumed> )    = 0
+[pid  4161] mprotect(0x80b7000, 4096, PROT_READ <unfinished ...>
+[pid  4162] mprotect(0x805e000, 4096, PROT_READ <unfinished ...>
+[pid  4161] <... mprotect resumed> )    = 0
+[pid  4162] <... mprotect resumed> )    = 0
+[pid  4161] mprotect(0xc30000, 4096, PROT_READ <unfinished ...>
+[pid  4162] mprotect(0x1d3000, 4096, PROT_READ <unfinished ...>
+[pid  4161] <... mprotect resumed> )    = 0
+[pid  4162] <... mprotect resumed> )    = 0
+[pid  4161] munmap(0xb77c1000, 73853 <unfinished ...>
+[pid  4162] munmap(0xb78aa000, 73853 <unfinished ...>
+[pid  4161] <... munmap resumed> )      = 0
+[pid  4162] <... munmap resumed> )      = 0
+[pid  4161] brk(0 <unfinished ...>
+[pid  4162] brk(0 <unfinished ...>
+[pid  4161] <... brk resumed> )         = 0x9af7000
+[pid  4162] <... brk resumed> )         = 0x8eb4000
+[pid  4161] brk(0x9b18000 <unfinished ...>
+[pid  4162] brk(0x8ed5000 <unfinished ...>
+[pid  4161] <... brk resumed> )         = 0x9b18000
+[pid  4162] <... brk resumed> )         = 0x8ed5000
+[pid  4162] fstat64(0, {st_mode=S_IFIFO|0600, st_size=0, ...}) = 0
+[pid  4162] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb78bc000
+[pid  4162] read(0,  <unfinished ...>
+[pid  4161] brk(0x9b3a000)              = 0x9b3a000
+[pid  4161] open("/usr/share/groff/site-font/devutf8/DESC", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4161] open("/usr/share/groff/1.20.1/font/devutf8/DESC", O_RDONLY) = 3
+[pid  4161] fstat64(3, {st_mode=S_IFREG|0644, st_size=96, ...}) = 0
+[pid  4161] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb77d3000
+[pid  4161] read(3, "res 240\nhor 24\nvert 40\nunitwidth"..., 4096) = 96
+[pid  4161] read(3, "", 4096)           = 0
+[pid  4161] close(3)                    = 0
+[pid  4161] munmap(0xb77d3000, 4096)    = 0
+[pid  4161] open("/usr/share/groff/site-font/devutf8/R", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4161] open("/usr/share/groff/1.20.1/font/devutf8/R", O_RDONLY) = 3
+[pid  4161] fstat64(3, {st_mode=S_IFREG|0644, st_size=25042, ...}) = 0
+[pid  4161] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb77d3000
+[pid  4161] read(3, "name R\nspacewidth 24\ncharset\nu00"..., 4096) = 4096
+[pid  4161] read(3, "5_0308_0301\t24\t0\t0x01D8\nu0055_03"..., 4096) = 4096
+[pid  4161] brk(0x9b5c000)              = 0x9b5c000
+[pid  4161] read(3, "0x09DC\nu09A2_09BC\t24\t0\t0x09DD\nu0"..., 4096) = 4096
+[pid  4161] read(3, "0\t0x1E7A\nu0075_0304_0308\t24\t0\t0x"..., 4096) = 4096
+[pid  4161] read(3, "1F28\nu0397_0314\t24\t0\t0x1F29\nu039"..., 4096) = 4096
+[pid  4161] read(3, "FBF_0300\t24\t0\t0x1FCD\nu1FBF_0301\t"..., 4096) = 4096
+[pid  4161] brk(0x9b7e000)              = 0x9b7e000
+[pid  4161] read(3, "FB4B\nu05D1_05BF\t24\t0\t0xFB4C\nu05D"..., 4096) = 466
+[pid  4161] read(3, "", 4096)           = 0
+[pid  4161] brk(0x9b79000)              = 0x9b79000
+[pid  4161] close(3)                    = 0
+[pid  4161] munmap(0xb77d3000, 4096)    = 0
+[pid  4161] open("/usr/share/groff/site-font/devutf8/I", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4161] open("/usr/share/groff/1.20.1/font/devutf8/I", O_RDONLY) = 3
+[pid  4161] fstat64(3, {st_mode=S_IFREG|0644, st_size=25057, ...}) = 0
+[pid  4161] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb77d3000
+[pid  4161] read(3, "name I\ninternalname 1\nspacewidth"..., 4096) = 4096
+[pid  4161] read(3, "4\t0\t0x01D7\nu0075_0308_0301\t24\t0\t"..., 4096) = 4096
+[pid  4161] read(3, "09A1_09BC\t24\t0\t0x09DC\nu09A2_09BC"..., 4096) = 4096
+[pid  4161] read(3, "5_0304_0308\t24\t0\t0x1E7A\nu0075_03"..., 4096) = 4096
+[pid  4161] read(3, "97_0313\t24\t0\t0x1F28\nu0397_0314\t2"..., 4096) = 4096
+[pid  4161] read(3, "\t24\t0\t0x1FCC\nu1FBF_0300\t24\t0\t0x1"..., 4096) = 4096
+[pid  4161] read(3, "D5_05B9\t24\t0\t0xFB4B\nu05D1_05BF\t2"..., 4096) = 481
+[pid  4161] read(3, "", 4096)           = 0
+[pid  4161] close(3)                    = 0
+[pid  4161] munmap(0xb77d3000, 4096)    = 0
+[pid  4161] open("/usr/share/groff/site-font/devutf8/B", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4161] open("/usr/share/groff/1.20.1/font/devutf8/B", O_RDONLY) = 3
+[pid  4161] fstat64(3, {st_mode=S_IFREG|0644, st_size=25057, ...}) = 0
+[pid  4161] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb77d3000
+[pid  4161] read(3, "name B\ninternalname 2\nspacewidth"..., 4096) = 4096
+[pid  4161] read(3, "4\t0\t0x01D7\nu0075_0308_0301\t24\t0\t"..., 4096) = 4096
+[pid  4161] read(3, "09A1_09BC\t24\t0\t0x09DC\nu09A2_09BC"..., 4096) = 4096
+[pid  4161] brk(0x9b9d000)              = 0x9b9d000
+[pid  4161] read(3, "5_0304_0308\t24\t0\t0x1E7A\nu0075_03"..., 4096) = 4096
+[pid  4161] read(3, "97_0313\t24\t0\t0x1F28\nu0397_0314\t2"..., 4096) = 4096
+[pid  4161] read(3, "\t24\t0\t0x1FCC\nu1FBF_0300\t24\t0\t0x1"..., 4096) = 4096
+[pid  4161] read(3, "D5_05B9\t24\t0\t0xFB4B\nu05D1_05BF\t2"..., 4096) = 481
+[pid  4161] read(3, "", 4096)           = 0
+[pid  4161] close(3)                    = 0
+[pid  4161] munmap(0xb77d3000, 4096)    = 0
+[pid  4161] open("/usr/share/groff/site-font/devutf8/BI", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4161] open("/usr/share/groff/1.20.1/font/devutf8/BI", O_RDONLY) = 3
+[pid  4161] fstat64(3, {st_mode=S_IFREG|0644, st_size=25058, ...}) = 0
+[pid  4161] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb77d3000
+[pid  4161] read(3, "name BI\ninternalname 3\nspacewidt"..., 4096) = 4096
+[pid  4161] read(3, "24\t0\t0x01D7\nu0075_0308_0301\t24\t0"..., 4096) = 4096
+[pid  4161] read(3, "u09A1_09BC\t24\t0\t0x09DC\nu09A2_09B"..., 4096) = 4096
+[pid  4161] read(3, "55_0304_0308\t24\t0\t0x1E7A\nu0075_0"..., 4096) = 4096
+[pid  4161] read(3, "397_0313\t24\t0\t0x1F28\nu0397_0314\t"..., 4096) = 4096
+[pid  4161] read(3, "5\t24\t0\t0x1FCC\nu1FBF_0300\t24\t0\t0x"..., 4096) = 4096
+[pid  4161] read(3, "5D5_05B9\t24\t0\t0xFB4B\nu05D1_05BF\t"..., 4096) = 482
+[pid  4161] read(3, "", 4096)           = 0
+[pid  4161] close(3)                    = 0
+[pid  4161] munmap(0xb77d3000, 4096)    = 0
+[pid  4161] time(NULL)                  = 1302653697
+[pid  4161] open("/etc/localtime", O_RDONLY) = 3
+[pid  4161] fstat64(3, {st_mode=S_IFREG|0644, st_size=1061, ...}) = 0
+[pid  4161] fstat64(3, {st_mode=S_IFREG|0644, st_size=1061, ...}) = 0
+[pid  4161] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb77d3000
+[pid  4161] read(3, "TZif2\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\5\0\0\0\5\0\0\0\0"..., 4096) = 1061
+[pid  4161] _llseek(3, -6, [1055], SEEK_CUR) = 0
+[pid  4161] read(3, "\nART3\n", 4096)   = 6
+[pid  4161] close(3)                    = 0
+[pid  4161] munmap(0xb77d3000, 4096)    = 0
+[pid  4161] getpid()                    = 4161
+[pid  4161] open("/usr/lib/groff/site-tmac/troffrc", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4161] open("/usr/share/groff/site-tmac/troffrc", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4161] open("/usr/share/groff/1.20.1/tmac/troffrc", O_RDONLY) = 3
+[pid  4161] fstat64(3, {st_mode=S_IFREG|0644, st_size=1286, ...}) = 0
+[pid  4161] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb77d3000
+[pid  4161] read(3, ".\\\" Startup file for troff.\n.\n.\\"..., 4096) = 1286
+[pid  4161] open("/usr/lib/groff/site-tmac/composite.tmac", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4161] open("/usr/share/groff/site-tmac/composite.tmac", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4161] open("/usr/share/groff/1.20.1/tmac/composite.tmac", O_RDONLY) = 4
+[pid  4161] fstat64(4, {st_mode=S_IFREG|0644, st_size=537, ...}) = 0
+[pid  4161] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb77d2000
+[pid  4161] read(4, ".\\\" composite.tmac\n.\n.do composi"..., 4096) = 537
+[pid  4161] read(4, "", 4096)           = 0
+[pid  4161] close(4)                    = 0
+[pid  4161] munmap(0xb77d2000, 4096)    = 0
+[pid  4161] open("/usr/lib/groff/site-tmac/tty.tmac", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4161] open("/usr/share/groff/site-tmac/tty.tmac", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4161] open("/usr/share/groff/1.20.1/tmac/tty.tmac", O_RDONLY) = 4
+[pid  4161] fstat64(4, {st_mode=S_IFREG|0644, st_size=1552, ...}) = 0
+[pid  4161] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb77d2000
+[pid  4161] read(4, ".\\\" tty.tmac\n.\\\"\n.nr _C \\n(.C\n.c"..., 4096) = 1552
+[pid  4161] open("/usr/lib/groff/site-tmac/unicode.tmac", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4161] open("/usr/share/groff/site-tmac/unicode.tmac", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4161] open("/usr/share/groff/1.20.1/tmac/unicode.tmac", O_RDONLY) = 5
+[pid  4161] fstat64(5, {st_mode=S_IFREG|0644, st_size=71, ...}) = 0
+[pid  4161] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb77d1000
+[pid  4161] read(5, ".\\\" unicode.tmac\n.\\\"\n.char - \\[h"..., 4096) = 71
+[pid  4161] read(5, "", 4096)           = 0
+[pid  4161] close(5)                    = 0
+[pid  4161] munmap(0xb77d1000, 4096)    = 0
+[pid  4161] open("/usr/lib/groff/site-tmac/latin1.tmac", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4161] open("/usr/share/groff/site-tmac/latin1.tmac", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4161] open("/usr/share/groff/1.20.1/tmac/latin1.tmac", O_RDONLY) = 5
+[pid  4161] fstat64(5, {st_mode=S_IFREG|0644, st_size=2250, ...}) = 0
+[pid  4161] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb77d1000
+[pid  4161] read(5, ".\\\" latin1.tmac\n.\\\"\n.nr _C \\n(.C"..., 4096) = 2250
+[pid  4161] read(5, "", 4096)           = 0
+[pid  4161] close(5)                    = 0
+[pid  4161] munmap(0xb77d1000, 4096)    = 0
+[pid  4161] read(4, "", 4096)           = 0
+[pid  4161] close(4)                    = 0
+[pid  4161] munmap(0xb77d2000, 4096)    = 0
+[pid  4161] open("/usr/lib/groff/site-tmac/hyphen.us", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4161] open("/usr/share/groff/site-tmac/hyphen.us", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4161] open("/usr/share/groff/1.20.1/tmac/hyphen.us", O_RDONLY) = 4
+[pid  4161] fstat64(4, {st_mode=S_IFREG|0644, st_size=27860, ...}) = 0
+[pid  4161] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb77d2000
+[pid  4161] read(4, "% The Plain TeX hyphenation tabl"..., 4096) = 4096
+[pid  4161] read(4, "4b1ora\nbor5d\n5bore\n5bori\n5bos4\nb"..., 4096) = 4096
+[pid  4161] brk(0x9bbe000)              = 0x9bbe000
+[pid  4161] read(4, "ati.\n2erb\ner4bl\ner3ch\ner4che\n2er"..., 4096) = 4096
+[pid  4161] read(4, "\nincel4\nin3cer\n4ind\nin5dling\n2in"..., 4096) = 4096
+[pid  4161] read(4, "5iz\nne5mi\nne4mo\n1nen\n4nene\n3neo\n"..., 4096) = 4096
+[pid  4161] brk(0x9bdf000)              = 0x9bdf000
+[pid  4161] read(4, "ine\nrb5ing.\nrb4o\nr1c\nr2ce\nrcen4\n"..., 4096) = 4096
+[pid  4161] read(4, "to3b\nto5crat\n4todo\n2tof\nto2gr\nto"..., 4096) = 3284
+[pid  4161] read(4, "", 4096)           = 0
+[pid  4161] close(4)                    = 0
+[pid  4161] munmap(0xb77d2000, 4096)    = 0
+[pid  4161] open("/usr/lib/groff/site-tmac/hyphenex.us", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4161] open("/usr/share/groff/site-tmac/hyphenex.us", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4161] open("/usr/share/groff/1.20.1/tmac/hyphenex.us", O_RDONLY) = 4
+[pid  4161] fstat64(4, {st_mode=S_IFREG|0644, st_size=15678, ...}) = 0
+[pid  4161] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb77d2000
+[pid  4161] read(4, "% Hyphenation exceptions for US "..., 4096) = 4096
+[pid  4161] brk(0x9c07000)              = 0x9c07000
+[pid  4161] read(4, "mechano-acoustic\n  elit-ist\n  el"..., 4096) = 4096
+[pid  4161] read(4, " par-a-bol-ic\n  pa-rab-o-loid\n  "..., 4096) = 4096
+[pid  4161] read(4, "ch-i-er\n  strip-tease\n  strong-h"..., 4096) = 3390
+[pid  4161] read(4, "", 4096)           = 0
+[pid  4161] close(4)                    = 0
+[pid  4161] munmap(0xb77d2000, 4096)    = 0
+[pid  4161] open("/usr/lib/groff/site-tmac/papersize.tmac", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4161] open("/usr/share/groff/site-tmac/papersize.tmac", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4161] open("/usr/share/groff/1.20.1/tmac/papersize.tmac", O_RDONLY) = 4
+[pid  4161] fstat64(4, {st_mode=S_IFREG|0644, st_size=4065, ...}) = 0
+[pid  4161] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb77d2000
+[pid  4161] read(4, ".\\\" papersize.tmac\n.\\\"\n.\\\" Set u"..., 4096) = 4065
+[pid  4161] read(4, "", 4096)           = 0
+[pid  4161] close(4)                    = 0
+[pid  4161] munmap(0xb77d2000, 4096)    = 0
+[pid  4161] open("/usr/lib/groff/site-tmac/pspic.tmac", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4161] open("/usr/share/groff/site-tmac/pspic.tmac", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4161] open("/usr/share/groff/1.20.1/tmac/pspic.tmac", O_RDONLY) = 4
+[pid  4161] fstat64(4, {st_mode=S_IFREG|0644, st_size=4729, ...}) = 0
+[pid  4161] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb77d2000
+[pid  4161] read(4, ".\\\" pspic.tmac\n.\\\"\n.\\\" Define th"..., 4096) = 4096
+[pid  4161] read(4, "ht \\\" empty\n.\n\\h'\\\\n[ps-offset]u"..., 4096) = 633
+[pid  4161] read(4, "", 4096)           = 0
+[pid  4161] close(4)                    = 0
+[pid  4161] munmap(0xb77d2000, 4096)    = 0
+[pid  4161] read(3, "", 4096)           = 0
+[pid  4161] close(3)                    = 0
+[pid  4161] munmap(0xb77d3000, 4096)    = 0
+[pid  4161] open("/home/cengler/tty-char.tmac", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4161] open("/usr/lib/groff/site-tmac/tty-char.tmac", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4161] open("/usr/share/groff/site-tmac/tty-char.tmac", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4161] open("/usr/share/groff/1.20.1/tmac/tty-char.tmac", O_RDONLY) = 3
+[pid  4161] fstat64(3, {st_mode=S_IFREG|0644, st_size=5183, ...}) = 0
+[pid  4161] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb77d3000
+[pid  4161] read(3, ".\\\" tty-char.tmac\n.\\\"\n.\\\" This f"..., 4096) = 4096
+[pid  4161] read(3, "O] \\z^O\n.tty-char \\[~O] \\z~O\n.tt"..., 4096) = 1087
+[pid  4161] open("/home/cengler/latin1.tmac", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4161] open("/usr/lib/groff/site-tmac/latin1.tmac", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4161] open("/usr/share/groff/site-tmac/latin1.tmac", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4161] open("/usr/share/groff/1.20.1/tmac/latin1.tmac", O_RDONLY) = 4
+[pid  4161] fstat64(4, {st_mode=S_IFREG|0644, st_size=2250, ...}) = 0
+[pid  4161] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb77d2000
+[pid  4161] read(4, ".\\\" latin1.tmac\n.\\\"\n.nr _C \\n(.C"..., 4096) = 2250
+[pid  4161] read(4, "", 4096)           = 0
+[pid  4161] close(4)                    = 0
+[pid  4161] munmap(0xb77d2000, 4096)    = 0
+[pid  4161] read(3, "", 4096)           = 0
+[pid  4161] close(3)                    = 0
+[pid  4161] munmap(0xb77d3000, 4096)    = 0
+[pid  4161] open("/home/cengler/andoc.tmac", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4161] open("/usr/lib/groff/site-tmac/andoc.tmac", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4161] open("/usr/share/groff/site-tmac/andoc.tmac", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4161] open("/usr/share/groff/1.20.1/tmac/andoc.tmac", O_RDONLY) = 3
+[pid  4161] fstat64(3, {st_mode=S_IFREG|0644, st_size=1860, ...}) = 0
+[pid  4161] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb77d3000
+[pid  4161] read(3, ".\\\" andoc.tmac\n.\\\"\n.\\\" Load eith"..., 4096) = 1860
+[pid  4161] read(3, "", 4096)           = 0
+[pid  4161] close(3)                    = 0
+[pid  4161] munmap(0xb77d3000, 4096)    = 0
+[pid  4161] open("/usr/lib/groff/site-tmac/troffrc-end", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4161] open("/usr/share/groff/site-tmac/troffrc-end", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4161] open("/usr/share/groff/1.20.1/tmac/troffrc-end", O_RDONLY) = 3
+[pid  4161] fstat64(3, {st_mode=S_IFREG|0644, st_size=1145, ...}) = 0
+[pid  4161] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb77d3000
+[pid  4161] read(3, ".\\\" final startup file for troff"..., 4096) = 1145
+[pid  4161] read(3, "", 4096)           = 0
+[pid  4161] close(3)                    = 0
+[pid  4161] munmap(0xb77d3000, 4096)    = 0
+[pid  4161] fstat64(0, {st_mode=S_IFIFO|0600, st_size=0, ...}) = 0
+[pid  4161] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb77d3000
+[pid  4161] read(0, ".if !\\n(.g .ab GNU tbl requires "..., 4096) = 4096
+[pid  4161] fstat64(1, {st_mode=S_IFIFO|0600, st_size=0, ...}) = 0
+[pid  4161] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb77d2000
+[pid  4161] open("/home/cengler/an-old.tmac", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4161] open("/usr/lib/groff/site-tmac/an-old.tmac", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4161] open("/usr/share/groff/site-tmac/an-old.tmac", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4161] open("/usr/share/groff/1.20.1/tmac/an-old.tmac", O_RDONLY) = 3
+[pid  4161] fstat64(3, {st_mode=S_IFREG|0644, st_size=13734, ...}) = 0
+[pid  4161] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb77d1000
+[pid  4161] read(3, ".\\\" an-old.tmac\n.\\\"\n.\\\" Copyrigh"..., 4096) = 4096
+[pid  4161] open("/home/cengler/devtag.tmac", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4161] open("/usr/lib/groff/site-tmac/devtag.tmac", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4161] open("/usr/share/groff/site-tmac/devtag.tmac", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4161] open("/usr/share/groff/1.20.1/tmac/devtag.tmac", O_RDONLY) = 4
+[pid  4161] fstat64(4, {st_mode=S_IFREG|0644, st_size=3775, ...}) = 0
+[pid  4161] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb77d0000
+[pid  4161] read(4, ".ig\ndevtag.tmac - macro package "..., 4096) = 3775
+[pid  4161] read(4, "", 4096)           = 0
+[pid  4161] close(4)                    = 0
+[pid  4161] munmap(0xb77d0000, 4096)    = 0
+[pid  4161] read(3, "s right.\n.    ds an-title \"\\\\$1\\"..., 4096) = 4096
+[pid  4161] read(3, "k-flag 1\n.  ps \\\\n[PS-SS]u\n.  ft"..., 4096) = 4096
+[pid  4161] read(3, "  .nr an-level -1\n.  nr an-level"..., 4096) = 1446
+[pid  4161] open("/home/cengler/an-ext.tmac", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4161] open("/usr/lib/groff/site-tmac/an-ext.tmac", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4161] open("/usr/share/groff/site-tmac/an-ext.tmac", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4161] open("/usr/share/groff/1.20.1/tmac/an-ext.tmac", O_RDONLY) = 4
+[pid  4161] fstat64(4, {st_mode=S_IFREG|0644, st_size=3481, ...}) = 0
+[pid  4161] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb77d0000
+[pid  4161] read(4, ".\\\" an-ext.tmac\n.\\\"\n.\\\" Written "..., 4096) = 3481
+[pid  4161] read(4, "", 4096)           = 0
+[pid  4161] close(4)                    = 0
+[pid  4161] munmap(0xb77d0000, 4096)    = 0
+[pid  4161] open("/home/cengler/man.local", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4161] open("/usr/lib/groff/site-tmac/man.local", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4161] open("/usr/share/groff/site-tmac/man.local", O_RDONLY) = 4
+[pid  4161] fstat64(4, {st_mode=S_IFREG|0644, st_size=854, ...}) = 0
+[pid  4161] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb77d0000
+[pid  4161] read(4, ".\\\" This file is loaded after an"..., 4096) = 854
+[pid  4161] read(4, "", 4096)           = 0
+[pid  4161] close(4)                    = 0
+[pid  4161] munmap(0xb77d0000, 4096)    = 0
+[pid  4161] read(3, "", 4096)           = 0
+[pid  4161] close(3)                    = 0
+[pid  4161] munmap(0xb77d1000, 4096)    = 0
+[pid  4161] write(1, "x T utf8\nx res 240 24 40\nx init\n"..., 205) = 205
+[pid  4162] <... read resumed> "x T utf8\nx res 240 24 40\nx init\n"..., 4096) = 205
+[pid  4161] write(1, "x X devtag:.NH 1\nx font 3 B\nf3\nV"..., 52 <unfinished ...>
+[pid  4162] open("/usr/share/groff/site-font/devutf8/DESC", O_RDONLY <unfinished ...>
+[pid  4161] <... write resumed> )       = 52
+[pid  4162] <... open resumed> )        = -1 ENOENT (No such file or directory)
+[pid  4162] open("/usr/share/groff/1.20.1/font/devutf8/DESC", O_RDONLY) = 3
+[pid  4162] fstat64(3,  <unfinished ...>
+[pid  4161] write(1, "x X devtag:.eo.h\nV200\nH168\nn40 0"..., 187 <unfinished ...>
+[pid  4162] <... fstat64 resumed> {st_mode=S_IFREG|0644, st_size=96, ...}) = 0
+[pid  4162] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb78bb000
+[pid  4161] <... write resumed> )       = 187
+[pid  4162] read(3,  <unfinished ...>
+[pid  4161] write(1, "x X devtag:.NH 1\nf3\nV320\nH0\ntSIN"..., 43 <unfinished ...>
+[pid  4162] <... read resumed> "res 240\nhor 24\nvert 40\nunitwidth"..., 4096) = 96
+[pid  4161] <... write resumed> )       = 43
+[pid  4162] read(3, "", 4096)           = 0
+[pid  4162] close(3)                    = 0
+[pid  4162] munmap(0xb78bb000, 4096)    = 0
+[pid  4162] open("/usr/share/groff/site-font/devutf8/R", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4162] open("/usr/share/groff/1.20.1/font/devutf8/R", O_RDONLY) = 3
+[pid  4162] fstat64(3, {st_mode=S_IFREG|0644, st_size=25042, ...}) = 0
+[pid  4162] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb78bb000
+[pid  4162] read(3, "name R\nspacewidth 24\ncharset\nu00"..., 4096) = 4096
+[pid  4162] read(3, "5_0308_0301\t24\t0\t0x01D8\nu0055_03"..., 4096) = 4096
+[pid  4162] read(3, "0x09DC\nu09A2_09BC\t24\t0\t0x09DD\nu0"..., 4096) = 4096
+[pid  4162] read(3, "0\t0x1E7A\nu0075_0304_0308\t24\t0\t0x"..., 4096) = 4096
+[pid  4162] brk(0x8ef9000)              = 0x8ef9000
+[pid  4162] read(3, "1F28\nu0397_0314\t24\t0\t0x1F29\nu039"..., 4096) = 4096
+[pid  4162] read(3, "FBF_0300\t24\t0\t0x1FCD\nu1FBF_0301\t"..., 4096) = 4096
+[pid  4162] read(3, "FB4B\nu05D1_05BF\t24\t0\t0xFB4C\nu05D"..., 4096) = 466
+[pid  4161] write(1, "x X devtag:.eo.h\nV320\nH216\nn40 0"..., 1169) = 1169
+[pid  4161] write(1, "x X devtag:.NH 1\nf3\nV600\nH0\ntDES"..., 55) = 55
+[pid  4162] read(3, "", 4096)           = 0
+[pid  4162] close(3)                    = 0
+[pid  4162] munmap(0xb78bb000, 4096)    = 0
+[pid  4162] read(0, "x X devtag:.NH 1\nx font 3 B\nf3\nV"..., 4096) = 1506
+[pid  4162] open("/usr/share/groff/site-font/devutf8/B", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4162] open("/usr/share/groff/1.20.1/font/devutf8/B", O_RDONLY) = 3
+[pid  4162] fstat64(3, {st_mode=S_IFREG|0644, st_size=25057, ...}) = 0
+[pid  4162] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb78bb000
+[pid  4162] read(3, "name B\ninternalname 2\nspacewidth"..., 4096) = 4096
+[pid  4162] read(3,  <unfinished ...>
+[pid  4161] read(0,  <unfinished ...>
+[pid  4162] <... read resumed> "4\t0\t0x01D7\nu0075_0308_0301\t24\t0\t"..., 4096) = 4096
+[pid  4161] <... read resumed> "nes servidas por el n\\[u00FA]cle"..., 4096) = 4096
+[pid  4162] read(3, "09A1_09BC\t24\t0\t0x09DC\nu09A2_09BC"..., 4096) = 4096
+[pid  4161] read(0,  <unfinished ...>
+[pid  4162] read(3,  <unfinished ...>
+[pid  4161] <... read resumed> "\\n[3bot]u\n\\*[3trans].nr 3brule 1"..., 4096) = 4096
+[pid  4162] <... read resumed> "5_0304_0308\t24\t0\t0x1E7A\nu0075_03"..., 4096) = 4096
+[pid  4162] read(3, "97_0313\t24\t0\t0x1F28\nu0397_0314\t2"..., 4096) = 4096
+[pid  4162] read(3,  <unfinished ...>
+[pid  4161] read(0,  <unfinished ...>
+[pid  4162] <... read resumed> "\t24\t0\t0x1FCC\nu1FBF_0300\t24\t0\t0x1"..., 4096) = 4096
+[pid  4161] <... read resumed> "1n\n.nr 3w0 \\n(.H\n.nr 3aw0 0\n.nr "..., 4096) = 4096
+[pid  4162] read(3, "D5_05B9\t24\t0\t0xFB4B\nu05D1_05BF\t2"..., 4096) = 481
+[pid  4161] write(1, "x X devtag:.eo.h\nV600\nH288\nn40 0"..., 4096) = 4096
+[pid  4162] read(3, "", 4096)           = 0
+[pid  4162] brk(0x8f1e000)              = 0x8f1e000
+[pid  4161] read(0,  <unfinished ...>
+[pid  4162] close(3 <unfinished ...>
+[pid  4161] <... read resumed> "eep\n.3rmk 3rt8\n\\*[3trans].nr 3cr"..., 4096) = 4096
+[pid  4162] <... close resumed> )       = 0
+[pid  4162] munmap(0xb78bb000, 4096)    = 0
+[pid  4162] open("/usr/share/groff/site-font/devutf8/I", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4162] open("/usr/share/groff/1.20.1/font/devutf8/I", O_RDONLY) = 3
+[pid  4162] fstat64(3, {st_mode=S_IFREG|0644, st_size=25057, ...}) = 0
+[pid  4162] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb78bb000
+[pid  4162] read(3, "name I\ninternalname 1\nspacewidth"..., 4096) = 4096
+[pid  4162] read(3, "4\t0\t0x01D7\nu0075_0308_0301\t24\t0\t"..., 4096) = 4096
+[pid  4162] read(3,  <unfinished ...>
+[pid  4161] write(1, "las\nwh24\ntopciones\nwh24\ntseparad"..., 887 <unfinished ...>
+[pid  4162] <... read resumed> "09A1_09BC\t24\t0\t0x09DC\nu09A2_09BC"..., 4096) = 4096
+[pid  4161] <... write resumed> )       = 887
+[pid  4162] read(3,  <unfinished ...>
+[pid  4161] write(1, "x X devtag:.NH 1\nf3\nV2440\nH0\ntEJ"..., 44) = 44
+[pid  4162] <... read resumed> "5_0304_0308\t24\t0\t0x1E7A\nu0075_03"..., 4096) = 4096
+[pid  4162] read(3, "97_0313\t24\t0\t0x1F28\nu0397_0314\t2"..., 4096) = 4096
+[pid  4162] read(3, "\t24\t0\t0x1FCC\nu1FBF_0300\t24\t0\t0x1"..., 4096) = 4096
+[pid  4162] read(3, "D5_05B9\t24\t0\t0xFB4B\nu05D1_05BF\t2"..., 4096) = 481
+[pid  4162] read(3, "", 4096)           = 0
+[pid  4162] close(3)                    = 0
+[pid  4162] munmap(0xb78bb000, 4096)    = 0
+[pid  4162] read(0, "x X devtag:.eo.h\nV600\nH288\nn40 0"..., 4096) = 4096
+[pid  4161] write(1, "x X devtag:.eo.h\nV2440\nH216\nn40 "..., 3256) = 3256
+[pid  4161] write(1, "x X devtag:.NH 1\nf3\nV760\nH0\ntDES"..., 71) = 71
+[pid  4162] read(0, "las\nwh24\ntopciones\nwh24\ntseparad"..., 4096) = 4096
+[pid  4162] fstat64(1, {st_mode=S_IFIFO|0600, st_size=0, ...}) = 0
+[pid  4162] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb78bb000
+[pid  4162] write(1, "MAN(1)                          "..., 4096) = 4096
+[pid  4142] <... select resumed> )      = 1 (in [6])
+[pid  4142] read(6, "MAN(1)                          "..., 4096) = 4096
+[pid  4142] select(8, [6], [7], NULL, NULL) = 1 (out [7])
+[pid  4142] write(7, "MAN(1)                          "..., 4096 <unfinished ...>
+[pid  4157] <... read resumed> "MAN(1)                          "..., 4096) = 4096
+[pid  4142] <... write resumed> )       = 4096
+[pid  4161] read(0, "tra un fichero\n.B \\[u00ED]ndice\n"..., 4096) = 4096
+[pid  4157] read(0,  <unfinished ...>
+[pid  4142] select(8, [6], [7], NULL, NULL) = 1 (out [7])
+[pid  4142] select(7, [6], [], NULL, NULL <unfinished ...>
+[pid  4161] write(1, "x X devtag:.eo.h\nV760\nH528\nn40 0"..., 4096) = 4096
+[pid  4162] read(0, "\nwh24\ntdescripcion\nwh24\ntbreve\nw"..., 4096) = 4096
+[pid  4162] read(0, "4\ntno\nwh24\ntencuentra\nwh24\ntun\nw"..., 4096) = 162
+[pid  4162] read(0,  <unfinished ...>
+[pid  4161] write(1, "\nh24\ntpara\nwh24\ntuna\nwh24\ntjerar"..., 4096 <unfinished ...>
+[pid  4162] <... read resumed> "\nh24\ntpara\nwh24\ntuna\nwh24\ntjerar"..., 4096) = 4096
+[pid  4161] <... write resumed> )       = 4096
+[pid  4161] write(1, "\nV2240\nH168\ntEste\nwh48\ntpaquete\n"..., 1328) = 1328
+[pid  4161] write(1, "x X devtag:.NH 1\nf3\nV2560\nH0\ntVA"..., 65) = 65
+[pid  4162] read(0, "\nV2240\nH168\ntEste\nwh48\ntpaquete\n"..., 4096) = 1393
+[pid  4161] read(0, "m\\[u00E1]s antigua que el ficher"..., 4096) = 4096
+[pid  4162] read(0,  <unfinished ...>
+[pid  4161] write(1, "x X devtag:.eo.h\nV2560\nH576\nn40 "..., 4096) = 4096
+[pid  4162] <... read resumed> "x X devtag:.eo.h\nV2560\nH576\nn40 "..., 4096) = 4096
+[pid  4161] write(1, "4\nta\nwh24\ntcompuesta\nwh24\ntpor\nw"..., 961) = 961
+[pid  4161] write(1, "x X devtag:.NH 1\nV960\nH0\ntOPCION"..., 40) = 40
+[pid  4162] write(1, "\10S\n       m\10ma\10an\10n _\10l_\10s\n     "..., 4096) = 4096
+[pid  4142] <... select resumed> )      = 1 (in [6])
+[pid  4142] read(6, "\10S\n       m\10ma\10an\10n _\10l_\10s\n     "..., 4096) = 4096
+[pid  4142] select(8, [6], [7], NULL, NULL) = 1 (out [7])
+[pid  4142] write(7, "\10S\n       m\10ma\10an\10n _\10l_\10s\n     "..., 4096 <unfinished ...>
+[pid  4157] <... read resumed> "\10S\n       m\10ma\10an\10n _\10l_\10s\n     "..., 4096) = 4096
+[pid  4142] <... write resumed> )       = 4096
+[pid  4157] read(0,  <unfinished ...>
+[pid  4142] select(8, [6], [7], NULL, NULL) = 1 (out [7])
+[pid  4142] select(7, [6], [], NULL, NULL <unfinished ...>
+[pid  4162] read(0, "4\nta\nwh24\ntcompuesta\nwh24\ntpor\nw"..., 4096) = 1001
+[pid  4162] read(0,  <unfinished ...>
+[pid  4161] write(1, "x X devtag:.eo.h\nV960\nH216\nn40 0"..., 4096) = 4096
+[pid  4162] <... read resumed> "x X devtag:.eo.h\nV960\nH216\nn40 0"..., 4096) = 4096
+[pid  4161] read(0, "nte del paginador\n.B less ,\n.B m"..., 4096) = 4096
+[pid  4162] read(0,  <unfinished ...>
+[pid  4161] write(1, "wh24\ntusar.\nwh24\ntDe\nwh24\ntforma"..., 4096) = 4096
+[pid  4162] <... read resumed> "wh24\ntusar.\nwh24\ntDe\nwh24\ntforma"..., 4096) = 4096
+[pid  4162] write(1, "de manual dada, se efectuar\303\241 un"..., 4096) = 4096
+[pid  4142] <... select resumed> )      = 1 (in [6])
+[pid  4161] read(0,  <unfinished ...>
+[pid  4142] read(6,  <unfinished ...>
+[pid  4161] <... read resumed> " 3w2 \\n[3w2]>?\\w\\[tbl]\\*[soft-hy"..., 4096) = 4096
+[pid  4142] <... read resumed> "de manual dada, se efectuar\303\241 un"..., 4096) = 4096
+[pid  4142] select(8, [6], [7], NULL, NULL) = 1 (out [7])
+[pid  4142] write(7, "de manual dada, se efectuar\303\241 un"..., 4096 <unfinished ...>
+[pid  4157] <... read resumed> "de manual dada, se efectuar\303\241 un"..., 4096) = 4096
+[pid  4142] <... write resumed> )       = 4096
+[pid  4157] brk(0x9fd6000 <unfinished ...>
+[pid  4142] select(8, [6], [7], NULL, NULL <unfinished ...>
+[pid  4157] <... brk resumed> )         = 0x9fd6000
+[pid  4142] <... select resumed> )      = 1 (out [7])
+[pid  4157] read(0,  <unfinished ...>
+[pid  4142] select(7, [6], [], NULL, NULL <unfinished ...>
+[pid  4162] write(1, "at relativo y tiene los permisos"..., 4096) = 4096
+[pid  4142] <... select resumed> )      = 1 (in [6])
+[pid  4142] read(6, "at relativo y tiene los permisos"..., 4096) = 4096
+[pid  4142] select(8, [6], [7], NULL, NULL) = 1 (out [7])
+[pid  4142] write(7, "at relativo y tiene los permisos"..., 4096 <unfinished ...>
+[pid  4157] <... read resumed> "at relativo y tiene los permisos"..., 4096) = 4096
+[pid  4142] <... write resumed> )       = 4096
+[pid  4157] _llseek(1, 0,  <unfinished ...>
+[pid  4142] select(8, [6], [7], NULL, NULL <unfinished ...>
+[pid  4157] <... _llseek resumed> 0xbf8e18ec, SEEK_CUR) = -1 ESPIPE (Illegal seek)
+[pid  4142] <... select resumed> )      = 1 (out [7])
+[pid  4157] fstat64(1,  <unfinished ...>
+[pid  4142] select(7, [6], [], NULL, NULL <unfinished ...>
+[pid  4157] <... fstat64 resumed> {st_mode=S_IFIFO|0600, st_size=0, ...}) = 0
+[pid  4157] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb75b3000
+[pid  4157] mmap2(NULL, 16384, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb75af000
+[pid  4157] read(0,  <unfinished ...>
+[pid  4162] read(0,  <unfinished ...>
+[pid  4161] read(0, "\\-T\no\n.B \\-Z\ny puede ser complet"..., 4096) = 4096
+[pid  4161] write(1, "280\nH336\ntimpriman\nwh48\ntcorrect"..., 4096) = 4096
+[pid  4162] <... read resumed> "280\nH336\ntimpriman\nwh48\ntcorrect"..., 4096) = 4096
+[pid  4162] read(0,  <unfinished ...>
+[pid  4161] write(1, "s\nwh24\ntde\nwh24\ntmanual,\nwh24\nti"..., 4096) = 4096
+[pid  4162] <... read resumed> "s\nwh24\ntde\nwh24\ntmanual,\nwh24\nti"..., 4096) = 4096
+[pid  4161] read(0, "e\ndel entorno\n.RB $ MANROFFSEQ ."..., 4096) = 4096
+[pid  4162] read(0,  <unfinished ...>
+[pid  4161] write(1, "wh24\ntuna\nwh24\ntlista\nwh24\ntde\nw"..., 4096) = 4096
+[pid  4162] <... read resumed> "wh24\ntuna\nwh24\ntlista\nwh24\ntde\nw"..., 4096) = 4096
+[pid  4162] write(1, "  Si se usa una versi\303\263n recient"..., 4096) = 4096
+[pid  4142] <... select resumed> )      = 1 (in [6])
+[pid  4142] read(6, "  Si se usa una versi\303\263n recient"..., 4096) = 4096
+[pid  4142] select(8, [6], [7], NULL, NULL) = 1 (out [7])
+[pid  4142] write(7, "  Si se usa una versi\303\263n recient"..., 4096 <unfinished ...>
+[pid  4161] write(1, "ejemplos\nwh24\nt(incluidos\nwh24\nt"..., 1617 <unfinished ...>
+[pid  4157] <... read resumed> "  Si se usa una versi\303\263n recient"..., 4096) = 4096
+[pid  4142] <... write resumed> )       = 4096
+[pid  4142] select(8, [6], [7], NULL, NULL) = 1 (out [7])
+[pid  4142] select(7, [6], [], NULL, NULL <unfinished ...>
+[pid  4157] write(1, "MAN(1)                          "..., 4096 <unfinished ...>
+[pid  4161] <... write resumed> )       = 1617
+[pid  4158] <... read resumed> "MAN(1)                          "..., 8192) = 4096
+[pid  4157] <... write resumed> )       = 4096
+[pid  4158] write(1, "MAN(1)                          "..., 1023 <unfinished ...>
+[pid  4157] write(1, "a redirecci\303\263n pues la opci\303\263n -"..., 56 <unfinished ...>
+[pid  4158] <... write resumed> )       = 1023
+[pid  4157] <... write resumed> )       = 56
+[pid  4158] write(1, "e lleva a cabo en todas las secc"..., 1023) = 1023
+[pid  4158] write(1, "  o   viejo [obsoleto]\n\n       U"..., 1023) = 1023
+[pid  4158] write(1, "esta p\303\241gina de manual.\n\nEJEMPLO"..., 1023 <unfinished ...>
+[pid  4157] read(0,  <unfinished ...>
+[pid  4158] <... write resumed> )       = 1023
+[pid  4158] write(1, "ar l", 4 <unfinished ...>
+[pid  4162] read(0,  <unfinished ...>
+[pid  4161] write(1, "x X devtag:.NH 1\nf3\nV1040\nH0\ntES"..., 64 <unfinished ...>
+[pid  4162] <... read resumed> "ejemplos\nwh24\nt(incluidos\nwh24\nt"..., 4096) = 1617
+[pid  4161] <... write resumed> )       = 64
+[pid  4158] <... write resumed> )       = 4
+[pid  4158] read(0, "a redirecci\303\263n pues la opci\303\263n -"..., 4096) = 56
+[pid  4158] write(1, "a redirecci\303\263n pues la opci\303\263n -"..., 56) = 56
+[pid  4158] read(0,  <unfinished ...>
+[pid  4162] read(0, "x X devtag:.NH 1\nf3\nV1040\nH0\ntES"..., 4096) = 64
+[pid  4161] write(1, "x X devtag:.eo.h\nV1040\nH408\nn40 "..., 45 <unfinished ...>
+[pid  4162] read(0,  <unfinished ...>
+[pid  4161] <... write resumed> )       = 45
+[pid  4162] <... read resumed> "x X devtag:.eo.h\nV1040\nH408\nn40 "..., 4096) = 45
+[pid  4162] read(0,  <unfinished ...>
+[pid  4161] write(1, "x X devtag:.col 1\nV1080\nH168\nt0\n"..., 178) = 178
+[pid  4162] <... read resumed> "x X devtag:.col 1\nV1080\nH168\nt0\n"..., 4096) = 178
+[pid  4162] read(0,  <unfinished ...>
+[pid  4161] write(1, "x X devtag:.col 1\nf3\nV1160\nH168\n"..., 185) = 185
+[pid  4162] <... read resumed> "x X devtag:.col 1\nf3\nV1160\nH168\n"..., 4096) = 185
+[pid  4162] read(0,  <unfinished ...>
+[pid  4161] write(1, "x X devtag:.col 1\nf3\nV1240\nH168\n"..., 98) = 98
+[pid  4162] <... read resumed> "x X devtag:.col 1\nf3\nV1240\nH168\n"..., 4096) = 98
+[pid  4162] read(0,  <unfinished ...>
+[pid  4161] write(1, "x X devtag:.col 1\nf3\nV1320\nH168\n"..., 174) = 174
+[pid  4162] <... read resumed> "x X devtag:.col 1\nf3\nV1320\nH168\n"..., 4096) = 174
+[pid  4161] brk(0x9c28000 <unfinished ...>
+[pid  4162] read(0,  <unfinished ...>
+[pid  4161] <... brk resumed> )         = 0x9c28000
+[pid  4161] write(1, "x X devtag:.col 1\nf3\nV1400\nH168\n"..., 297) = 297
+[pid  4162] <... read resumed> "x X devtag:.col 1\nf3\nV1400\nH168\n"..., 4096) = 297
+[pid  4161] write(1, "x X devtag:.NH 1\nf3\nV1480\nH0\ntEN"..., 43 <unfinished ...>
+[pid  4162] read(0,  <unfinished ...>
+[pid  4161] <... write resumed> )       = 43
+[pid  4162] <... read resumed> "x X devtag:.NH 1\nf3\nV1480\nH0\ntEN"..., 4096) = 43
+[pid  4162] read(0,  <unfinished ...>
+[pid  4161] write(1, "x X devtag:.eo.h\nV1480\nH192\nn40 "..., 1179) = 1179
+[pid  4162] <... read resumed> "x X devtag:.eo.h\nV1480\nH192\nn40 "..., 4096) = 1179
+[pid  4161] write(1, "x X devtag:.col 1\nf3\nV1960\nH168\n"..., 440) = 440
+[pid  4162] read(0, "x X devtag:.col 1\nf3\nV1960\nH168\n"..., 4096) = 440
+[pid  4162] read(0,  <unfinished ...>
+[pid  4161] write(1, "x X devtag:.col 1\nV2080\nH168\ntSY"..., 364) = 364
+[pid  4162] <... read resumed> "x X devtag:.col 1\nV2080\nH168\ntSY"..., 4096) = 364
+[pid  4162] read(0,  <unfinished ...>
+[pid  4161] read(0, " (si est\\[u00E1]n disponibles). "..., 4096) = 1547
+[pid  4161] write(1, "x X devtag:.col 1\nf3\nV2160\nH168\n"..., 1710) = 1710
+[pid  4162] <... read resumed> "x X devtag:.col 1\nf3\nV2160\nH168\n"..., 4096) = 1710
+[pid  4161] write(1, "x X devtag:.NH 1\nf3\nV2520\nH0\ntFI"..., 44 <unfinished ...>
+[pid  4162] read(0,  <unfinished ...>
+[pid  4161] <... write resumed> )       = 44
+[pid  4162] <... read resumed> "x X devtag:.NH 1\nf3\nV2520\nH0\ntFI"..., 4096) = 44
+[pid  4162] read(0,  <unfinished ...>
+[pid  4161] write(1, "x X devtag:.eo.h\nV2520\nH216\nn40 "..., 1256) = 1256
+[pid  4162] <... read resumed> "x X devtag:.eo.h\nV2520\nH216\nn40 "..., 4096) = 1256
+[pid  4161] write(1, "x X devtag:.NH 1\nf3\nV520\nH0\ntV\nC"..., 72 <unfinished ...>
+[pid  4162] write(1, "ina de manual que considera m\303\241s"..., 4096 <unfinished ...>
+[pid  4161] <... write resumed> )       = 72
+[pid  4162] <... write resumed> )       = 4096
+[pid  4161] write(1, "x X devtag:.eo.h\nV520\nH336\nn40 0"..., 454 <unfinished ...>
+[pid  4142] <... select resumed> )      = 1 (in [6])
+[pid  4142] read(6, "ina de manual que considera m\303\241s"..., 4096) = 4096
+[pid  4142] select(8, [6], [7], NULL, NULL) = 1 (out [7])
+[pid  4142] write(7, "ina de manual que considera m\303\241s"..., 4096 <unfinished ...>
+[pid  4162] write(1, "  para mantener la consistencia."..., 4096 <unfinished ...>
+[pid  4161] <... write resumed> )       = 454
+[pid  4162] <... write resumed> )       = 4096
+[pid  4161] write(1, "x X devtag:.NH 1\nf3\nV680\nH0\ntHIS"..., 43 <unfinished ...>
+[pid  4157] <... read resumed> "ina de manual que considera m\303\241s"..., 4096) = 4096
+[pid  4162] read(0,  <unfinished ...>
+[pid  4161] <... write resumed> )       = 43
+[pid  4162] <... read resumed> "x X devtag:.NH 1\nf3\nV520\nH0\ntV\nC"..., 4096) = 569
+[pid  4157] write(1, "dout sin paginador. La salida pu"..., 4096 <unfinished ...>
+[pid  4158] <... read resumed> "dout sin paginador. La salida pu"..., 4040) = 4040
+[pid  4158] write(1, "dout sin paginador. La salida pu"..., 1023) = 1023
+[pid  4158] write(1, "argumento ha de ser precedido de"..., 1023) = 1023
+[pid  4158] write(1, " tipo texto whatis tradicionales"..., 1023) = 1023
+[pid  4158] write(1, "rarqu\303\255a de p\303\241ginas de manual `"..., 971 <unfinished ...>
+[pid  4161] read(0,  <unfinished ...>
+[pid  4158] <... write resumed> )       = 971
+[pid  4158] read(0, "cificado por el est\303\241ndar POSIX "..., 8192) = 56
+[pid  4162] read(0,  <unfinished ...>
+[pid  4161] <... read resumed> "", 4096) = 0
+[pid  4158] write(1, "cificado por el est\303\241ndar POSIX "..., 56 <unfinished ...>
+[pid  4157] <... write resumed> )       = 4096
+[pid  4158] <... write resumed> )       = 56
+[pid  4157] write(1, ">[_<territorio>[.<conjunto-de-ca"..., 72 <unfinished ...>
+[pid  4158] read(0,  <unfinished ...>
+[pid  4157] <... write resumed> )       = 72
+[pid  4158] <... read resumed> ">[_<territorio>[.<conjunto-de-ca"..., 8136) = 72
+[pid  4142] <... write resumed> )       = 4096
+[pid  4142] select(8, [6], [7], NULL, NULL) = 2 (in [6], out [7])
+[pid  4142] read(6,  <unfinished ...>
+[pid  4158] write(1, ">[_<territorio>[.<conjunto-de-ca"..., 72 <unfinished ...>
+[pid  4157] read(0,  <unfinished ...>
+[pid  4158] <... write resumed> )       = 72
+[pid  4142] <... read resumed> "  para mantener la consistencia."..., 4096) = 4096
+[pid  4158] read(0,  <unfinished ...>
+[pid  4142] write(7, "  para mantener la consistencia."..., 4096) = 4096
+[pid  4157] <... read resumed> "  para mantener la consistencia."..., 4096) = 4096
+[pid  4142] select(8, [6], [7], NULL, NULL <unfinished ...>
+[pid  4161] write(1, "x X devtag:.eo.h\nV680\nH216\nn40 0"..., 1025) = 1025
+[pid  4162] <... read resumed> "x X devtag:.eo.h\nV680\nH216\nn40 0"..., 4096) = 1025
+[pid  4157] write(1, "\303\241gina deseada esta disponible e"..., 4096 <unfinished ...>
+[pid  4162] read(0,  <unfinished ...>
+[pid  4158] <... read resumed> "\303\241gina deseada esta disponible e"..., 8064) = 4096
+[pid  4161] write(1, "V1200\nH0\nt2.5.7\nh1728\nt2010\nN45\n"..., 95 <unfinished ...>
+[pid  4157] <... write resumed> )       = 4096
+[pid  4162] <... read resumed> "V1200\nH0\nt2.5.7\nh1728\nt2010\nN45\n"..., 4096) = 95
+[pid  4161] <... write resumed> )       = 95
+[pid  4158] write(1, "\303\241gina deseada esta disponible e"..., 1023) = 1023
+[pid  4158] write(1, "rarse de que el cach\303\251 refleja f"..., 1023) = 1023
+[pid  4162] write(1, "\10GE\10ES\10S\n              Dependien"..., 2470 <unfinished ...>
+[pid  4161] close(1 <unfinished ...>
+[pid  4158] write(1, "r el valor de la opci\303\263n de la l"..., 1023 <unfinished ...>
+[pid  4162] <... write resumed> )       = 2470
+[pid  4161] <... close resumed> )       = 0
+[pid  4162] close(0 <unfinished ...>
+[pid  4161] munmap(0xb77d2000, 4096 <unfinished ...>
+[pid  4162] <... close resumed> )       = 0
+[pid  4161] <... munmap resumed> )      = 0
+[pid  4162] munmap(0xb78bc000, 4096 <unfinished ...>
+[pid  4158] <... write resumed> )       = 1023
+[pid  4158] write(1, "a opcional el dispositivo que se"..., 1023) = 1023
+[pid  4158] write(1, "r te", 4)         = 4
+[pid  4158] read(0,  <unfinished ...>
+[pid  4157] write(1, "mporalmente el valor determinado"..., 75 <unfinished ...>
+[pid  4158] <... read resumed> "mporalmente el valor determinado"..., 3968) = 75
+[pid  4158] write(1, "mporalmente el valor determinado"..., 75) = 75
+[pid  4158] read(0,  <unfinished ...>
+[pid  4157] <... write resumed> )       = 75
+[pid  4162] <... munmap resumed> )      = 0
+[pid  4161] exit_group(0)               = ?
+Process 4160 resumed
+Process 4161 detached
+[pid  4157] read(0,  <unfinished ...>
+[pid  4142] <... select resumed> )      = 1 (out [7])
+[pid  4142] select(7, [6], [], NULL, NULL) = 1 (in [6])
+[pid  4142] read(6, "\10GE\10ES\10S\n              Dependien"..., 4096) = 2470
+[pid  4142] select(8, [6], [7], NULL, NULL) = 1 (out [7])
+[pid  4142] write(7, "\10GE\10ES\10S\n              Dependien"..., 2470 <unfinished ...>
+[pid  4157] <... read resumed> "\10GE\10ES\10S\n              Dependien"..., 4096) = 2470
+[pid  4162] exit_group(0)               = ?
+Process 4162 detached
+[pid  4157] write(1, "a\n              de  locales  dir"..., 4096 <unfinished ...>
+[pid  4158] <... read resumed> "a\n              de  locales  dir"..., 3893) = 3893
+[pid  4158] write(1, "a\n              de  locales  dir"..., 1023) = 1023
+[pid  4158] write(1, "escribe el  valor  de  la  varia"..., 1023) = 1023
+[pid  4158] write(1, "          \\ P\303\241gina\\ de\\nual\\ \\$"..., 1023) = 1023
+[pid  4158] write(1, " en ascii en un dispositivo lati"..., 824) = 824
+[pid  4158] read(0, "id\303\251nticas, est\303\241 leyendo la p\303\241"..., 8192) = 203
+[pid  4158] write(1, "id\303\251nticas, est\303\241 leyendo la p\303\241"..., 203) = 203
+[pid  4158] read(0,  <unfinished ...>
+[pid  4157] <... write resumed> )       = 4096
+[pid  4160] <... wait4 resumed> [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0, NULL) = 4161
+[pid  4157] write(1, "presa, es posible que necesite e"..., 163 <unfinished ...>
+[pid  4158] <... read resumed> "presa, es posible que necesite e"..., 7989) = 163
+[pid  4158] write(1, "presa, es posible que necesite e"..., 163 <unfinished ...>
+[pid  4160] wait4(-1,  <unfinished ...>
+[pid  4158] <... write resumed> )       = 163
+[pid  4160] <... wait4 resumed> [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0, NULL) = 4162
+[pid  4158] read(0,  <unfinished ...>
+[pid  4157] <... write resumed> )       = 163
+[pid  4157] read(0,  <unfinished ...>
+[pid  4160] exit_group(0)               = ?
+Process 4156 resumed
+Process 4160 detached
+[pid  4142] <... write resumed> )       = 2470
+[pid  4142] select(8, [6], [7], NULL, NULL) = 1 (out [7])
+[pid  4142] select(7, [6], [], NULL, NULL <unfinished ...>
+[pid  4156] <... wait4 resumed> [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0, NULL) = 4160
+[pid  4156] read(10, "", 8192)          = 0
+[pid  4156] exit_group(0)               = ?
+Process 4156 detached
+[pid  4142] <... select resumed> )      = 1 (in [6])
+[pid  4142] --- SIGCHLD (Child exited) @ 0 (0) ---
+[pid  4142] waitpid(-1, [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], WNOHANG) = 4156
+[pid  4142] waitpid(-1, 0xbffab77c, WNOHANG) = 0
+[pid  4142] sigreturn()                 = ? (mask now [])
+[pid  4142] read(6, "", 4096)           = 0
+[pid  4142] close(6)                    = 0
+[pid  4142] close(7 <unfinished ...>
+[pid  4157] <... read resumed> "", 4096) = 0
+[pid  4142] <... close resumed> )       = 0
+[pid  4157] write(1, " nroff usado es distinto del de "..., 4096 <unfinished ...>
+[pid  4142] rt_sigaction(SIGCHLD, NULL, {0x805cd40, [HUP INT TERM CHLD], SA_NOCLDSTOP}, 8) = 0
+[pid  4158] <... read resumed> " nroff usado es distinto del de "..., 7826) = 4096
+[pid  4157] <... write resumed> )       = 4096
+[pid  4157] write(1, "probaci\303\263n de\n              cons"..., 71 <unfinished ...>
+[pid  4158] write(1, " nroff usado es distinto del de "..., 1023 <unfinished ...>
+[pid  4157] <... write resumed> )       = 71
+[pid  4158] <... write resumed> )       = 1023
+[pid  4142] rt_sigaction(SIGCHLD, {0x805cd40, [HUP INT TERM CHLD], SA_RESTART|SA_NOCLDSTOP}, NULL, 8) = 0
+[pid  4142] rt_sigaction(SIGPIPE, {SIG_DFL, [], 0}, NULL, 8) = 0
+[pid  4157] write(1, "b\303\272squeda, use la opci\303\263n -u.\n\n "..., 4096 <unfinished ...>
+[pid  4158] write(1, "rqu\303\255a principal.  Para  evitar "..., 1023 <unfinished ...>
+[pid  4157] <... write resumed> )       = 4096
+[pid  4158] <... write resumed> )       = 1023
+[pid  4157] write(1, "locale(3), man(7), ascii(7),\n   "..., 60 <unfinished ...>
+[pid  4158] write(1, "ponible. V\303\251ase whatis(1) para m"..., 1023 <unfinished ...>
+[pid  4157] <... write resumed> )       = 60
+[pid  4158] <... write resumed> )       = 1023
+[pid  4142] waitpid(-1, Process 4142 suspended
+ <unfinished ...>
+[pid  4157] write(1, "ORIA\n       1990, 1991 - Escrito"..., 733 <unfinished ...>
+[pid  4158] write(1, "adena, --preprocessor=cadena\n   "..., 1023 <unfinished ...>
+[pid  4157] <... write resumed> )       = 733
+[pid  4158] <... write resumed> )       = 1023
+[pid  4157] exit_group(0)               = ?
+Process 4142 resumed
+Process 4157 detached
+[pid  4158] write(1, " com", 4)         = 4
+[pid  4142] <... waitpid resumed> [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0) = 4157
+[pid  4158] read(0,  <unfinished ...>
+[pid  4142] --- SIGCHLD (Child exited) @ 0 (0) ---
+[pid  4158] <... read resumed> "probaci\303\263n de\n              cons"..., 3730) = 3730
+[pid  4142] sigreturn( <unfinished ...>
+[pid  4158] write(1, "probaci\303\263n de\n              cons"..., 1023 <unfinished ...>
+[pid  4142] <... sigreturn resumed> )   = ? (mask now [])
+[pid  4158] <... write resumed> )       = 1023
+[pid  4142] waitpid(-1,  <unfinished ...>
+[pid  4158] write(1, "e el/los lugar(es) en los que se"..., 1023 <unfinished ...>
+[pid  4142] <... waitpid resumed> 0xbffabf3c, WNOHANG) = 0
+[pid  4142] waitpid(-1, Process 4142 suspended
+ <unfinished ...>
+[pid  4158] <... write resumed> )       = 1023
+[pid  4158] write(1, "\n\n       MANSECT\n              S"..., 1023) = 1023
+[pid  4158] write(1, "e `\302\264.\n\n\n       LANG, LC_MESSAGE"..., 661) = 661
+[pid  4158] read(0, "e de base de datos alternativo o"..., 8192) = 1230
+[pid  4158] write(1, "e de base de datos alternativo o"..., 1023) = 1023
+[pid  4158] write(1, "s F. Gonz\303\241lez (luisgh@cogs.susx"..., 207) = 207
+[pid  4158] read(0, "", 6962)           = 0
+[pid  4158] exit_group(0)               = ?
+Process 4142 resumed
+Process 4158 detached
+[pid  4142] <... waitpid resumed> [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0) = 4158
+[pid  4142] --- SIGCHLD (Child exited) @ 0 (0) ---
+[pid  4142] sigreturn()                 = ? (mask now [])
+[pid  4142] waitpid(-1, 0xbffabf3c, WNOHANG) = -1 ECHILD (No child processes)
+[pid  4142] rt_sigaction(SIGINT, {0x805b950, [], 0}, NULL, 8) = 0
+[pid  4142] rt_sigaction(SIGQUIT, {SIG_DFL, [], 0}, NULL, 8) = 0
+[pid  4142] chdir("/home/cengler/SO/tp/taller_ptrace/ptrace-code") = 0
+[pid  4142] exit_group(0)               = ?
+Process 4141 resumed
+Process 4142 detached
+<... wait4 resumed> [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0, NULL) = 4142
+--- SIGCHLD (Child exited) @ 0 (0) ---
+exit_group(0)                           = ?

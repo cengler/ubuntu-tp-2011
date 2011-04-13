@@ -1,0 +1,229 @@
+execve("./whoop", ["./whoop", "who"], [/* 39 vars */]) = 0
+uname({sys="Linux", node="sullivan", ...}) = 0
+brk(0)                                  = 0x9f2d000
+brk(0x9f2dcd0)                          = 0x9f2dcd0
+set_thread_area({entry_number:-1 -> 6, base_addr:0x9f2d830, limit:1048575, seg_32bit:1, contents:0, read_exec_only:0, limit_in_pages:1, seg_not_present:0, useable:1}) = 0
+brk(0x9f4ecd0)                          = 0x9f4ecd0
+brk(0x9f4f000)                          = 0x9f4f000
+clone(Process 4136 attached
+child_stack=0, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0x9f2d898) = 4136
+[pid  4135] wait4(-1, Process 4135 suspended
+ <unfinished ...>
+[pid  4136] open("whoop.out", O_WRONLY|O_CREAT, 0644) = 3
+[pid  4136] dup2(3, 1)                  = 1
+[pid  4136] dup2(3, 2)                  = 2
+[pid  4136] close(3)                    = 0
+[pid  4136] rt_sigaction(SIGHUP, {SIG_IGN, [HUP], SA_RESTART}, {SIG_DFL, [], 0}, 8) = 0
+[pid  4136] execve("/usr/local/sbin/who", ["who"], [/* 39 vars */]) = -1 ENOENT (No such file or directory)
+[pid  4136] execve("/usr/local/bin/who", ["who"], [/* 39 vars */]) = -1 ENOENT (No such file or directory)
+[pid  4136] execve("/usr/sbin/who", ["who"], [/* 39 vars */]) = -1 ENOENT (No such file or directory)
+[pid  4136] execve("/usr/bin/who", ["who"], [/* 39 vars */]) = 0
+[pid  4136] brk(0)                      = 0x9db2000
+[pid  4136] access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+[pid  4136] mmap2(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7825000
+[pid  4136] access("/etc/ld.so.preload", R_OK) = -1 ENOENT (No such file or directory)
+[pid  4136] open("/etc/ld.so.cache", O_RDONLY) = 3
+[pid  4136] fstat64(3, {st_mode=S_IFREG|0644, st_size=73853, ...}) = 0
+[pid  4136] mmap2(NULL, 73853, PROT_READ, MAP_PRIVATE, 3, 0) = 0xb7812000
+[pid  4136] close(3)                    = 0
+[pid  4136] access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+[pid  4136] open("/lib/libc.so.6", O_RDONLY) = 3
+[pid  4136] read(3, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0@n\1\0004\0\0\0"..., 512) = 512
+[pid  4136] fstat64(3, {st_mode=S_IFREG|0755, st_size=1421892, ...}) = 0
+[pid  4136] mmap2(NULL, 1427880, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0xd3a000
+[pid  4136] mmap2(0xe91000, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x157) = 0xe91000
+[pid  4136] mmap2(0xe94000, 10664, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0xe94000
+[pid  4136] close(3)                    = 0
+[pid  4136] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7811000
+[pid  4136] set_thread_area({entry_number:-1 -> 6, base_addr:0xb78118d0, limit:1048575, seg_32bit:1, contents:0, read_exec_only:0, limit_in_pages:1, seg_not_present:0, useable:1}) = 0
+[pid  4136] mprotect(0xe91000, 8192, PROT_READ) = 0
+[pid  4136] mprotect(0x8052000, 4096, PROT_READ) = 0
+[pid  4136] mprotect(0x40a000, 4096, PROT_READ) = 0
+[pid  4136] munmap(0xb7812000, 73853)   = 0
+[pid  4136] brk(0)                      = 0x9db2000
+[pid  4136] brk(0x9dd3000)              = 0x9dd3000
+[pid  4136] open("/usr/lib/locale/locale-archive", O_RDONLY|O_LARGEFILE) = 3
+[pid  4136] fstat64(3, {st_mode=S_IFREG|0644, st_size=5193216, ...}) = 0
+[pid  4136] mmap2(NULL, 2097152, PROT_READ, MAP_PRIVATE, 3, 0) = 0xb7611000
+[pid  4136] mmap2(NULL, 1179648, PROT_READ, MAP_PRIVATE, 3, 0x2a3) = 0xb74f1000
+[pid  4136] close(3)                    = 0
+[pid  4136] access("/var/run/utmpx", F_OK) = -1 ENOENT (No such file or directory)
+[pid  4136] open("/var/run/utmp", O_RDONLY|O_LARGEFILE|O_CLOEXEC) = 3
+[pid  4136] fcntl64(3, F_GETFD)         = 0x1 (flags FD_CLOEXEC)
+[pid  4136] _llseek(3, 0, [0], SEEK_SET) = 0
+[pid  4136] alarm(0)                    = 0
+[pid  4136] rt_sigaction(SIGALRM, {0xe40740, [], 0}, {SIG_DFL, [], 0}, 8) = 0
+[pid  4136] alarm(10)                   = 0
+[pid  4136] fcntl64(3, F_SETLKW, {type=F_RDLCK, whence=SEEK_SET, start=0, len=0}) = 0
+[pid  4136] read(3, "\2\0\0\0\0\0\0\0~\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"..., 384) = 384
+[pid  4136] fcntl64(3, F_SETLKW, {type=F_UNLCK, whence=SEEK_SET, start=0, len=0}) = 0
+[pid  4136] alarm(0)                    = 10
+[pid  4136] rt_sigaction(SIGALRM, {SIG_DFL, [], 0}, NULL, 8) = 0
+[pid  4136] alarm(0)                    = 0
+[pid  4136] rt_sigaction(SIGALRM, {0xe40740, [], 0}, {SIG_DFL, [], 0}, 8) = 0
+[pid  4136] alarm(10)                   = 0
+[pid  4136] fcntl64(3, F_SETLKW, {type=F_RDLCK, whence=SEEK_SET, start=0, len=0}) = 0
+[pid  4136] read(3, "\1\0\0\0002\0\0\0~\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"..., 384) = 384
+[pid  4136] fcntl64(3, F_SETLKW, {type=F_UNLCK, whence=SEEK_SET, start=0, len=0}) = 0
+[pid  4136] alarm(0)                    = 10
+[pid  4136] rt_sigaction(SIGALRM, {SIG_DFL, [], 0}, NULL, 8) = 0
+[pid  4136] alarm(0)                    = 0
+[pid  4136] rt_sigaction(SIGALRM, {0xe40740, [], 0}, {SIG_DFL, [], 0}, 8) = 0
+[pid  4136] alarm(10)                   = 0
+[pid  4136] fcntl64(3, F_SETLKW, {type=F_RDLCK, whence=SEEK_SET, start=0, len=0}) = 0
+[pid  4136] read(3, "\6\0\0\0\22\4\0\0tty4\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"..., 384) = 384
+[pid  4136] fcntl64(3, F_SETLKW, {type=F_UNLCK, whence=SEEK_SET, start=0, len=0}) = 0
+[pid  4136] alarm(0)                    = 10
+[pid  4136] rt_sigaction(SIGALRM, {SIG_DFL, [], 0}, NULL, 8) = 0
+[pid  4136] alarm(0)                    = 0
+[pid  4136] rt_sigaction(SIGALRM, {0xe40740, [], 0}, {SIG_DFL, [], 0}, 8) = 0
+[pid  4136] alarm(10)                   = 0
+[pid  4136] fcntl64(3, F_SETLKW, {type=F_RDLCK, whence=SEEK_SET, start=0, len=0}) = 0
+[pid  4136] read(3, "\6\0\0\0\31\4\0\0tty5\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"..., 384) = 384
+[pid  4136] fcntl64(3, F_SETLKW, {type=F_UNLCK, whence=SEEK_SET, start=0, len=0}) = 0
+[pid  4136] alarm(0)                    = 10
+[pid  4136] rt_sigaction(SIGALRM, {SIG_DFL, [], 0}, NULL, 8) = 0
+[pid  4136] alarm(0)                    = 0
+[pid  4136] rt_sigaction(SIGALRM, {0xe40740, [], 0}, {SIG_DFL, [], 0}, 8) = 0
+[pid  4136] alarm(10)                   = 0
+[pid  4136] fcntl64(3, F_SETLKW, {type=F_RDLCK, whence=SEEK_SET, start=0, len=0}) = 0
+[pid  4136] read(3, "\6\0\0\0`\4\0\0tty3\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"..., 384) = 384
+[pid  4136] fcntl64(3, F_SETLKW, {type=F_UNLCK, whence=SEEK_SET, start=0, len=0}) = 0
+[pid  4136] alarm(0)                    = 10
+[pid  4136] rt_sigaction(SIGALRM, {SIG_DFL, [], 0}, NULL, 8) = 0
+[pid  4136] alarm(0)                    = 0
+[pid  4136] rt_sigaction(SIGALRM, {0xe40740, [], 0}, {SIG_DFL, [], 0}, 8) = 0
+[pid  4136] alarm(10)                   = 0
+[pid  4136] fcntl64(3, F_SETLKW, {type=F_RDLCK, whence=SEEK_SET, start=0, len=0}) = 0
+[pid  4136] read(3, "\6\0\0\0^\4\0\0tty2\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"..., 384) = 384
+[pid  4136] fcntl64(3, F_SETLKW, {type=F_UNLCK, whence=SEEK_SET, start=0, len=0}) = 0
+[pid  4136] alarm(0)                    = 10
+[pid  4136] rt_sigaction(SIGALRM, {SIG_DFL, [], 0}, NULL, 8) = 0
+[pid  4136] alarm(0)                    = 0
+[pid  4136] rt_sigaction(SIGALRM, {0xe40740, [], 0}, {SIG_DFL, [], 0}, 8) = 0
+[pid  4136] alarm(10)                   = 0
+[pid  4136] fcntl64(3, F_SETLKW, {type=F_RDLCK, whence=SEEK_SET, start=0, len=0}) = 0
+[pid  4136] read(3, "\6\0\0\0d\4\0\0tty6\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"..., 384) = 384
+[pid  4136] fcntl64(3, F_SETLKW, {type=F_UNLCK, whence=SEEK_SET, start=0, len=0}) = 0
+[pid  4136] alarm(0)                    = 10
+[pid  4136] rt_sigaction(SIGALRM, {SIG_DFL, [], 0}, NULL, 8) = 0
+[pid  4136] alarm(0)                    = 0
+[pid  4136] rt_sigaction(SIGALRM, {0xe40740, [], 0}, {SIG_DFL, [], 0}, 8) = 0
+[pid  4136] alarm(10)                   = 0
+[pid  4136] fcntl64(3, F_SETLKW, {type=F_RDLCK, whence=SEEK_SET, start=0, len=0}) = 0
+[pid  4136] read(3, "\6\0\0\0\235\5\0\0tty1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"..., 384) = 384
+[pid  4136] fcntl64(3, F_SETLKW, {type=F_UNLCK, whence=SEEK_SET, start=0, len=0}) = 0
+[pid  4136] alarm(0)                    = 10
+[pid  4136] rt_sigaction(SIGALRM, {SIG_DFL, [], 0}, NULL, 8) = 0
+[pid  4136] alarm(0)                    = 0
+[pid  4136] rt_sigaction(SIGALRM, {0xe40740, [], 0}, {SIG_DFL, [], 0}, 8) = 0
+[pid  4136] alarm(10)                   = 0
+[pid  4136] fcntl64(3, F_SETLKW, {type=F_RDLCK, whence=SEEK_SET, start=0, len=0}) = 0
+[pid  4136] read(3, "\7\0\0\0\24\6\0\0tty7\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"..., 384) = 384
+[pid  4136] fcntl64(3, F_SETLKW, {type=F_UNLCK, whence=SEEK_SET, start=0, len=0}) = 0
+[pid  4136] alarm(0)                    = 10
+[pid  4136] rt_sigaction(SIGALRM, {SIG_DFL, [], 0}, NULL, 8) = 0
+[pid  4136] kill(1556, SIG_0)           = 0
+[pid  4136] alarm(0)                    = 0
+[pid  4136] rt_sigaction(SIGALRM, {0xe40740, [], 0}, {SIG_DFL, [], 0}, 8) = 0
+[pid  4136] alarm(10)                   = 0
+[pid  4136] fcntl64(3, F_SETLKW, {type=F_RDLCK, whence=SEEK_SET, start=0, len=0}) = 0
+[pid  4136] read(3, "\10\0\0\0\0\0\0\0pts/0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"..., 384) = 384
+[pid  4136] fcntl64(3, F_SETLKW, {type=F_UNLCK, whence=SEEK_SET, start=0, len=0}) = 0
+[pid  4136] alarm(0)                    = 10
+[pid  4136] rt_sigaction(SIGALRM, {SIG_DFL, [], 0}, NULL, 8) = 0
+[pid  4136] alarm(0)                    = 0
+[pid  4136] rt_sigaction(SIGALRM, {0xe40740, [], 0}, {SIG_DFL, [], 0}, 8) = 0
+[pid  4136] alarm(10)                   = 0
+[pid  4136] fcntl64(3, F_SETLKW, {type=F_RDLCK, whence=SEEK_SET, start=0, len=0}) = 0
+[pid  4136] read(3, "\7\0\0\0\f\10\0\0pts/1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"..., 384) = 384
+[pid  4136] fcntl64(3, F_SETLKW, {type=F_UNLCK, whence=SEEK_SET, start=0, len=0}) = 0
+[pid  4136] alarm(0)                    = 10
+[pid  4136] rt_sigaction(SIGALRM, {SIG_DFL, [], 0}, NULL, 8) = 0
+[pid  4136] kill(2060, SIG_0)           = 0
+[pid  4136] alarm(0)                    = 0
+[pid  4136] rt_sigaction(SIGALRM, {0xe40740, [], 0}, {SIG_DFL, [], 0}, 8) = 0
+[pid  4136] alarm(10)                   = 0
+[pid  4136] fcntl64(3, F_SETLKW, {type=F_RDLCK, whence=SEEK_SET, start=0, len=0}) = 0
+[pid  4136] read(3, "\10\0\0\0\2\n\0\0pts/2\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"..., 384) = 384
+[pid  4136] fcntl64(3, F_SETLKW, {type=F_UNLCK, whence=SEEK_SET, start=0, len=0}) = 0
+[pid  4136] alarm(0)                    = 10
+[pid  4136] rt_sigaction(SIGALRM, {SIG_DFL, [], 0}, NULL, 8) = 0
+[pid  4136] alarm(0)                    = 0
+[pid  4136] rt_sigaction(SIGALRM, {0xe40740, [], 0}, {SIG_DFL, [], 0}, 8) = 0
+[pid  4136] alarm(10)                   = 0
+[pid  4136] fcntl64(3, F_SETLKW, {type=F_RDLCK, whence=SEEK_SET, start=0, len=0}) = 0
+[pid  4136] read(3, "\7\0\0\0\f\10\0\0pts/2\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"..., 384) = 384
+[pid  4136] fcntl64(3, F_SETLKW, {type=F_UNLCK, whence=SEEK_SET, start=0, len=0}) = 0
+[pid  4136] alarm(0)                    = 10
+[pid  4136] rt_sigaction(SIGALRM, {SIG_DFL, [], 0}, NULL, 8) = 0
+[pid  4136] kill(2060, SIG_0)           = 0
+[pid  4136] alarm(0)                    = 0
+[pid  4136] rt_sigaction(SIGALRM, {0xe40740, [], 0}, {SIG_DFL, [], 0}, 8) = 0
+[pid  4136] alarm(10)                   = 0
+[pid  4136] fcntl64(3, F_SETLKW, {type=F_RDLCK, whence=SEEK_SET, start=0, len=0}) = 0
+[pid  4136] read(3, "\7\0\0\0\326\17\0\0pts/3\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"..., 384) = 384
+[pid  4136] fcntl64(3, F_SETLKW, {type=F_UNLCK, whence=SEEK_SET, start=0, len=0}) = 0
+[pid  4136] alarm(0)                    = 10
+[pid  4136] rt_sigaction(SIGALRM, {SIG_DFL, [], 0}, NULL, 8) = 0
+[pid  4136] kill(4054, SIG_0)           = 0
+[pid  4136] alarm(0)                    = 0
+[pid  4136] rt_sigaction(SIGALRM, {0xe40740, [], 0}, {SIG_DFL, [], 0}, 8) = 0
+[pid  4136] alarm(10)                   = 0
+[pid  4136] fcntl64(3, F_SETLKW, {type=F_RDLCK, whence=SEEK_SET, start=0, len=0}) = 0
+[pid  4136] read(3, "", 384)            = 0
+[pid  4136] fcntl64(3, F_SETLKW, {type=F_UNLCK, whence=SEEK_SET, start=0, len=0}) = 0
+[pid  4136] alarm(0)                    = 10
+[pid  4136] rt_sigaction(SIGALRM, {SIG_DFL, [], 0}, NULL, 8) = 0
+[pid  4136] close(3)                    = 0
+[pid  4136] stat64("/dev/tty7", {st_mode=S_IFCHR|0620, st_rdev=makedev(4, 7), ...}) = 0
+[pid  4136] time(NULL)                  = 1302653676
+[pid  4136] open("/usr/share/locale/locale.alias", O_RDONLY) = 3
+[pid  4136] fstat64(3, {st_mode=S_IFREG|0644, st_size=2570, ...}) = 0
+[pid  4136] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb74f0000
+[pid  4136] read(3, "# Locale name alias data base.\n#"..., 4096) = 2570
+[pid  4136] read(3, "", 4096)           = 0
+[pid  4136] close(3)                    = 0
+[pid  4136] munmap(0xb74f0000, 4096)    = 0
+[pid  4136] open("/usr/share/locale/es_AR.utf8/LC_MESSAGES/coreutils.mo", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4136] open("/usr/share/locale/es_AR/LC_MESSAGES/coreutils.mo", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4136] open("/usr/share/locale/es.utf8/LC_MESSAGES/coreutils.mo", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4136] open("/usr/share/locale/es/LC_MESSAGES/coreutils.mo", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4136] open("/usr/share/locale-langpack/es_AR.utf8/LC_MESSAGES/coreutils.mo", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4136] open("/usr/share/locale-langpack/es_AR/LC_MESSAGES/coreutils.mo", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4136] open("/usr/share/locale-langpack/es.utf8/LC_MESSAGES/coreutils.mo", O_RDONLY) = -1 ENOENT (No such file or directory)
+[pid  4136] open("/usr/share/locale-langpack/es/LC_MESSAGES/coreutils.mo", O_RDONLY) = 3
+[pid  4136] fstat64(3, {st_mode=S_IFREG|0644, st_size=290595, ...}) = 0
+[pid  4136] mmap2(NULL, 290595, PROT_READ, MAP_PRIVATE, 3, 0) = 0xb74aa000
+[pid  4136] close(3)                    = 0
+[pid  4136] open("/usr/lib/gconv/gconv-modules.cache", O_RDONLY) = 3
+[pid  4136] fstat64(3, {st_mode=S_IFREG|0644, st_size=26048, ...}) = 0
+[pid  4136] mmap2(NULL, 26048, PROT_READ, MAP_SHARED, 3, 0) = 0xb74a3000
+[pid  4136] close(3)                    = 0
+[pid  4136] open("/etc/localtime", O_RDONLY) = 3
+[pid  4136] fstat64(3, {st_mode=S_IFREG|0644, st_size=1061, ...}) = 0
+[pid  4136] fstat64(3, {st_mode=S_IFREG|0644, st_size=1061, ...}) = 0
+[pid  4136] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb74a2000
+[pid  4136] read(3, "TZif2\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\5\0\0\0\5\0\0\0\0"..., 4096) = 1061
+[pid  4136] _llseek(3, -6, [1055], SEEK_CUR) = 0
+[pid  4136] read(3, "\nART3\n", 4096)   = 6
+[pid  4136] close(3)                    = 0
+[pid  4136] munmap(0xb74a2000, 4096)    = 0
+[pid  4136] fstat64(1, {st_mode=S_IFREG|0644, st_size=25806, ...}) = 0
+[pid  4136] mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb74a2000
+[pid  4136] stat64("/dev/pts/1", {st_mode=S_IFCHR|0620, st_rdev=makedev(136, 1), ...}) = 0
+[pid  4136] stat64("/etc/localtime", {st_mode=S_IFREG|0644, st_size=1061, ...}) = 0
+[pid  4136] stat64("/dev/pts/2", {st_mode=S_IFCHR|0620, st_rdev=makedev(136, 2), ...}) = 0
+[pid  4136] stat64("/etc/localtime", {st_mode=S_IFREG|0644, st_size=1061, ...}) = 0
+[pid  4136] stat64("/dev/pts/3", {st_mode=S_IFCHR|0620, st_rdev=makedev(136, 3), ...}) = 0
+[pid  4136] stat64("/etc/localtime", {st_mode=S_IFREG|0644, st_size=1061, ...}) = 0
+[pid  4136] write(1, "cengler  tty7         2011-04-12"..., 182) = 182
+[pid  4136] close(1)                    = 0
+[pid  4136] munmap(0xb74a2000, 4096)    = 0
+[pid  4136] close(2)                    = 0
+[pid  4136] exit_group(0)               = ?
+Process 4135 resumed
+Process 4136 detached
+<... wait4 resumed> [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0, NULL) = 4136
+--- SIGCHLD (Child exited) @ 0 (0) ---
+exit_group(0)                           = ?
