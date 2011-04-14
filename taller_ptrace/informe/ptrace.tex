@@ -47,22 +47,23 @@ exit_group(0)                           = ?
 
 \begin{enumerate}
  \item Abre el archivo \verb|whoop.out|
- \item Reemplaza el FD de STD-OUT el archivo \verb|whoop.out|
- \item Reemplaza el FD de STD-ERR el archivo \verb|whoop.out|
+ \item Reemplaza el FD de STD-OUT el del archivo \verb|whoop.out|
+ \item Reemplaza el FD de STD-ERR el del archivo \verb|whoop.out|
  \item Se reemplaza por proceso de \verb|whoop| con el contenido del programa pasado como parametro
 \end{enumerate}
 
+\newpage
 
 \subsection{Como lo hace whoop?}
 
 Abre el archivo \verb|whoop.out|\\
+Este comando crea el archivo whoop.out en el direcctorio de ejecucion y retorna el FD 3
+
 \begin{framed}
 \begin{verbatimtab}
 open("whoop.out", O_WRONLY|O_CREAT, 0644) = 3
 \end{verbatimtab}
 \end{framed}
-
-Este comando crea el archivo whoop.out en el direcctorio de ejecucion y retorna el FD 3
 
 Luego se remplaza el FD de la salida de standart por el del archivo whoop.out
 
@@ -72,14 +73,14 @@ dup2(3, 1)                  = 1
 \end{verbatimtab}
 \end{framed}
 
-y tambien se remplaza el FD de la salida de error por el del archivo whoop.out\\
+y tambien se remplaza el FD de la salida de error por el del archivo whoop.out
 \begin{framed}
 \begin{verbatimtab}
 dup2(3, 2)                  = 2
 \end{verbatimtab}
 \end{framed}
 
-Se cierra el FD del archivo whoop (ya quedo direccionado por los FD de la STD-OUT y STD-ERR)\\
+Se cierra el FD del archivo whoop (ya quedo direccionado por los FD de la STD-OUT y STD-ERR)
 \begin{framed}
 \begin{verbatimtab}
 close(3)                    = 0
@@ -105,5 +106,74 @@ Codigo del nuevo porceso proceso (tinyhello)
 \begin{verbatimtab}
 write(1, "Hola SO!\n", 9)   = 9
 _exit(0)                    = ?
+\end{verbatimtab}
+\end{framed}
+
+\newpage
+
+\section{Ejercicio 2}
+
+Escribimos en programa upcase.c
+
+\begin{framed}
+\begin{verbatimtab}
+int main(int argc, char* argv[]) {
+	
+	if(argc < 2 )
+	{
+
+	}
+
+	/* Hacemos fork, para tener un proceso controlador y el que nos pasan por parametro */
+	int child = fork();
+	
+	/* Si hubo error en el fork */
+	if (child == -1) { 
+		perror("ERROR fork"); 
+		return 1; 
+	}
+	
+	if (child == 0) { /* Si ej el hijo */
+
+		/* Lo preparo para ser monitoreado */
+		if (ptrace(PTRACE_TRACEME, 0, NULL, NULL)) {
+			perror("ERROR child ptrace(PTRACE_TRACEME, ...)"); exit(1);
+		}
+		
+		/* Ejecuto el programa pasado por parametro */
+		execvp(argv[1], argv+1);
+		
+		/* Si sigue despues del exec es porque hubi un error */
+		perror("ERROR child exec(...)"); 
+		exit(1);	
+	
+	} else { /* Si es el padre */
+		
+		/* Mientras que el proceso no salga, ciclamos infinitamente */
+		while(1) {
+			
+			/* El proceso padre se bloquea hasta que el hijo tenga un evento */
+			int status;
+			if (wait(&status) < 0) { 
+				perror("wait"); 
+				break; 
+			}
+			
+			/* Si el hijo finalizo corto el ciclo infinito */
+			if (WIFEXITED(status)) 
+				break; /* Proceso terminado */
+			
+			/* Verificamos y modificamos la memoria y el hijo bloqueado */
+			editBloquedProcess(child);
+			
+			/* Liberamos al proceso hijo para que continue ejecutando */
+			ptrace(PTRACE_SYSCALL, child, NULL, NULL);
+		}
+		
+		/* Liberamos al hijo para que continue se ejecucion */
+		ptrace(PTRACE_DETACH, child, NULL, NULL);
+	}
+	return 0;
+}
 \end{verbatimtab}
 \end{framed}
