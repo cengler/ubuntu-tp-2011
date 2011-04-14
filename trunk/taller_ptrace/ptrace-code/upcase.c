@@ -7,46 +7,62 @@
 #include <stdlib.h>
 #include <errno.h>
 
+const int long_size = sizeof(long);
+
 int main(int argc, char* argv[]) {
 	
-	/* Salvamos el File Descriptors de la salida standard. */
-	int std_out = dup(1);
-		
-	/* CREO OTRO PROCESO */
 	int child = fork();
-	if (child == -1) { 
-		perror("ERROR fork"); 
-		return 1; 
-	}
+	int status;
 	
-	int pdes[2];
-	pipe(pdes);
-	
+	if (child == -1) { perror("ERROR fork"); return 1; }
 	if (child == 0) {
-		/* HIJO */
-		
-		/* CIERRO EL EXTREMO DEL PIPE NO USADO*/
-		close(pdes[0]); 
-		
-		/* Redirigimos la salida estandar. */
-		dup2(pdes[1], 1);
-		
-		/* Ejecutamos el comando recibido. */
+
+		if (ptrace(PTRACE_TRACEME, 0, NULL, NULL)) {
+			perror("ERROR child ptrace(PTRACE_TRACEME, ...)"); exit(1);
+		}
 		execvp(argv[1], argv+1);
-		
-		/* Si vuelve de exec() hubo un error */
-		perror("ERROR child exec(...)"); 
-		exit(1);
-		
+
+		perror("ERROR child exec(...)"); exit(1);
 	} else {
-		/* PADRE */
-		
-		/* CIERRO EL EXTREMO DEL PIPE NO USADO*/
-		close(pdes[1]); 
-		
-		dup2(std_out, pdes[0]);
-		
-	}
+		while(1) {
+			if (wait(&status) < 0) { 
+				perror("wait"); 
+				break; 
+			}
+			if (WIFEXITED(status)) 
+				break; /* Proceso terminado */
+				
+			int sysno = ptrace(PTRACE_PEEKUSER, child, 4*ORIG_EAX, NULL);
+			
+			
+			if( sysno == 4) {
+					
+					int ecx = ptrace(PTRACE_PEEKUSER, child, 4*EBX, NULL);
+					int largo_texto = ptrace(PTRACE_PEEKUSER, child, 4*EDX, NULL);
+					
+			}
+			ptrace(PTRACE_SYSCALL, child, NULL, NULL); /* contina */
+		}
+	ptrace(PTRACE_DETACH, child, NULL, NULL);/*Liberamos al hijo*/
+}
+
 
 	return 0;
+}
+
+void toUpperCase(pid_t child, long addr, int len) {
+	char *laddr;
+	int i,j;
+	union u {
+		long val;
+		char[long_size];
+	}data;
+	i=0;
+	j=len / long_size;
+	while(i<j) 
+	{
+		data.val = ptrace(PTRACE_PEEKDATA, child, addr+i*4, NULL);
+		i++;
+		laddr += long_size;
+	}
 }
