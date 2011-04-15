@@ -5,29 +5,29 @@
 
 \section{Ejercicio 3}
 
-Completamos la implementaci\'on del scheduler Round-Robin implementando los todos de la clase SchedRR.
+Completamos la implementaci\'on del scheduler Round-Robin implementando los TODOs de la clase SchedRR.
 
-Este scheduler recibe en quantum y permite a cada tarea ejecutar como maximo ese tiempo, una vez finalizado ese tiempo continua con la siguiente tarea lista para ejecutar.
+Este scheduler recibe un quantum y permite a cada tarea ejecutar como m\'aximo ese tiempo. Una vez finalizado ese tiempo continua con la siguiente tarea lista para ejecutar.
 
-Ver resoluci\'on en los archivos \verb|sched rr.cpp| y \verb|sched rr.h|.
+Ver resoluci\'on en los archivos \verb|sched_rr.cpp| y \verb|sched_rr.h|.
 
 \section{Ejercicio 4}
 
-Realizamos dos lotes de prueba para observar el comportamiento de del scheduler Round-Robin.
+Realizamos dos lotes de prueba para observar el comportamiento del scheduler Round-Robin.
 
-Para tal fin creamos el tipo de Tarea TaskCPUIOCPU que recibe 3 parametros:
+Para tal fin creamos el tipo de tarea TaskCPUIOCPU que recibe 3 parametros:
 
 \begin{enumerate}
- \item n Tiempo de ejecuci\'on de CPU en ciclos de reloj
- \item i Tiempo de ejecuci\'on de IO en ciclos de reloj
- \item m Tiempo de ejecuci\'on de CPU en ciclos de reloj
+ \item n = Tiempo de ejecuci\'on de CPU en ciclos de reloj
+ \item i = Tiempo de ejecuci\'on de IO en ciclos de reloj
+ \item m = Tiempo de ejecuci\'on de CPU en ciclos de reloj
 \end{enumerate}
 
 Esta tarea ejecuta en el CPU (n) se bloquea por (i) y luego sigue ejecutando (m).
 
 \subsection{Lote 1}
 
-Creamos el siguiente grupo de tareas \verb|ejercicio4_1.tsk|
+Creamos el siguiente grupo de tareas en \verb|ejercicio4_1.tsk|
 
 \begin{framed}
 \begin{verbatim}
@@ -51,17 +51,13 @@ Luego ejecutamos Simusched con los siguientes parametros:
     \includegraphics[width=1\textwidth]{img/ejercicio4_1.png}
 \end{figure}
 
-Se puede ver en el grafico que se van alternando los 3 procesos con un quantum de 3 unidades hasta que el proceso (2) se bloquea.
-
-Mientras el (2) est\'a bloqueado se puede ver que los otros dos procesos van altenando su ejecuci\'on. 
-
-Hasta que el proceso (2) se desblquea y nuevamente se vuelven a alternar los 3 procesos.
+Se puede ver en el gr\'afico que se van alternando los 3 procesos con un quantum de 3 unidades hasta que el proceso (2) se bloquea. Mientras el proceso (2) est\'a bloqueado se puede ver que los otros dos procesos van altenando su ejecuci\'on. Hasta que el proceso (2) se desbloquea y nuevamente se vuelven a alternar los 3 procesos.
 
 \subsection{Lote 2}
 
 Utilizamos nuevamente la tarea que creamos anteriormente TaskCPUIOCPU.
 
-Creamos el archivo \verb|ejercicio4_2.tsk|
+Creamos un nuevo lote de tareas en el archivo \verb|ejercicio4_2.tsk|
 
 \begin{framed}
 \begin{verbatim}
@@ -88,17 +84,17 @@ Luego ejecutamos Simusched con los siguientes parametros:
     \includegraphics[width=1\textwidth]{img/ejercicio4_2.png}
 \end{figure}
 
-Se ve en el grafico que se carga la tarea 0 y se comienza a ejecutar por el quantum de 4.
+Se ve en el gr\'afico que se carga la tarea 0 y se comienza a ejecutar por el quantum de 4.
 
-Luego, cuando esta finaliza la tarea 1 ya est\'a en la cola de listos, por lo que comienza a ejecutar hasta finalizar su quantum.
+Luego, cuando la tarea 0 finaliza, la tarea 1 ya est\'a en la cola de listos, por lo que comienza a ejecutarse la tarea 1 hasta finalizar su quantum.
 
-Para ese momento las tareas 0 y 2 estan en la cola de listos, por lo que comienza a ejecutar la 0 que estaba en primer lugar.
+Para ese momento las tareas 0 y 2 est\'an en la cola de listos, por lo que comienza a ejecutar la 0 que estaba en primer lugar.
 
-Despues de eso las tres tareas ya se encuentran cargadas y se van ejecutando hasta finalizar su quantum hasta que el ciclo 29 la tarea 0 se bloquea.
+Despu\'es de eso las tres tareas ya se encuentran cargadas y se van ejecutando hasta finalizar su quantum hasta que el ciclo 29 la tarea 0 se bloquea.
 
 Por lo que siguen ejecutando las tareas 1 y 2 hasta que el el ciclo 43 la tarea 2 finaliza, y en el ciclo 48 la tarea 1 se bloquea, por lo que el procesador queda ocioso.
 
-En el ciclo 49 la tarea 0 finaliza su entrada/salida, por lo que continua su ejecucion. 
+En el ciclo 49 la tarea 0 finaliza su entrada/salida, por lo que contin\'ua su ejecucion. 
 
 En el ciclo 62 la tarea 0 finaliza y el procesador queda nuevamente ocioso.
 
@@ -107,8 +103,8 @@ En el ciclo 68 la tarea 1 finaliza su entrada/salida y ejecuta hasta finalizar.
 
 \section{Ejercicio 5}
 
-Completamos la implementaci\'on del scheduler Multilevel Feedback Queue implementando los todos de la clase SchedMFQ.
+Completamos la implementaci\'on del scheduler Multilevel Feedback Queue implementando los TODOs de la clase SchedMFQ.
 
 Este scheduler utiliza n colas con Round-Robin, y recibe como parametro el quantum de cada una de las colas.
 
-Ver resoluci\'on en los archivos \verb|sched mfq.cpp| y \verb|sched mfq.h|.
+Ver resoluci\'on en los archivos \verb|sched_mfq.cpp| y \verb|sched_mfq.h|.
