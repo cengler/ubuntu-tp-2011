@@ -3,6 +3,7 @@
 #include <sys/reg.h> 		// REG EAX, EBX ... def
 #include <sys/syscall.h>	// Sys_write ... def
 #include <unistd.h>			// STDOUT_FILENO
+#include <sys/wait.h>		// WIFEXITED
 
 #define WORD_SIZE 4
 
