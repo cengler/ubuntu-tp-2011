@@ -2,7 +2,7 @@
 
 \section{Ejercicio 6}
 
-Implementamos el tipo de tarea TaskBatch que recibe como parametro \verb|tot| (tiempo total de ejecucion) y \verb|blocks| (cantidad de bloqueos).
+Implementamos el tipo de tarea TaskBatch que recibe como par\'ametro \verb|tot| (tiempo total de ejecuci\'on) y \verb|blocks| (cantidad de bloqueos).
 
 \begin{framed}
 \begin{verbatimtab}
@@ -33,11 +33,11 @@ void TaskBatch(vector<int> params) {
 
 \section{Ejercicio 7}
 
-Primero pensamos que medidas afectarian a un scheduler que procese tareas de tipo Batch.
+Primero pensamos que medidas afectar\'ian a un scheduler que procese tareas de tipo Batch.
 
 Pensamos el mas dedidas importantes para un sistema batch.
 
-Eficiencia: tratar de que la CPU este ``oupada'' todo el tiempo.\\
+Eficiencia: tratar de que la CPU este ``ocupada'' todo el tiempo.\\
 Carga del sistema: minimizar la cant. de procesos listos que esten esperando CPU.\\
 Latencia: minimizar el tiempo requerido para que un proceso empiece a dar resultados.\\
 Tiempo de ejecucion: minimizar el tiempo total que le toma a un proceso ejecutar completamente.
@@ -46,7 +46,7 @@ Tiempo de ejecucion: minimizar el tiempo total que le toma a un proceso ejecutar
 
 \subsection{(a) Starvation}
 
-Es este algoritmo, es posible que una tarea TaskCPU 20 sufra inanici\'on failmente en el siguiente esquema:
+En este algoritmo, es posible que una tarea TaskCPU 20 sufra inanici\'on f\'acilmente en el siguiente esquema:
 
 Procesos:
 \begin{itemize}
