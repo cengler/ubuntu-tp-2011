@@ -1,7 +1,8 @@
 
 \section{Ejercicio 1}
 
-Ejecutamos \verb|whoop| dentro del programa \verb|strace| para obterner informacion de las SYSCALLS del programa \verb|whoop|.
+Ejecutamos \verb|whoop| dentro de la herramienta \verb|strace| para obterner informaci\'on de las SYSCALLS del programa \verb|whoop|.
+A su vez al programa \verb|whoop| le pasamos por par\'ametro el programa \verb|tinyhello|.
 
 \begin{framed}
 \begin{verbatim}
@@ -18,12 +19,12 @@ uname({sys="Linux", node="sullivan", ...}) = 0
 brk(0)                                  = 0x9742000
 brk(0x9742cd0)                          = 0x9742cd0
 set_thread_area({entry_number:-1 -> 6, base_addr:0x9742830, limit:1048575, 
-  seg_32bit:1, contents:0, read_exec_only:0, limit_in_pages:1, 
-  seg_not_present:0, useable:1}) = 0
+    seg_32bit:1, contents:0, read_exec_only:0, limit_in_pages:1, 
+    seg_not_present:0, useable:1}) = 0
 brk(0x9763cd0)                          = 0x9763cd0
 brk(0x9764000)                          = 0x9764000
 clone(Process 4252 attached child_stack=0, flags=CLONE_CHILD_CLEARTID|
-  CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0x9742898) = 4252
+    CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0x9742898) = 4252
 [pid  4251] wait4(-1, Process 4251 suspended
  <unfinished ...>
 [pid  4252] open("whoop.out", O_WRONLY|O_CREAT, 0644) = 3
@@ -31,7 +32,7 @@ clone(Process 4252 attached child_stack=0, flags=CLONE_CHILD_CLEARTID|
 [pid  4252] dup2(3, 2)                  = 2
 [pid  4252] close(3)                    = 0
 [pid  4252] rt_sigaction(SIGHUP, {SIG_IGN, [HUP], SA_RESTART}, 
-  {SIG_DFL, [], 0}, 8) = 0
+    {SIG_DFL, [], 0}, 8) = 0
 [pid  4252] execve("./tinyhello", ["./tinyhello"], [/* 39 vars */]) = 0
 [pid  4252] write(1, "Hola SO!\n", 9)   = 9
 [pid  4252] _exit(0)                    = ?
@@ -48,13 +49,13 @@ exit_group(0)                           = ?
 \begin{enumerate}
  \item Crea un proceso hijo dentro del cual se va a ejecutar el programa pasado como par\'ametro.
  \item El padre queda en espera a que el hijo termine de ejecutar.
- \item el hijo:
+ \item El hijo:
  \begin{enumerate}
   \item Abre el archivo \verb|whoop.out|
   \item Reemplaza el FD de STD-OUT el del archivo \verb|whoop.out|
   \item Reemplaza el FD de STD-ERR el del archivo \verb|whoop.out|
-  \item Desasocia el proceso hijo, para que en caso de que el padre muera, el hijo continue en ejecucion.
-  \item Se reemplaza por proceso de \verb|whoop| con el contenido del programa pasado como parametro
+  \item Desasocia el proceso hijo, para que en caso de que el padre muera, el hijo continue en ejecuci\'on.
+  \item Se reemplaza el proceso de \verb|whoop| con el contenido del programa pasado como par\'ametro
  \end{enumerate}
 \end{enumerate}
 
@@ -62,7 +63,7 @@ exit_group(0)                           = ?
 
 \subsection{Como lo hace whoop?}
 
-Crea un proceso hijo dentro del cual se va a ejecutar el programa pasado como par\'ametro.
+Crea un proceso hijo dentro del cual se va a ejecutar el programa pasado por par\'ametro.
 
 \begin{framed}
 \begin{verbatimtab}
@@ -81,8 +82,8 @@ El padre queda en espera a que el hijo termine de ejecutar.
 
 En hijo: Abre el archivo \verb|whoop.out|\\
 Este comando crea el archivo whoop.out en el directorio de ejecuci\'on y retorna el FD 3.\\
-Luego se remplaza el FD de la salida de standart y la salida de error por el del archivo whoop.out\\
-y cierra el FD del archivo whoop (ya quedo direccionado por los FD de la STD-OUT y STD-ERR)
+Luego se remplaza el FD de la salida de standart y la salida de error por el del archivo whoop.out.\\
+Y se cierra el FD del archivo whoop.out (ya quedo direccionado por los FD de la STD-OUT y STD-ERR).
 
 \begin{framed}
 \begin{verbatimtab}
@@ -93,17 +94,17 @@ close(3)                    = 0
 \end{verbatimtab}
 \end{framed}
 
-El proceso cambia la acci\'on de asociada a una se\~nal. HUP (exit)
+El proceso cambia la acci\'on asociada a una se\~nal HUP (exit).
 
 La llamada al sistema\\
  \verb|long sys_rt_sigaction (int sig, const struct sigaction |\\
  \verb|                   *act, struct sigaction *oact, size_t sigsetsize);| \\
 permite realizar eso.
 
-Altera la accion de la se\~nal: \verb|sig| y le asigna el comportamiento definido en la estructura apuntada por \verb|act| y salva la accion original en la estructura \verb|oact|.
-\verb|sigsetsize| indica el tama\~no de la estuctura apuntada por \verb|act|.
+Altera la acci\'on de la se\~nal: \verb|sig| y le asigna el comportamiento definido en la estructura apuntada por \verb|act| y salva la acci\'on original en la estructura \verb|oact|.
+El \verb|sigsetsize| indica el tama\~no de la estuctura apuntada por \verb|act|.
 
-En este caso se esta cambiando la accion de la se\~nal \verb|SIGHUP|, y se le esta asignando el comportamiento \verb|SIG_IGN| que es ignorar la se\~nal de \verb|SIGHUP|.
+En este caso se esta cambiando la acci\'on de la se\~nal \verb|SIGHUP|, y se le esta asignando el comportamiento \verb|SIG_IGN| que es ignorar la se\~nal de \verb|HUP|.
 
 \begin{framed}
 \begin{verbatimtab}
@@ -118,7 +119,7 @@ execve("./tinyhello", ["./tinyhello"], [/* 39 vars */]) = 0
 \end{verbatimtab}
 \end{framed}
 
-Codigo del nuevo proceso (tinyhello)
+C\'odigo del nuevo proceso (tinyhello).
 \begin{framed}
 \begin{verbatimtab}
 write(1, "Hola SO!\n", 9)   = 9
@@ -126,14 +127,14 @@ _exit(0)                    = ?
 \end{verbatimtab}
 \end{framed}
 
-El proceso hijo finaliza y luego el padre finaliza el terminar su \verb|wait4()|. 	
+El proceso hijo finaliza y luego el padre finaliza al terminar su \verb|wait4()|. 	
 
 \newpage
 
 \section{Ejercicio 2}
 
-Para poder modificar los datos que fuera a escribir por pantalla el proceso hijo, debiamos interceptar las llamdas al SO que hacia el hijo.\\
-Para eso utilizamos el tip con el codigo para interceptar las llamadas del SO que hace el proceso hijo.
+Para poder modificar los datos que fuera a escribir por pantalla el proceso hijo, deb\'iamos interceptar las llamadas al SO que hac\'ia el hijo.\\
+Para eso utilizamos el tip con el c\'odigo para interceptar las llamadas del SO que hace el proceso hijo.
 
 
 Discriminamos que llamadas del sistema operativo eran de WRITE y de estas cuales eran a STDOUT.\\
@@ -146,7 +147,7 @@ int destino = ptrace(PTRACE_PEEKUSER, child, 4*EBX, NULL);
 \end{verbatimtab}
 \end{framed}
 
-Si la llamada era efectivamente una llamade a WRITE entonces ECX era el puntero a los datos y EDX la longitud de los datos a imprimir.
+Si la llamada era efectivamente una llamada a WRITE entonces ECX era el puntero a los datos y EDX la longitud de los datos a imprimir.
 
 \begin{framed}
 \begin{verbatimtab}
@@ -155,8 +156,8 @@ int len = ptrace(PTRACE_PEEKUSER, child, 4*EDX, NULL);
 \end{verbatimtab}
 \end{framed}
 
-Ahora debiamos cambiar los datos que se enviarian a imprimir por pantalla.\\
-Para eso utilizamos \verb|PTRACE_PEEKDATA| para obtener los datos de direcciones de memoria del proceso hijo.
+Ahora deb\'iamos cambiar los datos que se enviar\'ian a imprimir por pantalla.\\
+Para eso utilizamos \verb|PTRACE_PEEKDATA| para obtener los datos de las direcciones de memoria del proceso hijo.
 
 \begin{framed}
 \begin{verbatimtab}
@@ -164,7 +165,7 @@ long data = ptrace(PTRACE_PEEKDATA, child, addr+WORD_SIZE*i, NULL);
 \end{verbatimtab}
 \end{framed}
 
-Reemplazamos el texto obtenido a mayusculas y lo teniamos que escribir en la memoria del hijo para que al continuar imprima el texto modificado.
+Reemplazamos el texto obtenido a may\'usculas y lo ten\'iamos que escribir en la memoria del hijo para que al continuar imprima el texto modificado.
 
 \begin{framed}
 \begin{verbatimtab}
@@ -172,4 +173,4 @@ ptrace(PTRACE_POKEDATA, child, addr+WORD_SIZE*i, data.val);
 \end{verbatimtab}
 \end{framed}
 
-Esto lo hicimos hasta la longitud del texto. Y luego llamamos a ptrace(PTRACE CONT) para reanudar el hijo hasta la siguiente se \~nal.
+Esto lo hicimos hasta la longitud del texto. Y luego llamamos a ptrace(PTRACE CONT) para reanudar el hijo hasta la siguiente se\~nal.
