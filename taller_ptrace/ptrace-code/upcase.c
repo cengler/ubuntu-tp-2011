@@ -6,9 +6,9 @@
 
 #define WORD_SIZE 4
 
-void editBloquedProcess(pid_t child) 
-{	
-	/* Obtenemos en numero de llamada al sistema operativo */
+void editBloquedProcess(pid_t child) {
+	
+	/* Obtenemos el numero de llamada al sistema operativo */
 	int sysno = ptrace(PTRACE_PEEKUSER, child, 4*ORIG_EAX, NULL);
 	
 	/* Si es una llamada de escritura */
@@ -17,9 +17,9 @@ void editBloquedProcess(pid_t child)
 		/* Obtenemos el destino de la escritura */
 		int destino = ptrace(PTRACE_PEEKUSER, child, 4*EBX, NULL);
 		
-		/* Si es la salada estandar */
-		if( destino == STDOUT_FILENO)
-		{
+		/* Si es la salida estandar */
+		if( destino == STDOUT_FILENO) {
+			
 			/* Obtenemos la direccion de memoria 
 			 * que contiene el texto a imprimir */
 			int addr = ptrace(PTRACE_PEEKUSER, child, 4*ECX, NULL);
@@ -33,13 +33,13 @@ void editBloquedProcess(pid_t child)
 			union u {
 				long val;
 				char chars[WORD_SIZE];
-			}data;	
+			}data;
 			
 			/* Recorremos los datos en la memoria 
 			 * del hijo por 'words' */
 			int i;
-			for(i = 0; i<len/WORD_SIZE+1; i++)
-			{
+			for(i = 0; i<len/WORD_SIZE+1; i++) {
+				
 				/* Obtenemos el i-esimo word de los datos */
 				data.val = ptrace(PTRACE_PEEKDATA, 
 								child, addr+WORD_SIZE*i, NULL);
@@ -50,7 +50,7 @@ void editBloquedProcess(pid_t child)
 					data.chars[j] = toupper(data.chars[j]);
 				
 				/* Escribimos en la memoria del hijo 
-				 * los datos actualizados */	
+				 * los datos actualizados */
 				ptrace(PTRACE_POKEDATA, 
 							child, addr+WORD_SIZE*i, data.val);
 			}		
@@ -61,8 +61,7 @@ void editBloquedProcess(pid_t child)
 int main(int argc, char* argv[]) {
 
 	/* Verificamos que nos envien un comando para ejecutar */
-	if(argc < 2)
-	{
+	if(argc < 2) {
 		perror("Uso: ./upcase commando [argumentos ...]\n"); 
 		return 1; 
 	}
@@ -87,7 +86,7 @@ int main(int argc, char* argv[]) {
 		/* Ejecuto el programa pasado por parametro */
 		execvp(argv[1], argv+1);
 		
-		/* Si sigue despues del exec es porque hubi un error */
+		/* Si sigue despues del exec es porque hubo un error */
 		perror("ERROR child exec(...)"); 
 		exit(1);	
 	
@@ -122,8 +121,3 @@ int main(int argc, char* argv[]) {
 	}
 	return 0;
 }
-
-
-
-
-
