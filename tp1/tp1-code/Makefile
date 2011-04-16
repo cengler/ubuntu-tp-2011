@@ -25,3 +25,5 @@ clean:
 	rm -f $(OBJS) $(MAIN)
 	rm -f *.png
 	rm -f *.log
+	rm -f *.out
+	rm -f *.class
