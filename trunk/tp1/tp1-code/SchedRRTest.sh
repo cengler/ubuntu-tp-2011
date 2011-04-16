@@ -1,41 +1,8 @@
-./simusched ejercicio7.tsk 1 SchedRR 1 | java SchedRRTest > SchedRRTest.out
-./simusched ejercicio7.tsk 1 SchedRR 2 | java SchedRRTest >> SchedRRTest.out
-./simusched ejercicio7.tsk 1 SchedRR 3 | java SchedRRTest >> SchedRRTest.out
-./simusched ejercicio7.tsk 1 SchedRR 4 | java SchedRRTest >> SchedRRTest.out
-./simusched ejercicio7.tsk 1 SchedRR 5 | java SchedRRTest >> SchedRRTest.out
-./simusched ejercicio7.tsk 1 SchedRR 6 | java SchedRRTest >> SchedRRTest.out
-./simusched ejercicio7.tsk 1 SchedRR 7 | java SchedRRTest >> SchedRRTest.out
-./simusched ejercicio7.tsk 1 SchedRR 8 | java SchedRRTest >> SchedRRTest.out
-./simusched ejercicio7.tsk 1 SchedRR 9 | java SchedRRTest >> SchedRRTest.out
-./simusched ejercicio7.tsk 1 SchedRR 10 | java SchedRRTest >> SchedRRTest.out
-./simusched ejercicio7.tsk 1 SchedRR 11 | java SchedRRTest >> SchedRRTest.out
-./simusched ejercicio7.tsk 1 SchedRR 12 | java SchedRRTest >> SchedRRTest.out
-./simusched ejercicio7.tsk 1 SchedRR 13 | java SchedRRTest >> SchedRRTest.out
-./simusched ejercicio7.tsk 1 SchedRR 14 | java SchedRRTest >> SchedRRTest.out
-./simusched ejercicio7.tsk 1 SchedRR 15 | java SchedRRTest >> SchedRRTest.out
-./simusched ejercicio7.tsk 1 SchedRR 16 | java SchedRRTest >> SchedRRTest.out
-./simusched ejercicio7.tsk 1 SchedRR 17 | java SchedRRTest >> SchedRRTest.out
-./simusched ejercicio7.tsk 1 SchedRR 18 | java SchedRRTest >> SchedRRTest.out
-./simusched ejercicio7.tsk 1 SchedRR 19 | java SchedRRTest >> SchedRRTest.out
-./simusched ejercicio7.tsk 1 SchedRR 20 | java SchedRRTest >> SchedRRTest.out
-./simusched ejercicio7.tsk 1 SchedRR 21 | java SchedRRTest >> SchedRRTest.out
-./simusched ejercicio7.tsk 1 SchedRR 22 | java SchedRRTest >> SchedRRTest.out
-./simusched ejercicio7.tsk 1 SchedRR 23 | java SchedRRTest >> SchedRRTest.out
-./simusched ejercicio7.tsk 1 SchedRR 24 | java SchedRRTest >> SchedRRTest.out
-./simusched ejercicio7.tsk 1 SchedRR 25 | java SchedRRTest >> SchedRRTest.out
-./simusched ejercicio7.tsk 1 SchedRR 26 | java SchedRRTest >> SchedRRTest.out
-./simusched ejercicio7.tsk 1 SchedRR 27 | java SchedRRTest >> SchedRRTest.out
-./simusched ejercicio7.tsk 1 SchedRR 28 | java SchedRRTest >> SchedRRTest.out
-./simusched ejercicio7.tsk 1 SchedRR 29 | java SchedRRTest >> SchedRRTest.out
-./simusched ejercicio7.tsk 1 SchedRR 30 | java SchedRRTest >> SchedRRTest.out
-./simusched ejercicio7.tsk 1 SchedRR 31 | java SchedRRTest >> SchedRRTest.out
-./simusched ejercicio7.tsk 1 SchedRR 32 | java SchedRRTest >> SchedRRTest.out
-./simusched ejercicio7.tsk 1 SchedRR 33 | java SchedRRTest >> SchedRRTest.out
-./simusched ejercicio7.tsk 1 SchedRR 34 | java SchedRRTest >> SchedRRTest.out
-./simusched ejercicio7.tsk 1 SchedRR 35 | java SchedRRTest >> SchedRRTest.out
-./simusched ejercicio7.tsk 1 SchedRR 36 | java SchedRRTest >> SchedRRTest.out
-./simusched ejercicio7.tsk 1 SchedRR 37 | java SchedRRTest >> SchedRRTest.out
-./simusched ejercicio7.tsk 1 SchedRR 38 | java SchedRRTest >> SchedRRTest.out
-./simusched ejercicio7.tsk 1 SchedRR 39 | java SchedRRTest >> SchedRRTest.out
-./simusched ejercicio7.tsk 1 SchedRR 40 | java SchedRRTest >> SchedRRTest.out
-
+rm -f SchedRRTest.out
+for i in 40
+do
+	for j in 1 2 3 4 5
+	do
+		./simusched ejercicio7.tsk 1 SchedRR $i | java SchedRRTest >> SchedRRTest.out
+	done
+done
