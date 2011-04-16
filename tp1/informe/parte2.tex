@@ -5,23 +5,25 @@
 
 \section{Ejercicio 3}
 
-Completamos la implementaci\'on del scheduler Round-Robin implementando los TODOs de la clase SchedRR.
+Completamos la implementaci\'on del scheduler \rr implementando los \textit{TODOs} de la clase SchedRR.
 
-Este scheduler recibe un quantum y permite a cada tarea ejecutar como m\'aximo ese tiempo. Una vez finalizado ese tiempo continua con la siguiente tarea lista para ejecutar.
+Este scheduler recibe un \quantum y permite a cada tarea ejecutar como m\'aximo ese tiempo. Una vez finalizado ese tiempo continua con la siguiente tarea lista para ejecutar.
 
-Ver resoluci\'on en los archivos \verb|sched_rr.cpp| y \verb|sched_rr.h|.
+Para implementar \rr usamos una Cola para encolar los procesos que estan listos para ser ejecutados, un numero para acumular la \quota (tiempo que el programa corriente esta ejecutando) y otro numero para guardar el \quantum parado por par\'ametro.
+
+Ver resoluci\'on completa en los archivos \verb|sched_rr.cpp| y \verb|sched_rr.h|.
 
 \section{Ejercicio 4}
 
-Realizamos dos lotes de prueba para observar el comportamiento del scheduler Round-Robin.
+Realizamos dos lotes de prueba para observar el comportamiento del scheduler \rr. 
 
 Para tal fin creamos el tipo de tarea TaskCPUIOCPU que recibe 3 parametros:
 
-\begin{enumerate}
- \item n = Tiempo de ejecuci\'on de CPU en ciclos de reloj
- \item i = Tiempo de ejecuci\'on de IO en ciclos de reloj
- \item m = Tiempo de ejecuci\'on de CPU en ciclos de reloj
-\end{enumerate}
+\begin{mydescription}{m}
+ \item[n] Tiempo de ejecuci\'on de CPU en ciclos de reloj
+ \item[i] Tiempo de ejecuci\'on de IO en ciclos de reloj
+ \item[m] Tiempo de ejecuci\'on de CPU en ciclos de reloj
+\end{mydescription}
 
 Esta tarea ejecuta en el CPU (n) se bloquea por (i) y luego sigue ejecutando (m).
 
@@ -103,8 +105,15 @@ En el ciclo 68 la tarea 1 finaliza su entrada/salida y ejecuta hasta finalizar.
 
 \section{Ejercicio 5}
 
-Completamos la implementaci\'on del scheduler Multilevel Feedback Queue implementando los TODOs de la clase SchedMFQ.
+Completamos la implementaci\'on del scheduler \mfq implementando los \textit{TODOs} de la clase SchedMFQ. Este scheduler utiliza n colas con \rr, y recibe como parametro el \quantum de cada una de las colas.
 
-Este scheduler utiliza n colas con Round-Robin, y recibe como parametro el quantum de cada una de las colas.
+Para implementar \mfq usamos:
 
-Ver resoluci\'on en los archivos \verb|sched_mfq.cpp| y \verb|sched_mfq.h|.
+\begin{itemize}
+ \item una lista de Colas tan larga como la cantidad de quantums pasados como par\'ametro.
+ \item una lista con los \quantums de cada cola.
+ \item una diccionario para mantener la pioridad asignada a cada proceso.
+ \item una numero para acumular la \quota del proceso corriente
+\end{itemize}
+
+Ver resoluci\'on completa en los archivos \verb|sched_mfq.cpp| y \verb|sched_mfq.h|.
