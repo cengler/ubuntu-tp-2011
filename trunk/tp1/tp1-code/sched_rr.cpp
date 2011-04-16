@@ -6,61 +6,54 @@
 using namespace std;
 
 SchedRR::SchedRR(vector<int> argn) {
-	quantum = argn[0]; // ME GUARDO AL QUANTUM
+	/* Me guardo el quantum */
+	quantum = argn[0]; 
 }
 
 void SchedRR::load(int pid) {
-	q.push(pid); // CARGO EL SIGUIENTE A EJECUTAR
+	/* Lo encolo a la cola de listos */
+	q.push(pid);
 }
 
 void SchedRR::unblock(int pid) {
-	q.push(pid);  // LA AGREGO A LA COLA DE LISTOS
+	/* Lo encolo a la cola de listos */
+	q.push(pid); 
 }
 
 int SchedRR::tick(const enum Motivo m) {
 	
-	// SI TERMINO EJECUTO LA SIGUIENTE POR TODO UN QUANTUM
-	if (m == EXIT) {
-		if (q.empty()) return IDLE_TASK;
-		else {
+	/* Si el motivo es EXIT o BLOCK */
+	if (m == EXIT || m == BLOCK) {
+		
+		if (q.empty()) return IDLE_TASK; /* No hay nada mas para ejecutar retorno IDLE */
+		else { /* Si hay mas procesos ejecuto el siguiente de la cola */
 			quota = 0;
 			int sig = q.front(); q.pop();
 			return sig;
 		}
 	} 
 	
-	// SI SE BLOQUEO
-	if (m == BLOCK) {
-		if (q.empty()) return IDLE_TASK;
-		else {
-			quota = 0;
-			int sig = q.front(); q.pop();
-			return sig;
-		}
-	} 
-	
-	// SI SE CUMPLIO UN CICLO NORMAL
+	/* Si se recibe TICK y no estaba ejecutando nada */
 	if (current_pid() == IDLE_TASK) {
-		if (q.empty())
-			return IDLE_TASK;
-		else {
+		if (q.empty()) return IDLE_TASK; /* No hay nada mas para ejecutar retorno IDLE */
+		else { /* Si hay mas procesos ejecuto el siguiente de la cola */
 			quota = 0;
 			int sig = q.front(); q.pop();
 			return sig;
 		}
-	} else { //Hay algo ejecutandose.
-		if (q.empty()) { // Si no hay nada mas para ejecutarse, sigo.
-			quota = 0;
-			return current_pid();
-		} else if(quota >= quantum-1) {
-			quota = 0;
-			int c_pid = current_pid();
-			q.push(c_pid);
-			int sig = q.front(); q.pop();
-			return sig;
-		} else {
-			quota++;
-			return current_pid();
-		}
+	} 
+	
+	/* Si se recibe TICK y se estaba ejecutando algo */
+	if (q.empty()) { /* No hay ningun otro proceso, retorno el mismo */
+		return current_pid();
+	} else if(quota >= quantum-1) { /* Si supero su quantum lo desalojo y ejecuto el sig */
+		quota = 0;
+		int c_pid = current_pid();
+		q.push(c_pid);
+		int sig = q.front(); q.pop();
+		return sig;
+	} else { /* Si no alcanzo su quantum, incremento el acumulador de quota */
+		quota++;
+		return current_pid();
 	}
 }

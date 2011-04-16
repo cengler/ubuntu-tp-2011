@@ -13,9 +13,9 @@ class SchedRR : public SchedBase {
 		virtual int tick(const enum Motivo m);
 	
 	private:
-		std::queue<int> q;
-		int quantum;
-		int quota;
+		std::queue<int> q; /* cola de listos */
+		int quantum;       /* tiempo maximo de ejecucion de un proceso */
+		int quota;		   /* tiempo acumulado por el proceso actual */
 };
 
 #endif

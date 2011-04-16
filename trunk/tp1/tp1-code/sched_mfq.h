@@ -15,12 +15,15 @@ class SchedMFQ : public SchedBase {
 		virtual int tick(const enum Motivo m);
 	
 	private:
-		virtual int firstNotEmptyQueue();
-		int qlength;
-		std::vector<int> quantums;
-		std::vector<std::queue<int> > qs;
-		std::map<int,int> p;
-		int quota;
+		/* Metodo que retorna el numero de la primer cola no vacia.
+		 * en caso que que sean todas vacias retorna -1 */
+		virtual int firstNotEmptyQueue(); 
+		
+		int qlength;						/* cantidad de colas RR */
+		std::vector<int> quantums;			/* quantum de cada cola */
+		std::vector<std::queue<int> > qs;	/* lista de colas RR */
+		std::map<int,int> p;				/* pioridad de cada proceso */
+		int quota;							/* ciclos consumidos por el proceso actual */
 
 };
 

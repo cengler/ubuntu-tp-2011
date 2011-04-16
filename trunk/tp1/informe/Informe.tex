@@ -21,7 +21,7 @@
 
 \usepackage{lastpage} %ultima pagina
 
-%\usepackage{wrapfig} %Inclusi�n de gr�ficos al lado de texto
+%\usepackage{wrapfig} %Inclusi?n de gr?ficos al lado de texto
 %\usepackage[rflt]{floatflt} %Para meter figuras flotantes entre el texto
 
 
@@ -57,8 +57,11 @@
 \renewcommand{\headrulewidth}{0.4pt}
 \fancyfoot{}
 
-\newcommand{\depto}{{\bf DPTO: }}
-
+\newcommand{\quota}{\textit{quota }}
+\newcommand{\quantum}{\textit{quantum }}
+\newcommand{\quantums}{\textit{quantums }}
+\newcommand{\rr}{\textit{Round-Robin }}
+\newcommand{\mfq}{\textit{Multilevel Feedback Queue }}
 
 \def\falta#1{ \begin{framed}	\begin{center} \hspace{1cm} \Large FALTA \normalsize #1 \hspace{1cm} \end{center} \end{framed}}
 
@@ -68,6 +71,13 @@
 \includegraphics[scale=#1]{#2}
 \end{center}}
 
+\newenvironment{mydescription}[1]
+  {\begin{list}{}%
+   {\renewcommand\makelabel[1]{##1\hfill}%
+   \settowidth\labelwidth{\makelabel{#1}}%
+   \setlength\leftmargin{\labelwidth}
+   \addtolength\leftmargin{\labelsep}}}
+  {\end{list}}
 
 \begin{document}
 
