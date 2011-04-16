@@ -91,19 +91,13 @@ public class SchedRRTest {
 			}
 			else
 			{
-				if(latencia.get(pid) == null) {
+				if(latencia.get(pid) == null)
 					latencia.put(pid, time);
-				} else {
-					if(latencia.get(pid) > time)
-						latencia.put(pid, time);
-				}
 
 				if(execTime.get(pid) == null)
 					execTime.put(pid, 1);
 				else 
 					execTime.put(pid, execTime.get(pid)+1);
-				
-				
 			}
 		}
 		else if(state.equals(EXIT)) 

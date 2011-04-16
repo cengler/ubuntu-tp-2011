@@ -20,6 +20,8 @@ simu.o: simu.cpp simu.h basetask.h basesched.h
 simusched.o: simusched.cpp basetask.h basesched.h tasks.h
 tasks.o: tasks.cpp tasks.h basetask.h
 
+SchedRRTest: SchedRRTest.java
+	javac SchedRRTest.java
 
 clean:
 	rm -f $(OBJS) $(MAIN)
@@ -27,3 +29,4 @@ clean:
 	rm -f *.log
 	rm -f *.out
 	rm -f *.class
+
