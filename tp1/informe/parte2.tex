@@ -7,9 +7,9 @@
 
 Completamos la implementaci\'on del scheduler \rr implementando los \textit{TODOs} de la clase SchedRR.
 
-Este scheduler recibe un \quantum y permite a cada tarea ejecutar como m\'aximo ese tiempo. Una vez finalizado ese tiempo continua con la siguiente tarea lista para ejecutar.
+Este scheduler recibe un \quantum y permite a cada tarea ejecutar como m\'aximo ese tiempo. Una vez finalizado ese tiempo contin\'ua con la siguiente tarea lista para ejecutar.
 
-Para implementar \rr usamos una Cola para encolar los procesos que estan listos para ser ejecutados, un numero para acumular la \quota (tiempo que el programa corriente esta ejecutando) y otro numero para guardar el \quantum parado por par\'ametro.
+Para implementar \rr usamos una Cola para ir encolando los procesos que estan listos para ser ejecutados, un n\'umero para acumular la \quota (tiempo que el programa corriente esta ejecutando) y otro n\'umero para guardar el \quantum pasado por par\'ametro.
 
 Ver resoluci\'on completa en los archivos \verb|sched_rr.cpp| y \verb|sched_rr.h|.
 
@@ -96,7 +96,7 @@ Despu\'es de eso las tres tareas ya se encuentran cargadas y se van ejecutando h
 
 Por lo que siguen ejecutando las tareas 1 y 2 hasta que el el ciclo 43 la tarea 2 finaliza, y en el ciclo 48 la tarea 1 se bloquea, por lo que el procesador queda ocioso.
 
-En el ciclo 49 la tarea 0 finaliza su entrada/salida, por lo que contin\'ua su ejecucion. 
+En el ciclo 49 la tarea 0 finaliza su entrada/salida, por lo que contin\'ua su ejecuci\'on. 
 
 En el ciclo 62 la tarea 0 finaliza y el procesador queda nuevamente ocioso.
 
@@ -113,7 +113,7 @@ Para implementar \mfq usamos:
  \item una lista de Colas tan larga como la cantidad de quantums pasados como par\'ametro.
  \item una lista con los \quantums de cada cola.
  \item una diccionario para mantener la pioridad asignada a cada proceso.
- \item una numero para acumular la \quota del proceso corriente
+ \item una n\'umero para acumular la \quota del proceso corriente
 \end{itemize}
 
 Ver resoluci\'on completa en los archivos \verb|sched_mfq.cpp| y \verb|sched_mfq.h|.
