@@ -1,8 +1,9 @@
-rm -f SchedRRTest.out
-for i in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40
+rm -f SchedRRTest.count
+for i in 1 5 10 15 20 25 30 35
 do
-	for j in 1 2 3 4 5
-	do
-		./simusched ejercicio7.tsk 1 SchedRR $i | java SchedRRTest >> SchedRRTest.out
-	done
+	eval png=SchedRRTest$i.png
+	eval out=SchedRRTest$i.out
+	./simusched ejercicio7.tsk 1 SchedRR $i > $out
+	tail -n 1000 $out | java SchedRRTest >> SchedRRTest.count
+	tail -n 1000 $out | python graphsched.py > $png
 done

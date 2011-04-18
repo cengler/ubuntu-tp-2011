@@ -10,9 +10,6 @@ void TaskBatch(vector<int> params) {
 	int tot = params[0];
 	int blocksC = params[1];
 	
-	// INICIALIZAMOS SEMILLA DE RAND()
-	srand ( time(NULL) );
-	
 	vector<bool> blocks = vector<bool>(tot-1);
 	for(int i=0;i<blocksC;i++) {
 		int blockT = rand()%(blocks.size()-1);
@@ -33,12 +30,138 @@ void TaskBatch(vector<int> params) {
 
 \section{Ejercicio 7}
 
-Primero pensamos que medidas afectar\'ian a un scheduler que procese tareas de tipo Batch.\\
-Pensamos en las medidas importantes para un sistema batch.\\
-Eficiencia: tratar de que la CPU este ``ocupada'' todo el tiempo.\\
-Carga del sistema: minimizar la cant. de procesos listos que esten esperando CPU.\\
-Latencia: minimizar el tiempo requerido para que un proceso empiece a dar resultados.\\
-Tiempo de ejecuci\'on: minimizar el tiempo total que le toma a un proceso ejecutar completamente.
+Primero pensamos que medidas afectar\'ian a un scheduler que procese tareas de tipo Batch.
+
+\begin{description}
+ \item[Eficiencia] tratar de que la CPU este ``ocupada'' todo el tiempo.
+ \item[Turnaround] tiempo total desde que se carga el proceso hasta que finaliza.
+ \item[Latencia] minimizar el tiempo requerido para que un proceso empiece a dar resultados.
+ \item[Waiting Time] tiempo de espera de un proceso en la cola de listos.
+\end{description}
+
+Una vez establecidas las medidas que nos interesaban optimizar, tomamos el siguiente lote de tareas para ejecutar.
+
+\begin{framed}
+\begin{verbatimtab}
+# FILE ejercicio7.tsk
+TaskBatch	 	30  1  # p0
+TaskBatch	 	30  3  # p1
+TaskBatch	 	30  5  # p2
+TaskBatch	 	30 10  # p3
+TaskBatch	 	30 20  # p4
+\end{verbatimtab}
+\end{framed}
+
+Para medir los distintos aspectos a optimizar, desarrollamos una clase en java \verb|SchedRRTest.java| que hiciera este trabajo automaticamente.\\
+Nota: compilar con \verb|make SchedRRTest| (no lo agregamos en el \verb|make| general en caso de que no tengan instalado el compilador de java)
+
+Esta clase toma como input la salida del \verb|simusched| y retorna por stdout los siguientes valores:
+
+\begin{verbatim}
+IDLE <tiempo idle> <datos proc_1> <datos proc_2> ... <datos proc_N>
+donde: <datos proc_i> es
+[<turnaround>, <latencia> <waitingTime> <tiempoEntreIOs>]
+\end{verbatim}
+
+Creamos el siguiente sh para lanzar automaticamente la ejecuci\'on del \verb|simusched| con distintos valores de quantum. Adem\'as realiza los graficos de scheduling y las mediciones con nuestro programa SchedRRTest.
+
+\begin{framed}
+\begin{verbatim}
+rm -f SchedRRTest.count
+for i in 1 5 10 15 20 25 30 35
+do
+        eval png=SchedRRTest$i.png
+        eval out=SchedRRTest$i.out
+        ./simusched ejercicio7.tsk 1 SchedRR $i > $out
+        tail -n 1000 $out | java SchedRRTest >> SchedRRTest.count
+        tail -n 1000 $out | python graphsched.py > $png
+done
+\end{verbatim}
+\end{framed}
+
+Utilizando los resultados de la clase SchedRRTest generamos los siguientes gr\'aficos. Estos muestran en el eje \verb|x| los valores de quantum y en el eje \verb|y| el tiempo.
+
+\subsection{Turnaround y Waiting Time}
+\begin{figure}[H]
+  \centering
+    \includegraphics{img/turnaround.png}
+    \caption{Gr\'afico comparativo de Turnaround para distintos quantums.}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+    \includegraphics{img/waitingTime.png}
+    \caption{Gr\'afico comparativo de Waiting Time para distintos quantums.}
+\end{figure}
+
+Se puede observar que el tiempo de \ta y \wt para los procesos con valores de \quantum entre 1 y 5 toman valores muy grandes. Esto se debe a que se producen muchos \cs, donde cada uno aporta 1 ciclo. Esto va a dejar de influir a medida que el \quantum se hace m\'as grande.
+Lo que podemos notar adem\'as es que a medida que el \quantum aumenta los tiempos de \ta y \wt disminuyen, aunque no de una manera considerable a partir de valores de \quantum mayores a 15.
+
+\subsection{Latencia}
+
+\begin{figure}[H]
+  \centering
+    \includegraphics{img/latencia.png}
+    \caption{Gr\'afico comparativo de Latencia para distintos quantums.}
+\end{figure}
+
+Se puede observar que el tiempo de latencia para los procesos con valor de quantum 1 toma valores muy grandes. Esto se debe a que se ira intercambiando entre los distintos procesos y en promedio se tardar\'a m\'as tiempo en llegar a producirse un primer resultado (IO). 
+
+Para que la letencia sea optima, deberia ejecutarse cada proceso hasta que alcance su primer IO. Esto se alcanza con aumentar el \quantum lo suficiente para alcanzar el primer IO de cada proceso. Esto se logra a partir del \quantum 15. Por mas que se aumente el \quantum no vamos a mejorar la \latencia
+
+
+Para ver esto veamos los gr\'aficos de las salidas de Simusched uno con quantum 1 y el otro con quantum 15.
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=1\textwidth]{img/SchedRRTest1.png}
+    \caption{Salida de Simusched con quantum 1.}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=1\textwidth]{img/SchedRRTest15.png}
+    \caption{Salida de Simusched con quantum 15.}
+\end{figure}
+
+Se puede notar que el proceso 2 recien realiza su primer resultado en ciclo 140 aprox. con quantum 1, mientras que los demas procesos ejecutaron varias veces.\\
+Con \quantum 15, solo se ejecuta lo suficiente de cada proceso como para alcanzar su primer IO.
+
+\begin{itemize}
+ \item Latencia Promedio $(q=1)$: $(22+34+136+28+10)/5 = 46$
+ \item Latencia Promedio $(q=15)$: $(4 + 9 + 24 + 28 + 30) / 5 = 19$
+\end{itemize}
+
+\subsection{Tiempo entre ``Respuestas'' }
+
+Queriamos alguna medida que nos lograra orientar sobre el tiempo entre respuesta y respuesta de las tareas Batch. Y lo que hicimos fue medir el tiempo entre cada E/S (Si asumimos que cada IO representa una ``salida'').
+
+\begin{figure}[H]
+  \centering
+    \includegraphics{img/tiempoEntreIOs.png}
+    \caption{Gr\'afico comparativo de Tiempo entre IOs para distintos quantums.}
+\end{figure}
+
+Se puede observar que al comienzo (como siempre) afecta mucho el tiempo de \cs, y que luego va estabilizandose alrededor de 250 ciclos.
+
+\subsection{Llego el momento de decidir... }
+
+Primero vale aclarar que medir con \quantum mayor a 30 no tenia sentido (pues ya es completamente FCFS pues se tienen \quantums mayores al tiempo total de ejecucion del proceso) Solo los dejamos para mostrar la estabilizaci\'on de las mediciones.
+
+Veamos los resultados que obtuvimos para cada medida:
+
+\begin{description}
+ \item[Turnaround] Resultados cercanos al optimo entre $q=15$ y $q=35$
+ \item[Waiting-Time] Resultados cercanos al optimo entre $q=15$ y $q=35$
+ \item[Latencia] Resultado optimo a partir desde $q=15$
+ \item[Latencia] Tiempo entre IOs bueno entre $q=10$ y $q=35$ y el resultado optimo quedo en $q=15$
+\end{description}
+
+Concluimos que para los casos en los que se trabaja con tareas Batch, de los que solo importa el resultado final, lo que mas conviene es utilizar el \quantum que maximize el turnaround ($q=30$ en adelante). Pero este scheduler seria completamente FCFS con desalojo, por lo que convendria no utilizar \rr.
+
+Si en cambio se quieren resultados intermedios, debemos tener en cuenta medidas como la latencia y el tiempo entre IOs. Como lo demuestran los resultados, con \quantum 15, tanto para el \ta, \wt, \latencia y el tiempo entre IOs los resultados son buenos.
+
+\newpage
 
 \section{Ejercicio 8}
 
@@ -72,12 +195,13 @@ TaskCPU 20
 Invocaci\'on:
 
 \begin{framed}
-\begin{verbatim}
-./simusched ejercicio8_a.tsk 1 SchedMFQ 2 5 | python graphsched.py > ejercicio8_a.png
-\end{verbatim}
+\begin{verbatimtab}
+./simusched ejercicio8_a.tsk 1 SchedMFQ 2 5 | python \
+    graphsched.py > ejercicio8_a.png
+\end{verbatimtab}
 \end{framed}
 
-\begin{figure}[h!]
+\begin{figure}[H]
   \caption{Ejemplo de Inanici\'on.}
   \centering
     \includegraphics[width=1\textwidth]{img/ejercicio8_a.png}
@@ -108,13 +232,14 @@ Invocaci\'on:
 
 \begin{framed}
 \begin{verbatim}
-./simusched ejercicio8_b.tsk 1 SchedMFQ 2 5 10 | python graphsched.py > ejercicio8_b.png
+./simusched ejercicio8_b.tsk 1 SchedMFQ 2 5 10 | python \
+      graphsched.py > ejercicio8_b.png
 \end{verbatim}
 \end{framed}
 
 El resultado fue el siguiente:
 
-\begin{figure}[h!]
+\begin{figure}[H]
   \caption{Ejemplo de MFQ - como los porcesos van cambiando de cola de pioridad.}
   \centering
     \includegraphics[width=1\textwidth]{img/ejercicio8_a.png}

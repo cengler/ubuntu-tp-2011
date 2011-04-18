@@ -16,9 +16,6 @@ void TaskCon(vector<int> params) { // params: 3
 	int bmin = params[1];
 	int bmax = params[2];
 	
-	// INICIALIZAMOS SEMILLA DE RAND()
-	srand ( time(NULL) );
-	
 	for( int i = 0; i < n ; i++ ) {
 		int time = bmin;
 		if(bmin != bmax)
@@ -53,7 +50,7 @@ Luego ejecutamos Simusched con Scheduler FCFS con los siguientes parametros:
 
 Y obtuvimos el siguiente diagrama de Gantt.
 
-\begin{figure}[h!]
+\begin{figure}[H]
   \caption{Una tarea de uso intensivo del procesador y dos interactivas con Scheduling FCFS.}
   \centering
     \includegraphics[width=1\textwidth]{img/ejercicio2.png}
