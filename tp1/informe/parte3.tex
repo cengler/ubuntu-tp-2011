@@ -222,9 +222,9 @@ Luego ejecutamos los tres procesos en un scheduler MFQ con tres colas de piorida
 \begin{framed}
 \begin{verbatim}
 # FILE ejercicio8_b.tsk
-TaskCPU 60
-TaskBatch 50 3
-TaskIOMultiple 15
+TaskCPU 60             # p0
+TaskBatch 50 3         # p1
+TaskIOMultiple 15      # p2
 \end{verbatim}
 \end{framed}
 
@@ -245,4 +245,6 @@ El resultado fue el siguiente:
     \caption{Ejemplo de MFQ}
 \end{figure}
 
-En el gr\'afico se puede ver como los procesos van cambiando de cola de pioridad.
+En el gr\'afico se puede ver como los procesos van cambiando de cola de pioridad. En un principio las tres tareas comienzan ejecutandose en la cola de mayor prioridad. Se puede ver que como el proceso p0 (0) consume siempre su \quantum sin bloquearse  y de esta manera va perdiendo su prioridad, es decir va cambiando a una cola de menor prioridad, y por lo tanto ejecutandose durante m\'as tiempo cada vez que lo hace, pero con una menor frecuencia.\\
+En cambio, el proceso p2 (2) se mantiene siempre en la prioridad m\'as alta, dado que se bloquea constantemente y nunca alcanza a realizar el \quantum completo. De esta manera el proceso p2 se ejecuta con un \quantum menor pero con una mayor frecuencia.\\
+Por \'ultimo el proceso p1 (1) va a ir alternando su prioridad dependiendo si se bloqueo o no durante la ejecuci\'on de su \quantum anterior, esto se puede ver bien en el gr\'afico viendo como var\'ia la cantidad de ciclos en los que esta ejecutandose sin bloquearse, es decir el proceso va alternandose en colas que tienen mayor y menor \quantum.
