@@ -1,6 +1,5 @@
 #include "tasks.h"
 #include <cstdlib>
-
 #include <iostream>
 #include <fstream>
 
@@ -26,9 +25,6 @@ void TaskCon(vector<int> params) { // params: 3
 	int bmin = params[1];
 	int bmax = params[2];
 	
-	// INICIALIZAMOS SEMILLA DE RAND()
-	srand ( time(NULL) );
-	
 	for( int i = 0; i < n ; i++ ) {
 		int time = bmin;
 		if(bmin != bmax)
@@ -49,9 +45,6 @@ void TaskLongCPUMultipleIO(vector<int> params) { // params: n
 	int bmin = params[2];
 	int bmax = params[3];
 	
-	// INICIALIZAMOS SEMILLA DE RAND()
-	srand ( time(NULL) );
-	
 	for( int i = 0; i < n ; i++ ) {
 		int time = bmin;
 		if(bmin != bmax)
@@ -65,9 +58,6 @@ void TaskMultipleIOLongCPU(vector<int> params) { // params: n
 	int bmin = params[2];
 	int bmax = params[3];
 	
-	// INICIALIZAMOS SEMILLA DE RAND()
-	srand ( time(NULL) );
-	
 	for( int i = 0; i < n ; i++ ) {
 		int time = bmin;
 		if(bmin != bmax)
@@ -80,9 +70,6 @@ void TaskMultipleIOLongCPU(vector<int> params) { // params: n
 void TaskBatch(vector<int> params) {
 	int tot = params[0];
 	int blocksC = params[1];
-	
-	// INICIALIZAMOS SEMILLA DE RAND()
-	srand ( time(NULL) );
 	
 	vector<bool> blocks = vector<bool>(tot-1);
 	for(int i=0;i<blocksC;i++) {

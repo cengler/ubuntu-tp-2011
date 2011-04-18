@@ -22,13 +22,17 @@ public class SchedRRTest {
 	private Map<Integer, Integer> latencia = new HashMap<Integer, Integer>();
 	private Map<Integer, Integer> exit = new HashMap<Integer, Integer>();
 	private Map<Integer, Integer> load = new HashMap<Integer, Integer>();
-	
 	private Map<Integer, Integer> block = new HashMap<Integer, Integer>();
 
 	// TIEMPO BLOQUEADO
 	private Map<Integer, Integer> blockTime = new HashMap<Integer, Integer>();
 	// EXEC BLOQUEADO
 	private Map<Integer, Integer> execTime = new HashMap<Integer, Integer>();
+
+	private Map<Integer, Integer> betweenIO = new HashMap<Integer, Integer>();
+
+	// TIEMPO BLOQUEADO
+	private Map<Integer, Integer> betweenIOTime = new HashMap<Integer, Integer>();
 	
 	public static void main(String[] args) throws FileNotFoundException {
 		new SchedRRTest(System.in);
@@ -55,7 +59,11 @@ public class SchedRRTest {
 		for (Integer key : load.keySet()) {
 			System.out.print((exit.get(key)-load.get(key)) + " "); // TIEMPO EN EJECUCION
 			System.out.print((latencia.get(key)-load.get(key)) + " "); // LATENCIA
-			System.out.print((exit.get(key)-load.get(key)-blockTime.get(key)-execTime.get(key)) + " "); // WAITING TIME
+			Integer block = blockTime.get(key);
+			if(block==null)
+				block = 0;
+			System.out.print((exit.get(key)-load.get(key)-block-execTime.get(key)) + " "); // WAITING TIME
+			System.out.print(betweenIOTime.get(key) + " "); // TIEMPO ENTRE IOs
 		}
 		
 		System.out.print("\n");
@@ -81,6 +89,8 @@ public class SchedRRTest {
 		if(state.equals(LOAD)) 
 		{
 			load.put(pid, time);
+			betweenIO.put(pid, time);
+			betweenIOTime.put(pid, 0);
 		}
 		else if(state.equals(CPU))
 		{
@@ -91,9 +101,6 @@ public class SchedRRTest {
 			}
 			else
 			{
-				if(latencia.get(pid) == null)
-					latencia.put(pid, time);
-
 				if(execTime.get(pid) == null)
 					execTime.put(pid, 1);
 				else 
@@ -103,9 +110,23 @@ public class SchedRRTest {
 		else if(state.equals(EXIT)) 
 		{
 			exit.put(pid, time);
+			
+			int tiempoEntreIOMaximo = betweenIOTime.get(pid);
+			int tiempoDesdeUltimoIO = time-betweenIO.get(pid);
+			if(tiempoDesdeUltimoIO > tiempoEntreIOMaximo)
+				betweenIOTime.put(pid, tiempoDesdeUltimoIO);
+			
 		}
 		else if(state.equals(BLOCK))
 		{
+			int tiempoEntreIOMaximo = betweenIOTime.get(pid);
+			int tiempoDesdeUltimoIO = time-betweenIO.get(pid);
+			if(tiempoDesdeUltimoIO > tiempoEntreIOMaximo)
+				betweenIOTime.put(pid, tiempoDesdeUltimoIO);
+			betweenIO.put(pid, time);
+
+			if(latencia.get(pid) == null)
+					latencia.put(pid, time);
 			block.put(pid, time);
 		}
 		else if(state.equals(UNBLOCK))
