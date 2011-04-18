@@ -17,7 +17,7 @@ Ver resoluci\'on completa en los archivos \verb|sched_rr.cpp| y \verb|sched_rr.h
 
 Realizamos dos lotes de prueba para observar el comportamiento del scheduler \rr. 
 
-Para tal fin creamos el tipo de tarea TaskCPUIOCPU que recibe 3 parametros:
+Para tal fin creamos el tipo de tarea TaskCPUIOCPU que recibe 3 par\'ametros:
 
 \begin{mydescription}{m}
  \item[n] Tiempo de ejecuci\'on de CPU en ciclos de reloj
@@ -39,7 +39,7 @@ TaskCPUIOCPU 10 20 10
 \end{verbatim}
 \end{framed}
 
-Luego ejecutamos Simusched con los siguientes parametros:
+Luego ejecutamos Simusched con los siguientes par\'ametros:
 
 \begin{framed}
 \begin{verbatim}
@@ -47,13 +47,13 @@ Luego ejecutamos Simusched con los siguientes parametros:
 \end{verbatim}
 \end{framed}
 
-\begin{figure}[h!]
-  \caption{Dos tareas de uso intensivo de CPU y una tarea de tipo TaskCPUIOCPU.}
+\begin{figure}[H]
   \centering
     \includegraphics[width=1\textwidth]{img/ejercicio4_1.png}
+    \caption{Dos tareas de uso intensivo de CPU y una tarea de tipo TaskCPUIOCPU.}
 \end{figure}
 
-Se puede ver en el gr\'afico que se van alternando los 3 procesos con un quantum de 3 unidades hasta que el proceso (2) se bloquea. Mientras el proceso (2) est\'a bloqueado se puede ver que los otros dos procesos van altenando su ejecuci\'on. Hasta que el proceso (2) se desbloquea y nuevamente se vuelven a alternar los 3 procesos.
+Se puede ver en el gr\'afico que se van alternando los 3 procesos con un quantum de 3 unidades hasta que el proceso (2) se bloquea. Mientras el proceso (2) est\'a bloqueado se puede ver que los otros dos procesos van alternando su ejecuci\'on. Hasta que el proceso (2) se desbloquea y nuevamente se vuelven a alternar los 3 procesos.
 
 \subsection{Lote 2}
 
@@ -72,7 +72,7 @@ TaskCPU 10
 \end{verbatim}
 \end{framed}
 
-Luego ejecutamos Simusched con los siguientes parametros:
+Luego ejecutamos Simusched con los siguientes par\'ametros:
 
 \begin{framed}
 \begin{verbatim}
@@ -80,10 +80,10 @@ Luego ejecutamos Simusched con los siguientes parametros:
 \end{verbatim}
 \end{framed}
 
-\begin{figure}[h!]
-  \caption{Dos tareas de tipo TaskCPUIOCPU y una tarea de uso intensivo de CPU.}
+\begin{figure}[H]
   \centering
     \includegraphics[width=1\textwidth]{img/ejercicio4_2.png}
+    \caption{Dos tareas de tipo TaskCPUIOCPU y una tarea de uso intensivo de CPU.}
 \end{figure}
 
 Se ve en el gr\'afico que se carga la tarea 0 y se comienza a ejecutar por el quantum de 4.
@@ -92,9 +92,9 @@ Luego, cuando la tarea 0 finaliza, la tarea 1 ya est\'a en la cola de listos, po
 
 Para ese momento las tareas 0 y 2 est\'an en la cola de listos, por lo que comienza a ejecutar la 0 que estaba en primer lugar.
 
-Despu\'es de eso las tres tareas ya se encuentran cargadas y se van ejecutando hasta finalizar su quantum hasta que el ciclo 29 la tarea 0 se bloquea.
+Despu\'es de eso las tres tareas ya se encuentran cargadas y se van ejecutando hasta finalizar su quantum hasta que en el ciclo 29 la tarea 0 se bloquea.
 
-Por lo que siguen ejecutando las tareas 1 y 2 hasta que el el ciclo 43 la tarea 2 finaliza, y en el ciclo 48 la tarea 1 se bloquea, por lo que el procesador queda ocioso.
+Por lo que siguen ejecutando las tareas 1 y 2 hasta que en el ciclo 43 la tarea 2 finaliza, y en el ciclo 48 la tarea 1 se bloquea, por lo que el procesador queda ocioso.
 
 En el ciclo 49 la tarea 0 finaliza su entrada/salida, por lo que contin\'ua su ejecuci\'on. 
 
@@ -105,15 +105,15 @@ En el ciclo 68 la tarea 1 finaliza su entrada/salida y ejecuta hasta finalizar.
 
 \section{Ejercicio 5}
 
-Completamos la implementaci\'on del scheduler \mfq implementando los \textit{TODOs} de la clase SchedMFQ. Este scheduler utiliza n colas con \rr, y recibe como parametro el \quantum de cada una de las colas.
+Completamos la implementaci\'on del scheduler \mfq implementando los \textit{TODOs} de la clase SchedMFQ. Este scheduler utiliza n colas con \rr, y recibe como par\'ametro el \quantum de cada una de las colas.
 
 Para implementar \mfq usamos:
 
 \begin{itemize}
  \item una lista de Colas tan larga como la cantidad de quantums pasados como par\'ametro.
  \item una lista con los \quantums de cada cola.
- \item una diccionario para mantener la pioridad asignada a cada proceso.
- \item una n\'umero para acumular la \quota del proceso corriente
+ \item un diccionario para mantener la pioridad asignada a cada proceso.
+ \item un n\'umero para acumular la \quota del proceso corriente
 \end{itemize}
 
 Ver resoluci\'on completa en los archivos \verb|sched_mfq.cpp| y \verb|sched_mfq.h|.
