@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define TAM_BUFFER 10
+#define TAM_BUFFER 64
 #define NTHREADS 4
 #define MILLON 1000000
 
@@ -17,9 +17,13 @@ void *imprimir(void *p_numero) {
     while(p < TAM_BUFFER)
     {
 		pthread_mutex_lock(&m);
-			buffer[p] = minumero;
-			printf("escribí un %i en la posición %i\n", minumero, p);
-			p++;
+		
+			if(p<TAM_BUFFER) {
+				buffer[p] = minumero;
+				printf("escribí un %i en la posición %i\n", minumero, p);
+				p++;
+			}
+			
 		pthread_mutex_unlock(&m);
 		
 		usleep(minumero*MILLON);
@@ -29,7 +33,6 @@ void *imprimir(void *p_numero) {
 }                      
 
 int main(int argc, char *argv[]) {
-	
 	int rc, j;
 	int numero[NTHREADS];
 	pthread_t tids[NTHREADS];
@@ -58,12 +61,15 @@ int main(int argc, char *argv[]) {
 		}
 	}
 
-	pthread_attr_destroy(&attr);
-	pthread_exit(NULL);
-	
 	for(p=0; p<TAM_BUFFER; p++) {
-		printf("%d,", buffer[p]);
+		printf("%d ", buffer[p]);
 	}
+	
+	printf("\n");
+	
+	pthread_attr_destroy(&attr);
+	
+	
+	pthread_exit(NULL);
 
 }
-
