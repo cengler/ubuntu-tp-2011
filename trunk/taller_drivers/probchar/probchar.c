@@ -8,14 +8,13 @@
 #include <linux/types.h>
 
 #define DEVICE_NAME "probchar"
-#define MAX_LENGHT 1024
 
-unsigned long seed = 0;
+unsigned long seed = 23545;
 
 ssize_t probchar_read(struct file *filp, char __user *data, size_t s, loff_t *off) {
     char random_char;
-    seed = ((seed * 1103515245 + 12345) / 65536) % 32768; 
-	random_char = (char)(seed % 26 + 64);
+	seed = ((seed * 1103515245 + 12345) ) % 32768; 
+	random_char = (char)(seed % 26 + 65);
 	if( copy_to_user(data, &random_char, 1) ) {
 		printk(KERN_ERR "No se pudo copiar el char random");
 		return -EFAULT;
@@ -24,18 +23,13 @@ ssize_t probchar_read(struct file *filp, char __user *data, size_t s, loff_t *of
 }
 
 ssize_t probchar_write(struct file *filp, const char __user *data, size_t s, loff_t *off) {
-	printk(KERN_ERR "probchar_write");
-    unsigned long new_seed;
-    char chars[MAX_LENGHT];
-    if(s > MAX_LENGHT)
-		s = MAX_LENGHT;
-	printk(KERN_ERR "Data> %s\n", data);
+	unsigned long new_seed;
+	char chars[s+1];
 	if (copy_from_user(chars, data, s)) {
 		printk(KERN_ERR "Error al copiar los datos del usuario\n");
 		return -EFAULT;
 	}
-	chars[s-1] = '\0';
-	printk(KERN_ERR "Chars> %s\n", chars);
+	chars[s] = '\0'; // MARCO LA FINALIZACION DEL CHAR ARRAY
 	if( strict_strtoul(chars, 10, &new_seed) ) {
 		printk(KERN_ERR "El numero ingresado no es un unsigned long\n");
 		return -EFAULT;
