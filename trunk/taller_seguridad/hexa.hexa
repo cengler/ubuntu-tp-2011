@@ -1,0 +1,49 @@
+   0x08048250 <+0>: 	push   ebp
+   0x08048251 <+1>: 	mov    ebp,esp
+   0x08048253 <+3>: 	sub    esp,0x98
+   0x08048259 <+9>: 	mov    DWORD PTR [esp+0x8],0x20
+   0x08048261 <+17>:	mov    DWORD PTR [esp+0x4],0x80a87a8
+   0x08048269 <+25>:	lea    eax,[ebp-0x28]
+   0x0804826c <+28>:	mov    DWORD PTR [esp],eax
+   0x0804826f <+31>:	call   0x8052570 <memcpy>
+   0x08048274 <+36>:	mov    DWORD PTR [esp+0x8],0x40
+   0x0804827c <+44>:	mov    DWORD PTR [esp+0x4],0x0
+   0x08048284 <+52>:	lea    eax,[ebp-0x88]
+   0x0804828a <+58>:	mov    DWORD PTR [esp],eax
+   0x0804828d <+61>:	call   0x80524c0 <memset>
+   0x08048292 <+66>:	mov    eax,0x80a87c9
+   0x08048297 <+71>:	mov    DWORD PTR [esp],eax
+   0x0804829a <+74>:	call   0x8049ba0 <printf>
+   0x0804829f <+79>:	lea    eax,[ebp-0x88]
+   0x080482a5 <+85>:	mov    DWORD PTR [esp],eax
+   0x080482a8 <+88>:	call   0x8049d30 <gets>
+   0x080482ad <+93>:	mov    eax,ds:0x80c7440
+   0x080482b2 <+98>:	mov    DWORD PTR [esp+0xc],eax
+   0x080482b6 <+102>:	mov    DWORD PTR [esp+0x8],0x40
+   0x080482be <+110>:	mov    DWORD PTR [esp+0x4],0x1
+   0x080482c6 <+118>:	lea    eax,[ebp-0x88]
+   0x080482cc <+124>:	mov    DWORD PTR [esp],eax
+   0x080482cf <+127>:	call   0x8049bd0 <fwrite>
+   0x080482d4 <+132>:	mov    DWORD PTR [esp],0xa
+   0x080482db <+139>:	call   0x804a040 <putchar>
+   0x080482e0 <+144>:	lea    eax,[ebp-0x48]
+   0x080482e3 <+147>:	mov    DWORD PTR [esp+0x8],eax
+   0x080482e7 <+151>:	mov    DWORD PTR [esp+0x4],0x40
+   0x080482ef <+159>:	lea    eax,[ebp-0x88]
+   0x080482f5 <+165>:	mov    DWORD PTR [esp],eax
+   0x080482f8 <+168>:	call   0x804834c <md5_buf_to_hex>
+   0x080482fd <+173>:	mov    DWORD PTR [esp+0x8],0x20
+   0x08048305 <+181>:	lea    eax,[ebp-0x28]
+   0x08048308 <+184>:	mov    DWORD PTR [esp+0x4],eax
+   0x0804830c <+188>:	lea    eax,[ebp-0x48]
+   0x0804830f <+191>:	mov    DWORD PTR [esp],eax
+   0x08048312 <+194>:	call   0x8052400 <memcmp>
+   0x08048317 <+199>:	test   eax,eax
+   0x08048319 <+201>:	jne    0x8048329 <entrega+217>
+   0x0804831b <+203>:	mov    DWORD PTR [esp],0x80a87d1
+   0x08048322 <+210>:	call   0x8049ec0 <puts>
+   0x08048327 <+215>:	jmp    0x8048335 <entrega+229>
+   0x08048329 <+217>:	mov    DWORD PTR [esp],0x80a87e0
+   0x08048330 <+224>:	call   0x8049ec0 <puts>
+   0x08048335 <+229>:	leave  
+   0x08048336 <+230>:	ret 
