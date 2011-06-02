@@ -6,15 +6,17 @@ all:
 
 clean:
 	make -C /lib/modules/$(KVERSION)/build SUBDIRS=$(shell pwd) clean
+	rm -f text.out
 
 ins:
+	
 	rmmod probchar.ko
 	insmod probchar.ko
 
 read:
-	dd if=/dev/probchar count=1 bs=1 < text.out
-	cat text.out -n 100
+	dd if=/dev/probchar count=1000 bs=1 > text.out
+	cat text.out
 
 write:
-	echo "4543434443" > /dev/probchar
+	echo "45" > /dev/probchar
 
