@@ -1,0 +1,24 @@
+\part{Pseudoc\'odigo}
+
+\section{Ejercicio 1}
+
+Implementamos el m\'etodo TaskCon que simula ser una tarea interactiva, que recibe los par\'ametros \verb|n|, \verb|bmin| y \verb|bmax|.
+
+Realiza \verb|n| llamadas bloqueantes de duraci\'on entre \verb|bmin| y \verb|bmax|.
+
+\begin{framed}
+\begin{verbatimtab}
+void TaskCon(vector<int> params) { // params: 3
+	int n = params[0];
+	int bmin = params[1];
+	int bmax = params[2];
+	
+	for( int i = 0; i < n ; i++ ) {
+		int time = bmin;
+		if(bmin != bmax)
+			time = (rand()%(bmax-bmin+1))+bmin;
+		uso_IO(time);
+	}
+}
+\end{verbatimtab}
+\end{framed}
