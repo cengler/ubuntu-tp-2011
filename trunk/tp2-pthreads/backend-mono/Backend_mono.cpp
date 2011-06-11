@@ -25,79 +25,10 @@ bool cargar_int(const char* numero, unsigned int& n) {
 	return true;
 }
 
-int main(int argc, const char* argv[]) {
-	// manejo la señal SIGINT para poder cerrar el socket cuando cierra el programa
-	signal(SIGINT, cerrar_servidor);
+void *atendedor_de_jugador(void *p_socket_fd) {
 
-	// parsear argumentos
-	if (argc < 3) {
-		cerr << "Faltan argumentos, la forma de uso es:" << endl <<
-		argv[0] << " N M" << endl << "N = ancho del tablero , M = alto del tablero" << endl;
-		return 3;
-	}
-	else {
-		if (!cargar_int(argv[1], ancho)) {
-			cerr << argv[1] << " debe ser un número" << endl;
-			return 5;
-		}
-		if (!cargar_int(argv[2], alto)) {
-			cerr << argv[2] << " debe ser un número" << endl;
-			return 5;
-		}
-	}
-
-	// inicializar ambos tableros, se accede como tablero[fila][columna]
-	tablero_letras = vector<vector<char> >(alto);
-	for (unsigned int i = 0; i < alto; ++i) {
-		tablero_letras[i] = vector<char>(ancho, VACIO);
-	}
-
-	tablero_palabras = vector<vector<char> >(alto);
-	for (unsigned int i = 0; i < alto; ++i) {
-		tablero_palabras[i] = vector<char>(ancho, VACIO);
-	}
-
-	int socketfd_cliente, socket_size;
-	struct sockaddr_in local, remoto;
-
-	// crear un socket de tipo INET con TCP (SOCK_STREAM)
-	if ((socket_servidor = socket(AF_INET, SOCK_STREAM, 0)) == -1) {
-		cerr << "Error creando socket" << endl;
-	}
-	// permito reusar el socket para que no tire el error "Address Already in Use"
-	int flag = 1;
-	setsockopt(socket_servidor, SOL_SOCKET, SO_REUSEADDR, &flag, sizeof(flag));
-
-	// crear nombre, usamos INADDR_ANY para indicar que cualquiera puede conectarse aquí
-	local.sin_family = AF_INET;
-	local.sin_addr.s_addr = INADDR_ANY;
-	local.sin_port = htons(PORT);
-	if (bind(socket_servidor, (struct sockaddr *)&local, sizeof(local)) == -1) {
-		cerr << "Error haciendo bind" << endl;
-	}
-
-	// escuchar en el socket y permitir a lo sumo 5 conexiones en espera (no aceptadas ni rechazadas)
-	if (listen(socket_servidor, 1) == -1) {
-		cerr << "Error escuchando socket" << endl;
-	}
-
-	// aceptar conexiones entrantes.
-	socket_size = sizeof(remoto);
-	while (true) {
-		if ((socketfd_cliente = accept(socket_servidor, (struct sockaddr*) &remoto, (socklen_t*) &socket_size)) == -1)
-			cerr << "Error al aceptar conexion" << endl;
-		else {
-			close(socket_servidor);
-			atendedor_de_jugador(socketfd_cliente);
-		}
-	}
-
-
-	return 0;
-}
-
-
-void atendedor_de_jugador(int socket_fd) {
+	int socket_fd = *((int *) p_socket_fd);
+	
 	// variables locales del jugador
 	char nombre_jugador[21];
 	list<Casillero> palabra_actual; // lista de letras de la palabra aún no confirmada
@@ -171,6 +102,8 @@ void atendedor_de_jugador(int socket_fd) {
 			terminar_servidor_de_jugador(socket_fd, palabra_actual);
 		}
 	}
+	
+	pthread_exit(NULL);
 }
 
 
@@ -385,3 +318,82 @@ bool puso_letra_en(unsigned int fila, unsigned int columna, const list<Casillero
 	return false;
 }
 
+int main(int argc, const char* argv[]) {
+	// manejo la señal SIGINT para poder cerrar el socket cuando cierra el programa
+	signal(SIGINT, cerrar_servidor);
+
+	// parsear argumentos
+	if (argc < 3) {
+		cerr << "Faltan argumentos, la forma de uso es:" << endl <<
+		argv[0] << " N M" << endl << "N = ancho del tablero , M = alto del tablero" << endl;
+		return 3;
+	}
+	else {
+		if (!cargar_int(argv[1], ancho)) {
+			cerr << argv[1] << " debe ser un número" << endl;
+			return 5;
+		}
+		if (!cargar_int(argv[2], alto)) {
+			cerr << argv[2] << " debe ser un número" << endl;
+			return 5;
+		}
+	}
+
+	// inicializar ambos tableros, se accede como tablero[fila][columna]
+	tablero_letras = vector<vector<char> >(alto);
+	for (unsigned int i = 0; i < alto; ++i) {
+		tablero_letras[i] = vector<char>(ancho, VACIO);
+	}
+
+	tablero_palabras = vector<vector<char> >(alto);
+	for (unsigned int i = 0; i < alto; ++i) {
+		tablero_palabras[i] = vector<char>(ancho, VACIO);
+	}
+
+	int socketfd_cliente, socket_size;
+	struct sockaddr_in local, remoto;
+
+	// crear un socket de tipo INET con TCP (SOCK_STREAM)
+	if ((socket_servidor = socket(AF_INET, SOCK_STREAM, 0)) == -1) {
+		cerr << "Error creando socket" << endl;
+	}
+	// permito reusar el socket para que no tire el error "Address Already in Use"
+	int flag = 1;
+	setsockopt(socket_servidor, SOL_SOCKET, SO_REUSEADDR, &flag, sizeof(flag));
+
+	// crear nombre, usamos INADDR_ANY para indicar que cualquiera puede conectarse aquí
+	local.sin_family = AF_INET;
+	local.sin_addr.s_addr = INADDR_ANY;
+	local.sin_port = htons(PORT);
+	if (bind(socket_servidor, (struct sockaddr *)&local, sizeof(local)) == -1) {
+		cerr << "Error haciendo bind" << endl;
+	}
+
+	// escuchar en el socket y permitir a lo sumo 5 conexiones en espera (no aceptadas ni rechazadas)
+	if (listen(socket_servidor, 1) == -1) {
+		cerr << "Error escuchando socket" << endl;
+	}
+
+	// aceptar conexiones entrantes.
+	socket_size = sizeof(remoto);
+	
+	// inicializo los atributos para que el thread sea joineable (TODO ver si es lo que queremos)
+	pthread_attr_t attr;
+	pthread_attr_init(&attr);
+	pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_JOINABLE);
+	
+	
+	pthread_t tids[10];
+	
+	while (true) 
+	{
+		if ((socketfd_cliente = accept(socket_servidor, (struct sockaddr*) &remoto, (socklen_t*) &socket_size)) == -1)
+			cerr << "Error al aceptar conexion" << endl;
+		
+		int rc = pthread_create(&tids[0], &attr, atendedor_de_jugador, &socketfd_cliente);
+		if (rc) {              
+			cerr << "ERROR; return code from pthread_create() is " << rc << endl;
+		}
+	}
+	return 0;
+}
