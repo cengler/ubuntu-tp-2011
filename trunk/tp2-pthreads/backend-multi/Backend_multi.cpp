@@ -194,21 +194,31 @@ void *atendedor_de_jugador(void *p_socket_fd) {
 			
 			pthread_mutex_lock(&tablero_mutex);
 			
-			verificarPalabra();
+			// solo tengo que verificar que ninguna 
+			// de las letras ya haya sido tomada
+			if(verificar_palabra(palabra_actual))
+			{
+				// las letras acumuladas conforman una palabra completa, 
+				//     escribirlas en el tablero de palabras y borrar las letras temporales
+				for (list<Casillero>::const_iterator casillero = palabra_actual.begin(); casillero != palabra_actual.end(); casillero++) {
+					tablero_palabras[casillero->fila][casillero->columna] = casillero->letra;
+				}
+				pthread_mutex_unlock(&tablero_mutex);
 			
-			// las letras acumuladas conforman una palabra completa, 
-			//     escribirlas en el tablero de palabras y borrar las letras temporales
-			for (list<Casillero>::const_iterator casillero = palabra_actual.begin(); casillero != palabra_actual.end(); casillero++) {
-				tablero_palabras[casillero->fila][casillero->columna] = casillero->letra;
+				palabra_actual.clear();
+	
+				if (enviar_ok(socket_fd) != 0) {
+					// se produjo un error al enviar. Cerramos todo.
+					terminar_servidor_de_jugador(tablero_palabras, socket_fd, palabra_actual);
+				}
+			} else {
+				if (enviar_error(socket_fd) != 0) {
+					// se produjo un error al enviar. Cerramos todo.
+					terminar_servidor_de_jugador(tablero_palabras, socket_fd, palabra_actual);
+				}
 			}
-			pthread_mutex_unlock(&tablero_mutex);
 			
-			palabra_actual.clear();
-
-			if (enviar_ok(socket_fd) != 0) {
-				// se produjo un error al enviar. Cerramos todo.
-				terminar_servidor_de_jugador(tablero_palabras, socket_fd, palabra_actual);
-			}
+			
 		}
 		else if (comando == MSG_UPDATE) {
 			if (enviar_tablero(socket_fd) != 0) {
@@ -332,6 +342,14 @@ int enviar_error(int socket_fd) {
 	return enviar(socket_fd, buf);
 }
 
+int verificar_palabra(list<Casillero> palabra_actual) {
+	for (list<Casillero>::const_iterator casillero = palabra_actual.begin(); casillero != palabra_actual.end(); casillero++) {
+		if(tablero_palabras[casillero->fila][casillero->columna] != VACIO) {
+			return -1;
+		}
+	}
+	return 0;
+}
 
 // otras funciones
 
