@@ -30,6 +30,6 @@ void quitar_letras(vector<vector<char> > tablero_no_conf, list<Casillero>& palab
 bool es_ficha_valida_en_palabra(vector<vector<char> > tablero_no_conf, const Casillero& ficha, const list<Casillero>& palabra_actual);
 Casillero casillero_mas_distante_de(const Casillero& ficha, const list<Casillero>& palabra_actual);
 bool puso_letra_en(unsigned int fila, unsigned int columna, const list<Casillero>& letras);
-
+int verificar_palabra(list<Casillero> palabra_actual);
 
 #endif
