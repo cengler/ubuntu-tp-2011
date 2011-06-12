@@ -8,7 +8,6 @@ int socket_servidor = -1;
 
 // variables globales del juego
 pthread_mutex_t tablero_mutex;
-vector<vector<char> > tablero_letras; // tiene letras que aún no son palabras válidas
 
 vector<vector<char> > tablero_palabras; // solamente tiene las palabras válidas
 unsigned int ancho = -1;
@@ -41,14 +40,6 @@ int main(int argc, const char* argv[]) {
 			return 5;
 		}
 	}
-
-	// inicializar ambos tableros, se accede como tablero[fila][columna]
-	pthread_mutex_lock(&tablero_mutex);
-	tablero_letras = vector<vector<char> >(alto);
-	for (unsigned int i = 0; i < alto; ++i) {
-		tablero_letras[i] = vector<char>(ancho, VACIO);
-	}
-	pthread_mutex_unlock(&tablero_mutex);
 
 	pthread_mutex_lock(&tablero_mutex);
 	tablero_palabras = vector<vector<char> >(alto);
@@ -129,6 +120,13 @@ bool cargar_int(const char* numero, unsigned int& n) {
 
 void *atendedor_de_jugador(void *p_socket_fd) {
 
+	vector<vector<char> > tablero_letras; // tiene letras que aún no son palabras válida
+	// inicializar ambos tableros, se accede como tablero[fila][columna]
+	tablero_letras = vector<vector<char> >(alto);
+	for (unsigned int i = 0; i < alto; ++i) {
+		tablero_letras[i] = vector<char>(ancho, VACIO);
+	}
+
 	int socket_fd = *((int *) p_socket_fd);
 	
 	// variables locales del jugador
@@ -137,12 +135,12 @@ void *atendedor_de_jugador(void *p_socket_fd) {
 
 	if (recibir_nombre(socket_fd, nombre_jugador) != 0) {
 		// el cliente cortó la comunicación, o hubo un error. Cerramos todo.
-		terminar_servidor_de_jugador(socket_fd, palabra_actual);
+		terminar_servidor_de_jugador(tablero_palabras, socket_fd, palabra_actual);
 	}
 
 	if (enviar_dimensiones(socket_fd) != 0) {
 		// se produjo un error al enviar. Cerramos todo.
-		terminar_servidor_de_jugador(socket_fd, palabra_actual);
+		terminar_servidor_de_jugador(tablero_palabras, socket_fd, palabra_actual);
 	}
 
 	pthread_mutex_lock(&m);
@@ -167,7 +165,7 @@ void *atendedor_de_jugador(void *p_socket_fd) {
 			
 			// ficha contiene la nueva letra a colocar
 			// verificar si es una posición válida del tablero
-			if (es_ficha_valida_en_palabra(ficha, palabra_actual)) {
+			if (es_ficha_valida_en_palabra(tablero_palabras, ficha, palabra_actual)) {
 				palabra_actual.push_back(ficha);
 				tablero_letras[ficha.fila][ficha.columna] = ficha.letra;
 				
@@ -176,25 +174,27 @@ void *atendedor_de_jugador(void *p_socket_fd) {
 				// OK
 				if (enviar_ok(socket_fd) != 0) {
 					// se produjo un error al enviar. Cerramos todo.
-					terminar_servidor_de_jugador(socket_fd, palabra_actual);
+					terminar_servidor_de_jugador(tablero_palabras, socket_fd, palabra_actual);
 				}
 			}
 			else {
 				
-				quitar_letras(palabra_actual);
+				quitar_letras(tablero_palabras, palabra_actual);
 				
 				pthread_mutex_unlock(&tablero_mutex);
 				
 				// ERROR
 				if (enviar_error(socket_fd) != 0) {
 					// se produjo un error al enviar. Cerramos todo.
-					terminar_servidor_de_jugador(socket_fd, palabra_actual);
+					terminar_servidor_de_jugador(tablero_palabras, socket_fd, palabra_actual);
 				}
 			}
 		}
 		else if (comando == MSG_PALABRA) {
 			
 			pthread_mutex_lock(&tablero_mutex);
+			
+			verificarPalabra();
 			
 			// las letras acumuladas conforman una palabra completa, 
 			//     escribirlas en el tablero de palabras y borrar las letras temporales
@@ -207,13 +207,13 @@ void *atendedor_de_jugador(void *p_socket_fd) {
 
 			if (enviar_ok(socket_fd) != 0) {
 				// se produjo un error al enviar. Cerramos todo.
-				terminar_servidor_de_jugador(socket_fd, palabra_actual);
+				terminar_servidor_de_jugador(tablero_palabras, socket_fd, palabra_actual);
 			}
 		}
 		else if (comando == MSG_UPDATE) {
 			if (enviar_tablero(socket_fd) != 0) {
 				// se produjo un error al enviar. Cerramos todo.
-				terminar_servidor_de_jugador(socket_fd, palabra_actual);
+				terminar_servidor_de_jugador(tablero_palabras, socket_fd, palabra_actual);
 			}
 		}
 		else if (comando == MSG_INVALID) {
@@ -222,7 +222,7 @@ void *atendedor_de_jugador(void *p_socket_fd) {
 		}
 		else {
 			// se produjo un error al recibir. Cerramos todo.
-			terminar_servidor_de_jugador(socket_fd, palabra_actual);
+			terminar_servidor_de_jugador(tablero_palabras, socket_fd, palabra_actual);
 		}
 	}
 	
@@ -342,33 +342,33 @@ void cerrar_servidor(int signal) {
 	exit(EXIT_SUCCESS);
 }
 
-void terminar_servidor_de_jugador(int socket_fd, list<Casillero>& palabra_actual) {
+void terminar_servidor_de_jugador(vector<vector<char> > tablero_no_conf, int socket_fd, list<Casillero>& palabra_actual) {
 	cout << "Se interrumpió la comunicación con un cliente" << endl;
 
 	close(socket_fd);
 
-	quitar_letras(palabra_actual);
+	quitar_letras(tablero_no_conf, palabra_actual);
 
 	exit(-1);
 }
-
-
-void quitar_letras(list<Casillero>& palabra_actual) {
+ 
+       
+void quitar_letras(vector<vector<char> > tablero_no_conf, list<Casillero>& palabra_actual) {
 	for (list<Casillero>::const_iterator casillero = palabra_actual.begin(); casillero != palabra_actual.end(); casillero++) {
-		tablero_letras[casillero->fila][casillero->columna] = VACIO;
+		tablero_no_conf[casillero->fila][casillero->columna] = VACIO;
 	}
 	palabra_actual.clear();
 }
 
 
-bool es_ficha_valida_en_palabra(const Casillero& ficha, const list<Casillero>& palabra_actual) {
+bool es_ficha_valida_en_palabra(vector<vector<char> > tablero_no_conf, const Casillero& ficha, const list<Casillero>& palabra_actual) {
 	// si está fuera del tablero, no es válida
 	if (ficha.fila < 0 || ficha.fila > alto - 1 || ficha.columna < 0 || ficha.columna > ancho - 1) {
 		return false;
 	}
 
 	// si el casillero está ocupado, tampoco es válida
-	if (tablero_letras[ficha.fila][ficha.columna] != VACIO) {
+	if (tablero_no_conf[ficha.fila][ficha.columna] != VACIO) {
 		return false;
 	}
 
@@ -436,7 +436,8 @@ Casillero casillero_mas_distante_de(const Casillero& ficha, const list<Casillero
 	return *mas_distante;
 }
 
-
+// VERIFICA SI PARA LA FILA Y COLUMNA YA HAY UNA LETRA EN LETRAS
+// THREAD SAFE
 bool puso_letra_en(unsigned int fila, unsigned int columna, const list<Casillero>& letras) {
 	for (list<Casillero>::const_iterator casillero = letras.begin(); casillero != letras.end(); casillero++) {
 		if (casillero->fila == fila && casillero->columna == columna)
