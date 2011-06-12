@@ -25,11 +25,11 @@ int enviar_error(int socket_fd);
 
 // otras funciones
 void cerrar_servidor(int signal);
-void terminar_servidor_de_jugador(vector<vector<char> > tablero_no_conf, int socket_fd, list<Casillero>& palabra_actual);
-void quitar_letras(vector<vector<char> > tablero_no_conf, list<Casillero>& palabra_actual);
-bool es_ficha_valida_en_palabra(vector<vector<char> > tablero_no_conf, const Casillero& ficha, const list<Casillero>& palabra_actual);
+void terminar_servidor_de_jugador(int socket_fd, list<Casillero>& palabra_actual);
+void quitar_letras(list<Casillero>& palabra_actual);
+bool es_ficha_valida_en_palabra(const Casillero& ficha, const list<Casillero>& palabra_actual);
 Casillero casillero_mas_distante_de(const Casillero& ficha, const list<Casillero>& palabra_actual);
 bool puso_letra_en(unsigned int fila, unsigned int columna, const list<Casillero>& letras);
-int verificar_palabra(list<Casillero> palabra_actual);
+
 
 #endif
