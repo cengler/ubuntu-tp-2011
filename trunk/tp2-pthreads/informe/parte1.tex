@@ -1,24 +1,18 @@
-\part{Pseudoc\'odigo}
+\part{Introducci\'on y Correctitud}
 
-\section{Ejercicio 1}
+\section{Introducci\'on}
 
-Implementamos el m\'etodo TaskCon que simula ser una tarea interactiva, que recibe los par\'ametros \verb|n|, \verb|bmin| y \verb|bmax|.
+Para la resolucion del problema planteado se decidio implementar un nuevo backend. Este nuevo backend llamado backend_multi, contempla el acceso de multiples clientes al juego SOScrable. Para realizar esto correctamente la implementacion del nuevo backend tiene que estar libre de condiciones de carrera y ademas:
+Permitir que multiples clientes se conecten al backend de forma simultanea
+Permitir que todos los jugadores coloquen letras en casilleros distintos de forma simultanea
+Permitir que varios clientes consulten el estado del tablero de forma simultanea 
 
-Realiza \verb|n| llamadas bloqueantes de duraci\'on entre \verb|bmin| y \verb|bmax|.
+Para realizar lo anteriormente pedido se utiliza pthreads. La utilizacion threads acarrea el problema de condicion de carrera. Para contemplar los accesos de distintos threads a las variables globales de manera correcta se agregaron un mutex (\verb|pthread_mutex_t m|), una variable de condicion(\verb|pthread_cond_t vc|) y una variable global(\verb|bool cliente_inicializado|).
 
-\begin{framed}
-\begin{verbatimtab}
-void TaskCon(vector<int> params) { // params: 3
-	int n = params[0];
-	int bmin = params[1];
-	int bmax = params[2];
-	
-	for( int i = 0; i < n ; i++ ) {
-		int time = bmin;
-		if(bmin != bmax)
-			time = (rand()%(bmax-bmin+1))+bmin;
-		uso_IO(time);
-	}
-}
-\end{verbatimtab}
-\end{framed}
+\section{Correctiud}
+
+Entonces, para verificar que se cumple que todas las funciones del backend son thread-safe realizamos el siguiente analisis:
+
+Aquellas funciones funciones que no modifican ni acceden a ninguna de las variables globales las consideramos thread-safe. Estas son \verb|cargar_int()|, \verb|recibir_nombre()|, \verb|recibir_comando()|, 
+
+Y para aquellas funciones que si acceden a variables globales o que necesitan sincronizar el acceso analicemos el siguiente pseudocodigo:
