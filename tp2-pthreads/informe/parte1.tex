@@ -13,6 +13,8 @@ Para realizar lo anteriormente pedido se utiliza pthreads. La utilizacion thread
 
 Entonces, para verificar que se cumple que todas las funciones del backend son thread-safe realizamos el siguiente analisis:
 
-Aquellas funciones funciones que no modifican ni acceden a ninguna de las variables globales las consideramos thread-safe. Estas son \verb|cargar_int()|, \verb|recibir_nombre()|, \verb|recibir_comando()|, 
+Aquellas funciones funciones que no modifican ni acceden a ninguna de las variables globales las consideramos thread-safe. Estas son \verb|cargar_int()|, \verb|recibir_nombre()|, \verb|recibir_comando()|, \verb|parsear_casillero()|, \verb|enviar_dimensiones()|, \verb|enviar_ok()|, \verb|enviar_error()|, \verb|cerrar_servidor()|, \verb|casillero_mas_distante()| y \verb|puso_letra_en()|.
 
-Y para aquellas funciones que si acceden a variables globales o que necesitan sincronizar el acceso analicemos el siguiente pseudocodigo:
+Y para aquellas funciones que acceden a variables globales pero no fueron sincronizadas las consideramos no thread-safe. Estas van a tener que ser siempre usadas en bloques de sincronizacion. Estas son \verb|quitar_letras()| y \verb|es_ficha_valida_en_palabra()|.
+
+Para ver que todas las funciones que no son thread-safe son llamadas correctamente analicemos el siguiente pseudocodigo:
