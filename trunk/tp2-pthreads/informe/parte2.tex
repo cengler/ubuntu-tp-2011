@@ -1,24 +1,93 @@
 \part{Thread-safe}
 
-\section{Ejercicio 1}
 
-Implementamos el m\'etodo TaskCon que simula ser una tarea interactiva, que recibe los par\'ametros \verb|n|, \verb|bmin| y \verb|bmax|.
+\begin{tabular}{|l|l|}
+\hline
+main \ts & \\
+\hline
+\hspace*{1cm} cargar\_int \ts & \\
+\hline
+\hspace*{1cm} lock(\tmutex) & \\
+\hspace*{1.5cm} inicializo tablero\_letras y tablero\_palabras \nts & \\
+\hspace*{1cm} unlock(\tmutex) & \\
+\hline
+\hspace*{1cm} while(TRUE) & \\
+\hspace*{1.5cm} atendedor\_de\_jugador \ts & se crea un pthread para cada cliente \\
+\hspace*{1.5cm} wait(cliente\_inicializado) & esto se hace para evitar condiciones de carrera\\
+ & en la lectura de parametros de cada thread \\
+\hspace*{1cm} end while & \\
+\hline
+\end{tabular}
 
-Realiza \verb|n| llamadas bloqueantes de duraci\'on entre \verb|bmin| y \verb|bmax|.
+A
 
-\begin{framed}
-\begin{verbatimtab}
-void TaskCon(vector<int> params) { // params: 3
-	int n = params[0];
-	int bmin = params[1];
-	int bmax = params[2];
-	
-	for( int i = 0; i < n ; i++ ) {
-		int time = bmin;
-		if(bmin != bmax)
-			time = (rand()%(bmax-bmin+1))+bmin;
-		uso_IO(time);
-	}
-}
-\end{verbatimtab}
-\end{framed}
+\begin{tabular}{|l|l|}
+\hline
+atendedor\_de\_jugador \ts & \\
+\hline
+\hspace*{1cm} recibir\_nombre \ts & \\
+\hspace*{1.5cm} if(falla) terminar\_servidor\_de\_jugador \ts & \\
+\hline
+\hspace*{1cm} enviar\_dimenciones \ts & \\
+\hspace*{1.5cm} if(falla) terminar\_servidor\_de\_jugador \ts & \\
+\hline
+\hspace*{1cm} while(TRUE) & \\
+\hline
+\hspace*{1.5cm} if(comando=MSG\_LETRA)  & \\
+\hspace*{2cm} parsear\_casillero \ts & \\
+\hspace*{2cm} lock(\tmutex) & \\
+\hspace*{2.5cm} es\_ficha\_valida\_en\_palabra \nts & \\
+\hspace*{2.5cm} if(VALIDA) & \\
+\hspace*{3cm} unlock(\tmutex) & \\
+\hspace*{3cm} enviar\_ok \ts & \\
+\hspace*{2.5cm} sino & \\
+\hspace*{3cm} quitar\_letras \nts & \\
+\hspace*{3cm} unlock(\tmutex) & \\
+\hspace*{3cm} enviar\_error \ts & \\
+\hline
+\hspace*{1.5cm} if(comando=MSG\_PALABRA)  & \\
+\hspace*{2cm} lock(\tmutex) & \\
+\hspace*{2.5cm} actualiza tablero\_palabras \nts & \\
+\hspace*{2cm} unlock(\tmutex) & \\
+\hspace*{2cm} enviar\_ok \ts & \\
+\hline
+\hspace*{1.5cm} if(comando=MSG\_UPDATE)  & \\
+\hspace*{2cm} enviar\_tablero \ts & \\
+\hspace*{2.5cm} if(falla) terminar\_servidor\_de\_jugador \ts & \\
+\hline
+\hspace*{1.5cm} if(comando=MSG\_INVALID)  & \\
+\hspace*{2cm} continue;\ts & \\
+\hline
+\hspace*{1.5cm} else (comando='cualquiercosa')  & \\
+\hspace*{2cm} terminar\_servidor\_de\_jugador \ts & \\
+\hspace*{2cm} break; \ts & \\
+\hline
+\hspace*{1cm} end while & \\
+\hspace*{1cm} pthread\_exit & \\
+\hline
+\end{tabular}
+
+A
+
+\begin{tabular}{|l|l|}
+\hline
+enviar\_tablero \ts & \\
+\hspace*{1cm} lock(\tmutex) & \\
+\hspace*{1.5cm} copia datos de tablero\_palabras \nts & \\
+\hspace*{1cm} unlock(\tmutex) & \\
+\hspace*{1cm} enviar \ts & \\
+\hline
+\end{tabular}
+
+A
+
+\begin{tabular}{|l|l|}
+\hline
+terminar\_servidor\_de\_jugador \ts & \\
+\hspace*{1cm} close & \\
+\hspace*{1cm} lock(\tmutex) & \\
+\hspace*{1.5cm} quitar\_letras \nts & \\
+\hspace*{1cm} unlock(\tmutex) & \\
+\hline
+\end{tabular}
+

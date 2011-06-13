@@ -8,7 +8,7 @@
 \usepackage[latin1]{inputenc}
 
 \usepackage{pepotina} %caratula
-%\usepackage{color}
+\usepackage{color}
 
 %\usepackage{hyperref}
 %\usepackage[all]{hypcap}
@@ -68,6 +68,9 @@
 \newcommand{\wt}{\textit{waiting time }}
 \newcommand{\ta}{\textit{turnaround }}
 \newcommand{\latencia}{\textit{latencia }}
+\newcommand{\ts}{\textcolor{green}{TS}}
+\newcommand{\nts}{\textcolor{red}{NTS}}
+\newcommand{\tmutex}{\textcolor{blue}{tablero\_mutex}}
 
 
 \def\falta#1{ \begin{framed}	\begin{center} \hspace{1cm} \Large FALTA \normalsize #1 \hspace{1cm} \end{center} \end{framed}}
@@ -103,13 +106,13 @@
 \integrante{Engler, Christian Alejandro}{314/05}{caeycae@gmail.com}
 
 %caratula	
-\maketitle{}
+%\maketitle{}
 
-\tableofcontents
+%\tableofcontents
 
-\newpage
-\input{parte1.tex}
-\newpage
+%\newpage
+%\input{parte1.tex}
+%\newpage
 \input{parte2.tex}
 
 \end{document}
