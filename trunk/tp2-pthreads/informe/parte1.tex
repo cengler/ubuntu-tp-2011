@@ -2,19 +2,116 @@
 
 \section{Introducci\'on}
 
-Para la resolucion del problema planteado se decidio implementar un nuevo backend. Este nuevo backend llamado backend_multi, contempla el acceso de multiples clientes al juego SOScrable. Para realizar esto correctamente la implementacion del nuevo backend tiene que estar libre de condiciones de carrera y ademas:
-Permitir que multiples clientes se conecten al backend de forma simultanea
-Permitir que todos los jugadores coloquen letras en casilleros distintos de forma simultanea
-Permitir que varios clientes consulten el estado del tablero de forma simultanea 
+Para la resolucion del problema planteado se decidio implementar un nuevo backend. Este nuevo backend llamado backend\_multi, contempla el acceso de multiples clientes al juego SOScrable. Para realizar esto correctamente la implementacion del nuevo backend tiene que estar libre de condiciones de carrera y ademas:
+
+Permitir que multiples clientes se conecten al backend de forma simultanea.
+Permitir que todos los jugadores coloquen letras en casilleros distintos de forma simultanea.
+Permitir que varios clientes consulten el estado del tablero de forma simultanea.
 
 Para realizar lo anteriormente pedido se utiliza pthreads. La utilizacion threads acarrea el problema de condicion de carrera. Para contemplar los accesos de distintos threads a las variables globales de manera correcta se agregaron un mutex (\verb|pthread_mutex_t m|), una variable de condicion(\verb|pthread_cond_t vc|) y una variable global(\verb|bool cliente_inicializado|).
 
-\section{Correctiud}
+\section{Correctitud}
 
 Entonces, para verificar que se cumple que todas las funciones del backend son thread-safe realizamos el siguiente analisis:
 
-Aquellas funciones funciones que no modifican ni acceden a ninguna de las variables globales las consideramos thread-safe. Estas son \verb|cargar_int()|, \verb|recibir_nombre()|, \verb|recibir_comando()|, \verb|parsear_casillero()|, \verb|enviar_dimensiones()|, \verb|enviar_ok()|, \verb|enviar_error()|, \verb|cerrar_servidor()|, \verb|casillero_mas_distante()| y \verb|puso_letra_en()|.
+Aquellas funciones funciones que no modifican ni acceden a ninguna de las variables globales las consideramos thread-safe. Estas son \verb|cargar_int()|, \verb|recibir_nombre()|, \verb|recibir_comando()|, \\
+\verb|parsear_casillero()|, \verb|enviar_dimensiones()|, \verb|enviar_ok()|, \verb|enviar_error()|, \verb|cerrar_servidor()|, \verb|casillero_mas_distante()| y \verb|puso_letra_en()|.
 
 Y para aquellas funciones que acceden a variables globales pero no fueron sincronizadas las consideramos no thread-safe. Estas van a tener que ser siempre usadas en bloques de sincronizacion. Estas son \verb|quitar_letras()| y \verb|es_ficha_valida_en_palabra()|.
 
 Para ver que todas las funciones que no son thread-safe son llamadas correctamente analicemos el siguiente pseudocodigo:
+
+\subsection{enviar\_tablero()}
+
+\begin{tabular}{|l|l|}
+\hline
+\hspace*{0cm} lock(\tmutex)				& Solamente se utiliza tablero\_palabra\\
+\hspace*{0.5cm} copia datos de tablero\_palabras \nts 	& para lectura pero igual debemos asegurarnos \\
+\hspace*{0cm} unlock(\tmutex) 				& que la estructura no este siendo modificada. \\
+\hspace*{0cm} enviar \ts & \\
+\hline
+\end{tabular}
+
+\paragraph{}
+Como manejamos el acceso a una variable global ahora la funcion enviar\_tablero() es thread-safe (\ts).
+
+\subsection{terminar\_servidor\_de\_jugador()}
+
+\begin{tabular}{|l|l|}
+\hline
+\hspace*{0cm} close 					& Como quitar\_letras es \nts nos aseguramos\\
+\hspace*{0cm} lock(\tmutex) 				& de sincronizarla.\\
+\hspace*{0.5cm} quitar\_letras \nts & \\
+\hspace*{0cm} unlock(\tmutex) & \\
+\hline
+\end{tabular}
+
+\paragraph{}
+Como manejamos el acceso a una funcion que no es thread-safe(\nts), ahora la funcion terminar\_servidor\_de\_jugador() es thread-safe(\ts).
+
+\subsection{atendedor\_de\_jugador()}
+
+\begin{tabular}{|l|l|}
+\hline
+\hspace*{0cm} recibir\_nombre \ts & \\
+\hspace*{0.5cm} if(falla) terminar\_servidor\_de\_jugador \ts & \\
+\hline
+\hspace*{0cm} enviar\_dimenciones \ts & \\
+\hspace*{0.5cm} if(falla) terminar\_servidor\_de\_jugador \ts & \\
+\hline
+\hspace*{0cm} while(TRUE) & \\
+\hline
+\hspace*{0.5cm} if(comando=MSG\_LETRA)  		& Para manejar la sincronizacion de \\
+\hspace*{1cm} parsear\_casillero \ts 			& es\_ficha\_valida\_en\_palabra y \\
+\hspace*{1cm} lock(\tmutex) 				& quitar\_letras que usan las variables \\
+\hspace*{1.5cm} es\_ficha\_valida\_en\_palabra \nts 	& compartidas tablero\_letras y \\
+\hspace*{1.5cm} if(VALIDA) 				& tablero\_palabras utilizamos el mutex\\
+\hspace*{2cm} unlock(\tmutex) 				& tablero\_mutex.\\
+\hspace*{2cm} enviar\_ok \ts & \\
+\hspace*{1.5cm} sino & \\
+\hspace*{2cm} quitar\_letras \nts & \\
+\hspace*{2cm} unlock(\tmutex) & \\
+\hspace*{2cm} enviar\_error \ts & \\
+\hline
+\hspace*{0.5cm} if(comando=MSG\_PALABRA)  		& Como tablero\_palabras es una \\
+\hspace*{1cm} lock(\tmutex) 				& variable compartida la sincronizamos \\
+\hspace*{1.5cm} actualiza tablero\_palabras \nts 	& con el mutex tablero\_mutex.\\
+\hspace*{1cm} unlock(\tmutex) & \\
+\hspace*{1cm} enviar\_ok \ts & \\
+\hline
+\hspace*{0.5cm} if(comando=MSG\_UPDATE)  & \\
+\hspace*{1cm} enviar\_tablero \ts & \\
+\hspace*{1.5cm} if(falla) terminar\_servidor\_de\_jugador \ts & \\
+\hline
+\hspace*{0.5cm} if(comando=MSG\_INVALID)  & \\
+\hspace*{1cm} continue;\ts & \\
+\hline
+\hspace*{0.5cm} else (comando='cualquiercosa')  & \\
+\hspace*{1cm} terminar\_servidor\_de\_jugador \ts & \\
+\hspace*{1cm} break; \ts & \\
+\hline
+\hspace*{0cm} end while & \\
+\hspace*{0cm} pthread\_exit & \\
+\hline
+\end{tabular}
+
+\paragraph{}
+Como manejamos todas las variables globales y las funciones que no eran thread-safe, ahora la funcion atendedor\_de\_jugador() es thread-safe (\ts).
+
+\subsection{main()}
+
+\begin{tabular}{|l|l|}
+\hline
+\hspace*{0cm} cargar\_int \ts & \\
+\hline
+\hspace*{0cm} lock(\tmutex) & En este momento el unico thread corriendo \\
+\hspace*{0.5cm} inicializo tablero\_letras y tablero\_palabras \nts & es el main. Por lo cual no haria falta\\
+\hspace*{0cm} unlock(\tmutex) & sincronizar el acceso, pero por \\
+& consistencia lo sincronizamos.\\
+\hline
+\hspace*{0cm} while(TRUE) & \\
+\hspace*{0.5cm} atendedor\_de\_jugador \ts & se crea un pthread para cada cliente \\
+\hspace*{0.5cm} wait(cliente\_inicializado) & esto se hace para evitar condiciones de carrera\\
+\hspace*{0cm} end while & en la lectura de parametros de cada thread \\
+\hline
+\end{tabular}
