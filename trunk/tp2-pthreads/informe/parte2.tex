@@ -1,3 +1,7 @@
-\part{Otras modificaciones}
+\section{Otras modificaciones}
 
--//TODO Comentar codigo de no sincronizacion modicado
+Ahora como el server es multithread cuando el cliente finaliza su conexion con el servidor, tanto por una falla como por decision propia, no debe finalizar el juego. Para lo cual modificamos el ciclo de cada thread que ante la finalizacion solamente corta el thread de ese jugador.
+
+Dado el comportamiento que le estamos dando al juego con esta modificacion, el backend ahora no finaliza, este se queda escuchando constantemente el ingreso o retiradas de clientes.
+
+-//TODO Ver cuando liberar los mutex.
