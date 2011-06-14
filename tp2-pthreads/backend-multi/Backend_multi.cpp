@@ -7,9 +7,7 @@ using namespace std;
 int socket_servidor = -1;
 
 // variables globales del juego
-pthread_mutex_t tablero_mutex;
 vector<vector<char> > tablero_letras; // tiene letras que aún no son palabras válidas
-
 vector<vector<char> > tablero_palabras; // solamente tiene las palabras válidas
 unsigned int ancho = -1;
 unsigned int alto = -1;
@@ -19,8 +17,6 @@ pthread_mutex_t m;
 pthread_cond_t vc = PTHREAD_COND_INITIALIZER;
 
 int main(int argc, const char* argv[]) {
-	
-	pthread_mutex_init(&tablero_mutex, NULL);
 	
 	// manejo la señal SIGINT para poder cerrar el socket cuando cierra el programa
 	signal(SIGINT, cerrar_servidor);
@@ -43,19 +39,15 @@ int main(int argc, const char* argv[]) {
 	}
 
 	// inicializar ambos tableros, se accede como tablero[fila][columna]
-	pthread_mutex_lock(&tablero_mutex);
 	tablero_letras = vector<vector<char> >(alto);
 	for (unsigned int i = 0; i < alto; ++i) {
 		tablero_letras[i] = vector<char>(ancho, VACIO);
 	}
-	pthread_mutex_unlock(&tablero_mutex);
 
-	pthread_mutex_lock(&tablero_mutex);
 	tablero_palabras = vector<vector<char> >(alto);
 	for (unsigned int i = 0; i < alto; ++i) {
 		tablero_palabras[i] = vector<char>(ancho, VACIO);
 	}
-	pthread_mutex_unlock(&tablero_mutex);
 
 	int socketfd_cliente, socket_size;
 	struct sockaddr_in local, remoto;
@@ -108,7 +100,7 @@ int main(int argc, const char* argv[]) {
 		}
 		
 		pthread_mutex_lock(&m);
-			while(!cliente_inicializado)
+			while(!cliente_inicializado);
 				pthread_cond_wait(&vc, &m);
 			cliente_inicializado = false;
 		pthread_mutex_unlock(&m);
@@ -153,7 +145,7 @@ void *atendedor_de_jugador(void *p_socket_fd) {
 	cout << "esperando que juegue " << nombre_jugador << endl;
 
 	while (true) {
-		// espera una letra o una confirmación de fichapalabra
+		// espera una letra o una confirmación de palabra
 		char mensaje[MENSAJE_MAXIMO+1];
 		int comando = recibir_comando(socket_fd, mensaje);
 		if (comando == MSG_LETRA) {
@@ -162,17 +154,11 @@ void *atendedor_de_jugador(void *p_socket_fd) {
 				// no es un mensaje LETRA bien formado, hacer de cuenta que nunca llegó
 				continue;
 			}
-			
-			pthread_mutex_lock(&tablero_mutex);
-			
 			// ficha contiene la nueva letra a colocar
 			// verificar si es una posición válida del tablero
 			if (es_ficha_valida_en_palabra(ficha, palabra_actual)) {
 				palabra_actual.push_back(ficha);
 				tablero_letras[ficha.fila][ficha.columna] = ficha.letra;
-				
-				pthread_mutex_unlock(&tablero_mutex);
-				
 				// OK
 				if (enviar_ok(socket_fd) != 0) {
 					// se produjo un error al enviar. Cerramos todo.
@@ -180,11 +166,7 @@ void *atendedor_de_jugador(void *p_socket_fd) {
 				}
 			}
 			else {
-				
 				quitar_letras(palabra_actual);
-				
-				pthread_mutex_unlock(&tablero_mutex);
-				
 				// ERROR
 				if (enviar_error(socket_fd) != 0) {
 					// se produjo un error al enviar. Cerramos todo.
@@ -193,16 +175,10 @@ void *atendedor_de_jugador(void *p_socket_fd) {
 			}
 		}
 		else if (comando == MSG_PALABRA) {
-			
-			pthread_mutex_lock(&tablero_mutex);
-			
-			// las letras acumuladas conforman una palabra completa, 
-			//     escribirlas en el tablero de palabras y borrar las letras temporales
+			// las letras acumuladas conforman una palabra completa, escribirlas en el tablero de palabras y borrar las letras temporales
 			for (list<Casillero>::const_iterator casillero = palabra_actual.begin(); casillero != palabra_actual.end(); casillero++) {
 				tablero_palabras[casillero->fila][casillero->columna] = casillero->letra;
 			}
-			pthread_mutex_unlock(&tablero_mutex);
-			
 			palabra_actual.clear();
 
 			if (enviar_ok(socket_fd) != 0) {
@@ -303,10 +279,6 @@ int enviar_tablero(int socket_fd) {
 	char buf[MENSAJE_MAXIMO+1];
 	sprintf(buf, "STATUS ");
 	int pos = 7;
-	
-	// sincro para que no llege info por la mitad
-	pthread_mutex_lock(&tablero_mutex);
-	
 	for (unsigned int fila = 0; fila < alto; ++fila) {
 		for (unsigned int col = 0; col < ancho; ++col) {
 			char letra = tablero_palabras[fila][col];
@@ -314,7 +286,6 @@ int enviar_tablero(int socket_fd) {
 			pos++;
 		}
 	}
-	pthread_mutex_unlock(&tablero_mutex);
 	buf[pos] = 0; //end of buffer
 
 	return enviar(socket_fd, buf);
