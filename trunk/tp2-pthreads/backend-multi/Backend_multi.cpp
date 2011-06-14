@@ -100,7 +100,7 @@ int main(int argc, const char* argv[]) {
 		}
 		
 		pthread_mutex_lock(&m);
-			while(!cliente_inicializado);
+			while(!cliente_inicializado)
 				pthread_cond_wait(&vc, &m);
 			cliente_inicializado = false;
 		pthread_mutex_unlock(&m);
