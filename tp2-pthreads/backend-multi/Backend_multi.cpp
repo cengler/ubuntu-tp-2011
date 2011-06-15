@@ -2,7 +2,6 @@
 
 using namespace std;
 
-
 // variables globales de la conexión
 int socket_servidor = -1;
 
@@ -162,7 +161,7 @@ void *atendedor_de_jugador(void *p_socket_fd) {
 		if (comando == MSG_LETRA) {
 			Casillero ficha;
 			if (parsear_casillero(mensaje, ficha) != 0) {
-				// no es un mensaje LETRA bien formado, hacer de cuenta que nunca llegó
+				// no es un mensaje LETRA bien formado, hacer de cresolucuionuenta que nunca llegó
 				continue;
 			}
 			// ficha contiene la nueva letra a colocar
@@ -184,9 +183,8 @@ void *atendedor_de_jugador(void *p_socket_fd) {
 				}
 			}
 			else {
-				quitar_letras(palabra_actual); // TODO aca no toca mas posiciones?
-
 				pthread_mutex_unlock(&tablero_mutex[ficha.fila][ficha.columna]);
+				quitar_letras(palabra_actual);
 				// ERROR
 				if (enviar_error(socket_fd) != 0) {
 					// se produjo un error al enviar. Cerramos todo.
@@ -356,8 +354,11 @@ void terminar_servidor_de_jugador(int socket_fd, list<Casillero>& palabra_actual
 
 
 void quitar_letras(list<Casillero>& palabra_actual) {
-	for (list<Casillero>::const_iterator casillero = palabra_actual.begin(); casillero != palabra_actual.end(); casillero++) {
-		tablero_letras[casillero->fila][casillero->columna] = VACIO;
+	for (list<Casillero>::const_iterator casillero = palabra_actual.begin(); casillero != palabra_actual.end(); casillero++) 
+	{
+		pthread_mutex_lock(&tablero_mutex[casillero->fila][casillero->columna]);
+			tablero_letras[casillero->fila][casillero->columna] = VACIO;
+		pthread_mutex_unlock(&tablero_mutex[casillero->fila][casillero->columna]);
 	}
 	palabra_actual.clear();
 }
