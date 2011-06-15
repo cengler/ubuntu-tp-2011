@@ -9,17 +9,28 @@ int socket_servidor = -1;
 // variables globales del juego
 vector<vector<char> > tablero_letras; // tiene letras que aún no son palabras válidas
 vector<vector<char> > tablero_palabras; // solamente tiene las palabras válidas
-vector<vector<pthread_mutex_t> > mutex_casillero; // mutex por casillero
-
 unsigned int ancho = -1;
 unsigned int alto = -1;
+
+// sincronizacion
+vector<vector<pthread_mutex_t> > tablero_mutex; // proteje cada posicion
+pthread_rwlock_t tablero_rwlock; // no permite que se lea mientras que se escribe en el tablero
 
 bool cliente_inicializado;
 pthread_mutex_t m;
 pthread_cond_t vc = PTHREAD_COND_INITIALIZER;
 
+bool cargar_int(const char* numero, unsigned int& n) {
+	char *eptr;
+	n = static_cast<unsigned int>(strtol(numero, &eptr, 10));
+	if(*eptr != '\0') {
+		cerr << "error: " << numero << " no es un número: " << endl;
+		return false;
+	}
+	return true;
+}
+
 int main(int argc, const char* argv[]) {
-	
 	// manejo la señal SIGINT para poder cerrar el socket cuando cierra el programa
 	signal(SIGINT, cerrar_servidor);
 
@@ -51,16 +62,15 @@ int main(int argc, const char* argv[]) {
 		tablero_palabras[i] = vector<char>(ancho, VACIO);
 	}
 
-	mutex_casillero = vector<vector<pthread_mutex_t> >(alto); 
+	// inicializo el tablero de mutex
+	tablero_mutex = vector<vector<pthread_mutex_t> >(alto);
 	for (unsigned int i = 0; i < alto; ++i) {
-		mutex_casillero[i] = <vector<pthread_mutex_t> >(ancho);
+		tablero_mutex[i] = vector<pthread_mutex_t>(ancho);
 		for (unsigned int j = 0; j < ancho; ++j) {
-			pthread_mutex_t mutexCasillero;
-			pthread_mutex_init(&mutexCasillero, NULL);
-			mutex_casillero[i][j] = mutexCasillero;
+			pthread_mutex_init(&tablero_mutex[i][j], NULL);
 		}
 	}
-	
+
 	int socketfd_cliente, socket_size;
 	struct sockaddr_in local, remoto;
 
@@ -85,9 +95,6 @@ int main(int argc, const char* argv[]) {
 		cerr << "Error escuchando socket" << endl;
 	}
 
-	// aceptar conexiones entrantes.
-	socket_size = sizeof(remoto);
-	
 	// inicializo los atributos para que el thread sea joineable
 	pthread_attr_t attr;
 	pthread_attr_init(&attr);
@@ -96,45 +103,37 @@ int main(int argc, const char* argv[]) {
 	pthread_mutex_init(&m, NULL);
 	pthread_cond_init(&vc, NULL);
 	cliente_inicializado = false;
+
+	pthread_rwlock_init(&tablero_rwlock, NULL);
 	
-	while (true) 
-	{
+	// aceptar conexiones entrantes.
+	socket_size = sizeof(remoto);
+	while (true) {
 		cout << "aceptando conexion..." << endl;
-		
 		if ((socketfd_cliente = accept(socket_servidor, (struct sockaddr*) &remoto, (socklen_t*) &socket_size)) == -1)
 			cerr << "Error al aceptar conexion" << endl;
-		
-		
-		pthread_t tid;
-		int rc = pthread_create(&tid, &attr, atendedor_de_jugador, &socketfd_cliente);
-		if (rc) {              
-			cerr << "Error al crear el thread" << endl;
+		else {
+			pthread_t tid;
+			int rc = pthread_create(&tid, &attr, atendedor_de_jugador, &socketfd_cliente);
+			if (rc) {              
+				cerr << "Error al crear el thread" << endl;
+			}
+			else {
+				pthread_mutex_lock(&m);
+					while(!cliente_inicializado)
+						pthread_cond_wait(&vc, &m);
+					cliente_inicializado = false;
+				pthread_mutex_unlock(&m);
+			}	
 		}
-		
-		pthread_mutex_lock(&m);
-			while(!cliente_inicializado)
-				pthread_cond_wait(&vc, &m);
-			cliente_inicializado = false;
-		pthread_mutex_unlock(&m);
-				
 	}
 	return 0;
-}
-
-bool cargar_int(const char* numero, unsigned int& n) {
-	char *eptr;
-	n = static_cast<unsigned int>(strtol(numero, &eptr, 10));
-	if(*eptr != '\0') {
-		cerr << "error: " << numero << " no es un número: " << endl;
-		return false;
-	}
-	return true;
 }
 
 void *atendedor_de_jugador(void *p_socket_fd) {
 
 	int socket_fd = *((int *) p_socket_fd);
-	
+
 	// variables locales del jugador
 	char nombre_jugador[21];
 	list<Casillero> palabra_actual; // lista de letras de la palabra aún no confirmada
@@ -168,9 +167,16 @@ void *atendedor_de_jugador(void *p_socket_fd) {
 			}
 			// ficha contiene la nueva letra a colocar
 			// verificar si es una posición válida del tablero
+
+			pthread_mutex_lock(&tablero_mutex[ficha.fila][ficha.columna]);
+			
 			if (es_ficha_valida_en_palabra(ficha, palabra_actual)) {
 				palabra_actual.push_back(ficha);
 				tablero_letras[ficha.fila][ficha.columna] = ficha.letra;
+				
+				// liberamos el mutex luego de la actualizacion
+				pthread_mutex_unlock(&tablero_mutex[ficha.fila][ficha.columna]);
+				
 				// OK
 				if (enviar_ok(socket_fd) != 0) {
 					// se produjo un error al enviar. Cerramos todo.
@@ -178,7 +184,9 @@ void *atendedor_de_jugador(void *p_socket_fd) {
 				}
 			}
 			else {
-				quitar_letras(palabra_actual);
+				quitar_letras(palabra_actual); // TODO aca no toca mas posiciones?
+
+				pthread_mutex_unlock(&tablero_mutex[ficha.fila][ficha.columna]);
 				// ERROR
 				if (enviar_error(socket_fd) != 0) {
 					// se produjo un error al enviar. Cerramos todo.
@@ -187,10 +195,16 @@ void *atendedor_de_jugador(void *p_socket_fd) {
 			}
 		}
 		else if (comando == MSG_PALABRA) {
+
+			pthread_rwlock_wrlock(&tablero_rwlock);
+
 			// las letras acumuladas conforman una palabra completa, escribirlas en el tablero de palabras y borrar las letras temporales
 			for (list<Casillero>::const_iterator casillero = palabra_actual.begin(); casillero != palabra_actual.end(); casillero++) {
 				tablero_palabras[casillero->fila][casillero->columna] = casillero->letra;
 			}
+			
+			pthread_rwlock_unlock(&tablero_rwlock);
+
 			palabra_actual.clear();
 
 			if (enviar_ok(socket_fd) != 0) {
@@ -291,6 +305,9 @@ int enviar_tablero(int socket_fd) {
 	char buf[MENSAJE_MAXIMO+1];
 	sprintf(buf, "STATUS ");
 	int pos = 7;
+
+	pthread_rwlock_rdlock(&tablero_rwlock);
+	
 	for (unsigned int fila = 0; fila < alto; ++fila) {
 		for (unsigned int col = 0; col < ancho; ++col) {
 			char letra = tablero_palabras[fila][col];
@@ -298,6 +315,8 @@ int enviar_tablero(int socket_fd) {
 			pos++;
 		}
 	}
+	pthread_rwlock_unlock(&tablero_rwlock);
+
 	buf[pos] = 0; //end of buffer
 
 	return enviar(socket_fd, buf);
@@ -332,7 +351,7 @@ void terminar_servidor_de_jugador(int socket_fd, list<Casillero>& palabra_actual
 
 	quitar_letras(palabra_actual);
 
-	exit(-1);
+	pthread_exit(NULL);
 }
 
 
