@@ -6,11 +6,73 @@ Para la resoluci\'on del problema planteado se decidi\'o implementar un nuevo ba
  \item Permitir que todos los jugadores coloquen letras en casilleros distintos de forma simultanea.
  \item Permitir que varios clientes consulten el estado del tablero de forma simultanea.
 \end{itemize}
-Para que esto sea posible se utilizaron pthreads. La utilizaci\'on threads acarrea el problema de condici\'on de carrera. Mediante el uso de mutex es posible solucionar este problema. Para manejar de manera correcta los accesos de distintos threads a las variables globales se agregaron: un mutex (\verb|pthread_mutex_t m|), una variable de condici\'on(\verb|pthread_cond_t vc|) y una variable global (\verb|bool cliente_inicializado|).
+
+Para que la realizacion del primer punto sea posible se utilizaron threads. La utilizaci\'on de threads acarrea el problema de la condici\'on de carrera. Mediante el uso de mutex es posible solucionar este problema. En nuestra solucion el primer problema que se nos plantea es cuando se esta realizando la creacion de los threads. Veamos esto, primero se obtiene el socket file descriptor correspondiente al cliente actual este es guardado en una variable. Despues se realiza el llamado al constructor de threads (pthread\_create()) pasandole por parametro ese file descriptor. Luego en la funcion asociada al thread se realiza el casteo y asignacion de ese socket file descriptor a una nueva posicion de memoria. Puede ocurrir que antes de que se guarde este socket file descriptor en otra posicion de memoria se acepte a otro usuario y pise con su socket file descriptor la variable quedando de esta manera dos usuario con el mismo socket file descriptor. Para solucionar esto se utilizo un wait dentro del ciclo que acepta clientes y un signal que es lanzado desde el thread que se cre\'o una vez que se guardo el socket file descriptor. Para implementarlo se utilizaron un mutex (\verb|pthread_mutex_t m|), una variable de condici\'on(\verb|pthread_cond_t vc|) y una variable booleana (\verb|bool cliente_inicializado|).
+
+\begin{framed}
+\begin{verbatimtab}
+int main(int argc, const char* argv[]) {
+	...
+	pthread_mutex_init(&m, NULL);
+	pthread_cond_init(&vc, NULL);
+	cliente_inicializado = false;
+	while (true) 
+	{
+		socketfd_cliente = accept(socket_servidor, &remoto, &socket_size);
+		
+		pthread_t tid;
+		int rc = pthread_create(&tid, &attr, atendedor_de_jugador, 
+						&socketfd_cliente);
+		pthread_mutex_lock(&m);
+			while(!cliente_inicializado)
+				pthread_cond_wait(&vc, &m);
+			cliente_inicializado = false;
+		pthread_mutex_unlock(&m);
+	}
+}
+
+void *atendedor_de_jugador(void *p_socket_fd) {
+	int socket_fd = *((int *) p_socket_fd);
+	pthread_mutex_lock(&m);
+		cliente_inicializado = true;
+		pthread_cond_signal(&vc);
+	pthread_mutex_unlock(&m);
+	...
+}
+\end{verbatimtab}
+\end{framed}
+
+Para el segundo punto es necesario utilizar algun mecanismo que permita que dos usuarios puedan colocar letras a casilleros distintos de forma simultanea. Es decir, que puedan realizar escrituras simultaneas en posiciones distintas de la matriz que representa el tablero pero que no permita el acceso de manera simultanea al mismo casillero. Para este punto se penso en una matriz de mutex, donde cada posicion de la matriz de mutex se corresponde con la de un casillero del tablero. De esta manera se va a poder realizar la escritura si solo si la posicion correspondiente no esta bloqueada por el mutex asociado. En la implementacion se utilizo la matriz de mutex (\verb|vector<vector<pthread_mutex_t> > tablero_mutex|).
+
+\begin{framed}
+\begin{verbatimtab}
+void *atendedor_de_jugador(void *p_socket_fd) {
+	...
+	while (true) {
+		int comando = recibir_comando(socket_fd, mensaje);
+		if (comando == MSG_LETRA) {
+			Casillero f = parsear_casillero(mensaje);
+			
+			pthread_mutex_lock(&tablero_mutex[f.fil][f.col]);
+			
+			if (es_ficha_valida_en_palabra(f, palabra_actual)) {
+				palabra_actual.push_back(f);
+				tablero_letras[f.fil][f.col] = f.letra;
+				pthread_mutex_unlock(&tablero_mutex[f.fil][f.col]);
+			} else {
+				quitar_letras(palabra_actual);
+				pthread_mutex_unlock(&tablero_mutex[f.fil][f.col]);
+			}
+		}
+		...
+\end{verbatimtab}
+\end{framed}
+
+Para el ultimo punto es necesario utilizar algun mecanismo que te permita la lectura pero no la escritura de los casilleros. Para este punto se penso en utilizar un pthread\_rwlock esta variacion de mutex permite que muchas personas puedan entrar en modo lectura pero bloquea a la hora de escribir. 
 
 \section{Correctitud}
 
-Entonces, para verificar que se cumple que todas las funciones del backend son thread-safe realizamos el siguiente an\'alisis:
+Para verificar que se cumple que todas las funciones del backend son thread-safe realizamos el siguiente an\'alisis:
 
 Aquellas funciones que no modifican ni acceden a ninguna de las variables globales las consideramos thread-safe (\ts). Estas son \verb|cargar_int()|, \verb|recibir_nombre()|, \verb|recibir_comando()|, \\
 \verb|parsear_casillero()|, \verb|enviar_dimensiones()|, \verb|enviar_ok()|, \verb|enviar_error()|, \verb|cerrar_servidor()|, \\
