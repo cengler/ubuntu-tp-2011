@@ -9,6 +9,8 @@ int socket_servidor = -1;
 // variables globales del juego
 vector<vector<char> > tablero_letras; // tiene letras que aún no son palabras válidas
 vector<vector<char> > tablero_palabras; // solamente tiene las palabras válidas
+vector<vector<pthread_mutex_t> > mutex_casillero; // mutex por casillero
+
 unsigned int ancho = -1;
 unsigned int alto = -1;
 
@@ -49,6 +51,16 @@ int main(int argc, const char* argv[]) {
 		tablero_palabras[i] = vector<char>(ancho, VACIO);
 	}
 
+	mutex_casillero = vector<vector<pthread_mutex_t> >(alto); 
+	for (unsigned int i = 0; i < alto; ++i) {
+		mutex_casillero[i] = <vector<pthread_mutex_t> >(ancho);
+		for (unsigned int j = 0; j < ancho; ++j) {
+			pthread_mutex_t mutexCasillero;
+			pthread_mutex_init(&mutexCasillero, NULL);
+			mutex_casillero[i][j] = mutexCasillero;
+		}
+	}
+	
 	int socketfd_cliente, socket_size;
 	struct sockaddr_in local, remoto;
 
