@@ -64,11 +64,61 @@ void *atendedor_de_jugador(void *p_socket_fd) {
 				pthread_mutex_unlock(&tablero_mutex[f.fil][f.col]);
 			}
 		}
-		...
+	...
+}
 \end{verbatimtab}
 \end{framed}
 
-Para el ultimo punto es necesario utilizar algun mecanismo que te permita la lectura pero no la escritura de los casilleros. Para este punto se penso en utilizar un pthread\_rwlock esta variacion de mutex permite que muchas personas puedan entrar en modo lectura pero bloquea a la hora de escribir. 
+Para el ultimo punto es necesario utilizar algun mecanismo que te permita la lectura pero no la escritura de los casilleros. Para este punto se penso en utilizar un mecanismos de sincronizaci\'on lectura-escritura (reader-writer).
+Estos mecanismos permiten acceso exclusivo para escritura pero accesos compartidos para lectura. Tres estados son posibles para este tipo de locks: cerrado en modo lectura, cerrado en modo escritura, y no cerrado. S\'olo un thread puede tener el lock en modo escritura, pero m\'ultiples threads pueden tener el lock en modo lectura. Es decir, esta variacion de mutex permite que muchos clientes puedan entrar en modo lectura pero bloquea a la hora de escribir. En la implementacion se utilizo una variable de lock lectura-escritura (\verb|pthread_rwlock_t tablero_rwlock|).
+
+\begin{framed}
+\begin{verbatimtab}
+int enviar_tablero(int socket_fd) {
+	char buf[MENSAJE_MAXIMO+1];
+	sprintf(buf, "STATUS ");
+	int pos = 7;
+	
+	pthread_rwlock_rdlock(&tablero_rwlock);
+	
+	for (unsigned int fila = 0; fila < alto; ++fila) {
+		for (unsigned int col = 0; col < ancho; ++col) {
+			char letra = tablero_palabras[fila][col];
+			buf[pos] = (letra == VACIO)? '-' : letra;
+			pos++;
+		}
+	}
+	pthread_rwlock_unlock(&tablero_rwlock);
+	
+	buf[pos] = 0; //end of buffer
+	
+	return enviar(socket_fd, buf);
+}
+
+void *atendedor_de_jugador(void *p_socket_fd) {
+	...
+	while (true) {
+		int comando = recibir_comando(socket_fd, mensaje);
+		...
+		else if (comando == MSG_PALABRA) {
+			pthread_rwlock_wrlock(&tablero_rwlock);
+			
+			for (iterator-casillero f = palabra_actual.begin();
+					f != palabra_actual.end();
+						f++) {
+				tablero_palabras[f.fil][f.col] = f.letra;
+			}
+			
+			pthread_rwlock_unlock(&tablero_rwlock);
+			
+			palabra_actual.clear();
+		}
+	...
+}
+
+\end{verbatimtab}
+\end{framed}
+
 
 \section{Correctitud}
 

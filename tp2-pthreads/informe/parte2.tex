@@ -1,6 +1,6 @@
 \section{Otras modificaciones}
 
-Ahora como el server es multithread cuando el cliente finaliza su conexi\'on con el servidor, tanto por una falla como por decisi\'on propia, no debe finalizar el juego. Para lo cual modificamos el ciclo de cada thread que ante la finalizaci\'on solamente corta el thread de ese jugador.
+Ahora como el server es multithread cuando el cliente finaliza su conexi\'on con el servidor, tanto por una falla como por decisi\'on propia, no debe finalizar el juego. Para lo cual modificamos el ciclo de cada thread que ante la finalizaci\'on  corta solamente el thread de ese jugador.
 
 Dado el comportamiento que le estamos dando al juego con esta modificaci\'on, el backend ahora no finaliza, este se queda escuchando constantemente el ingreso o egreso de clientes.
 
