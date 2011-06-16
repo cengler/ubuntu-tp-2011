@@ -1,6 +1,6 @@
 \section{Introducci\'on}
 
-Para la resoluci\'on del problema planteado se decidi\'o implementar un nuevo backend. Este nuevo backend llamado backend\_multi, contempla el acceso de multiples clientes al juego SOScrable. Para realizar esto correctamente la implementaci\'on del nuevo backend tiene que estar libre de condiciones de carrera y adem\'as:
+Para la resoluci\'on del problema planteado se decidi\'o implementar un nuevo backend. Este nuevo backend llamado backend\_multi, contempla el acceso de m\'ultiples clientes al juego SOScrable. Para realizar esto correctamente la implementaci\'on del nuevo backend tiene que estar libre de condiciones de carrera y adem\'as:
 \begin{itemize}
  \item Permitir que m\'ultiples clientes se conecten al backend de forma simultanea.
  \item Permitir que todos los jugadores coloquen letras en casilleros distintos de forma simultanea.
@@ -11,9 +11,9 @@ Para que la realizaci\'on del primer punto sea posible, se utilizaron threads. L
 
 \subsection{Sincronizaci\'on en la creaci\'on de threads}
 
-En nuestra soluci\'on el primer problema que se nos plantea es cuando se esta realizando la creaci\'on de los threads. Veamos esto, primero se obtiene el socket file descriptor correspondiente al cliente actual este es guardado en una variable (\verb|socketfd_cliente|). Despu\'es se realiza el llamado al constructor de threads (pthread\_create()) pasandole por referencia ese file descriptor. Luego en la funci\'on asociada al thread se realiza el casteo y la copia de ese socket file descriptor.
+En nuestra soluci\'on el primer problema que se nos plantea es cuando se est\'a realizando la creaci\'on de los threads. Veamos esto, primero se obtiene el socket file descriptor correspondiente al cliente actual este es guardado en una variable (\verb|socketfd_cliente|). Despu\'es se realiza el llamado al constructor de threads (pthread\_create()) pasandole por referencia ese file descriptor. Luego en la funci\'on asociada al thread se realiza el casteo y la copia de ese socket file descriptor.
 
-Puede ocurrir que antes de que se guarde este socket file descriptor en otra posicion de memoria, se acepte a otro usuario, y pise con un nuevo socket file descriptor. Quedando de esta manera dos usuarios apuntando al mismo socket file descriptor. 
+Puede ocurrir que antes de que se guarde este socket file descriptor en otra posici\'on de memoria, se acepte a otro usuario, y pise con un nuevo socket file descriptor. Quedando de esta manera dos usuarios apuntando al mismo socket file descriptor. 
 
 Para solucionar esto se utilizo un wait dentro del ciclo que acepta los clientes y un signal que es lanzado luego de que el thread copi\'o a una variable local el socket file descriptor. 
 
@@ -102,7 +102,8 @@ Para el \'ultimo punto es necesario utilizar alg\'un mecanismo que te permita la
 
 Para este punto se pens\'o en utilizar un mecanismo de sincronizaci\'on lectura-escritura (reader-writer). Tres estados son posibles para este tipo de locks: cerrado en modo lectura, cerrado en modo escritura, y no cerrado. S\'olo un thread puede tener el lock en modo escritura, pero m\'ultiples threads pueden tener el lock en modo lectura.
 
-En la implementaci\'on se utiliz\'o una variable de lock lectura-escritura (\verb|pthread_rwlock_t tablero_rwlock|).
+En la implementaci\'on se utiliz\'o una variable de lock lectura-escritura \\
+(\verb|pthread_rwlock_t tablero_rwlock|).
 
 \begin{framed}
 \begin{verbatimtab}
@@ -155,7 +156,7 @@ Aquellas funciones que no modifican ni acceden a ninguna de las variables global
 \verb|enviar_ok()|, \verb|enviar_error()|, \verb|cerrar_servidor()|, \verb|casillero_mas_distante()| y \\
 \verb|puso_letra_en()|.
 
-Para ver que aquellas funciones que acceden a variables globales no tienen problemas de sincronizacion vamos a ``demostrar'' su correctitud. Estas son \verb|enviar_tablero()|, \verb|quitar_letras()|, \\
+Para ver que aquellas funciones que acceden a variables globales no tienen problemas de sincronizaci\'on vamos a ``demostrar'' su correctitud. Estas son \verb|enviar_tablero()|, \verb|quitar_letras()|, \\
 \verb|atendedor_de_jugador()|, \verb|es_ficha_valida_en_palabra()| y \verb|main()|.
 
 Veamos los pseudoc\'odigos de las funciones:
@@ -224,7 +225,7 @@ Como manejamos el acceso a una variable global ahora la funci\'on quitar\_letras
 \hline
 \hspace*{0.5cm} if(comando=MSG\_LETRA)  			& Como estamos actualizando una  \\
 \hspace*{1cm} parsear\_casillero() \ts 				& posicion del tablero\_letras bloqueamos \\
-\hspace*{1cm} lock(\tmutex{posicion}) 				& solamente esa posicion. \\
+\hspace*{1cm} lock(\tmutex{posicion}) 				& solamente esa posici\'on. \\
 \hspace*{1.5cm} es\_ficha\_valida\_en\_palabra() \ts 		& \\
 \hspace*{1.5cm} if(VALIDA) 					& es\_ficha\_valida\_en\_palabra() ya \\
 \hspace*{2cm} tablero\_letras[posicion] = letra \nts		& vimos que es thread-safe utilizando \\
