@@ -336,9 +336,23 @@ int enviar_error(int socket_fd) {
 // otras funciones
 
 void cerrar_servidor(int signal) {
-	cout << "El server se va a dormir..." << endl;
+	cout << endl << "El server se va a dormir..." << endl;
 	if (socket_servidor != -1)
 		close(socket_servidor);
+	
+	pthread_cond_destroy(&vc);
+	pthread_mutex_destroy(&m);
+	pthread_rwlock_destroy(&tablero_rwlock);
+	
+	// Matamos todos los mutex de tablero_mutex.
+	for (unsigned int i = 0; i < alto; ++i) {
+		for (unsigned int j = 0; j < ancho; ++j) {
+			pthread_mutex_destroy(&tablero_mutex[i][j]);
+		}
+	}
+	
+	cout << "Pudimos cerrar sin problemas el server." << endl;
+	
 	exit(EXIT_SUCCESS);
 }
 
@@ -365,14 +379,19 @@ void quitar_letras(list<Casillero>& palabra_actual) {
 
 
 bool es_ficha_valida_en_palabra(const Casillero& ficha, const list<Casillero>& palabra_actual) {
+	
+	pthread_rwlock_rdlock(&tablero_rwlock);
+	
+	bool ret = true;
+	
 	// si está fuera del tablero, no es válida
 	if (ficha.fila < 0 || ficha.fila > alto - 1 || ficha.columna < 0 || ficha.columna > ancho - 1) {
-		return false;
+		ret = false;
 	}
 
 	// si el casillero está ocupado, tampoco es válida
 	if (tablero_letras[ficha.fila][ficha.columna] != VACIO) {
-		return false;
+		ret = false;
 	}
 
 	if (palabra_actual.size() > 0) {
@@ -386,7 +405,7 @@ bool es_ficha_valida_en_palabra(const Casillero& ficha, const list<Casillero>& p
 			for (list<Casillero>::const_iterator casillero = palabra_actual.begin(); casillero != palabra_actual.end(); casillero++) {
 				if (ficha.fila - casillero->fila != 0) {
 					// no están alineadas horizontalmente
-					return false;
+					ret = false;
 				}
 			}
 
@@ -394,7 +413,7 @@ bool es_ficha_valida_en_palabra(const Casillero& ficha, const list<Casillero>& p
 			for (unsigned int columna = mas_distante.columna; columna != ficha.columna; columna += paso) {
 				// el casillero DEBE estar ocupado en el tablero de palabras
 				if (!(puso_letra_en(ficha.fila, columna, palabra_actual)) && tablero_palabras[ficha.fila][columna] == VACIO) {
-					return false;
+					ret = false;
 				}
 			}
 
@@ -403,7 +422,7 @@ bool es_ficha_valida_en_palabra(const Casillero& ficha, const list<Casillero>& p
 			for (list<Casillero>::const_iterator casillero = palabra_actual.begin(); casillero != palabra_actual.end(); casillero++) {
 				if (ficha.columna - casillero->columna != 0) {
 					// no están alineadas verticalmente
-					return false;
+					ret = false;
 				}
 			}
 
@@ -411,17 +430,19 @@ bool es_ficha_valida_en_palabra(const Casillero& ficha, const list<Casillero>& p
 			for (unsigned int fila = mas_distante.fila; fila != ficha.fila; fila += paso) {
 				// el casillero DEBE estar ocupado en el tablero de palabras
 				if (!(puso_letra_en(fila, ficha.columna, palabra_actual)) && tablero_palabras[fila][ficha.columna] == VACIO) {
-					return false;
+					ret = false;
 				}
 			}
 		}
 		else {
 			// no están alineadas ni horizontal ni verticalmente
-			return false;
+			ret = false;
 		}
 	}
-
-	return true;
+	
+	pthread_rwlock_unlock(&tablero_rwlock);
+	
+	return ret;
 }
 
 
