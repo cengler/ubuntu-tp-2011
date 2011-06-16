@@ -1,7 +1,11 @@
-\section{Otras modificaciones}
+\section{Otras consideraciones}
 
-Ahora como el server es multithread cuando el cliente finaliza su conexi\'on con el servidor, tanto por una falla como por decisi\'on propia, no debe finalizar el juego. Para lo cual modificamos el ciclo de cada thread que ante la finalizaci\'on  corta solamente el thread de ese jugador.
+Ahora como el server es multithread cuando el cliente finaliza su conexi\'on con el servidor, tanto por una falla como por decisi\'on propia, decidimos no finalizar el juego. Para lo cual modificamos el ciclo de cada thread que ante la finalizaci\'on corta solamente el thread de ese jugador.
 
-Dado el comportamiento que le estamos dando al juego con esta modificaci\'on, el backend ahora no finaliza, este se queda escuchando constantemente el ingreso o egreso de clientes.
+Dado el comportamiento que le estamos dando al juego con esta modificaci\'on, el backend ahora no finaliza, y este se queda escuchando constantemente el ingreso o egreso de clientes.
 
--//TODO Ver cuando liberar los mutex.
+\paragraph{}
+El servidor se cierra con SIGINT y destruye los mutex y variables de condici\'on creados.
+
+\paragraph{}
+El mecanismo de sincronizaci\'on de lectura-escritura que utilizamos, segun la API de POSIX no da garant\'ias que los writers tengan preferencia. Queda en manos de la implementaci\'on darle o no prioridad a los writers para evitar starvation. Nuestro c\'odigo no contempla este tipo de escenario \textit{unfair}.
