@@ -1,0 +1,66 @@
+3.2.2 Algoritmos distribuidos
+
+A diferencia de los centralizados, en los algoritmos distribuidos no existe un
+proceso diferenciado que coordine el acceso a la sección crítica, sino que se
+implementa un protocolo que permite establecer un acuerdo entre los procesos
+para decidir quién entra a la sección crítica.
+
+3.2.2.1 Algoritmo de Ricart y Agrawala
+Desarrollado en 1981, se basa en que todo proceso que quiera acceder a la
+sección crítica obtenga antes el beneplácito del resto de los procesos. Requiere
+establecer un orden total en los eventos, lo que se consigue con marcas de
+tiempo y asignando un orden predeterminado para procesos con la misma
+marca (por ejemplo, a partir del identificador del proceso).
+
+• Petición de entrar a la sección crítica:
+− El solicitante envía a todos los procesos un mensaje con su nombre, la
+sección crítica y una marca del tiempo.
+− Un receptor:
+⋅ Si no está en la sección crítica, envía un mensaje de confirmación
+al solicitante.
+⋅ Si está en la sección crítica, no responde (o deniega) y encola la
+petición.
+⋅ Si está esperando a entrar a la sección crítica, compara la marca de
+tiempo del solicitante con la de su propia petición. Si la del
+solicitante es anterior, le envía la confirmación; si no, no responde
+(o deniega) y encola su petición.
+− Para poder entrar a la sección crítica, un proceso tiene que recibir
+confirmaciones de todos los procesos.
+• Petición de salir de la sección crítica:
+− Un proceso envía confirmaciones a todos los procesos que tiene en su
+cola.
+La denegación mediante la no respuesta ofrece nula tolerancia a fallos (falla
+uno, no entra ninguno). La denegación explícita permite utilizar time-outs para
+suponer que un proceso que no contesta está fallando y prescindir de él. Sin
+embargo, ha de tenerse en cuenta que una sospecha errónea podría conducir a
+la violación de la exclusión mutua en la sección crítica. Por otra parte, aumentar
+las duraciones de los plazos para incrementar la certidumbre de las hipótesis de
+fallo implica mayores retardos, con la consiguiente pérdida de rendimiento.
+Si el conjunto de procesos es dinámico, requiere gestionar las altas y bajas de
+procesos. Como se verá, el soporte para comunicación a grupos, si se dispone
+de él, facilita la implementación de este tipo de algoritmos. La complejidad del
+protocolo, medida en función del número de mensajes necesarios, es alta,
+aunque mejora si se dispone de soporte para multicast.
+Con respecto a los algoritmos centralizados, en este algoritmo todos los
+procesos son cuellos de botella, por lo que no tiene interés práctico a partir de
+unos pocos procesos.
+
+
+
+zAl iniciar:
+estado := LIBERADO;
+z Para obtener el testigo:
+estado := PIDIENDO;
+T := timestamp de la petición;
+Difundir petición al resto de procesos;
+Esperar hasta (num. de respuestas = n - 1);
+estado := OBTENIDO;
+
+z Al recibir una petición <Ti, pi> en el proceso pj (i ¹ j)
+Si (estado = OBTENIDO) o (estado = PIDIENDO y (T, pj) < (Ti, pi))
+Encolar la petición de pi sin contestar
+Si no
+Contestar inmediatamente a pi
+z Al liberar el testigo
+estado = LIBERADO;
+Responder a todas las peticiones encoladas.
