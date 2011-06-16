@@ -70,8 +70,9 @@
 \newcommand{\latencia}{\textit{latencia }}
 \newcommand{\ts}{\textcolor{green}{TS}}
 \newcommand{\nts}{\textcolor{red}{NTS}}
-\newcommand{\tmutex}{\textcolor{blue}{tablero\_mutex}}
-\newcommand{\rw}{\textcolor{blue}{rwlock}}
+\newcommand{\tmutex}[1]{\textcolor{blue}{tablero\_mutex[#1]}}
+
+\newcommand{\rw}{\textcolor{magenta}{tablero\_rwlock}}
 
 \def\falta#1{ \begin{framed}	\begin{center} \hspace{1cm} \Large FALTA \normalsize #1 \hspace{1cm} \end{center} \end{framed}}
 

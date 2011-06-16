@@ -2,27 +2,34 @@
 
 Para la resoluci\'on del problema planteado se decidi\'o implementar un nuevo backend. Este nuevo backend llamado backend\_multi, contempla el acceso de multiples clientes al juego SOScrable. Para realizar esto correctamente la implementaci\'on del nuevo backend tiene que estar libre de condiciones de carrera y adem\'as:
 \begin{itemize}
- \item Permitir que multiples clientes se conecten al backend de forma simultanea.
+ \item Permitir que m\'ultiples clientes se conecten al backend de forma simultanea.
  \item Permitir que todos los jugadores coloquen letras en casilleros distintos de forma simultanea.
  \item Permitir que varios clientes consulten el estado del tablero de forma simultanea.
 \end{itemize}
 
-Para que la realizacion del primer punto sea posible se utilizaron threads. La utilizaci\'on de threads acarrea el problema de la condici\'on de carrera. Mediante el uso de mutex es posible solucionar este problema. En nuestra solucion el primer problema que se nos plantea es cuando se esta realizando la creacion de los threads. Veamos esto, primero se obtiene el socket file descriptor correspondiente al cliente actual este es guardado en una variable. Despues se realiza el llamado al constructor de threads (pthread\_create()) pasandole por parametro ese file descriptor. Luego en la funcion asociada al thread se realiza el casteo y asignacion de ese socket file descriptor a una nueva posicion de memoria. Puede ocurrir que antes de que se guarde este socket file descriptor en otra posicion de memoria se acepte a otro usuario y pise con su socket file descriptor la variable quedando de esta manera dos usuario con el mismo socket file descriptor. Para solucionar esto se utilizo un wait dentro del ciclo que acepta clientes y un signal que es lanzado desde el thread que se cre\'o una vez que se guardo el socket file descriptor. Para implementarlo se utilizaron un mutex (\verb|pthread_mutex_t m|), una variable de condici\'on(\verb|pthread_cond_t vc|) y una variable booleana (\verb|bool cliente_inicializado|).
+Para que la realizaci\'on del primer punto sea posible, se utilizaron threads. La utilizaci\'on de threads acarrea el problemas de la sincronizaci\'on. Mediante el uso de mutex y variables de condici\'on es posible solucionar este problema. 
+
+\subsection{Sincronizaci\'on en la creaci\'on de threads}
+
+En nuestra soluci\'on el primer problema que se nos plantea es cuando se esta realizando la creaci\'on de los threads. Veamos esto, primero se obtiene el socket file descriptor correspondiente al cliente actual este es guardado en una variable (\verb|socketfd_cliente|). Despu\'es se realiza el llamado al constructor de threads (pthread\_create()) pasandole por referencia ese file descriptor. Luego en la funci\'on asociada al thread se realiza el casteo y la copia de ese socket file descriptor.
+
+Puede ocurrir que antes de que se guarde este socket file descriptor en otra posicion de memoria, se acepte a otro usuario, y pise con un nuevo socket file descriptor. Quedando de esta manera dos usuarios apuntando al mismo socket file descriptor. 
+
+Para solucionar esto se utilizo un wait dentro del ciclo que acepta los clientes y un signal que es lanzado luego de que el thread copi\'o a una variable local el socket file descriptor. 
+
+Para implementarlo se utilizaron un mutex (\verb|pthread_mutex_t m|), una variable de condici\'on\\
+(\verb|pthread_cond_t vc|) y una variable booleana (\verb|bool cliente_inicializado|).
 
 \begin{framed}
 \begin{verbatimtab}
-int main(int argc, const char* argv[]) {
+int main() {
 	...
-	pthread_mutex_init(&m, NULL);
-	pthread_cond_init(&vc, NULL);
 	cliente_inicializado = false;
-	while (true) 
-	{
-		socketfd_cliente = accept(socket_servidor, &remoto, &socket_size);
+	while (true) {
+		socketfd_cliente = accept(socket_servidor, ...);
 		
-		pthread_t tid;
-		int rc = pthread_create(&tid, &attr, atendedor_de_jugador, 
-						&socketfd_cliente);
+		pthread_create(... , atendedor_de_jugador, &socketfd_cliente);
+		
 		pthread_mutex_lock(&m);
 			while(!cliente_inicializado)
 				pthread_cond_wait(&vc, &m);
@@ -42,73 +49,84 @@ void *atendedor_de_jugador(void *p_socket_fd) {
 \end{verbatimtab}
 \end{framed}
 
-Para el segundo punto es necesario utilizar algun mecanismo que permita que dos usuarios puedan colocar letras a casilleros distintos de forma simultanea. Es decir, que puedan realizar escrituras simultaneas en posiciones distintas de la matriz que representa el tablero pero que no permita el acceso de manera simultanea al mismo casillero. Para este punto se penso en una matriz de mutex, donde cada posicion de la matriz de mutex se corresponde con la de un casillero del tablero. De esta manera se va a poder realizar la escritura si solo si la posicion correspondiente no esta bloqueada por el mutex asociado. En la implementacion se utilizo la matriz de mutex (\verb|vector<vector<pthread_mutex_t> > tablero_mutex|).
+\subsection{Sincronizaci\'on de tablero letras}
+
+Para el segundo punto es necesario utilizar alg\'un mecanismo que permita que dos usuarios puedan colocar letras en casilleros distintos de forma simultanea sin tener condiciones de carrera. Es decir, que se puedan realizar escrituras simultaneas en posiciones distintas de la matriz que representa el tablero.
+
+Para este punto se pens\'o en una matriz de mutex, donde cada posici\'on de la matriz de mutex se corresponde con la de un casillero del tablero. De esta manera se va a poder realizar la escritura si s\'olo si la posici\'on correspondiente no est\'a bloqueada por el mutex asociado. 
+
+En la implementaci\'on se utiliz\'o la matriz de mutex \\
+(\verb|vector<vector<pthread_mutex_t>> tablero_mutex|).
 
 \begin{framed}
 \begin{verbatimtab}
 void *atendedor_de_jugador(void *p_socket_fd) {
 	...
 	while (true) {
-		int comando = recibir_comando(socket_fd, mensaje);
+		comando = recibir_comando(socket_fd, mensaje);
 		if (comando == MSG_LETRA) {
-			Casillero f = parsear_casillero(mensaje);
+			Ficha f = parsear_casillero(mensaje);
 			
 			pthread_mutex_lock(&tablero_mutex[f.fil][f.col]);
 			
 			if (es_ficha_valida_en_palabra(f, palabra_actual)) {
-				palabra_actual.push_back(f);
+				palabra_actual.agregar_ficha(f);
 				tablero_letras[f.fil][f.col] = f.letra;
 				pthread_mutex_unlock(&tablero_mutex[f.fil][f.col]);
 			} else {
-				quitar_letras(palabra_actual);
 				pthread_mutex_unlock(&tablero_mutex[f.fil][f.col]);
+				quitar_letras(palabra_actual);
 			}
 		}
 	...
 }
+
+void quitar_letras(palabra_actual) {
+	for (Ficha f : palabra_actual)
+	{
+		pthread_mutex_lock(&tablero_mutex[ficha.fil][ficha.col]);
+			tablero_letras[ficha.fil][ficha.col] = VACIO;
+		pthread_mutex_unlock(&tablero_mutex[ficha.fil][ficha.col]);
+	}
+	palabra_actual.clear();
+}
+
 \end{verbatimtab}
 \end{framed}
 
-Para el ultimo punto es necesario utilizar algun mecanismo que te permita la lectura pero no la escritura de los casilleros. Para este punto se penso en utilizar un mecanismos de sincronizaci\'on lectura-escritura (reader-writer).
-Estos mecanismos permiten acceso exclusivo para escritura pero accesos compartidos para lectura. Tres estados son posibles para este tipo de locks: cerrado en modo lectura, cerrado en modo escritura, y no cerrado. S\'olo un thread puede tener el lock en modo escritura, pero m\'ultiples threads pueden tener el lock en modo lectura. Es decir, esta variacion de mutex permite que muchos clientes puedan entrar en modo lectura pero bloquea a la hora de escribir. En la implementacion se utilizo una variable de lock lectura-escritura (\verb|pthread_rwlock_t tablero_rwlock|).
+\newpage
+
+\subsection{Sincronizaci\'on de tablero palabras}
+
+Para el \'ultimo punto es necesario utilizar alg\'un mecanismo que te permita la lectura simultanea y la escritura exclusiva. 
+
+Para este punto se pens\'o en utilizar un mecanismo de sincronizaci\'on lectura-escritura (reader-writer). Tres estados son posibles para este tipo de locks: cerrado en modo lectura, cerrado en modo escritura, y no cerrado. S\'olo un thread puede tener el lock en modo escritura, pero m\'ultiples threads pueden tener el lock en modo lectura.
+
+En la implementaci\'on se utiliz\'o una variable de lock lectura-escritura (\verb|pthread_rwlock_t tablero_rwlock|).
 
 \begin{framed}
 \begin{verbatimtab}
 int enviar_tablero(int socket_fd) {
-	char buf[MENSAJE_MAXIMO+1];
-	sprintf(buf, "STATUS ");
-	int pos = 7;
-	
 	pthread_rwlock_rdlock(&tablero_rwlock);
 	
-	for (unsigned int fila = 0; fila < alto; ++fila) {
-		for (unsigned int col = 0; col < ancho; ++col) {
-			char letra = tablero_palabras[fila][col];
-			buf[pos] = (letra == VACIO)? '-' : letra;
-			pos++;
+	for (fila = 0; fila < alto; ++fila) {
+		for (col = 0; col < ancho; ++col) {
+			llenar_buffer(buffer, tablero_palabras[fila][col]);
 		}
 	}
 	pthread_rwlock_unlock(&tablero_rwlock);
 	
-	buf[pos] = 0; //end of buffer
-	
-	return enviar(socket_fd, buf);
+	return enviar_buffer(socket_fd, buf);
 }
 
 void *atendedor_de_jugador(void *p_socket_fd) {
 	...
 	while (true) {
-		int comando = recibir_comando(socket_fd, mensaje);
-		...
-		else if (comando == MSG_PALABRA) {
+		comando = recibir_comando(socket_fd, mensaje);
+		if (comando == MSG_PALABRA) {
 			pthread_rwlock_wrlock(&tablero_rwlock);
-			
-			for (iterator-casillero f = palabra_actual.begin();
-					f != palabra_actual.end();
-						f++) {
-				tablero_palabras[f.fil][f.col] = f.letra;
-			}
-			
+				for (Ficha f : palabra_actual)
+					tablero_palabras[f.fil][f.col] = f.letra;
 			pthread_rwlock_unlock(&tablero_rwlock);
 			
 			palabra_actual.clear();
@@ -116,101 +134,125 @@ void *atendedor_de_jugador(void *p_socket_fd) {
 	...
 }
 
+// No queremos que se este escribiendo en el tablero mientras 
+// se esta haciendo la verificacion.
+bool es_ficha_valida_en_palabra(ficha, palabra_actual) {
+	pthread_rwlock_rdlock(&tablero_rwlock);
+		Mira la palabra y el tablero de palabras 
+		  para verificar que sea valida.
+	pthread_rwlock_unlock(&tablero_rwlock);
+}
 \end{verbatimtab}
 \end{framed}
 
+\newpage
 
 \section{Correctitud}
 
 Para verificar que se cumple que todas las funciones del backend son thread-safe realizamos el siguiente an\'alisis:
 
-Aquellas funciones que no modifican ni acceden a ninguna de las variables globales las consideramos thread-safe (\ts). Estas son \verb|cargar_int()|, \verb|recibir_nombre()|, \verb|recibir_comando()|, \\
-\verb|parsear_casillero()|, \verb|enviar_dimensiones()|, \verb|enviar_ok()|, \verb|enviar_error()|, \verb|cerrar_servidor()|, \\
-\verb|casillero_mas_distante()| y \verb|puso_letra_en()|.
+Aquellas funciones que no modifican ni acceden a ninguna de las variables globales o que llaman a funciones que sincronizaron sus accesos las consideramos thread-safe (\ts). Estas son \verb|cargar_int()|, \verb|recibir_nombre()|, \verb|recibir_comando()|, \verb|parsear_casillero()|, \verb|enviar_dimensiones()|, \\
+\verb|enviar_ok()|, \verb|enviar_error()|, \verb|cerrar_servidor()|, \verb|casillero_mas_distante()| y \\
+\verb|puso_letra_en()|.
 
-Y para aquellas funciones que acceden a variables globales pero no fueron sincronizadas las consideramos no thread-safe (\nts). Estas van a tener que ser siempre usadas en bloques de sincronizaci\'on. Estas son \verb|quitar_letras()| y \verb|es_ficha_valida_en_palabra()|.
+Para ver que aquellas funciones que acceden a variables globales no tienen problemas de sincronizacion vamos a ``demostrar'' su correctitud. Estas son \verb|enviar_tablero()|, \verb|quitar_letras()|, \\
+\verb|atendedor_de_jugador()|, \verb|es_ficha_valida_en_palabra()| y \verb|main()|.
 
-Para ver que todas las funciones que no son thread-safe son llamadas correctamente analicemos los pseudoc\'odigos de las siguientes funciones:
+Veamos los pseudoc\'odigos de las funciones:
 
 \subsection{enviar\_tablero()}
 
 \begin{tabular}{|l|l|}
 \hline
-\hspace*{0cm} lock(\tmutex)				& Solamente se utiliza tablero\_palabra \\
-\hspace*{0.5cm} copiar datos de tablero\_palabras \nts 	& para lectura pero igual debemos asegurarnos \\
-\hspace*{0cm} unlock(\tmutex) 				& que la estructura no este siendo modificada. \\
-\hspace*{0cm} enviar \ts & \\
+\hspace*{0cm} lock\_rd(\rw)					& Solamente se utiliza tablero\_palabra \\
+\hspace*{0.5cm} llenar buffer con tablero\_palabras \nts 	& para lectura debemos asegurarnos de que \\
+\hspace*{0cm} unlock(\rw) 					& nadie este escribiendo. \\
+\hspace*{0cm} enviar\_buffer(buffer) \ts 			& \\
 \hline
 \end{tabular}
 
 \paragraph{}
 Como manejamos el acceso a una variable global ahora la funci\'on enviar\_tablero() es thread-safe (\ts).
 
-\subsection{terminar\_servidor\_de\_jugador()}
-
+\subsection{es\_ficha\_valida\_en\_palabra()}
 \begin{tabular}{|l|l|}
 \hline
-\hspace*{0cm} close 					& Como quitar\_letras es \nts nos aseguramos \\
-\hspace*{0cm} lock(\tmutex) 				& de sincronizarla. \\
-\hspace*{0.5cm} quitar\_letras \nts & \\
-\hspace*{0cm} unlock(\tmutex) & \\
+\hspace*{0cm} lock\_rd(\rw)					& Solamente se utiliza tablero\_palabra \\
+\hspace*{0.5cm} Verificaciones sobre tablero\_palabra \nts 	& para lectura debemos asegurarnos de que \\
+\hspace*{0cm} unlock(\rw) 					& nadie este escribiendo. \\
 \hline
+
 \end{tabular}
 
 \paragraph{}
-Como manejamos el acceso a una funci\'on que no es thread-safe(\nts), ahora la funci\'on terminar\_servidor\_de\_jugador() es thread-safe(\ts).
+Como manejamos el acceso a una variable global ahora la funci\'on es\_ficha\_valida\_en\_palabra() es thread-safe (\ts).
+
+\subsection{quitar\_letras()}
+\begin{tabular}{|l|l|}
+\hline
+\hspace*{0cm} for (letra en palabra\_actual)			& Antes de eliminar una letra obtenemos \\
+\hspace*{0.5cm} lock(\tmutex{posicion})				& el mutex correspondiente a la posici\'on. \\
+\hspace*{1cm} eliminar letra en tablero\_letras \nts 		& \\
+\hspace*{0.5cm} unlock(\tmutex{posicion}) 			& \\
+\hspace*{0cm} clear(palabra\_actual) \ts 			& \\
+\hline
+
+\end{tabular}
+
+\paragraph{}
+Como manejamos el acceso a una variable global ahora la funci\'on quitar\_letras() es thread-safe (\ts).
 
 \subsection{atendedor\_de\_jugador()}
 
 \begin{tabular}{|l|l|}
 \hline
-\hspace*{0cm} recibir\_nombre \ts & \\
-\hspace*{0.5cm} if(falla) terminar\_servidor\_de\_jugador \ts & \\
+\hspace*{0cm} recibir\_nombre() \ts 				& \\
+\hspace*{0.5cm} if(falla) terminar\_servidor\_de\_jugador() \ts & \\
 \hline
-\hspace*{0cm} enviar\_dimensiones \ts & \\
-\hspace*{0.5cm} if(falla) terminar\_servidor\_de\_jugador \ts & \\
+\hspace*{0cm} enviar\_dimensiones() \ts 			& \\
+\hspace*{0.5cm} if(falla) terminar\_servidor\_de\_jugador() \ts & \\
 \hline
-\hspace*{0cm} signal(cliente\_inicializado) 		& Esto se hace para serializar la \\
-							& creaci\'on de threads de tal manera que \\
-							& no se pise la direcci\'on de memoria \\
-							& que tiene el socket\_fd. En este \\
-							& momento el thread ya copi\'o el fd \\
-							& y le avisa al main que ya puede \\
-							& continuar con la creaci\'on de threads. \\
+\hspace*{0cm} signal(cliente\_inicializado) 			& Esto se hace para serializar la \\
+								& creaci\'on de threads de tal manera que \\
+								& no se pise la direcci\'on de memoria \\
+								& que tiene el socket\_fd. En este \\
+								& momento el thread ya copi\'o el fd \\
+								& y le avisa al main que ya puede \\
+								& continuar con la creaci\'on de threads. \\
 \hline
-\hspace*{0cm} while(TRUE) & \\
+\hspace*{0cm} while(TRUE) 					& \\
 \hline
-\hspace*{0.5cm} if(comando=MSG\_LETRA)  		& Para manejar la sincronizaci\'on de \\
-\hspace*{1cm} parsear\_casillero \ts 			& es\_ficha\_valida\_en\_palabra y \\
-\hspace*{1cm} lock(\tmutex) 				& quitar\_letras que usan las variables \\
-\hspace*{1.5cm} es\_ficha\_valida\_en\_palabra \nts 	& compartidas tablero\_letras y \\
-\hspace*{1.5cm} if(VALIDA) 				& tablero\_palabras utilizamos el mutex \\
-\hspace*{2cm} unlock(\tmutex) 				& tablero\_mutex. \\
-\hspace*{2cm} enviar\_ok \ts & \\
-\hspace*{1.5cm} sino & \\
-\hspace*{2cm} quitar\_letras \nts & \\
-\hspace*{2cm} unlock(\tmutex) & \\
-\hspace*{2cm} enviar\_error \ts & \\
+\hspace*{0.5cm} if(comando=MSG\_LETRA)  			& Como estamos actualizando una  \\
+\hspace*{1cm} parsear\_casillero() \ts 				& posicion del tablero\_letras bloqueamos \\
+\hspace*{1cm} lock(\tmutex{posicion}) 				& solamente esa posicion. \\
+\hspace*{1.5cm} es\_ficha\_valida\_en\_palabra() \ts 		& \\
+\hspace*{1.5cm} if(VALIDA) 					& es\_ficha\_valida\_en\_palabra() ya \\
+\hspace*{2cm} tablero\_letras[posicion] = letra \nts		& vimos que es thread-safe utilizando \\
+\hspace*{2cm} unlock(\tmutex{posicion}) 			& el \rw.\\
+\hspace*{2cm} enviar\_ok() \ts 					& \\
+\hspace*{1.5cm} else 						& Esto no entra en death-lock ya que \\
+\hspace*{2cm} unlock(\tmutex{posicion}) 			& nunca dentro de ese \rw \\
+\hspace*{2cm} quitar\_letras() \ts 				& pedimos el \tmutex{posicion}.\\
+\hspace*{2cm} enviar\_error() \ts 				& \\
 \hline
-\hspace*{0.5cm} if(comando=MSG\_PALABRA)  		& Como tablero\_palabras es una \\
-\hspace*{1cm} lock(\tmutex) 				& variable compartida la sincronizamos \\
-\hspace*{1.5cm} actualiza tablero\_palabras \nts 	& con el mutex tablero\_mutex. \\
-\hspace*{1cm} unlock(\tmutex) & \\
-\hspace*{1cm} enviar\_ok \ts & \\
+\hspace*{0.5cm} if(comando=MSG\_PALABRA)  			& Como tablero\_palabras es una \\
+\hspace*{1cm} lock\_wr(\rw) 					& variable compartida y necesitamos \\
+\hspace*{1.5cm} actualizar tablero\_palabras \nts 		& actualizarla, es necesario pedir el \\
+\hspace*{1cm} unlock(\rw) 					& lock de \rw\\
+\hspace*{1cm} enviar\_ok() \ts 					& para escritura exclusiva.\\
 \hline
-\hspace*{0.5cm} if(comando=MSG\_UPDATE)  & \\
-\hspace*{1cm} enviar\_tablero \ts & \\
-\hspace*{1.5cm} if(falla) terminar\_servidor\_de\_jugador \ts & \\
+\hspace*{0.5cm} if(comando=MSG\_UPDATE)  			& \\
+\hspace*{1cm} enviar\_tablero() \ts 				& \\
+\hspace*{1.5cm} if(falla) terminar\_servidor\_de\_jugador() \ts & \\
 \hline
-\hspace*{0.5cm} if(comando=MSG\_INVALID)  & \\
-\hspace*{1cm} continue;\ts & \\
+\hspace*{0.5cm} if(comando=MSG\_INVALID)  			& \\
+\hspace*{1cm} continue \ts 					& \\
 \hline
-\hspace*{0.5cm} else (comando='cualquiercosa')  & \\
-\hspace*{1cm} terminar\_servidor\_de\_jugador \ts & \\
-\hspace*{1cm} break; \ts & \\
+\hspace*{0.5cm} else if(comando='cualquiercosa')  		& \\
+\hspace*{1cm} terminar\_servidor\_de\_jugador() \ts 		& \\
 \hline
-\hspace*{0cm} end while & \\
-\hspace*{0cm} pthread\_exit & \\
+\hspace*{0cm} end while 					& \\
+\hspace*{0cm} pthread\_exit 					& \\
 \hline
 \end{tabular}
 
@@ -221,16 +263,15 @@ Como manejamos todas las variables globales y las funciones que no eran thread-s
 
 \begin{tabular}{|l|l|}
 \hline
-\hspace*{0cm} cargar\_int \ts & \\
+\hspace*{0cm} cargar\_int \ts 						& \\
 \hline
-\hspace*{0cm} lock(\tmutex) 						& En este momento el \'unico thread corriendo \\
-\hspace*{0.5cm} inicializo tablero\_letras y tablero\_palabras \nts 	& es el main. Por lo cual no har\'ia falta \\
-\hspace*{0cm} unlock(\tmutex) 						& sincronizar el acceso, pero por \\
-									& consistencia lo sincronizamos. \\
+\hspace*{0cm} inicializo tablero\_letras y tablero\_palabras \nts	& En este momento el \'unico thread corriendo \\
+									& es el main. Por lo cual no hace falta \\
+									& sincronizar el acceso. \\
 \hline
 \hspace*{0cm} while(TRUE) 						& Se crea un pthread para cada cliente \\
 \hspace*{0.5cm} atendedor\_de\_jugador \ts 				& esto se hace para evitar condiciones de carrera \\
-\hspace*{0.5cm} wait(cliente\_inicializado) 				& en la lectura de par\'ametros de cada thread\\
-\hspace*{0cm} end while & \\
+\hspace*{0.5cm} wait(cliente\_inicializado) 				& en la lectura de par\'ametros de cada thread \\
+\hspace*{0cm} end while 						& \\
 \hline
 \end{tabular}
