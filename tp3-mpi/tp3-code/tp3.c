@@ -49,7 +49,7 @@ void servidor(int mi_cliente)
     
     /* Cantidad de permisos remotos (TAG_OTORGADO_REMOTO) 
      * que necesito para entrar */
-    int otorgados_remotos_faltantes =0;
+    int otorgados_remotos_faltantes = -1;
     
     /* Cantidad de servidores */
     int cant_servidores = cant_ranks/2;
@@ -108,18 +108,25 @@ void servidor(int mi_cliente)
             assert(hay_pedido_local == FALSE);
             
             hay_pedido_local = TRUE;
-            			
-			/* Actualizo el numero de secuencia */
-			if(mayor_nro_seq_recibido > nro_seq)
-				nro_seq = mayor_nro_seq_recibido;
-			nro_seq++;
+            
+            /* Si hay un solo servidor no tengo que pedir
+             * permiso a nadie */
+            if(cant_servidores == 1) {
+				MPI_Send(NULL, 0, MPI_INT, mi_cliente, TAG_OTORGADO, MPI_COMM_WORLD);
+			}
+            else {		
+				/* Actualizo el numero de secuencia */
+				if(mayor_nro_seq_recibido > nro_seq)
+					nro_seq = mayor_nro_seq_recibido;
+				nro_seq++;
 			
-			/* Le pido permisos a todos los servers (a mi mismo no) */
-            otorgados_remotos_faltantes = cant_servidores-1;
-            int serv;
-            for(serv = 0; serv<cant_servidores; serv++) {
-				if (serv != mi_rank/2) {
-					MPI_Send(&nro_seq, 0, MPI_INT, serv*2, TAG_PEDIDO_REMOTO, MPI_COMM_WORLD);
+				/* Le pido permisos a todos los servers (a mi mismo no) */
+				otorgados_remotos_faltantes = cant_servidores-1;
+				int serv;
+				for(serv = 0; serv<cant_servidores; serv++) {
+					if (serv != mi_rank/2) {
+						MPI_Send(&nro_seq, 1, MPI_INT, serv*2, TAG_PEDIDO_REMOTO, MPI_COMM_WORLD);
+					}
 				}
 			}
         }
