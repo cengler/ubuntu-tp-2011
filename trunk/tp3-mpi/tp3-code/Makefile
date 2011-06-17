@@ -1,4 +1,4 @@
-.PHONY  = all clean
+.PHONY  = all clean try
 MPICC   = mpicc
 CFLAGS += -Wall
 
@@ -12,3 +12,5 @@ tp3 : tp3.c
 clean :
 	rm -f $(EJECUTABLES)
 
+try : tp3
+	mpiexec -np 4 ./tp3 2>.try && cat .try
