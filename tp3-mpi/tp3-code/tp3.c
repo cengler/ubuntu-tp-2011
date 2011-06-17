@@ -35,73 +35,91 @@ void debug(const char *s)
 
 void servidor(int mi_cliente)
 {
+	/* Info de status */
     MPI_Status status;
     int origen, tag;
-    int nro_seq_recibido;
-    int mayor_nro_seq_recibido = 0;
-    int nro_seq;
-    int hay_pedido_local = FALSE;
-    int cant_respuestas_ok = 0;
-    int cola_de_pedidos[cant_ranks];
-    int cant_terminados = (cant_ranks/2);
     
+    /* Numeros de secuencia */
+    int nro_seq_recibido;
+    int mayor_nro_seq_recibido 		= -1;
+    int nro_seq 					= 0;
+    
+    /* Pedido de mutex local */
+    int hay_pedido_local = FALSE;
+    
+    /* Cantidad de permisos remotos (TAG_OTORGADO_REMOTO) 
+     * que necesito para entrar */
+    int otorgados_remotos_faltantes;
+    
+    /* Cantidad de servidores */
+    int cant_servidores = cant_ranks/2;
+    
+    /* Cola de pedidos de mutex demorados 
+     * (TRUE indica que ese servidor pidio el mutex) */
+    int cola_de_pedidos[cant_servidores];
+    
+    /* Cantidad de servidores que todavia no terminaron */
+    int servidores_terminados_faltantes = cant_servidores;
+    
+    /* inicializo la cola de pedidos en "vacio" */
     int i;
-    for(i=0;i<cant_ranks;i++) {
-		cola_de_pedidos[i] = FALSE; // TODO POSICIONES AL PEDO
+    for(i=0;i<cant_servidores;i++) {
+		cola_de_pedidos[i] = FALSE;
 	}
     
     while(TRUE) {
         
-        /* Los clientes no mandan números de secuencia en sus mensajes,
-           pero para la comunicación entre servidores sí será necesario. */
-        
-        MPI_Recv(&nro_seq_recibido, 1, MPI_INT, MPI_ANY_SOURCE, MPI_ANY_TAG, MPI_COMM_WORLD, &status);
+        MPI_Recv(&nro_seq_recibido, 1, MPI_INT, MPI_ANY_SOURCE, 
+					MPI_ANY_TAG, MPI_COMM_WORLD, &status);
         origen = status.MPI_SOURCE;
         tag = status.MPI_TAG;
         
+        /* Actualizo el mayor numero de secuencia obtenido */
         if(mayor_nro_seq_recibido < nro_seq_recibido)
 			mayor_nro_seq_recibido = nro_seq_recibido;
 			
+		
         if (tag == TAG_TERMINE) 
         {
 			debug("TAG_TERMINE");
 			
-            int rank;
-            for(rank = 0; rank<cant_ranks; rank+=2) {
-				if (rank != mi_rank)
-					MPI_Send(NULL, 0, MPI_INT, rank, TAG_TERMINE_REMOTO, MPI_COMM_WORLD);
+            int serv;
+            for(serv = 0; serv<cant_servidores; serv++) {
+				if (serv != mi_rank/2)
+					MPI_Send(NULL, 0, MPI_INT,serv, TAG_TERMINE_REMOTO, MPI_COMM_WORLD);
 			}
-			cant_terminados--;
-			if(cant_terminados == 0)
-			break;
+			servidores_terminados_faltantes--;
+			if(servidores_terminados_faltantes == 0)
+				break;
         }
         
         if( tag == TAG_TERMINE_REMOTO )
         {
-			cant_terminados--;
-			if(cant_terminados == 0)
+			debug("TAG_TERMINE_REMOTO");
+			assert(origen != mi_cliente);
+			servidores_terminados_faltantes--;
+			if(servidores_terminados_faltantes == 0)
 				break;
 		}
 
-        if (tag == TAG_PEDIDO) { //  TODO CANT SERVERS 1
+        if (tag == TAG_PEDIDO) {
 			debug("TAG_PEDIDO");
             assert(origen == mi_cliente);
             assert(hay_pedido_local == FALSE);
             
             hay_pedido_local = TRUE;
-            
-            cant_respuestas_ok = (cant_ranks/2)-1; // Todos los servidores menos yo.
-						
+            			
+			/* Actualizo el numero de secuencia */
 			if(mayor_nro_seq_recibido > nro_seq)
 				nro_seq = mayor_nro_seq_recibido;
 			nro_seq++;
 			
-            int rank;
-            for(rank = 0; rank<cant_ranks; rank+=2) {
-				if (rank != mi_rank) {
-					debug("Enviando...");
-					MPI_Send(&nro_seq, 0, MPI_INT, rank, TAG_PEDIDO_REMOTO, MPI_COMM_WORLD);
-					debug("Envie...");
+			/* Le pido permisos a todos los servers (a mi mismo no) */
+            otorgados_remotos_faltantes = cant_servidores-1;
+            int serv;
+            for(serv = 0; serv<cant_servidores; serv++) {
+				if (serv != mi_rank/2) {
+					MPI_Send(&nro_seq, 0, MPI_INT, serv, TAG_PEDIDO_REMOTO, MPI_COMM_WORLD);
 				}
 			}
         }
@@ -112,12 +130,14 @@ void servidor(int mi_cliente)
             assert(hay_pedido_local == TRUE);
             hay_pedido_local = FALSE;
             
+            /* Libero todos los pedidos demorados */
             int i;
-			for(i=0;i<cant_ranks;i++)
+			for(i=0;i<cant_servidores;i++)
 			{
 				if(cola_de_pedidos[i] == TRUE)
 				{
-					MPI_Send(NULL, 0, MPI_INT, origen, TAG_OTORGADO_REMOTO, MPI_COMM_WORLD);
+					assert(i != (mi_rank/2)); 
+					MPI_Send(NULL, 0, MPI_INT, i, TAG_OTORGADO_REMOTO, MPI_COMM_WORLD);
 					cola_de_pedidos[i] = FALSE;
 				}
 			}
@@ -127,11 +147,19 @@ void servidor(int mi_cliente)
 			debug("TAG_PEDIDO_REMOTO");
 			assert(origen != mi_cliente);
 			assert(origen != mi_rank);
-						
-			if(!hay_pedido_local || nro_seq_recibido < nro_seq || ( (nro_seq_recibido == nro_seq) && mi_rank > origen))
+			
+			/* si yo no lo tengo 
+			 * y lo pidieron antes que yo
+			 * o lo pedimos al mismo tiempo y tiene menor rank	
+			 * ENTREGO EL MUTEX */
+			if(!hay_pedido_local || nro_seq_recibido < nro_seq || 
+				( (nro_seq_recibido == nro_seq) && mi_rank > origen))
 				MPI_Send(NULL, 0, MPI_INT, origen, TAG_OTORGADO_REMOTO, MPI_COMM_WORLD);
-			else
-				cola_de_pedidos[origen] = TRUE;
+			else {
+				/* Encolo el pedido para liberarlo cuando deje de 
+				 * usar el mutex */
+				cola_de_pedidos[origen/2] = TRUE;
+			}
 		}
 		
 		if (tag == TAG_OTORGADO_REMOTO) {
@@ -139,8 +167,10 @@ void servidor(int mi_cliente)
 			assert(origen != mi_cliente);
 			assert(origen != mi_rank);
 
-			cant_respuestas_ok--;
-			if (cant_respuestas_ok == 0)
+			/* Si todos me los otorgaron le doy permiso a entrar en 
+			 * el la zona critica */
+			otorgados_remotos_faltantes--;
+			if (otorgados_remotos_faltantes == 0)
 				MPI_Send(NULL, 0, MPI_INT, mi_cliente, TAG_OTORGADO, MPI_COMM_WORLD);
 		}
     }
@@ -168,6 +198,8 @@ void cliente(int mi_serv, int cant_iters, int delay_comp, int delay_crit)
             usleep(mi_delay_crit);
             fprintf(stderr, "%c", mi_char);
         } fprintf(stderr, "\n");
+        
+        usleep(100000); 
         
         debug("Saliendo de sección crítica");
         MPI_Send(NULL, 0, MPI_INT, mi_serv, TAG_LIBERO, MPI_COMM_WORLD);
