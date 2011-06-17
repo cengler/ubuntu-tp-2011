@@ -65,13 +65,15 @@ void servidor(int mi_cliente)
         if (tag == TAG_TERMINE) 
         {
 			debug("TAG_TERMINE");
-            
-            
-            
+			
             int rank;
             for(rank = 0; rank<cant_ranks; rank+=2) {
-				MPI_Send(NULL, 0, MPI_INT, rank, TAG_TERMINE_REMOTO, MPI_COMM_WORLD);
+				if (rank != mi_rank)
+					MPI_Send(NULL, 0, MPI_INT, rank, TAG_TERMINE_REMOTO, MPI_COMM_WORLD);
 			}
+			cant_terminados--;
+			if(cant_terminados == 0)
+			break;
         }
         
         if( tag == TAG_TERMINE_REMOTO )
