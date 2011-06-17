@@ -13,6 +13,10 @@
 #define TAG_LIBERO            30
 #define TAG_TERMINE           40
 
+/* Mensajes entre los servidores*/
+#define TAG_PEDIDO_REMOTO		50
+#define TAG_OTORGADO_REMOTO		60
+
 /* Valores por defecto */
 #define CANT_ITERACIONES                1
 #define FACTOR_DELAY_COMPUTO       100000
@@ -29,13 +33,21 @@ void debug(const char *s)
 #endif
 }
 
-
 void servidor(int mi_cliente)
 {
     MPI_Status status;
     int origen, tag;
     int nro_seq_recibido;
+    int mayor_nro_seq_recibido = 0;
+    int nro_seq;
     int hay_pedido_local = FALSE;
+    int cant_respuestas_ok = 0;
+    int cola_de_pedidos[cant_ranks];
+    
+    int i;
+    for(i=0;i<cant_ranks;i++) {
+		cola_de_pedidos[i] = FALSE; // TODO POS AL PEDO
+	}
     
     while(TRUE) {
         
@@ -46,6 +58,9 @@ void servidor(int mi_cliente)
         origen = status.MPI_SOURCE;
         tag = status.MPI_TAG;
         
+        if(mayor_nro_seq_recibido < nro_seq_recibido)
+			mayor_nro_seq_recibido = nro_seq_recibido;
+			
         /* ... ejemplos a corregir y/o expandir ... */
 
         if (tag == TAG_TERMINE) {
@@ -53,13 +68,25 @@ void servidor(int mi_cliente)
             break;
         }
 
-        if (tag == TAG_PEDIDO) {
+        if (tag == TAG_PEDIDO) { //  TODO CANT SERVERS 1
             assert(origen == mi_cliente);
             assert(hay_pedido_local == FALSE);
             debug("Mi cliente solicita acceso exclusivo");
             hay_pedido_local = TRUE;
-            debug("Enviando respuesta otorgando el acceso (¡fruta por ahora!)");
-            MPI_Send(NULL, 0, MPI_INT, mi_cliente, TAG_OTORGADO, MPI_COMM_WORLD);
+            
+            cant_respuestas_ok = (cant_ranks/2)-1; // Todos los servidores menos yo.
+			int rank = 0;
+			
+			if(mayor_nro_seq_recibido > nro_seq)
+				nro_seq = mayor_nro_seq_recibido;
+			nro_seq++;
+            
+            for(rank = 0; rank<cant_ranks; rank+=2) {
+				if (rank != mi_rank) {
+					debug("Envio mensaje al rank");
+					MPI_Send(&nro_seq, 0, MPI_INT, rank, TAG_PEDIDO_REMOTO, MPI_COMM_WORLD);
+				}
+			}
         }
         
         if (tag == TAG_LIBERO) {
@@ -67,12 +94,39 @@ void servidor(int mi_cliente)
             assert(hay_pedido_local == TRUE);
             debug("Mi cliente libera su acceso exclusivo");
             hay_pedido_local = FALSE;
+            
+            int i;
+			for(i=0;i<cant_ranks;i++)
+			{
+				if(cola_de_pedidos[i] == TRUE)
+				{
+					MPI_Send(NULL, 0, MPI_INT, origen, TAG_OTORGADO_REMOTO, MPI_COMM_WORLD);
+					cola_de_pedidos[i] = FALSE;
+				}
+			}
         }
         
-        /* ... espacio en blanco a completar ... */
-
+        if (tag == TAG_PEDIDO_REMOTO) {
+			assert(origen != mi_cliente);
+			assert(origen != mi_rank);
+			debug("Me llega un pedido remoto");
+			
+			if(!hay_pedido_local || nro_seq_recibido < nro_seq || ( (nro_seq_recibido == nro_seq) && mi_rank > origen))
+				MPI_Send(NULL, 0, MPI_INT, origen, TAG_OTORGADO_REMOTO, MPI_COMM_WORLD);
+			else
+				cola_de_pedidos[origen] = TRUE;
+		}
+		
+		if (tag == TAG_OTORGADO_REMOTO) {
+			assert(origen != mi_cliente);
+			assert(origen != mi_rank);
+			debug("Me otorgaron el pedido remoto");
+			
+			cant_respuestas_ok--;
+			if (cant_respuestas_ok == 0)
+				MPI_Send(NULL, 0, MPI_INT, mi_cliente, TAG_OTORGADO, MPI_COMM_WORLD);
+		}
     }
-
 }
 
 
@@ -84,8 +138,7 @@ void cliente(int mi_serv, int cant_iters, int delay_comp, int delay_crit)
     MPI_Status status; int i;
 
     while(cant_iters-- > 0) {
-
-        debug("Computando ...");
+		
         usleep(mi_delay_comp);
 
         debug("Enviando pedido a mi servidor");
@@ -102,7 +155,6 @@ void cliente(int mi_serv, int cant_iters, int delay_comp, int delay_crit)
         
         debug("Saliendo de sección crítica");
         MPI_Send(NULL, 0, MPI_INT, mi_serv, TAG_LIBERO, MPI_COMM_WORLD);
-
     }
 
     debug("Enviando mensaje final a mi servidor");
