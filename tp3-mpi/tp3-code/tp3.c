@@ -8,23 +8,23 @@
 #define TRUE  1
 
 /* Distintos tipos de mensajes */
-#define TAG_PEDIDO            10
-#define TAG_OTORGADO          20
-#define TAG_LIBERO            30
-#define TAG_TERMINE           40
+#define TAG_PEDIDO       		    10
+#define TAG_OTORGADO       	   		20
+#define TAG_LIBERO         	   		30
+#define TAG_TERMINE           		40
 
 /* Mensajes entre los servidores*/
-#define TAG_PEDIDO_REMOTO		50
-#define TAG_OTORGADO_REMOTO		60
+#define TAG_PEDIDO_REMOTO			50
+#define TAG_OTORGADO_REMOTO			60
+#define TAG_TERMINE_REMOTO			70
 
 /* Valores por defecto */
-#define CANT_ITERACIONES                1
-#define FACTOR_DELAY_COMPUTO       100000
-#define FACTOR_DELAY_CRITICA           10
+#define CANT_ITERACIONES             1
+#define FACTOR_DELAY_COMPUTO    100000
+#define FACTOR_DELAY_CRITICA        10
 
 /* Variables globales */
 int cant_ranks, mi_rank, mi_rol, mi_nro;
-
 
 void debug(const char *s)
 {
@@ -43,10 +43,11 @@ void servidor(int mi_cliente)
     int hay_pedido_local = FALSE;
     int cant_respuestas_ok = 0;
     int cola_de_pedidos[cant_ranks];
+    int cant_terminados = (cant_ranks/2);
     
     int i;
     for(i=0;i<cant_ranks;i++) {
-		cola_de_pedidos[i] = FALSE; // TODO POS AL PEDO
+		cola_de_pedidos[i] = FALSE; // TODO POSICIONES AL PEDO
 	}
     
     while(TRUE) {
@@ -61,38 +62,52 @@ void servidor(int mi_cliente)
         if(mayor_nro_seq_recibido < nro_seq_recibido)
 			mayor_nro_seq_recibido = nro_seq_recibido;
 			
-        /* ... ejemplos a corregir y/o expandir ... */
-
-        if (tag == TAG_TERMINE) {
-            debug("Mi cliente avisa que terminó");
-            break;
+        if (tag == TAG_TERMINE) 
+        {
+			debug("TAG_TERMINE");
+            
+            
+            
+            int rank;
+            for(rank = 0; rank<cant_ranks; rank+=2) {
+				MPI_Send(NULL, 0, MPI_INT, rank, TAG_TERMINE_REMOTO, MPI_COMM_WORLD);
+			}
         }
+        
+        if( tag == TAG_TERMINE_REMOTO )
+        {
+			cant_terminados--;
+			if(cant_terminados == 0)
+				break;
+		}
 
         if (tag == TAG_PEDIDO) { //  TODO CANT SERVERS 1
+			debug("TAG_PEDIDO");
             assert(origen == mi_cliente);
             assert(hay_pedido_local == FALSE);
-            debug("Mi cliente solicita acceso exclusivo");
+            
             hay_pedido_local = TRUE;
             
             cant_respuestas_ok = (cant_ranks/2)-1; // Todos los servidores menos yo.
-			int rank = 0;
-			
+						
 			if(mayor_nro_seq_recibido > nro_seq)
 				nro_seq = mayor_nro_seq_recibido;
 			nro_seq++;
-            
+			
+            int rank;
             for(rank = 0; rank<cant_ranks; rank+=2) {
 				if (rank != mi_rank) {
-					debug("Envio mensaje al rank");
+					debug("Enviando...");
 					MPI_Send(&nro_seq, 0, MPI_INT, rank, TAG_PEDIDO_REMOTO, MPI_COMM_WORLD);
+					debug("Envie...");
 				}
 			}
         }
         
         if (tag == TAG_LIBERO) {
+			debug("TAG_LIBERO");
             assert(origen == mi_cliente);
             assert(hay_pedido_local == TRUE);
-            debug("Mi cliente libera su acceso exclusivo");
             hay_pedido_local = FALSE;
             
             int i;
@@ -107,10 +122,10 @@ void servidor(int mi_cliente)
         }
         
         if (tag == TAG_PEDIDO_REMOTO) {
+			debug("TAG_PEDIDO_REMOTO");
 			assert(origen != mi_cliente);
 			assert(origen != mi_rank);
-			debug("Me llega un pedido remoto");
-			
+						
 			if(!hay_pedido_local || nro_seq_recibido < nro_seq || ( (nro_seq_recibido == nro_seq) && mi_rank > origen))
 				MPI_Send(NULL, 0, MPI_INT, origen, TAG_OTORGADO_REMOTO, MPI_COMM_WORLD);
 			else
@@ -118,17 +133,16 @@ void servidor(int mi_cliente)
 		}
 		
 		if (tag == TAG_OTORGADO_REMOTO) {
+			debug("TAG_OTORGADO_REMOTO");
 			assert(origen != mi_cliente);
 			assert(origen != mi_rank);
-			debug("Me otorgaron el pedido remoto");
-			
+
 			cant_respuestas_ok--;
 			if (cant_respuestas_ok == 0)
 				MPI_Send(NULL, 0, MPI_INT, mi_cliente, TAG_OTORGADO, MPI_COMM_WORLD);
 		}
     }
 }
-
 
 void cliente(int mi_serv, int cant_iters, int delay_comp, int delay_crit)
 {
