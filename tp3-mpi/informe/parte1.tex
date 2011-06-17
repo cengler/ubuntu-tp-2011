@@ -1,1 +1,30 @@
-\part{TODO}
+\section{Objetivo}
+El objetivo era completar la implementaci\'on una versi\'on del algoritmo de Ricart y Agrawala implementado por la c\'atedra. Dicha implementaci\'on no ten\'ia desarrollada la parte correspondiente a la sincronizaci\'on entre servidores.
+
+\section{Soluci\'on}
+
+Para realizar dicha tarea agregamos los mensajes faltantes en el protocolo y los handlers de dichos mensajes como as\'i tambi\'en completamos los esqueletos de los handlers del server$-$cliente. 
+
+Agregamos el n\'umero de secuencia que provee el primer orden de desempate entre los pedidos de mutex. Cuando estos n\'umeros coinciden desempatamos por n\'umero de rank.
+
+La correcta implementaci\'on del algoritmo nos garantiza una soluci\'on libre de deadlock, livelock, inanici\'on o violaci\'on de la exclusi\'on mutua. 
+
+De todas maneras por la forma en que recibimos las ordenes de escritura durante la secci\'on cr\'itica y el tiempo necesario para flushear el buffer correspondiente a la salida estandar, llevaba a algunos errores de borde que no significaban una violaci\'on a la secci\'on cr\'itica. Para evitar esta salida desordenada por la impresi\'on y no por falla del algoritmo, agregamos un peque\~no \verb|usleep()| dentro del c\'odigo del cliente durante el transcurso de su secci\'on cr\'itica. Esto le da tiempo al \verb|printf| de flushear los datos. 
+
+Una vez agregada esta modificaci\'on no encontramos m\'as condiciones de borde.
+
+\section{Testeo}
+
+Para comprobar el correcto funcionamiento se realizaron una serie de tests. Algunos de los p\'arametros que utilizamos fueron los siguientes:
+\begin{itemize}
+\item \verb|mpiexec -np 10 ./tp3|
+\item \verb|mpiexec -np 10 ./tp3 100|
+\item \verb|mpiexec -np 52 ./tp3 100|
+\item \verb|mpiexec -np 52 ./tp3 100 1 1|
+\item \verb|mpiexec -np 52 ./tp3 20 4 3|
+\item \verb|mpiexec -np 52 ./tp3 10 10 10|
+\item \verb|mpiexec -np 52 ./tp3 10 40 50|
+\item \verb|mpiexec -np 52 ./tp3 2  100 50|
+\item \verb|mpiexec -np 52 ./tp3 2  1000 1000|
+\item \verb|mpiexec -np 52 ./tp3 10  1000 1000|
+\end{itemize}
