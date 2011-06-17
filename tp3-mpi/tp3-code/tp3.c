@@ -49,7 +49,7 @@ void servidor(int mi_cliente)
     
     /* Cantidad de permisos remotos (TAG_OTORGADO_REMOTO) 
      * que necesito para entrar */
-    int otorgados_remotos_faltantes;
+    int otorgados_remotos_faltantes =0;
     
     /* Cantidad de servidores */
     int cant_servidores = cant_ranks/2;
@@ -86,7 +86,7 @@ void servidor(int mi_cliente)
             int serv;
             for(serv = 0; serv<cant_servidores; serv++) {
 				if (serv != mi_rank/2)
-					MPI_Send(NULL, 0, MPI_INT,serv, TAG_TERMINE_REMOTO, MPI_COMM_WORLD);
+					MPI_Send(NULL, 0, MPI_INT,serv*2, TAG_TERMINE_REMOTO, MPI_COMM_WORLD);
 			}
 			servidores_terminados_faltantes--;
 			if(servidores_terminados_faltantes == 0)
@@ -119,7 +119,7 @@ void servidor(int mi_cliente)
             int serv;
             for(serv = 0; serv<cant_servidores; serv++) {
 				if (serv != mi_rank/2) {
-					MPI_Send(&nro_seq, 0, MPI_INT, serv, TAG_PEDIDO_REMOTO, MPI_COMM_WORLD);
+					MPI_Send(&nro_seq, 0, MPI_INT, serv*2, TAG_PEDIDO_REMOTO, MPI_COMM_WORLD);
 				}
 			}
         }
@@ -137,7 +137,7 @@ void servidor(int mi_cliente)
 				if(cola_de_pedidos[i] == TRUE)
 				{
 					assert(i != (mi_rank/2)); 
-					MPI_Send(NULL, 0, MPI_INT, i, TAG_OTORGADO_REMOTO, MPI_COMM_WORLD);
+					MPI_Send(NULL, 0, MPI_INT, i*2, TAG_OTORGADO_REMOTO, MPI_COMM_WORLD);
 					cola_de_pedidos[i] = FALSE;
 				}
 			}
